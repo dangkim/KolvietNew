@@ -20,7 +20,7 @@ const AppMain = () => {
 
             {/* Components */}
 
-            {/* <Suspense fallback={
+            <Suspense fallback={
                 <div className="loader-container">
                     <div className="loader-container-inner">
                         <h6 className="mt-5">
@@ -31,11 +31,11 @@ const AppMain = () => {
                 </div>
             }>
                 <Route path="/components" component={Components} />
-            </Suspense> */}
+            </Suspense>
 
             {/* Forms */}
 
-            {/* <Suspense fallback={
+            <Suspense fallback={
                 <div className="loader-container">
                     <div className="loader-container-inner">
                         <h6 className="mt-5">
@@ -46,11 +46,11 @@ const AppMain = () => {
                 </div>
             }>
                 <Route path="/forms" component={Forms} />
-            </Suspense> */}
+            </Suspense>
 
             {/* Charts */}
 
-            {/* <Suspense fallback={
+            <Suspense fallback={
                 <div className="loader-container">
                     <div className="loader-container-inner">
                         <h6 className="mt-3">
@@ -61,11 +61,11 @@ const AppMain = () => {
                 </div>
             }>
                 <Route path="/charts" component={Charts} />
-            </Suspense> */}
+            </Suspense>
 
             {/* Tables */}
 
-            {/* <Suspense fallback={
+            <Suspense fallback={
                 <div className="loader-container">
                     <div className="loader-container-inner">
                         <h6 className="mt-5">
@@ -76,11 +76,11 @@ const AppMain = () => {
                 </div>
             }>
                 <Route path="/tables" component={Tables} />
-            </Suspense> */}
+            </Suspense>
 
             {/* Elements */}
 
-            {/* <Suspense fallback={
+            <Suspense fallback={
                 <div className="loader-container">
                     <div className="loader-container-inner">
                         <h6 className="mt-3">
@@ -91,11 +91,11 @@ const AppMain = () => {
                 </div>
             }>
                 <Route path="/elements" component={Elements} />
-            </Suspense> */}
+            </Suspense>
 
             {/* Dashboard Widgets */}
 
-            {/* <Suspense fallback={
+            <Suspense fallback={
                 <div className="loader-container">
                     <div className="loader-container-inner">
                         <h6 className="mt-3">
@@ -106,7 +106,7 @@ const AppMain = () => {
                 </div>
             }>
                 <Route path="/widgets" component={Widgets} />
-            </Suspense> */}
+            </Suspense>
 
             {/* Dashboards */}
 

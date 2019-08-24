@@ -21,6 +21,24 @@ import { UserBox } from './Components/UserBox/UserBox';
 //                     transitionLeaveTimeout={1000}
 
 class AppHeader extends React.Component {
+
+    state = {
+        showList: true,
+        highlightedHobby: false
+    };
+
+    switch = () => {
+        this.setState(prevState => ({
+            showList: !prevState.showList
+        }));
+    };
+
+    listSwitch = () => {
+        this.setState(state => ({
+            highlightedHobby: !state.highlightedHobby
+        }));
+    };
+
     render() {
         let {
             headerBackgroundColor,
@@ -29,10 +47,28 @@ class AppHeader extends React.Component {
         } = this.props;
         return (
             <Fragment>
-                <TransitionGroup component="div" className={cx("app-header", 'bg-strong-bliss header-text-light', { 'header-shadow': true })}>
+                <CSSTransition timeout={1500} unmountOnExit
+                    in
+                    classNames="HeaderAnimation"
+                    appear>
+                    <div className={cx("app-header", headerBackgroundColor, { 'header-shadow': enableHeaderShadow })}>
+                        <HeaderLogo />
+                        <div className={cx("app-header__content", { 'header-mobile-open': enableMobileMenuSmall })}>
+                            <div className="app-header-left">
+                                <SearchBox />
+                            </div>
+                            <div className="app-header-right">
+                                <UserBox />
+                            </div>
+                        </div>
+                    </div>
+                </CSSTransition>
+
+
+
+                {/* <TransitionGroup component="div" className={cx("app-header", headerBackgroundColor, { 'header-shadow': enableHeaderShadow })}>
                     <CSSTransition timeout={1500}
-                        classNames="HeaderAnimation"
-                        unmountOnExit
+                        classNames="HeaderAnimation"                        
                         appear>
                         <div>
                             <HeaderLogo />
@@ -42,7 +78,7 @@ class AppHeader extends React.Component {
                         classNames="HeaderAnimation"
                         unmountOnExit
                         appear>
-                        <div className={cx("app-header__content", { 'header-mobile-open': '' })}>
+                        <div className={cx("app-header__content", { 'header-mobile-open': enableMobileMenuSmall })}>
                             <div className="app-header-left">
                                 <SearchBox />
                             </div>
@@ -51,7 +87,7 @@ class AppHeader extends React.Component {
                             </div>
                         </div>
                     </CSSTransition>
-                </TransitionGroup >
+                </TransitionGroup > */}
             </Fragment>
         );
     }

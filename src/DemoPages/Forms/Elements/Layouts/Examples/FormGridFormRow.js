@@ -75,6 +75,8 @@ export default class FormGridFormRow extends React.Component {
 
                             </CardBody>
                         </Card>
+                    </CSSTransition>
+                    <CSSTransition timeout={0} unmountOnExit appear classNames="TabsAnimation">
                         <Card className="main-card mb-3">
                             <CardBody>
                                 <CardTitle>Inline</CardTitle>

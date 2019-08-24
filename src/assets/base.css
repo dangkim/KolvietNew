@@ -10292,45 +10292,42 @@ button,
     margin: 0;
 }
 
-.SidebarAnimation-enter,
 .SidebarAnimation-appear {
     transform: translateX(-30px);
     opacity: 0;
 }
 
-.SidebarAnimation-enter-active,
-.SidebarAnimation-appear-active {
+.SidebarAnimation-appear.SidebarAnimation-appear-active {
     opacity: 1;
     transform: translateX(0);
     transition: all .4s linear;
 }
 
-
-/* .HeaderAnimation-appear {
+.HeaderAnimation-appear {
   transform: translateY(-30px);
   opacity: 0; }
-  .HeaderAnimation-appear.HeaderAnimation-appear-active {
+.HeaderAnimation-appear.HeaderAnimation-appear-active {
     opacity: 1;
     transform: translateY(0);
-    transition: all .4s linear; } */
+    transition: all .4s linear; }
 
 
 /* This fires as soon as the element enters the dorm */
 
-.HeaderAnimation-enter,
+/* .HeaderAnimation-enter,
 .HeaderAnimation-appear {
     transform: translateY(-30px);
     opacity: 0;
-}
+} */
 
 /* This is where we can add the transition*/
 
-.HeaderAnimation-enter-active,
+/* .HeaderAnimation-enter-active,
 .HeaderAnimation-appear-active {
     opacity: 1;
     transform: translateY(0);
     transition: all .4s linear;
-}
+} */
 
 .MainAnimation-appear {
     transform: translateY(-30px);

@@ -20,7 +20,7 @@ import {
 
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 
-import {avatar1} from '../../../../assets/utils/images/avatars/1.jpg';
+import avatar1 from '../../../../assets/utils/images/avatars/1.jpg';
 
 class UserBox extends React.Component {
     constructor(props) {
@@ -41,7 +41,6 @@ class UserBox extends React.Component {
 
 
     render() {
-
         return (
             <Fragment>
                 <div className="header-btn-lg pr-0">
