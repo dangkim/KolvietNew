@@ -6,8 +6,7 @@ import Nav from '../AppNav/VerticalNavWrapper';
 
 import {
     CSSTransition,
-    TransitionGroup,
-    Transition
+    TransitionGroup
 } from 'react-transition-group';
 
 import PerfectScrollbar from 'react-perfect-scrollbar';
@@ -39,7 +38,11 @@ class AppSidebar extends Component {
             <Fragment>
                 <div className="sidebar-mobile-overlay" onClick={this.toggleMobileSidebar} />
                 <TransitionGroup component="div" className={cx("app-sidebar", backgroundColor, { 'sidebar-shadow': enableSidebarShadow })}>
-                    {/* <HeaderLogo /> */}
+                    <CSSTransition timeout={1500} unmountOnExit appear classNames="SidebarAnimation">
+                        <div>
+                            <HeaderLogo />
+                        </div>
+                    </CSSTransition>
                     <CSSTransition timeout={1500} unmountOnExit appear classNames="SidebarAnimation">
                         <PerfectScrollbar>
                             <div className="app-sidebar__inner">
@@ -55,29 +58,7 @@ class AppSidebar extends Component {
                             }}>
                         </div>
                     </CSSTransition>
-                </TransitionGroup>
-                {/* <HeaderLogo />
-                <Transition component="div"
-                    appear={true}
-                    enter={false}
-                    exit={false}
-                    timeout={{ appear: 1500 }}
-                    className={cx("app-sidebar", backgroundColor, { 'sidebar-shadow': enableSidebarShadow })}>
-
-                    <CSSTransition classNames="SidebarAnimation">
-                        <PerfectScrollbar>
-                            <div className="app-sidebar__inner">
-                                <Nav />
-                            </div>
-                        </PerfectScrollbar>
-                        <div
-                            className={cx("app-sidebar-bg", backgroundImageOpacity)}
-                            style={{
-                                backgroundImage: enableBackgroundImage ? 'url(' + backgroundImage + ')' : null
-                            }}>
-                        </div>
-                    </CSSTransition>
-                </Transition > */}
+                </TransitionGroup>                
             </Fragment>
         )
     }

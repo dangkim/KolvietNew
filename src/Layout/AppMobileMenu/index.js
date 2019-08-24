@@ -59,7 +59,6 @@ class AppMobileMenu extends React.Component {
 
         return (
             <Fragment>
-
                 <div className="app-header__mobile-menu">
                     <div onClick={this.toggleMobileSidebar}>
                         <Hamburger

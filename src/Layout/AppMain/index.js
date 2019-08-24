@@ -15,7 +15,6 @@ const Forms = lazy(() => import('../../DemoPages/Forms'));
 const Tables = lazy(() => import('../../DemoPages/Tables'));
 
 const AppMain = () => {
-    debugger;
     return (
         <Fragment>
 

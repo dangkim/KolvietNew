@@ -1,8 +1,8 @@
-import React, {Component, Fragment} from 'react';
+import React, { Component, Fragment } from 'react';
 import {
     CSSTransition,
     TransitionGroup,
-  } from 'react-transition-group';
+} from 'react-transition-group';
 import {
     Row, Col,
     Card, CardBody, Button,
@@ -60,7 +60,7 @@ const transitions = {
     flip: Flip
 };
 
-const Checkbox = ({label, onChange, id, checked}) => (
+const Checkbox = ({ label, onChange, id, checked }) => (
     <div className="form-check">
         <input
             id={id}
@@ -76,7 +76,7 @@ const Checkbox = ({label, onChange, id, checked}) => (
     </div>
 );
 
-const Radio = ({options, name, onChange, checked = false}) => {
+const Radio = ({ options, name, onChange, checked = false }) => {
     return Object.keys(options).map(k => {
         const option = options[k];
 
@@ -169,7 +169,7 @@ class ToastifyAlerts extends Component {
         });
 
     renderFlags() {
-        return flags.map(({id, label}) => (
+        return flags.map(({ id, label }) => (
             <div key={id}>
                 <Checkbox
                     id={id}
@@ -185,88 +185,83 @@ class ToastifyAlerts extends Component {
     render() {
         return (
             <Fragment>
-                <TransitionGroup
-                    component="div"
-                    transitionName="TabsAnimation"
-                    transitionAppear={true}
-                    transitionAppearTimeout={0}
-                    transitionEnter={false}
-                    transitionLeave={false}>
-                    <Row>
-                        <Col md="12">
-                            <Card className="main-card mb-3">
-                                <CardBody>
-                                    <CardTitle>Toastify Configurator</CardTitle>
-                                    <Row>
-                                        <Col md="2">
-                                            <div>
-                                                <h5>Color States</h5>
+                <TransitionGroup component="div">
+                    <CSSTransition timeout={0} unmountOnExit appear classNames="TabsAnimation">
+                        <Row>
+                            <Col md="12">
+                                <Card className="main-card mb-3">
+                                    <CardBody>
+                                        <CardTitle>Toastify Configurator</CardTitle>
+                                        <Row>
+                                            <Col md="2">
                                                 <div>
-                                                    <Radio
-                                                        options={toast.TYPE}
-                                                        name="type"
-                                                        checked={this.state.type}
-                                                        onChange={this.handleRadioOrSelect}
-                                                    />
-                                                </div>
-                                            </div>
-                                        </Col>
-                                        <Col md="4">
-                                            <h5>Options</h5>
-                                            <div>{this.renderFlags()}</div>
-                                        </Col>
-                                        <Col md="3">
-                                            <div>
-                                                <h5>Animation</h5>
-                                                <div>
-                                                    <div className="form-group">
-                                                        <label htmlFor="transition">Transition</label>
-                                                        <select
-                                                            name="transition"
-                                                            id="transition"
-                                                            className="form-control"
+                                                    <h5>Color States</h5>
+                                                    <div>
+                                                        <Radio
+                                                            options={toast.TYPE}
+                                                            name="type"
+                                                            checked={this.state.type}
                                                             onChange={this.handleRadioOrSelect}
-                                                            value={this.state.transition}
-                                                        >
-                                                            {Object.keys(transitions).map(k => (
-                                                                <option key={k} value={k}>
-                                                                    {k}
-                                                                </option>
-                                                            ))}
-                                                        </select>
-                                                    </div>
-                                                    <div className="form-group">
-                                                        <label htmlFor="autoClose">Delay</label>
-                                                        <input
-                                                            type="number"
-                                                            name="autoClose"
-                                                            className="form-control"
-                                                            id="autoClose"
-                                                            value={this.state.autoClose}
-                                                            onChange={this.handleAutoCloseDelay}
-                                                            disabled={this.state.disableAutoClose}
                                                         />
                                                     </div>
                                                 </div>
-                                            </div>
-                                        </Col>
-                                    </Row>
-                                </CardBody>
-                                <CardFooter>
-                                    <div>
-                                        <Button size="sm" className="text-danger" onClick={this.clearAll} color="link">Clear
+                                            </Col>
+                                            <Col md="4">
+                                                <h5>Options</h5>
+                                                <div>{this.renderFlags()}</div>
+                                            </Col>
+                                            <Col md="3">
+                                                <div>
+                                                    <h5>Animation</h5>
+                                                    <div>
+                                                        <div className="form-group">
+                                                            <label htmlFor="transition">Transition</label>
+                                                            <select
+                                                                name="transition"
+                                                                id="transition"
+                                                                className="form-control"
+                                                                onChange={this.handleRadioOrSelect}
+                                                                value={this.state.transition}
+                                                            >
+                                                                {Object.keys(transitions).map(k => (
+                                                                    <option key={k} value={k}>
+                                                                        {k}
+                                                                    </option>
+                                                                ))}
+                                                            </select>
+                                                        </div>
+                                                        <div className="form-group">
+                                                            <label htmlFor="autoClose">Delay</label>
+                                                            <input
+                                                                type="number"
+                                                                name="autoClose"
+                                                                className="form-control"
+                                                                id="autoClose"
+                                                                value={this.state.autoClose}
+                                                                onChange={this.handleAutoCloseDelay}
+                                                                disabled={this.state.disableAutoClose}
+                                                            />
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </Col>
+                                        </Row>
+                                    </CardBody>
+                                    <CardFooter>
+                                        <div>
+                                            <Button size="sm" className="text-danger" onClick={this.clearAll} color="link">Clear
                                             All</Button>
-                                        <Button size="sm" className="text-primary" onClick={this.handleReset}
+                                            <Button size="sm" className="text-primary" onClick={this.handleReset}
                                                 color="link">Reset</Button>
-                                    </div>
-                                    <div className="ml-auto">
-                                        <Button size="lg" color="success" onClick={this.showToast}>Show Toast</Button>
-                                    </div>
-                                </CardFooter>
-                            </Card>
-                        </Col>
-                    </Row>
-
+                                        </div>
+                                        <div className="ml-auto">
+                                            <Button size="lg" color="success" onClick={this.showToast}>Show Toast</Button>
+                                        </div>
+                                    </CardFooter>
+                                </Card>
+                            </Col>
+                        </Row>
+                    </CSSTransition>
                 </TransitionGroup>
 
             </Fragment>

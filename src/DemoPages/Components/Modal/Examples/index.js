@@ -27,13 +27,8 @@ class ModalsExample extends React.Component {
     render() {
         return (
             <Fragment>
-                <TransitionGroup
-                    component="div"
-                    transitionName="TabsAnimation"
-                    transitionAppear={true}
-                    transitionAppearTimeout={0}
-                    transitionEnter={false}
-                    transitionLeave={false}>
+                <TransitionGroup component="div">
+                    <CSSTransition timeout={0} unmountOnExit appear classNames="TabsAnimation">
                     <Row className="text-center">
                         <Col md="12">
                             <Card className="main-card mb-3">
@@ -54,7 +49,7 @@ class ModalsExample extends React.Component {
                             </Card>
                         </Col>
 
-                    </Row>
+                    </Row></CSSTransition>
                 </TransitionGroup>
             </Fragment>
         )

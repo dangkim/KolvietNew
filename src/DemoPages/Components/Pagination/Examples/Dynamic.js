@@ -56,13 +56,8 @@ class DynamicPagination extends Component {
     render() {
         return (
             <Fragment>
-                <TransitionGroup
-                    component="div"
-                    transitionName="TabsAnimation"
-                    transitionAppear={true}
-                    transitionAppearTimeout={0}
-                    transitionEnter={false}
-                    transitionLeave={false}>
+                <TransitionGroup component="div">
+                    <CSSTransition timeout={0} unmountOnExit appear classNames="TabsAnimation">
                     <Row>
                         <Col lg="6">
                             <Card className="main-card mb-3">
@@ -96,7 +91,7 @@ class DynamicPagination extends Component {
                                 </CardBody>
                             </Card>
                         </Col>
-                    </Row>
+                    </Row></CSSTransition>
                 </TransitionGroup>
             </Fragment>
         )
