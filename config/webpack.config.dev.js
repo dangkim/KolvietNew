@@ -279,6 +279,17 @@ module.exports = {
     tls: 'empty',
     child_process: 'empty',
   },
+  externals: {
+    // global app config object
+    configContent: JSON.stringify({
+      apiUrl: 'http://bdo8.com/'
+      //apiUrl: 'https://localhost:44300/'
+    }),
+    configOrchardCore: JSON.stringify({
+      apiUrl: 'http://bdo8.com/api/'
+      //apiUrl: 'https://localhost:44300/api/'
+    })
+  },
   // Turn off performance hints during development because we don't do any
   // splitting or minification in interest of speed. These warnings become
   // cumbersome.
