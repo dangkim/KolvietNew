@@ -35,7 +35,7 @@ const AppMain = () => {
 
             {/* Forms */}
 
-            <Suspense fallback={
+            {/* <Suspense fallback={
                 <div className="loader-container">
                     <div className="loader-container-inner">
                         <h6 className="mt-5">
@@ -46,11 +46,11 @@ const AppMain = () => {
                 </div>
             }>
                 <Route path="/forms" component={Forms} />
-            </Suspense>
+            </Suspense> */}
 
             {/* Charts */}
 
-            <Suspense fallback={
+            {/* <Suspense fallback={
                 <div className="loader-container">
                     <div className="loader-container-inner">
                         <h6 className="mt-3">
@@ -61,11 +61,11 @@ const AppMain = () => {
                 </div>
             }>
                 <Route path="/charts" component={Charts} />
-            </Suspense>
+            </Suspense> */}
 
             {/* Tables */}
 
-            <Suspense fallback={
+            {/* <Suspense fallback={
                 <div className="loader-container">
                     <div className="loader-container-inner">
                         <h6 className="mt-5">
@@ -76,7 +76,7 @@ const AppMain = () => {
                 </div>
             }>
                 <Route path="/tables" component={Tables} />
-            </Suspense>
+            </Suspense> */}
 
             {/* Elements */}
 

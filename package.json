@@ -97,7 +97,18 @@
     "url-loader": "0.5.9",
     "webpack": "^4.39.2",
     "webpack-assets-manifest": "^3.1.1",
-    "whatwg-fetch": "2.0.3"
+    "whatwg-fetch": "2.0.3",
+    "react-loading-skeleton": "^1.1.2",
+    "react-number-format": "^4.0.8",
+    "qs": "^6.7.0",
+    "password-validator": "^4.1.2",
+    "react-daterange-picker": "^2.0.1",
+    "react-select": "^3.0.4",
+    "react-slick": "^0.24.0",
+    "dayjs": "^1.8.15",
+    "history": "^4.6.3",
+    "moment-range": "^4.0.2",
+    "recompose": "^0.30.0"
   },
   "devDependencies": {
     "@babel/core": "^7.5.5",
