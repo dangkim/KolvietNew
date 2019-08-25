@@ -46,7 +46,7 @@ export default class NavsVertical extends React.Component {
         return (
             <Fragment>
                 <TransitionGroup component="div">
-                    <CSSTransition timeout={0} unmountOnExit appear classNames="TabsAnimation">
+                    <CSSTransition timeout={1500} unmountOnExit appear classNames="TabsAnimation">
                     <Row>
                         <Col md="12">
                             <Card className="main-card mb-3">
@@ -385,7 +385,7 @@ export default class NavsVertical extends React.Component {
                                 </CardBody>
                             </Card>
                         </Col>
-                        <Col md="12">
+                        {/* <Col md="12">
                             <Card className="main-card mb-3">
                                 <CardBody>
                                     <CardTitle>Menu Hover Styles</CardTitle>
@@ -495,7 +495,7 @@ export default class NavsVertical extends React.Component {
                                     </Row>
                                 </CardBody>
                             </Card>
-                        </Col>
+                        </Col> */}
                     </Row></CSSTransition>
                 </TransitionGroup>
             </Fragment>

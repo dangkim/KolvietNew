@@ -28,7 +28,7 @@ class ModalsExample extends React.Component {
         return (
             <Fragment>
                 <TransitionGroup component="div">
-                    <CSSTransition timeout={0} unmountOnExit appear classNames="TabsAnimation">
+                    <CSSTransition timeout={1500} unmountOnExit appear classNames="TabsAnimation">
                     <Row className="text-center">
                         <Col md="12">
                             <Card className="main-card mb-3">

@@ -10,7 +10,7 @@ export default class FormInline extends React.Component {
         return (
             <Fragment>
                 <TransitionGroup component="div">
-                    <CSSTransition timeout={0} unmountOnExit appear classNames="TabsAnimation">
+                    <CSSTransition timeout={1500} unmountOnExit appear classNames="TabsAnimation">
                         <Form inline>
                             <FormGroup className="mb-2 mr-sm-2 mb-sm-0">
                                 <Label for="exampleEmail22" className="mr-sm-2">Email</Label>
@@ -22,7 +22,11 @@ export default class FormInline extends React.Component {
                             </FormGroup>
                             <Button color="primary">Submit</Button>
                         </Form>
+                    </CSSTransition>
+                    <CSSTransition timeout={1500} unmountOnExit appear classNames="TabsAnimation">
                         <div className="divider" />
+                    </CSSTransition>
+                    <CSSTransition timeout={1500} unmountOnExit appear classNames="TabsAnimation">
                         <Form>
                             <FormGroup check inline>
                                 <Label check>
@@ -35,7 +39,11 @@ export default class FormInline extends React.Component {
                             </Label>
                             </FormGroup>
                         </Form>
+                    </CSSTransition>
+                    <CSSTransition timeout={1500} unmountOnExit appear classNames="TabsAnimation">
                         <div className="divider" />
+                    </CSSTransition>
+                    <CSSTransition timeout={1500} unmountOnExit appear classNames="TabsAnimation">
                         <Form inline>
                             <FormGroup>
                                 <Label for="exampleEmail33" hidden>Email</Label>

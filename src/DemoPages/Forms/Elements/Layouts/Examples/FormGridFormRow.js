@@ -15,7 +15,7 @@ export default class FormGridFormRow extends React.Component {
         return (
             <Fragment>
                 <TransitionGroup component="div">
-                    <CSSTransition timeout={0} unmountOnExit appear classNames="TabsAnimation">
+                    <CSSTransition timeout={1500} unmountOnExit appear classNames="TabsAnimation">
                         <Card className="main-card mb-3">
                             <CardBody>
                                 <CardTitle>Grid Rows</CardTitle>
@@ -76,7 +76,7 @@ export default class FormGridFormRow extends React.Component {
                             </CardBody>
                         </Card>
                     </CSSTransition>
-                    <CSSTransition timeout={0} unmountOnExit appear classNames="TabsAnimation">
+                    <CSSTransition timeout={1500} unmountOnExit appear classNames="TabsAnimation">
                         <Card className="main-card mb-3">
                             <CardBody>
                                 <CardTitle>Inline</CardTitle>

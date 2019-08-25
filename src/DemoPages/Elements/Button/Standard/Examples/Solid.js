@@ -65,7 +65,7 @@ class ButtonsStandardSolid extends Component {
         return (
             <Fragment>
                 <TransitionGroup component="div">
-                    <CSSTransition timeout={0} unmountOnExit appear classNames="TabsAnimation">
+                    <CSSTransition timeout={1500} unmountOnExit appear classNames="TabsAnimation">
                         <Row>
                             <Col lg="6">
                                 <Card className="main-card mb-3">
@@ -225,7 +225,7 @@ class ButtonsStandardSolid extends Component {
                             </Col>
                         </Row>
                     </CSSTransition>
-                    <CSSTransition timeout={0} unmountOnExit appear classNames="TabsAnimation">
+                    <CSSTransition timeout={1500} unmountOnExit appear classNames="TabsAnimation">
                         <Row>
                             <Col lg="6">
                                 <Card className="main-card mb-3">

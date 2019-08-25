@@ -67,7 +67,7 @@ class BasicExample extends Component {
         return (
             <Fragment>
                 <TransitionGroup component="div">
-                    <CSSTransition timeout={0} unmountOnExit appear classNames="TabsAnimation">
+                    <CSSTransition timeout={1500} unmountOnExit appear classNames="TabsAnimation">
                         <div>
                             <Row>
                                 <Col md="4">

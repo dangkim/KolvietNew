@@ -1,8 +1,8 @@
-import React, {Fragment} from 'react';
+import React, { Fragment } from 'react';
 import {
     CSSTransition,
     TransitionGroup,
-  } from 'react-transition-group';
+} from 'react-transition-group';
 import {
     Row, Col,
     Card, CardBody,
@@ -19,55 +19,51 @@ import FormInputGroupButtonShorthand from './InputGroupButtonShorthand';
 const InputGroups = (props) => {
     return (
         <Fragment>
-            <TransitionGroup
-                component="div"
-                transitionName="TabsAnimation"
-                transitionAppear={true}
-                transitionAppearTimeout={0}
-                transitionEnter={false}
-                transitionLeave={false}>
-                <Row>
-                    <Col md="6">
-                        <Card className="main-card mb-3">
-                            <CardBody>
-                                <CardTitle>Input Groups</CardTitle>
-                                <FormInputGroupOverview/>
-                            </CardBody>
-                        </Card>
-                        <Card className="main-card mb-3">
-                            <CardBody>
-                                <CardTitle>Input Group Button Dropdown</CardTitle>
-                                <FormInputGroupButtonDropdown/>
-                            </CardBody>
-                        </Card>
-                        <Card className="main-card mb-3">
-                            <CardBody>
-                                <CardTitle>Input Group Button Shorthand</CardTitle>
-                                <FormInputGroupButtonShorthand/>
-                            </CardBody>
-                        </Card>
-                    </Col>
-                    <Col md="6">
-                        <Card className="main-card mb-3">
-                            <CardBody>
-                                <CardTitle>Input Group Sizing</CardTitle>
-                                <FormInputGroupSizing/>
-                            </CardBody>
-                        </Card>
-                        <Card className="main-card mb-3">
-                            <CardBody>
-                                <CardTitle>Input Group Addon</CardTitle>
-                                <FormInputGroupAddon/>
-                            </CardBody>
-                        </Card>
-                        <Card className="main-card mb-3">
-                            <CardBody>
-                                <CardTitle>Input Group Button</CardTitle>
-                                <FormInputGroupButton/>
-                            </CardBody>
-                        </Card>
-                    </Col>
-                </Row>
+            <TransitionGroup component="div">
+                <CSSTransition timeout={1500} unmountOnExit appear classNames="TabsAnimation">
+                    <Row>
+                        <Col md="6">
+                            <Card className="main-card mb-3">
+                                <CardBody>
+                                    <CardTitle>Input Groups</CardTitle>
+                                    <FormInputGroupOverview />
+                                </CardBody>
+                            </Card>
+                            <Card className="main-card mb-3">
+                                <CardBody>
+                                    <CardTitle>Input Group Button Dropdown</CardTitle>
+                                    <FormInputGroupButtonDropdown />
+                                </CardBody>
+                            </Card>
+                            <Card className="main-card mb-3">
+                                <CardBody>
+                                    <CardTitle>Input Group Button Shorthand</CardTitle>
+                                    <FormInputGroupButtonShorthand />
+                                </CardBody>
+                            </Card>
+                        </Col>
+                        <Col md="6">
+                            <Card className="main-card mb-3">
+                                <CardBody>
+                                    <CardTitle>Input Group Sizing</CardTitle>
+                                    <FormInputGroupSizing />
+                                </CardBody>
+                            </Card>
+                            <Card className="main-card mb-3">
+                                <CardBody>
+                                    <CardTitle>Input Group Addon</CardTitle>
+                                    <FormInputGroupAddon />
+                                </CardBody>
+                            </Card>
+                            <Card className="main-card mb-3">
+                                <CardBody>
+                                    <CardTitle>Input Group Button</CardTitle>
+                                    <FormInputGroupButton />
+                                </CardBody>
+                            </Card>
+                        </Col>
+                    </Row>
+                </CSSTransition>
             </TransitionGroup>
         </Fragment>
     );
