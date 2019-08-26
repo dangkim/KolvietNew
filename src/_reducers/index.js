@@ -15,7 +15,7 @@ import { locations } from './locations.reducer';
 import { interestings } from './interestings.reducer';
 import { jobCategories } from './jobCategories.reducer';
 import { alert } from './alert.reducer';
-import ThemeOptions from './ThemeOptions';
+import themeOptions from './theme.reducer';
 
 const rootReducer = combineReducers({
   authentication,
@@ -28,7 +28,7 @@ const rootReducer = combineReducers({
   interestings,
   jobCategories,
   alert,
-  ThemeOptions
+  themeOptions
 });
 
 export default rootReducer;

@@ -14,7 +14,7 @@ import HeaderLogo from '../AppLogo';
 
 import {
     setEnableMobileMenu
-} from '../../_reducers/ThemeOptions';
+} from '../../_reducers/theme.reducer';
 
 class AppSidebar extends Component {
 
