@@ -9,7 +9,7 @@ import {
     setEnableClosedSidebar,
     setEnableMobileMenu,
     setEnableMobileMenuSmall,
-} from '../../reducers/ThemeOptions';
+} from '../../_reducers/ThemeOptions';
 
 class HeaderLogo extends React.Component {
     constructor(props) {

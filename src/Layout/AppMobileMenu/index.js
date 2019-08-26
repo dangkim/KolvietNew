@@ -19,7 +19,7 @@ import {
 import {
     setEnableMobileMenu,
     setEnableMobileMenuSmall,
-} from '../../reducers/ThemeOptions';
+} from '../../_reducers/ThemeOptions';
 
 class AppMobileMenu extends React.Component {
     constructor(props) {

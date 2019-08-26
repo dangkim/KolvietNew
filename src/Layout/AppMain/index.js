@@ -10,9 +10,12 @@ const Dashboards = lazy(() => import('../../DemoPages/Dashboards'));
 const Widgets = lazy(() => import('../../DemoPages/Widgets'));
 const Elements = lazy(() => import('../../DemoPages/Elements'));
 const Components = lazy(() => import('../../DemoPages/Components'));
-const Charts = lazy(() => import('../../DemoPages/Charts'));
-const Forms = lazy(() => import('../../DemoPages/Forms'));
-const Tables = lazy(() => import('../../DemoPages/Tables'));
+const LoginPage = lazy(() => import('../../DemoPages/LoginPage'));
+const RegisterBrandPage = lazy(() => import('../../DemoPages/RegisterBrandPage'));
+const RegisterInfluencerPage = lazy(() => import('../../DemoPages/RegisterInfluencerPage'));
+// const Charts = lazy(() => import('../../DemoPages/Charts'));
+// const Forms = lazy(() => import('../../DemoPages/Forms'));
+// const Tables = lazy(() => import('../../DemoPages/Tables'));
 
 const AppMain = () => {
     return (
@@ -31,6 +34,45 @@ const AppMain = () => {
                 </div>
             }>
                 <Route path="/components" component={Components} />
+            </Suspense>
+
+            <Suspense fallback={
+                <div className="loader-container">
+                    <div className="loader-container-inner">
+                        <h6 className="mt-5">
+                            Please wait while we load all the Components examples
+                            <small>Because this is a demonstration we load at once all the Components examples. This wouldn't happen in a real live app!</small>
+                        </h6>
+                    </div>
+                </div>
+            }>
+                <Route path="/loginpage" component={LoginPage} />
+            </Suspense>
+
+            <Suspense fallback={
+                <div className="loader-container">
+                    <div className="loader-container-inner">
+                        <h6 className="mt-5">
+                            Please wait while we load all the Components examples
+                            <small>Because this is a demonstration we load at once all the Components examples. This wouldn't happen in a real live app!</small>
+                        </h6>
+                    </div>
+                </div>
+            }>
+                <Route path="/registerinfluencerpage" component={RegisterInfluencerPage} />
+            </Suspense>
+
+            <Suspense fallback={
+                <div className="loader-container">
+                    <div className="loader-container-inner">
+                        <h6 className="mt-5">
+                            Please wait while we load all the Components examples
+                            <small>Because this is a demonstration we load at once all the Components examples. This wouldn't happen in a real live app!</small>
+                        </h6>
+                    </div>
+                </div>
+            }>
+                <Route path="/registerbrandpage" component={RegisterBrandPage} />
             </Suspense>
 
             {/* Forms */}
