@@ -1,11 +1,12 @@
 import React, { Fragment } from 'react';
 import { Route } from 'react-router-dom';
 
-
-
 // NAVIGATION
 
-import {LoginPage} from './LoginPage';
+import { LoginPage } from './LoginPage';
+import { RegisterBrandPage } from './RegisterBrandPage';
+// import { RegisterCampaignPage } from './RegisterCampaignPage';
+import { RegisterInfluencerPage } from './RegisterInfluencerPage';
 
 // Layout
 import { AppHeader } from '../../Layout/AppHeader';
@@ -13,7 +14,15 @@ import AppSidebar from '../../Layout/AppSidebar';
 import AppFooter from '../../Layout/AppFooter';
 
 const Pages = ({ match }) => (
-    <LoginPage />
+    <Fragment>
+        {/* <Route path={`${match.url}/loginpage`} component={LoginPage} /> */}
+        <Route path={`${match.url}/registerbrandpage`} component={RegisterBrandPage} />
+        {/* <Route path={`${match.url}/registercampaignpage`} component={RegisterCampaignPage} /> */}
+        <Route path={`${match.url}/registerinfluencerpage`} component={RegisterInfluencerPage} />
+        {/* <Route path={`${match.url}/loginpage`} component={LoginPage} />
+        <Route path={`${match.url}/loginpage`} component={LoginPage} />
+        <Route path={`${match.url}/loginpage`} component={LoginPage} /> */}
+    </Fragment>
 );
 
 export default Pages;

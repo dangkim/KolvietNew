@@ -2,15 +2,16 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 //import img from '../assets/images/signup-image.jpg'
-import city from '../../assets/utils/images/originals/city.jpg'
-import citynights from '../../assets/utils/images/originals/citynights.jpg'
-import citydark from '../../assets/utils/images/originals/citydark.jpg'
+import city from '../../../assets/utils/images/originals/city.jpg'
+import citynights from '../../../assets/utils/images/originals/citynights.jpg'
+import citydark from '../../../assets/utils/images/originals/citydark.jpg'
 import Slider from "react-slick";
-import { brandActions, campaignActions, userActions } from '../../_actions';
+import { brandActions } from '../../../_actions';
 import Select from 'react-select';
-import new_logo from '../../assets/utils/images/originals/new_logo.png'
-import { createLocations } from '../../_models/CommonModels';
-var NumberFormat = require('react-number-format');
+import new_logo from '../../../assets/utils/images/originals/new_logo.png'
+import { createLocations } from '../../../_models/CommonModels';
+import NumberFormat from 'react-number-format';
+import PasswordValidator from 'password-validator';
 
 class RegisterBrandPage extends React.Component {
     constructor(props) {
@@ -40,7 +41,6 @@ class RegisterBrandPage extends React.Component {
     }
 
     handleOptionLocationChange = selectedOptionLocation => {
-        debugger;
         this.setState({ selectedOptionLocation });
         //console.log(`Option selected:`, selectedOptionLocation);
     };
@@ -79,7 +79,7 @@ class RegisterBrandPage extends React.Component {
                 IsFluencer: false,
                 IsBrand: true
             }
-            debugger;
+
             const brandType = {
                 ContentItemId: '',
                 ContentItemVersionId: '',
@@ -139,9 +139,9 @@ class RegisterBrandPage extends React.Component {
 
     handlePassword = password => {
         const { brand } = this.state;
-        var passwordValidator = require('password-validator');
+
         // Create a schema
-        var schema = new passwordValidator();
+        var schema = new PasswordValidator();
         schema
             .is().min(8)
             .is().max(20)
@@ -157,12 +157,10 @@ class RegisterBrandPage extends React.Component {
         //console.log(`Option selected:`, selectedOptionLocation);
     };
 
-
     render() {
-        const { brands} = this.props;
+        const { brands } = this.props;
         const { brand, selectedOptionLocation, submitted } = this.state;
         const options = createLocations();
-
         const settings = {
             dots: true,
             infinite: true,
@@ -177,7 +175,6 @@ class RegisterBrandPage extends React.Component {
                         <div className="h-100 no-gutters row">
                             <div className="h-100 d-md-flex d-sm-block bg-white justify-content-center align-items-center col-md-12 col-lg-8">
                                 <div className="mx-auto app-login-box col-sm-12 col-md-10 col-lg-9">
-                                    {/* <div className="app-logo"></div> */}
                                     <div style={{ marginBottom: '3rem', width: '97px', height: '23px' }}>
                                         <img src={new_logo} alt="Kols Viet" />
                                     </div>
@@ -232,7 +229,6 @@ class RegisterBrandPage extends React.Component {
                                                         <label htmlFor="name" className="">
                                                             <span className="text-danger">*</span> Phone
                                                         </label>
-                                                        {/* <input type="text" name="phone" id="phone" placeholder="Your Phone" value={brand.phone} onChange={this.handleChange} className="form-control" /> */}
                                                         <NumberFormat className="form-control" name="phone" id="phone" format="+84 (####) ###-###" mask="_" value={brand.phone} onChange={this.handleChange} placeholder="Your Phone" />
                                                         {
                                                             submitted && !brand.phone &&

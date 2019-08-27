@@ -1,9 +1,9 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
-import InfImg from '../../assets/utils/images/originals/Influencer.jpg'
-import { userActions, infActions } from '../../_actions';
-import new_logo from '../../assets/utils/images/originals/new_logo.png';
+import InfImg from '../../../assets/utils/images/originals/Influencer.jpg'
+import { userActions, infActions } from '../../../_actions';
+import new_logo from '../../../assets/utils/images/originals/new_logo.png';
 var NumberFormat = require('react-number-format');
 
 class RegisterInfluencerPage extends React.Component {
