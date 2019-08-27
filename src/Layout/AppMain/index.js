@@ -10,12 +10,12 @@ const Dashboards = lazy(() => import('../../DemoPages/Dashboards'));
 const Widgets = lazy(() => import('../../DemoPages/Widgets'));
 const Elements = lazy(() => import('../../DemoPages/Elements'));
 const Components = lazy(() => import('../../DemoPages/Components'));
-const LoginPage = lazy(() => import('../../DemoPages/LoginPage'));
-const RegisterBrandPage = lazy(() => import('../../DemoPages/RegisterBrandPage'));
-const RegisterInfluencerPage = lazy(() => import('../../DemoPages/RegisterInfluencerPage'));
-// const Charts = lazy(() => import('../../DemoPages/Charts'));
-// const Forms = lazy(() => import('../../DemoPages/Forms'));
-// const Tables = lazy(() => import('../../DemoPages/Tables'));
+const Pages = lazy(() => import('../../DemoPages/Pages'));
+//const RegisterBrandPage = lazy(() => import('../../DemoPages/RegisterBrandPage'));
+//const RegisterInfluencerPage = lazy(() => import('../../DemoPages/RegisterInfluencerPage'));
+//const Charts = lazy(() => import('../../DemoPages/Charts'));
+//const Forms = lazy(() => import('../../DemoPages/Forms'));
+//const Tables = lazy(() => import('../../DemoPages/Tables'));
 
 const AppMain = () => {
     return (
@@ -46,10 +46,10 @@ const AppMain = () => {
                     </div>
                 </div>
             }>
-                <Route path="/loginpage" component={LoginPage} />
+                <Route path="/pages" component={Pages} />
             </Suspense>
 
-            <Suspense fallback={
+            {/* <Suspense fallback={
                 <div className="loader-container">
                     <div className="loader-container-inner">
                         <h6 className="mt-5">
@@ -60,9 +60,9 @@ const AppMain = () => {
                 </div>
             }>
                 <Route path="/registerinfluencerpage" component={RegisterInfluencerPage} />
-            </Suspense>
+            </Suspense> */}
 
-            <Suspense fallback={
+            {/* <Suspense fallback={
                 <div className="loader-container">
                     <div className="loader-container-inner">
                         <h6 className="mt-5">
@@ -73,7 +73,7 @@ const AppMain = () => {
                 </div>
             }>
                 <Route path="/registerbrandpage" component={RegisterBrandPage} />
-            </Suspense>
+            </Suspense> */}
 
             {/* Forms */}
 

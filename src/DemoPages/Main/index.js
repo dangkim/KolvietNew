@@ -61,15 +61,14 @@ class Main extends React.Component {
 }
 
 const mapStateToProp = state => {
-    debugger;
     return ({
-    colorScheme: state.colorScheme,
-    enableFixedHeader: state.enableFixedHeader,
-    enableMobileMenu: state.enableMobileMenu,
-    enableFixedFooter: state.enableFixedFooter,
-    enableFixedSidebar: state.enableFixedSidebar,
-    enableClosedSidebar: state.enableClosedSidebar,
-    enablePageTabsAlt: state.enablePageTabsAlt,
+    colorScheme:state.theme.colorScheme,
+    enableFixedHeader:state.theme.enableFixedHeader,
+    enableMobileMenu:state.theme.enableMobileMenu,
+    enableFixedFooter:state.theme.enableFixedFooter,
+    enableFixedSidebar:state.theme.enableFixedSidebar,
+    enableClosedSidebar:state.theme.enableClosedSidebar,
+    enablePageTabsAlt:state.theme.enablePageTabsAlt,
 
 })};
 

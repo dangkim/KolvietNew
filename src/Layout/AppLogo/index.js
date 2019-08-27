@@ -60,9 +60,9 @@ class HeaderLogo extends React.Component {
 
 
 const mapStateToProps = state => ({
-    enableClosedSidebar: state.enableClosedSidebar,
-    enableMobileMenu: state.enableMobileMenu,
-    enableMobileMenuSmall: state.enableMobileMenuSmall,
+    enableClosedSidebar:state.theme.enableClosedSidebar,
+    enableMobileMenu:state.theme.enableMobileMenu,
+    enableMobileMenuSmall:state.theme.enableMobileMenuSmall,
 });
 
 const mapDispatchToProps = dispatch => ({

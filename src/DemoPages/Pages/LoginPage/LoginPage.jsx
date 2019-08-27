@@ -1,12 +1,12 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
-import city from '../../assets/utils/images/originals/city.jpg'
-import citynights from '../../assets/utils/images/originals/citynights.jpg'
-import citydark from '../../assets/utils/images/originals/citydark.jpg'
+import city from '../../../assets/utils/images/originals/city.jpg'
+import citynights from '../../../assets/utils/images/originals/citynights.jpg'
+import citydark from '../../../assets/utils/images/originals/citydark.jpg'
 import Slider from "react-slick";
-import new_logo from '../../assets/utils/images/originals/new_logo.png'
-import { userActions } from '../../_actions';
+import new_logo from '../../../assets/utils/images/originals/new_logo.png'
+import { userActions } from '../../../_actions';
 
 class LoginPage extends React.Component {
     constructor(props) {
@@ -156,6 +156,7 @@ class LoginPage extends React.Component {
 }
 
 function mapStateToProps(state) {
+    debugger;
     const { loggingIn, token } = state.authentication;
     return {
         loggingIn,

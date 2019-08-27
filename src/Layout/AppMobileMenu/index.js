@@ -85,9 +85,9 @@ class AppMobileMenu extends React.Component {
 
 
 const mapStateToProps = state => ({
-    closedSmallerSidebar: state.closedSmallerSidebar,
-    enableMobileMenu: state.enableMobileMenu,
-    enableMobileMenuSmall: state.enableMobileMenuSmall,
+    closedSmallerSidebar:state.theme.closedSmallerSidebar,
+    enableMobileMenu:state.theme.enableMobileMenu,
+    enableMobileMenuSmall:state.theme.enableMobileMenuSmall,
 });
 
 const mapDispatchToProps = dispatch => ({

@@ -66,12 +66,12 @@ class AppSidebar extends Component {
 }
 
 const mapStateToProps = state => ({
-    enableBackgroundImage: state.enableBackgroundImage,
-    enableSidebarShadow: state.enableSidebarShadow,
-    enableMobileMenu: state.enableMobileMenu,
-    backgroundColor: state.backgroundColor,
-    backgroundImage: state.backgroundImage,
-    backgroundImageOpacity: state.backgroundImageOpacity,
+    enableBackgroundImage:state.theme.enableBackgroundImage,
+    enableSidebarShadow:state.theme.enableSidebarShadow,
+    enableMobileMenu:state.theme.enableMobileMenu,
+    backgroundColor:state.theme.backgroundColor,
+    backgroundImage:state.theme.backgroundImage,
+    backgroundImageOpacity:state.theme.backgroundImageOpacity,
 });
 
 const mapDispatchToProps = dispatch => ({
