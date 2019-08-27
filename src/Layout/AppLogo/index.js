@@ -1,15 +1,9 @@
 import React, {Fragment} from 'react';
 import {connect} from 'react-redux';
-
+import { themeActions } from '../../_actions';
 import Hamburger from 'react-hamburgers';
 
 import AppMobileMenu from '../AppMobileMenu';
-
-import {
-    setEnableClosedSidebar,
-    setEnableMobileMenu,
-    setEnableMobileMenuSmall,
-} from '../../_reducers/theme.reducer';
 
 class HeaderLogo extends React.Component {
     constructor(props) {
@@ -66,16 +60,16 @@ class HeaderLogo extends React.Component {
 
 
 const mapStateToProps = state => ({
-    enableClosedSidebar: state.ThemeOptions.enableClosedSidebar,
-    enableMobileMenu: state.ThemeOptions.enableMobileMenu,
-    enableMobileMenuSmall: state.ThemeOptions.enableMobileMenuSmall,
+    enableClosedSidebar: state.enableClosedSidebar,
+    enableMobileMenu: state.enableMobileMenu,
+    enableMobileMenuSmall: state.enableMobileMenuSmall,
 });
 
 const mapDispatchToProps = dispatch => ({
 
-    setEnableClosedSidebar: enable => dispatch(setEnableClosedSidebar(enable)),
-    setEnableMobileMenu: enable => dispatch(setEnableMobileMenu(enable)),
-    setEnableMobileMenuSmall: enable => dispatch(setEnableMobileMenuSmall(enable)),
+    setEnableClosedSidebar: enable => dispatch(themeActions.setEnableClosedSidebar(enable)),
+    setEnableMobileMenu: enable => dispatch(themeActions.setEnableMobileMenu(enable)),
+    setEnableMobileMenuSmall: enable => dispatch(themeActions.setEnableMobileMenuSmall(enable)),
 
 });
 

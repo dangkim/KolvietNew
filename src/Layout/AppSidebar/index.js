@@ -1,5 +1,6 @@
 import React, { Component, Fragment } from 'react';
 import { connect } from 'react-redux';
+import { themeActions } from '../../_actions';
 import cx from 'classnames';
 
 import Nav from '../AppNav/VerticalNavWrapper';
@@ -12,9 +13,9 @@ import {
 import PerfectScrollbar from 'react-perfect-scrollbar';
 import HeaderLogo from '../AppLogo';
 
-import {
-    setEnableMobileMenu
-} from '../../_reducers/theme.reducer';
+// import {
+//     setEnableMobileMenu
+// } from '../../_reducers/theme.reducer';
 
 class AppSidebar extends Component {
 
@@ -65,17 +66,17 @@ class AppSidebar extends Component {
 }
 
 const mapStateToProps = state => ({
-    enableBackgroundImage: state.ThemeOptions.enableBackgroundImage,
-    enableSidebarShadow: state.ThemeOptions.enableSidebarShadow,
-    enableMobileMenu: state.ThemeOptions.enableMobileMenu,
-    backgroundColor: state.ThemeOptions.backgroundColor,
-    backgroundImage: state.ThemeOptions.backgroundImage,
-    backgroundImageOpacity: state.ThemeOptions.backgroundImageOpacity,
+    enableBackgroundImage: state.enableBackgroundImage,
+    enableSidebarShadow: state.enableSidebarShadow,
+    enableMobileMenu: state.enableMobileMenu,
+    backgroundColor: state.backgroundColor,
+    backgroundImage: state.backgroundImage,
+    backgroundImageOpacity: state.backgroundImageOpacity,
 });
 
 const mapDispatchToProps = dispatch => ({
 
-    setEnableMobileMenu: enable => dispatch(setEnableMobileMenu(enable)),
+    setEnableMobileMenu: enable => dispatch(themeActions.setEnableMobileMenu(enable)),
 
 });
 

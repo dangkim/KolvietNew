@@ -94,10 +94,10 @@ class AppHeader extends React.Component {
 }
 
 const mapStateToProps = state => ({
-    enableHeaderShadow: state.ThemeOptions.enableHeaderShadow,
-    closedSmallerSidebar: state.ThemeOptions.closedSmallerSidebar,
-    headerBackgroundColor: state.ThemeOptions.headerBackgroundColor,
-    enableMobileMenuSmall: state.ThemeOptions.enableMobileMenuSmall,
+    enableHeaderShadow: state.enableHeaderShadow,
+    closedSmallerSidebar: state.closedSmallerSidebar,
+    headerBackgroundColor: state.headerBackgroundColor,
+    enableMobileMenuSmall: state.enableMobileMenuSmall,
 });
 
 const mapDispatchToProps = dispatch => ({});

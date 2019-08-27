@@ -2,7 +2,7 @@ import React, { Fragment } from 'react';
 import { connect } from 'react-redux';
 import cx from 'classnames';
 import { withRouter } from 'react-router-dom';
-
+import { themeActions } from '../../_actions';
 import ResizeDetector from 'react-resize-detector';
 
 import AppMain from '../../Layout/AppMain';
@@ -60,15 +60,26 @@ class Main extends React.Component {
     }
 }
 
-const mapStateToProp = state => ({
-    colorScheme: state.ThemeOptions.colorScheme,
-    enableFixedHeader: state.ThemeOptions.enableFixedHeader,
-    enableMobileMenu: state.ThemeOptions.enableMobileMenu,
-    enableFixedFooter: state.ThemeOptions.enableFixedFooter,
-    enableFixedSidebar: state.ThemeOptions.enableFixedSidebar,
-    enableClosedSidebar: state.ThemeOptions.enableClosedSidebar,
-    enablePageTabsAlt: state.ThemeOptions.enablePageTabsAlt,
+const mapStateToProp = state => {
+    debugger;
+    return ({
+    colorScheme: state.colorScheme,
+    enableFixedHeader: state.enableFixedHeader,
+    enableMobileMenu: state.enableMobileMenu,
+    enableFixedFooter: state.enableFixedFooter,
+    enableFixedSidebar: state.enableFixedSidebar,
+    enableClosedSidebar: state.enableClosedSidebar,
+    enablePageTabsAlt: state.enablePageTabsAlt,
 
-});
+})};
+
+// function mapStateToProps(state) {
+//     debugger;
+//     const { loggingIn, token } = state.authentication;
+//     return {
+//         loggingIn,
+//         token
+//     };
+// }
 
 export default withRouter(connect(mapStateToProp)(Main));

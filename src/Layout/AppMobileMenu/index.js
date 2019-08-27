@@ -1,6 +1,6 @@
 import React, {Fragment} from 'react';
 import {connect} from 'react-redux';
-
+import { themeActions } from '../../_actions';
 import Hamburger from 'react-hamburgers';
 
 import cx from 'classnames';
@@ -16,10 +16,10 @@ import {
     Button
 } from 'reactstrap';
 
-import {
-    setEnableMobileMenu,
-    setEnableMobileMenuSmall,
-} from '../../_reducers/theme.reducer';
+// import {
+//     setEnableMobileMenu,
+//     setEnableMobileMenuSmall,
+// } from '../../_reducers/theme.reducer';
 
 class AppMobileMenu extends React.Component {
     constructor(props) {
@@ -85,15 +85,15 @@ class AppMobileMenu extends React.Component {
 
 
 const mapStateToProps = state => ({
-    closedSmallerSidebar: state.ThemeOptions.closedSmallerSidebar,
-    enableMobileMenu: state.ThemeOptions.enableMobileMenu,
-    enableMobileMenuSmall: state.ThemeOptions.enableMobileMenuSmall,
+    closedSmallerSidebar: state.closedSmallerSidebar,
+    enableMobileMenu: state.enableMobileMenu,
+    enableMobileMenuSmall: state.enableMobileMenuSmall,
 });
 
 const mapDispatchToProps = dispatch => ({
 
-    setEnableMobileMenu: enable => dispatch(setEnableMobileMenu(enable)),
-    setEnableMobileMenuSmall: enable => dispatch(setEnableMobileMenuSmall(enable)),
+    setEnableMobileMenu: enable => dispatch(themeActions.setEnableMobileMenu(enable)),
+    setEnableMobileMenuSmall: enable => dispatch(themeActions.setEnableMobileMenuSmall(enable)),
 
 });
 
