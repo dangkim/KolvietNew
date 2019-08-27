@@ -4,7 +4,8 @@ import { connect } from 'react-redux';
 import InfImg from '../../../assets/utils/images/originals/Influencer.jpg'
 import { userActions, infActions } from '../../../_actions';
 import new_logo from '../../../assets/utils/images/originals/new_logo.png';
-var NumberFormat = require('react-number-format');
+import NumberFormat from 'react-number-format';
+import PasswordValidator from 'password-validator';
 
 class RegisterInfluencerPage extends React.Component {
     constructor(props) {
@@ -50,9 +51,8 @@ class RegisterInfluencerPage extends React.Component {
 
     handlePassword = password => {
         const { influencer } = this.state;
-        var passwordValidator = require('password-validator');
         // Create a schema
-        var schema = new passwordValidator();
+        var schema = new PasswordValidator();
         schema
             .is().min(8)
             .is().max(20)

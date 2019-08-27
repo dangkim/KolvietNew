@@ -15,7 +15,7 @@ import AppFooter from '../../Layout/AppFooter';
 
 const Pages = ({ match }) => (
     <Fragment>
-        {/* <Route path={`${match.url}/loginpage`} component={LoginPage} /> */}
+        <Route path={`${match.url}/loginpage`} component={LoginPage} />
         <Route path={`${match.url}/registerbrandpage`} component={RegisterBrandPage} />
         {/* <Route path={`${match.url}/registercampaignpage`} component={RegisterCampaignPage} /> */}
         <Route path={`${match.url}/registerinfluencerpage`} component={RegisterInfluencerPage} />
