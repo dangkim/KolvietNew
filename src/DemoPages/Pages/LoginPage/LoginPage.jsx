@@ -53,6 +53,7 @@ class LoginPage extends React.Component {
             slidesToShow: 1,
             slidesToScroll: 1
         };
+        debugger;
         return (
             <div className="app-container app-theme-white body-tabs-shadow">
                 <div className="app-container">
@@ -115,7 +116,7 @@ class LoginPage extends React.Component {
                                                 <div className="col-md-6">
                                                     <div className="position-relative form-group">
                                                         <label htmlFor="userName" className="">Email</label>
-                                                        <input type="userName" name="userName" id="userName" placeholder="" type="text" className="form-control" value={userName} onChange={this.handleChange} />
+                                                        <input type="userName" name="userName" id="userName" placeholder="" className="form-control" value={userName} onChange={this.handleChange} />
                                                         {submitted && !userName &&
                                                             <div className="help-block text-danger">User name is required</div>
                                                         }
@@ -156,7 +157,6 @@ class LoginPage extends React.Component {
 }
 
 function mapStateToProps(state) {
-    debugger;
     const { loggingIn, token } = state.authentication;
     return {
         loggingIn,
