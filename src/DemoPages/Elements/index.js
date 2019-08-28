@@ -31,6 +31,10 @@ import ListGroupExample from '../Elements/ListGroup/';
 
 import NavigationExample from './Navs/';
 
+// REGISTER CAMPAIGN
+
+import {RegisterCampaignPage} from './RegisterCampaignPage';
+
 // UTILITIES
 
 import UtilitiesExamples from '../Elements/Utilities/';
@@ -75,6 +79,10 @@ const Elements = ({match}) => (
                     {/* Navs */}
 
                     <Route path={`${match.url}/navigation`} component={NavigationExample}/>
+
+                    {/* Register Campaign */}
+
+                    <Route path={`${match.url}/registercampaign`} component={RegisterCampaignPage}/>
 
                     {/* Utilities */}
 

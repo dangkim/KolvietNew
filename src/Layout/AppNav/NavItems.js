@@ -39,6 +39,10 @@ export const ComponentsNav = [
                 label: 'Navigation Menus',
                 to: '#/elements/navigation',
             },
+            {
+                label: 'Register Campaign',
+                to: '#/elements/registercampaign',
+            },
             // {
             //     label: 'Utilities',
             //     to: '#/elements/utilities',

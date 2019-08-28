@@ -1,29 +1,25 @@
 import React, { Component } from "react";
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
-import img from '../assets/images/hand.jpg'
+//import img from '../assets/images/hand.jpg'
 //import { campaignActions } from '../_actions';
-import { campaignActions, infActions, brandActions } from '../_actions';
+import { campaignActions, infActions, brandActions } from '../../../_actions';
 import Select from 'react-select';
-import { createLocations, createInterestings, createJobs } from './../_models/CommonModels';
-import city from '../assets/images/originals/city.jpg'
-import citynights from '../assets/images/originals/citynights.jpg'
-import citydark from '../assets/images/originals/citydark.jpg'
-import defaultAvatar from '../assets/images/avatars/default.jpg'
-import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
+import { createLocations, createInterestings, createJobs } from '../../../_models/CommonModels';
+import city from '../../../assets/utils/images/originals/city.jpg'
+import citynights from '../../../assets/utils/images/originals/citynights.jpg'
+import citydark from '../../../assets/utils/images/originals/citydark.jpg'
+import defaultAvatar from '../../../assets/utils/images/avatars/default.jpg'
 import DateRangePicker from 'react-daterange-picker'
 import originalMoment from "moment";
 import { extendMoment } from "moment-range";
-var NumberFormat = require('react-number-format');
+import NumberFormat from 'react-number-format';
 import 'react-daterange-picker/dist/css/react-calendar.css'
 import JwPagination from 'jw-react-pagination';
-import { SearchBox } from '../SearchBox';
+//import { SearchBox } from '../SearchBox';
 import cx from 'classnames';
 import Skeleton from 'react-loading-skeleton';
-import new_logo from '../assets/images/new_logo.png'
-
-const moment = extendMoment(originalMoment);
-
+import new_logo from '../../../assets/utils/images/new_logo.png'
 import {
     Row, Col, CustomInput
 } from 'reactstrap';
@@ -34,13 +30,14 @@ import {
     faAngleUp
 } from '@fortawesome/free-solid-svg-icons';
 //import {configContent} from 'configContent';
-
-import { history } from '../_helpers';
+import { history } from '../../../_helpers';
 
 class RegisterCampaignPage extends Component {
 
     constructor(props) {
         super(props);
+
+        const moment = extendMoment(originalMoment);
 
         const today = moment();
         //const startDate = today;
@@ -107,7 +104,7 @@ class RegisterCampaignPage extends Component {
         this.handleSearch = this.handleSearch.bind(this);
     }
 
-    nextPageFluencers() {
+    nextPageFluencers(skip) {
         this.setState({ skip: skip + 1 });
     }
 
@@ -590,146 +587,146 @@ class RegisterCampaignPage extends Component {
                             </div>
                         }
                         {
-                            isInfluencerStep &&
-                            <div className="h-100 no-gutters row">
-                                <div className="h-200 d-md-flex d-sm-block bg-white justify-content-center align-items-center col-md-12 col-lg-12">
-                                    <div className="mx-auto app-login-box col-sm-12 col-md-10 col-lg-12">
-                                        <div className="app-header bg-strong-bliss header-text-light header-shadow">
-                                            <div className={cx(
-                                                "app-header__content",
-                                            )}>
-                                                <div className="app-header-left">
-                                                    <SearchBox handlerFromParent={this.handleSearch} />
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <ReactCSSTransitionGroup
-                                            component="div"
-                                            transitionName="TabsAnimation"
-                                            transitionAppear={true}
-                                            transitionAppearTimeout={0}
-                                            transitionEnter={false}
-                                            transitionLeave={false}>
-                                            {
-                                                influencers.loading ?
-                                                    <Skeleton count={30} /> :
-                                                    <Row>
-                                                        {
-                                                            influencers.items && influencers.items.influencer.map((item, key) => {
-                                                                if ((brand && brand.published) || (brandFromLoading && brandFromLoading.published)) {
-                                                                    imgSrc = item.photo.urls.length == 0 ? defaultAvatar : "http://bdo8.com" + item.photo.urls[0] + '?&width=240&height=240&rmode=';
-                                                                }
-                                                                return (
-                                                                    <Col key={key} md="4">
-                                                                        <div className={"card mb-3 widget-chart " + colors[key] + " card-border"}>
-                                                                            <div className="rounded-circle">
-                                                                                <img className="mx-auto rounded-circle" style={{ width: '88px', height: '88px' }} src={imgSrc} alt="" />
-                                                                            </div>
-                                                                            <div className="divide" style={{ marginBottom: '5px' }} />
-                                                                            <div className="widget-heading">
-                                                                                {item.fullName} - {item.description}
-                                                                            </div>
-                                                                            <Row>
-                                                                                <Col>
-                                                                                    <div className="widget-subheading" style={{ textAlign: 'left' }}>
-                                                                                        Hướng về lứa: {item.ageDemorgraphic.ageGraphicsName}
-                                                                                    </div>
-                                                                                </Col>
-                                                                                <Col>
-                                                                                    <div className="widget-subheading" style={{ textAlign: 'left' }}>
-                                                                                        {
-                                                                                            ((brand && brand.published) || (brandFromLoading && brandFromLoading.published)) ?
-                                                                                                'Share Link: ' + (item.shareLink ? item.shareLink : 'Call') : 'Share Link: 1000000'
-                                                                                        }
-                                                                                    </div>
-                                                                                </Col>
-                                                                            </Row>
-                                                                            <Row>
-                                                                                <Col>
-                                                                                    <div className="widget-subheading" style={{ textAlign: 'left' }}>
-                                                                                        Hướng về giới: {item.genderDemorgraphic.genderGraphicsName}
-                                                                                    </div>
-                                                                                </Col>
-                                                                                <Col>
-                                                                                    <div className="widget-subheading" style={{ textAlign: 'left' }}>
-                                                                                        {
-                                                                                            ((brand && brand.published) || (brandFromLoading && brandFromLoading.published)) ?
-                                                                                                'Post Image: ' + (item.postImage ? item.postImage : 'Call') : 'Post Image: 1000000'
-                                                                                        }
-                                                                                    </div>
-                                                                                </Col>
-                                                                            </Row>
-                                                                            <Row>
-                                                                                <Col>
-                                                                                    <div className="widget-subheading" style={{ textAlign: 'left' }}>
-                                                                                        Hướng về nơi: {item.geoDemorgraphic.geoGraphicName}
-                                                                                    </div>
-                                                                                </Col>
-                                                                                <Col>
-                                                                                    <div className="widget-subheading" style={{ textAlign: 'left' }}>
-                                                                                        {
-                                                                                            ((brand && brand.published) || (brandFromLoading && brandFromLoading.published)) ?
-                                                                                                'Video: ' + (item.video ? item.video : 'Call') : 'Video: 1000000'
-                                                                                        }
-                                                                                    </div>
-                                                                                </Col>
-                                                                            </Row>
-                                                                            <Row>
-                                                                                <Col>
-                                                                                </Col>
-                                                                                <Col>
-                                                                                    <div className="widget-subheading" style={{ textAlign: 'left' }}>
-                                                                                        {
-                                                                                            ((brand && brand.published) || (brandFromLoading && brandFromLoading.published)) ?
-                                                                                                'CheckIn: ' + (item.checkIn ? item.checkIn : 'Call') : 'CheckIn: 1000000'
-                                                                                        }
-                                                                                    </div>
-                                                                                </Col>
-                                                                            </Row>
-                                                                            <Row>
-                                                                                <Col>
-                                                                                </Col>
-                                                                                <Col>
-                                                                                    <div className="widget-subheading" style={{ textAlign: 'left' }}>
-                                                                                        {
-                                                                                            ((brand && brand.published) || (brandFromLoading && brandFromLoading.published)) ?
-                                                                                                'LiveStream: ' + (item.liveStream ? item.liveStream : 'Call') : 'LiveStream: 1000000'
-                                                                                        }
-                                                                                    </div>
-                                                                                </Col>
-                                                                            </Row>
-                                                                            <div className="widget-description text-success">
-                                                                                <CustomInput type="checkbox" id={item.contentItemId} name={item.contentItemId} onChange={this.handleCheckBoxChange} checked={this.state.checkedInfluencers.get(item.contentItemId) ? this.state.checkedInfluencers.get(item.contentItemId) : false}
-                                                                                    label="Select" />
-                                                                            </div>
-                                                                        </div>
-                                                                    </Col>
-                                                                )
-                                                            })
-                                                        }
-                                                    </Row>
-                                            }
-                                        </ReactCSSTransitionGroup>
-                                        <div className="app-header header-text-light header-shadow">
-                                            <div className={cx(
-                                                "app-header__content",
-                                            )}>
-                                                <div className="app-header-right">
-                                                    <JwPagination disableDefaultStyles={true} pageSize={first} items={exampleItems} onChangePage={this.onChangePage} />
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div className="mt-4 d-flex align-items-center">
-                                            <div className="ml-auto">
-                                                <input type="button" onClick={this.handleBackStep} name="backinf" id="backinf" className="btn-wide btn-pill btn-shadow btn-hover-shine btn btn-primary btn-lg" value="Back" />
-                                                <input type="button" onClick={this.handleJobStep} name="job" id="job" className="btn-wide btn-pill btn-shadow btn-hover-shine btn btn-primary btn-lg" value="Last Step" />
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        }
-                        {
+                            //isInfluencerStep &&
+                        //     <div className="h-100 no-gutters row">
+                        //         <div className="h-200 d-md-flex d-sm-block bg-white justify-content-center align-items-center col-md-12 col-lg-12">
+                        //             <div className="mx-auto app-login-box col-sm-12 col-md-10 col-lg-12">
+                        //                 <div className="app-header bg-strong-bliss header-text-light header-shadow">
+                        //                     <div className={cx(
+                        //                         "app-header__content",
+                        //                     )}>
+                        //                         <div className="app-header-left">
+                        //                             <SearchBox handlerFromParent={this.handleSearch} />
+                        //                         </div>
+                        //                     </div>
+                        //                 </div>
+                        //                 <ReactCSSTransitionGroup
+                        //                     component="div"
+                        //                     transitionName="TabsAnimation"
+                        //                     transitionAppear={true}
+                        //                     transitionAppearTimeout={0}
+                        //                     transitionEnter={false}
+                        //                     transitionLeave={false}>
+                        //                     {
+                        //                         influencers.loading ?
+                        //                             <Skeleton count={30} /> :
+                        //                             <Row>
+                        //                                 {
+                        //                                     influencers.items && influencers.items.influencer.map((item, key) => {
+                        //                                         if ((brand && brand.published) || (brandFromLoading && brandFromLoading.published)) {
+                        //                                             imgSrc = item.photo.urls.length == 0 ? defaultAvatar : "http://bdo8.com" + item.photo.urls[0] + '?&width=240&height=240&rmode=';
+                        //                                         }
+                        //                                         return (
+                        //                                             <Col key={key} md="4">
+                        //                                                 <div className={"card mb-3 widget-chart " + colors[key] + " card-border"}>
+                        //                                                     <div className="rounded-circle">
+                        //                                                         <img className="mx-auto rounded-circle" style={{ width: '88px', height: '88px' }} src={imgSrc} alt="" />
+                        //                                                     </div>
+                        //                                                     <div className="divide" style={{ marginBottom: '5px' }} />
+                        //                                                     <div className="widget-heading">
+                        //                                                         {item.fullName} - {item.description}
+                        //                                                     </div>
+                        //                                                     <Row>
+                        //                                                         <Col>
+                        //                                                             <div className="widget-subheading" style={{ textAlign: 'left' }}>
+                        //                                                                 Hướng về lứa: {item.ageDemorgraphic.ageGraphicsName}
+                        //                                                             </div>
+                        //                                                         </Col>
+                        //                                                         <Col>
+                        //                                                             <div className="widget-subheading" style={{ textAlign: 'left' }}>
+                        //                                                                 {
+                        //                                                                     ((brand && brand.published) || (brandFromLoading && brandFromLoading.published)) ?
+                        //                                                                         'Share Link: ' + (item.shareLink ? item.shareLink : 'Call') : 'Share Link: 1000000'
+                        //                                                                 }
+                        //                                                             </div>
+                        //                                                         </Col>
+                        //                                                     </Row>
+                        //                                                     <Row>
+                        //                                                         <Col>
+                        //                                                             <div className="widget-subheading" style={{ textAlign: 'left' }}>
+                        //                                                                 Hướng về giới: {item.genderDemorgraphic.genderGraphicsName}
+                        //                                                             </div>
+                        //                                                         </Col>
+                        //                                                         <Col>
+                        //                                                             <div className="widget-subheading" style={{ textAlign: 'left' }}>
+                        //                                                                 {
+                        //                                                                     ((brand && brand.published) || (brandFromLoading && brandFromLoading.published)) ?
+                        //                                                                         'Post Image: ' + (item.postImage ? item.postImage : 'Call') : 'Post Image: 1000000'
+                        //                                                                 }
+                        //                                                             </div>
+                        //                                                         </Col>
+                        //                                                     </Row>
+                        //                                                     <Row>
+                        //                                                         <Col>
+                        //                                                             <div className="widget-subheading" style={{ textAlign: 'left' }}>
+                        //                                                                 Hướng về nơi: {item.geoDemorgraphic.geoGraphicName}
+                        //                                                             </div>
+                        //                                                         </Col>
+                        //                                                         <Col>
+                        //                                                             <div className="widget-subheading" style={{ textAlign: 'left' }}>
+                        //                                                                 {
+                        //                                                                     ((brand && brand.published) || (brandFromLoading && brandFromLoading.published)) ?
+                        //                                                                         'Video: ' + (item.video ? item.video : 'Call') : 'Video: 1000000'
+                        //                                                                 }
+                        //                                                             </div>
+                        //                                                         </Col>
+                        //                                                     </Row>
+                        //                                                     <Row>
+                        //                                                         <Col>
+                        //                                                         </Col>
+                        //                                                         <Col>
+                        //                                                             <div className="widget-subheading" style={{ textAlign: 'left' }}>
+                        //                                                                 {
+                        //                                                                     ((brand && brand.published) || (brandFromLoading && brandFromLoading.published)) ?
+                        //                                                                         'CheckIn: ' + (item.checkIn ? item.checkIn : 'Call') : 'CheckIn: 1000000'
+                        //                                                                 }
+                        //                                                             </div>
+                        //                                                         </Col>
+                        //                                                     </Row>
+                        //                                                     <Row>
+                        //                                                         <Col>
+                        //                                                         </Col>
+                        //                                                         <Col>
+                        //                                                             <div className="widget-subheading" style={{ textAlign: 'left' }}>
+                        //                                                                 {
+                        //                                                                     ((brand && brand.published) || (brandFromLoading && brandFromLoading.published)) ?
+                        //                                                                         'LiveStream: ' + (item.liveStream ? item.liveStream : 'Call') : 'LiveStream: 1000000'
+                        //                                                                 }
+                        //                                                             </div>
+                        //                                                         </Col>
+                        //                                                     </Row>
+                        //                                                     <div className="widget-description text-success">
+                        //                                                         <CustomInput type="checkbox" id={item.contentItemId} name={item.contentItemId} onChange={this.handleCheckBoxChange} checked={this.state.checkedInfluencers.get(item.contentItemId) ? this.state.checkedInfluencers.get(item.contentItemId) : false}
+                        //                                                             label="Select" />
+                        //                                                     </div>
+                        //                                                 </div>
+                        //                                             </Col>
+                        //                                         )
+                        //                                     })
+                        //                                 }
+                        //                             </Row>
+                        //                     }
+                        //                 </ReactCSSTransitionGroup>
+                        //                 <div className="app-header header-text-light header-shadow">
+                        //                     <div className={cx(
+                        //                         "app-header__content",
+                        //                     )}>
+                        //                         <div className="app-header-right">
+                        //                             <JwPagination disableDefaultStyles={true} pageSize={first} items={exampleItems} onChangePage={this.onChangePage} />
+                        //                         </div>
+                        //                     </div>
+                        //                 </div>
+                        //                 <div className="mt-4 d-flex align-items-center">
+                        //                     <div className="ml-auto">
+                        //                         <input type="button" onClick={this.handleBackStep} name="backinf" id="backinf" className="btn-wide btn-pill btn-shadow btn-hover-shine btn btn-primary btn-lg" value="Back" />
+                        //                         <input type="button" onClick={this.handleJobStep} name="job" id="job" className="btn-wide btn-pill btn-shadow btn-hover-shine btn btn-primary btn-lg" value="Last Step" />
+                        //                     </div>
+                        //                 </div>
+                        //             </div>
+                        //         </div>
+                        //     </div>
+                        // }
+                        //{
                             isJobStep &&
                             <div className="h-100 no-gutters row">
                                 <div className="h-100 d-md-flex d-sm-block bg-white justify-content-center align-items-center col-md-12 col-lg-8">
