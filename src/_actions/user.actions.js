@@ -13,7 +13,7 @@ export const userActions = {
     delete: _delete
 };
 
-function getToken(userName, password) {
+function getToken(userName, password, pathname) {
     return dispatch => {
         dispatch(request({ userName }));
         userService.getToken(userName, password)
@@ -21,14 +21,15 @@ function getToken(userName, password) {
                 userService.getContentType(token)
                     .then(type => {
                         if (type === "Brand") {
+                            debugger;
                             history.push({
-                                pathname: 'dashboards/basic#/',
+                                pathname: '/dashboards/basic',
                                 state: { userName: userName, type: type }
                             })
                         }
                         else if (type === "Influencer") {
                             history.push({
-                                pathname: '#/dashBoardPage',
+                                pathname: 'dashBoardPage',
                                 state: { userName: userName, type: type }
                             })
                         }
