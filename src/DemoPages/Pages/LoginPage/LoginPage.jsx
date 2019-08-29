@@ -7,6 +7,7 @@ import citydark from '../../../assets/utils/images/originals/citydark.jpg'
 import Slider from "react-slick";
 import new_logo from '../../../assets/utils/images/originals/new_logo.png'
 import { userActions } from '../../../_actions';
+import { history } from '../../../_helpers';
 
 class LoginPage extends React.Component {
     constructor(props) {
@@ -39,6 +40,7 @@ class LoginPage extends React.Component {
         const { userName, email, password } = this.state;
         const { dispatch } = this.props;
         if (userName && password) {
+            //debugger;            
             dispatch(userActions.getToken(userName, password));
         }
     }
@@ -49,11 +51,12 @@ class LoginPage extends React.Component {
         const settings = {
             dots: true,
             infinite: true,
-            speed: 500,
+            fade: true,
+            speed: 800,
             slidesToShow: 1,
+            autoplay: true,
             slidesToScroll: 1
         };
-        debugger;
         return (
             <div className="app-container app-theme-white body-tabs-shadow">
                 <div className="app-container">

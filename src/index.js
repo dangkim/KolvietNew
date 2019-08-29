@@ -2,8 +2,8 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 // import registerServiceWorker from './registerServiceWorker';
 import { unregister } from './registerServiceWorker';
-import { store } from './_helpers';
-import { HashRouter } from 'react-router-dom';
+import { store, history } from './_helpers';
+import { Router } from 'react-router-dom';
 import './assets/base.css';
 import Main from './DemoPages/Main';
 //import {configureStore} from './config/configureStore';
@@ -15,9 +15,9 @@ const rootElement = document.getElementById('root');
 const renderApp = Component => {
   ReactDOM.render(
     <Provider store={store}>
-      <HashRouter>
+      <Router history={history}>
         <Component />
-      </HashRouter>
+      </Router>
     </Provider>,
     rootElement
   );

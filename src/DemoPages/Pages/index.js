@@ -13,16 +13,18 @@ import { AppHeader } from '../../Layout/AppHeader';
 import AppSidebar from '../../Layout/AppSidebar';
 import AppFooter from '../../Layout/AppFooter';
 
-const Pages = ({ match }) => (
-    <Fragment>
-        <Route path={`${match.url}/loginpage`} component={LoginPage} />
-        <Route path={`${match.url}/registerbrandpage`} component={RegisterBrandPage} />
-        {/* <Route path={`${match.url}/registercampaignpage`} component={RegisterCampaignPage} /> */}
-        <Route path={`${match.url}/registerinfluencerpage`} component={RegisterInfluencerPage} />
-        {/* <Route path={`${match.url}/loginpage`} component={LoginPage} />
+const Pages = ({ match }) => {
+    return (
+        <Fragment>
+            <Route path={`${match.url}/loginpage`} component={LoginPage} />
+            <Route path={`${match.url}/registerbrandpage`} component={RegisterBrandPage} />
+            {/* <Route path={`${match.url}/registercampaignpage`} component={RegisterCampaignPage} /> */}
+            <Route path={`${match.url}/registerinfluencerpage`} component={RegisterInfluencerPage} />
+            {/* <Route path={`${match.url}/loginpage`} component={LoginPage} />
         <Route path={`${match.url}/loginpage`} component={LoginPage} />
         <Route path={`${match.url}/loginpage`} component={LoginPage} /> */}
-    </Fragment>
-);
+        </Fragment>
+    )
+};
 
 export default Pages;

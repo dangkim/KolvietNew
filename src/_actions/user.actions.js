@@ -20,15 +20,15 @@ function getToken(userName, password) {
             .then(token => {
                 userService.getContentType(token)
                     .then(type => {
-                        if (type == "Brand") {
+                        if (type === "Brand") {
                             history.push({
-                                pathname: '/dashBoardPage',
+                                pathname: 'dashboards/basic#/',
                                 state: { userName: userName, type: type }
                             })
                         }
-                        else if (type == "Influencer") {
+                        else if (type === "Influencer") {
                             history.push({
-                                pathname: '/dashBoardPage',
+                                pathname: '#/dashBoardPage',
                                 state: { userName: userName, type: type }
                             })
                         }
