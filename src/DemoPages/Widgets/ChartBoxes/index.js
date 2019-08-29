@@ -7,6 +7,8 @@ import PageTitle from '../../../Layout/AppMain/PageTitle';
 // Examples
 import BasicExample from './Examples/Basic';
 import ColorsExample from './Examples/Colors';
+import {Influencers} from './Examples/Influencers';
+
 
 const tabsContent = [
     {
@@ -16,6 +18,10 @@ const tabsContent = [
     {
         title: 'Colors',
         content: <ColorsExample/>
+    },
+    {
+        title: 'Influencers',
+        content: <Influencers/>
     },
 ];
 
@@ -30,7 +36,7 @@ function getTabs() {
 export default class WidgetsChartBoxes extends React.Component {
 
     render() {
-
+        debugger;
         return (
             <Fragment>
                 <PageTitle

@@ -4,7 +4,7 @@ export function createJobs(job, selectedOptionJobCategory) {
     {
       selectedOptionJobCategory.map((item, key) => 
       {         
-          //debugger;       
+          //       
           const jobCategory = {
                                 ContentItemId: item.contentItemId,
                                 ContentItemVersionId: item.contentItemVersionId,

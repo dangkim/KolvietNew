@@ -141,10 +141,10 @@ class RegisterInfluencerPage extends React.Component {
                     Phone: {
                         Text: influencer.phone
                     },
-                    NumberOfLike: {
+                    NumberOfShare: {
                         Text: ''
                     },
-                    NumberOfLove: {
+                    NumberOfReaction: {
                         Text: ''
                     },
                     NumberOfComment: {

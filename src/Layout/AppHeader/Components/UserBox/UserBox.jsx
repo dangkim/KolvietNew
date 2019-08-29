@@ -117,7 +117,7 @@ class UserBox extends React.Component {
 }
 
 function mapStateToProps(state) {
-    //debugger;
+    //
     const { campaigns, influencers, locations, interestings, jobCategories, jobs, brands } = state;
     return {
         brands,

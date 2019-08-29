@@ -52,11 +52,11 @@ export function createInfluencer(influencer, userName) {
         Phone: {
           Text: influencer.phone
         },
-        NumberOfLike: {
-          Text: influencer.numberOfLike
+        NumberOfShare: {
+          Text: influencer.numberOfShare
         },
-        NumberOfLove: {
-          Text: influencer.numberOfLove
+        NumberOfReaction: {
+          Text: influencer.numberOfReaction
         },
         NumberOfComment: {
           Text: influencer.numberOfComment

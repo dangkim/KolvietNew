@@ -36,9 +36,9 @@ function getAll(first, skip) {
             }
             latest
             modifiedUtc
+            numberOfShare
+            numberOfReaction
             numberOfComment
-            numberOfLike
-            numberOfLove
             owner
             phone
             ageDemorgraphic {
@@ -93,9 +93,9 @@ function getInfluencersByName(first, skip, userName) {
             }
             latest
             modifiedUtc
+            numberOfShare
+            numberOfReaction
             numberOfComment
-            numberOfLike
-            numberOfLove
             owner
             phone
             ageDemorgraphic {
@@ -211,9 +211,9 @@ function getCostByUserName(userName) {
             }
             latest
             modifiedUtc
+            numberOfShare
+            numberOfReaction
             numberOfComment
-            numberOfLike
-            numberOfLove
             owner
             phone
             photo {
@@ -290,7 +290,7 @@ function handleTokenContentResponse(response) {
             const error = (data && data.message) || response.statusText;
             return Promise.reject(error);
         }
-        debugger;
+        
         return data;
     });
 }
@@ -298,7 +298,7 @@ function handleTokenContentResponse(response) {
 function handleGraphJobCategoryResponse(response) {
     return response.json().then(text => {
         const data = text.data.jobCategory;
-        //debugger;
+        //
 
         if (!response.ok) {
             if (response.status === 401) {
@@ -358,7 +358,7 @@ function handleGraphInfResponse(response) {
 function handleContentResponse(response) {
     return response.text().then(text => {
         const data = text && JSON.parse(text);
-        debugger;
+        
         if (!response.ok) {
             if (response.status === 401) {
                 // auto logout if 401 response returned from api

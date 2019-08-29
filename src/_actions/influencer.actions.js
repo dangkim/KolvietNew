@@ -168,7 +168,7 @@ function updateInfluencers(infType, userName) {
         influencerService.updateInfluencers(influencerType)
             .then(
                 infType => {
-                    debugger;
+                    
                     dispatch(success(infType));
                     //history.push('/dashBoard');
                     //dispatch(alertActions.success('Registration Influencer successful'));

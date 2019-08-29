@@ -73,7 +73,7 @@ const mapStateToProp = state => {
 })};
 
 // function mapStateToProps(state) {
-//     debugger;
+//     
 //     const { loggingIn, token } = state.authentication;
 //     return {
 //         loggingIn,

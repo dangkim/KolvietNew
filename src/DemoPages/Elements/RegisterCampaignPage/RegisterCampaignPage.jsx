@@ -337,7 +337,7 @@ class RegisterCampaignPage extends Component {
     }
 
     onDatesChange = (dateValue) => {
-        //debugger;
+        //
         const { campaign } = this.state;
 
         if (dateValue) {
@@ -827,7 +827,7 @@ class RegisterCampaignPage extends Component {
 }
 
 function mapStateToProps(state) {
-
+    
     const { campaigns, influencers, locations, interestings, jobCategories, jobs, brands } = state;
     //const { brand } = influencers;
     return {

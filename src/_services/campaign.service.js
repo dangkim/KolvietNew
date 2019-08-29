@@ -120,7 +120,7 @@ function getAllLocation() {
 function handleGraphLocationResponse(response) {
     return response.json().then(text => {
         const data = text.data.locations;
-        //debugger;
+        //
         
         if (!response.ok) {
             if (response.status === 401) {
@@ -140,7 +140,7 @@ function handleGraphLocationResponse(response) {
 function handleGraphInterestingResponse(response) {
     return response.json().then(text => {
         const data = text.data.interestingList;
-        //debugger;
+        //
         
         if (!response.ok) {
             if (response.status === 401) {

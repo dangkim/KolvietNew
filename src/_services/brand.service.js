@@ -94,7 +94,7 @@ function handleGraphResponse(response) {
         const data = text.data;
         return data;
     });
-    // debugger;
+    // 
     // return response.json().then(text => {
     //     const data = text.data;
 

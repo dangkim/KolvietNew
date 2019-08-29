@@ -132,7 +132,7 @@ export function createCampaign(campaign,
 
   if (selectedInfluencers) {
     selectedInfluencers.forEach(function (influencer, key) {
-      debugger;
+      
       const influencerLocal = {
         ContentItemId: influencer.contentItemId,
         ContentItemVersionId: influencer.contentItemVersionId,
@@ -180,11 +180,11 @@ export function createCampaign(campaign,
           Phone: {
             Text: influencer.phone
           },
-          NumberOfLike: {
-            Text: influencer.numberOfLike
+          NumberOfShare: {
+            Text: influencer.numberOfShare
           },
-          NumberOfLove: {
-            Text: influencer.numberOfLove
+          NumberOfReaction: {
+            Text: influencer.numberOfReaction
           },
           NumberOfComment: {
             Text: influencer.numberOfComment
@@ -321,7 +321,7 @@ export function createCampaign(campaign,
       }
     }
   }
-  debugger;
+  
   //var myJSON = JSON.stringify(compaignType);
 
   return compaignType;

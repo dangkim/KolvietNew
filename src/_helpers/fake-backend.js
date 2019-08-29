@@ -4,7 +4,7 @@ let users = JSON.parse(localStorage.getItem('users')) || [];
 export function configureFakeBackend() {
     let realFetch = window.fetch;
     window.fetch = function (url, opts) {
-        //debugger;
+        //
         return new Promise((resolve, reject) => {
             // wrap in timeout to simulate server api call
             setTimeout(() => {
@@ -129,14 +129,14 @@ export function configureFakeBackend() {
 
                 //Edit content
                 if (url.endsWith('/api/content') && opts.method === 'POST') {
-                    //debugger;
+                    //
                     realFetch(url, opts).then(response => resolve(response));
                     return;
                 }
 
                 // query data by using graph
                 if (url.endsWith('/api/graphql') && opts.method === 'POST') {
-                    //debugger;
+                    //
                     realFetch(url, opts).then(response => resolve(response));
                     return;
                 }

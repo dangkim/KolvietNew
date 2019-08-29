@@ -26,7 +26,7 @@ function register(campaign,
     selectedInfluencers,
     checkedInfluencers) {
     return dispatch => {
-        debugger;
+        
         dispatch(request());
 
         const campaignLocal = createCampaign(campaign,
@@ -97,7 +97,7 @@ function getAll() {
 function getAllLocation() {
     return dispatch => {
         dispatch(request());
-        debugger;
+        
         campaignService.getAllLocation()
             .then(
                 locations => dispatch(success(locations)),

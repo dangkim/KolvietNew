@@ -40,7 +40,7 @@ class LoginPage extends React.Component {
         const { userName, email, password } = this.state;
         const { dispatch } = this.props;
         if (userName && password) {
-            debugger;
+            
             const pathname = this.props.location.pathname;
             dispatch(userActions.getToken(userName, password, pathname));
         }

@@ -21,15 +21,15 @@ function getToken(userName, password, pathname) {
                 userService.getContentType(token)
                     .then(type => {
                         if (type === "Brand") {
-                            debugger;
+                            
                             history.push({
-                                pathname: '/dashboards/basic',
+                                pathname: '/widgets/dashboard-boxes',
                                 state: { userName: userName, type: type }
                             })
                         }
                         else if (type === "Influencer") {
                             history.push({
-                                pathname: 'dashBoardPage',
+                                pathname: '/widgets/dashboard-boxes',
                                 state: { userName: userName, type: type }
                             })
                         }

@@ -37,11 +37,11 @@ export const ComponentsNav = [
             // },
             {
                 label: 'Navigation Menus',
-                to: '#/elements/navigation',
+                to: '/elements/navigation',
             },
             {
                 label: 'Register Campaign',
-                to: '#/elements/registercampaign',
+                to: '/elements/registercampaign',
             },
             // {
             //     label: 'Utilities',
@@ -110,7 +110,7 @@ export const WidgetsNav = [
     {
         icon: 'pe-7s-graph2',
         label: 'Dashboard Boxes',
-        to: '#/widgets/dashboard-boxes',
+        to: '/widgets/dashboard-boxes',
     },
 ];
 export const ChartsNav = [

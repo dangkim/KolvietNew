@@ -33,7 +33,7 @@ class InfluencerUpdateCostPage extends Component {
     }
 
     // handleChange(values, e) {
-    //     debugger;
+    //     
     //     const { influencers } = this.props;
     //     const { formattedValue, value } = values;
 
