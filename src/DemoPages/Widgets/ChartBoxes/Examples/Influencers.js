@@ -152,8 +152,8 @@ class Influencers extends Component {
 
     gotoDetail(selected) {
         const index = this.state.cSelected.indexOf(selected);
-
-        history.push('/dashboards/basic');
+        this.sendData(1);
+        //history.push('/dashboards/basic');
     }
 
     onCheckboxBtnClick(selected) {
@@ -167,7 +167,7 @@ class Influencers extends Component {
         this.setState({ cSelected: [...this.state.cSelected] });
 
         if (this.state.cSelected.length > 1) {
-            this.sendData(1);
+            this.sendData(2);
         }
     }
 
@@ -273,7 +273,7 @@ class Influencers extends Component {
             <Fragment>
                 <TransitionGroup component="div">
                     <CSSTransition timeout={1500} unmountOnExit appear classNames="TabsAnimation">
-                        {/* <div>
+                        <div>
                             <Row>
                                 {
                                     elements.map((value, index) => {
@@ -354,273 +354,6 @@ class Influencers extends Component {
                                             </Col>)
                                     })
                                 }
-                            </Row>
-                            </div>*/}
-                        <div>
-                            <Row>
-                                <Col md="12" lg="6">
-                                    <Row>
-                                        <Col lg="6">
-                                            <div className="card mb-3 widget-chart">
-                                                <div className="widget-chart-content">
-                                                    <div className="icon-wrapper rounded-circle">
-                                                        <div className="icon-wrapper-bg bg-primary" />
-                                                        <i className="lnr-cog text-primary" />
-                                                    </div>
-                                                    <div className="widget-numbers">
-                                                        45.8k
-                                                </div>
-                                                    <div className="widget-subheading">
-                                                        Total Views
-                                                </div>
-                                                    <div className="widget-description text-success">
-                                                        <FontAwesomeIcon icon={faAngleUp} />
-                                                        <span className="pl-1">175.5%</span>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </Col>
-                                        <Col lg="6">
-                                            <div className="card mb-3 widget-chart">
-                                                <div className="widget-chart-content">
-                                                    <div className="icon-wrapper rounded-circle">
-                                                        <div className="icon-wrapper-bg bg-danger" />
-                                                        <i className="lnr-laptop-phone text-danger" />
-                                                    </div>
-                                                    <div className="widget-numbers">
-                                                        5.82k
-                                                </div>
-                                                    <div className="widget-subheading">
-                                                        Reports Submitted
-                                                </div>
-                                                    <div className="widget-description text-danger">
-                                                        <FontAwesomeIcon icon={faAngleDown} />
-                                                        <span className="pl-1">54.1%</span>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </Col>
-                                    </Row>
-                                </Col>
-                                <Col md="12" lg="6">
-                                    <Row>
-                                        <Col md="6">
-                                            <div className="card mb-3 bg-arielle-smile widget-chart text-white card-border">
-                                                <div className="icon-wrapper rounded-circle">
-                                                    <div className="icon-wrapper-bg bg-white opacity-10" />
-                                                    <i className="lnr-cog icon-gradient bg-arielle-smile" />
-                                                </div>
-                                                <div className="widget-numbers">
-                                                    87,4
-                                            </div>
-                                                <div className="widget-subheading">
-                                                    Reports Generated
-                                            </div>
-                                                <div className="widget-description text-white">
-                                                    <FontAwesomeIcon icon={faAngleUp} />
-                                                    <span className="pl-1">54.9%</span>
-                                                </div>
-                                            </div>
-                                        </Col>
-                                        <Col md="6">
-                                            <div className="card mb-3 bg-midnight-bloom widget-chart text-white card-border">
-                                                <div className="icon-wrapper rounded">
-                                                    <div className="icon-wrapper-bg bg-white opacity-10" />
-                                                    <i className="lnr-screen icon-gradient bg-warm-flame" />
-                                                </div>
-                                                <div className="widget-numbers">
-                                                    17.2k
-                                            </div>
-                                                <div className="widget-subheading">
-                                                    Profiles
-                                            </div>
-                                                <div className="widget-description text-white">
-                                                    <span className="pr-1">62,7%</span>
-                                                    <FontAwesomeIcon icon={faArrowLeft} />
-                                                </div>
-                                            </div>
-                                        </Col>
-                                    </Row>
-                                </Col>
-                            </Row>
-                            <Row>
-                                <Col md="12">
-                                    <Card className="main-card mb-3">
-                                        <div className="card-header">Active Users
-                                        <div className="btn-actions-pane-right">
-                                                <div role="group" className="btn-group-sm btn-group">
-                                                    <button className="active btn btn-info">Last Week</button>
-                                                    <button className="btn btn-info">All Month</button>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div className="table-responsive">
-                                            <table className="align-middle mb-0 table table-borderless table-striped table-hover">
-                                                <thead>
-                                                    <tr>
-                                                        <th className="text-center">#</th>
-                                                        <th>Name</th>
-                                                        <th className="text-center">City</th>
-                                                        <th className="text-center">Status</th>
-                                                        <th className="text-center">Actions</th>
-                                                    </tr>
-                                                </thead>
-                                                <tbody>
-                                                    <tr>
-                                                        <td className="text-center text-muted">#345</td>
-                                                        <td>
-                                                            <div className="widget-content p-0">
-                                                                <div className="widget-content-wrapper">
-                                                                    <div className="widget-content-left mr-3">
-                                                                        <div className="widget-content-left">
-                                                                            <img width={40} className="rounded-circle" src={avatar4} alt="Avatar" />
-                                                                        </div>
-                                                                    </div>
-                                                                    <div className="widget-content-left flex2">
-                                                                        <div className="widget-heading">John Doe</div>
-                                                                        <div className="widget-subheading opacity-7">Web Developer</div>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </td>
-                                                        <td className="text-center">Madrid</td>
-                                                        <td className="text-center">
-                                                            <div className="badge badge-warning">Pending</div>
-                                                        </td>
-                                                        <td className="text-center">
-                                                            <button type="button" className="btn btn-primary btn-sm">Details</button>
-                                                        </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td className="text-center text-muted">#347</td>
-                                                        <td>
-                                                            <div className="widget-content p-0">
-                                                                <div className="widget-content-wrapper">
-                                                                    <div className="widget-content-left mr-3">
-                                                                        <div className="widget-content-left">
-                                                                            <img width={40} className="rounded-circle" src={avatar3} alt="Avatar" />
-                                                                        </div>
-                                                                    </div>
-                                                                    <div className="widget-content-left flex2">
-                                                                        <div className="widget-heading">Ruben Tillman</div>
-                                                                        <div className="widget-subheading opacity-7">Etiam sit amet orci eget</div>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </td>
-                                                        <td className="text-center">Berlin</td>
-                                                        <td className="text-center">
-                                                            <div className="badge badge-success">Completed</div>
-                                                        </td>
-                                                        <td className="text-center">
-                                                            <button type="button" className="btn btn-primary btn-sm">Details</button>
-                                                        </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td className="text-center text-muted">#321</td>
-                                                        <td>
-                                                            <div className="widget-content p-0">
-                                                                <div className="widget-content-wrapper">
-                                                                    <div className="widget-content-left mr-3">
-                                                                        <div className="widget-content-left">
-                                                                            <img width={40} className="rounded-circle" src={avatar2} alt="Avatar" />
-                                                                        </div>
-                                                                    </div>
-                                                                    <div className="widget-content-left flex2">
-                                                                        <div className="widget-heading">Elliot Huber</div>
-                                                                        <div className="widget-subheading opacity-7">Lorem ipsum dolor sic</div>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </td>
-                                                        <td className="text-center">London</td>
-                                                        <td className="text-center">
-                                                            <div className="badge badge-danger">In Progress</div>
-                                                        </td>
-                                                        <td className="text-center">
-                                                            <button type="button" className="btn btn-primary btn-sm">Details</button>
-                                                        </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td className="text-center text-muted">#55</td>
-                                                        <td>
-                                                            <div className="widget-content p-0">
-                                                                <div className="widget-content-wrapper">
-                                                                    <div className="widget-content-left mr-3">
-                                                                        <div className="widget-content-left">
-                                                                            <img width={40} className="rounded-circle" src={avatar1} alt="Avatar" /></div>
-                                                                    </div>
-                                                                    <div className="widget-content-left flex2">
-                                                                        <div className="widget-heading">Vinnie Wagstaff</div>
-                                                                        <div className="widget-subheading opacity-7">UI Designer</div>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </td>
-                                                        <td className="text-center">Amsterdam</td>
-                                                        <td className="text-center">
-                                                            <div className="badge badge-info">On Hold</div>
-                                                        </td>
-                                                        <td className="text-center">
-                                                            <button type="button" className="btn btn-primary btn-sm">Details</button>
-                                                        </td>
-                                                    </tr>
-                                                </tbody>
-                                            </table>
-                                        </div>
-                                        <div className="d-block text-center card-footer">
-                                        </div>
-                                    </Card>
-                                </Col>
-                            </Row>
-                            <Row>
-                                <Col md="6">
-                                    <Card className="main-card mb-3">
-                                        <div className="card-header">Photos</div>
-                                        <div className="slider-light">
-                                            <div className="slick-slider">
-                                                <div>
-                                                    <Slider {...settings}>
-                                                        <div>
-                                                            <div className="position-relative h-100 d-flex justify-content-center align-items-center bg-plum-plate" tabIndex="-1">
-                                                                <div className="slide-img-bg" style={{ backgroundImage: `url(${"https://scontent.fmnl5-1.fna.fbcdn.net/v/t1.0-9/70319472_2365613000221954_4395913428481343488_n.jpg?_nc_cat=101&_nc_oc=AQnhNDfPSp1aIMK6kHr6rc9rSa8O-844fpoxAxf6OUz8nVz9Urgme625hqWEzKeTQ0k&_nc_ht=scontent.fmnl5-1.fna&oh=b43bb96b3f1dbfd01737c5098963caf8&oe=5DFD499C"})` }}></div>
-                                                            </div>
-                                                        </div>
-                                                        <div>
-                                                            <div className="position-relative h-100 d-flex justify-content-center align-items-center bg-premium-dark" tabIndex="-1">
-                                                                <div className="slide-img-bg" style={{ backgroundImage: `url(${citynights})` }}></div>
-                                                            </div>
-                                                        </div>
-                                                        <div>
-                                                            <div className="position-relative h-100 d-flex justify-content-center align-items-center bg-sunny-morning" tabIndex="-1">
-                                                                <div className="slide-img-bg" style={{ backgroundImage: `url(${citydark})` }}></div>
-                                                            </div>
-                                                        </div>
-                                                    </Slider>
-
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </Card>
-                                </Col>
-                                <Col md="6">
-                                    <Card className="main-card mb-3">
-                                        <div className="card-header">Videos
-                                        <div className="btn-actions-pane-right">
-                                                <div role="group" className="btn-group-sm btn-group">
-                                                    <button className="btn btn-info">All Month</button>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <ReactPlayer
-                                            url='https://www.facebook.com/kimyulin94/videos/vb.100003198303661/1509844989132097/?type=2&video_source=user_video_tab'
-
-                                            playing={false}
-                                            width='100%'
-                                            height='100%'
-                                        />
-                                    </Card>
-                                </Col>
                             </Row>
                         </div>
 

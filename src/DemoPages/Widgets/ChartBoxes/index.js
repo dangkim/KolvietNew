@@ -8,6 +8,7 @@ import PageTitle from '../../../Layout/AppMain/PageTitle';
 import BasicExample from './Examples/Basic';
 import ColorsExample from './Examples/Colors';
 import { Influencers } from './Examples/Influencers';
+import { InfluencerDetail } from './Examples/InfluencerDetail';
 import NavsVertical from '../../Elements/Navs/Examples/NavVertical';
 
 export default class WidgetsChartBoxes extends React.Component {
@@ -37,7 +38,7 @@ export default class WidgetsChartBoxes extends React.Component {
         this.getTabs = this.getTabs.bind(this);
     }
 
-    getTabs = () => {        
+    getTabs = () => {
         return (this.state.tabsContent.map((tab, index) => ({
             title: tab.title,
             getContent: () => tab.content,
@@ -46,7 +47,23 @@ export default class WidgetsChartBoxes extends React.Component {
     }
 
     callbackFunction = (childData) => {
-        this.setState({ selectedTabKey: childData })
+        if (childData === 1) {
+
+            const tabsContent = this.state.tabsContent;
+
+            let duplicateTab = tabsContent.filter(tab => { return tab.title === "Influencer details"; }).length;
+            if (!duplicateTab) {
+                tabsContent.splice(1, 0, {
+                    title: 'Influencer details',
+                    content: <InfluencerDetail />
+                })                
+            }
+            this.setState({ selectedTabKey: childData, tabsContent: tabsContent })
+        }
+        if (childData === 2) {
+            this.setState({ selectedTabKey: childData })
+        }
+
     }
     // onChangeProp = propsName =>
     //     evt => {
