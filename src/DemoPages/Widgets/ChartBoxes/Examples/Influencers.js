@@ -4,10 +4,34 @@ import {
     CSSTransition,
     TransitionGroup,
 } from 'react-transition-group';
+
 import {
-    Row, Col, CustomInput,
+    Row, Col, ButtonGroup,
+    Button,
+    UncontrolledButtonDropdown,
+    DropdownToggle,
+    DropdownMenu,
+    Nav,
+    NavItem,
+    NavLink
 } from 'reactstrap';
 
+import {
+    AreaChart, Area, LineChart, Line,
+    ResponsiveContainer,
+    BarChart, Bar,
+    ComposedChart,
+    CartesianGrid
+} from 'recharts';
+
+import {
+    faAngleUp,
+    faAngleDown,
+    faArrowLeft,
+    faArrowRight,
+    faEllipsisH,
+
+} from '@fortawesome/free-solid-svg-icons';
 
 import { infActions, brandActions } from '../../../../_actions';
 import Select from 'react-select';
@@ -70,6 +94,7 @@ class Influencers extends Component {
             skip: 0,
             first: 9,
             searchValue: '',
+            cSelected: [],
             dateValue: moment.range(today.clone(), today.clone().add(7, "days"))
         };
 
@@ -78,6 +103,35 @@ class Influencers extends Component {
         this.prePageFluencers = this.prePageFluencers.bind(this);
         this.onChangePage = this.onChangePage.bind(this);
         this.handleSearch = this.handleSearch.bind(this);
+        this.onCheckboxBtnClick = this.onCheckboxBtnClick.bind(this);
+        this.sendData = this.sendData.bind(this);
+        this.gotoDetail = this.gotoDetail.bind(this);
+    }
+
+    sendData = (tabIndex) => {
+        // Back to first tab
+        this.props.parentCallback(tabIndex);
+    }
+
+    gotoDetail(selected) {
+        const index = this.state.cSelected.indexOf(selected);
+        
+        history.push('/dashboards/basic');
+    }
+
+    onCheckboxBtnClick(selected) {
+        const index = this.state.cSelected.indexOf(selected);
+        if (index < 0) {
+            this.state.cSelected.push(selected);
+        } else {
+            this.state.cSelected.splice(index, 1);
+        }
+
+        this.setState({ cSelected: [...this.state.cSelected] });
+
+        if (this.state.cSelected.length > 1) {
+            this.sendData(1);
+        }
     }
 
     nextPageFluencers(skip) {
@@ -115,33 +169,9 @@ class Influencers extends Component {
     };
 
     componentDidMount() {
-
         const { dispatch } = this.props;
         const { first } = this.state;
-
-        //if (this.props.location.state) {
-        dispatch(infActions.getAll(first, 0));
-        // const { brand, userName } = this.props.location.state;
-
-        // if (brand) {
-
-        //     //const { brand } = this.props.location.state;
-        //     dispatch(infActions.getAll(first, 0));
-        //     //dispatch(brandActions.getBrandFromBrandPage(brand));
-        // }
-        // else {
-        //     if (userName) {
-        //         dispatch(brandActions.getBrandByName(userName));
-        //     }
-        //     else {
-        //         history.push('/registerBrandPage');
-        //     }
-        // }
-        // }
-        // else {
-        //     history.push('/registerBrandPage');
-        // }
-
+        dispatch(infActions.getAll(first, 0)); 
     }
 
     onToggle = () => {
@@ -188,293 +218,97 @@ class Influencers extends Component {
             "bg-tempting-azure",
             "bg-amy-crisp",
         ];
-        
+
         //const { brand, userName } = this.props.location.state;
 
         const brandFromLoading = this.props.brands.brand;
-
+        const elements = ['1', '2', '3', '4', '5', '6'];
         return (
             <Fragment>
                 <TransitionGroup component="div">
                     <CSSTransition timeout={1500} unmountOnExit appear classNames="TabsAnimation">
                         <div>
-                            {/* <Row>
-                                <Col md="4">
-                                    <div className="card mb-3 widget-chart bg-mean-fruit card-border">
-                                        <div className="widget-chart-content text-white">
-                                            <div className="icon-wrapper rounded-circle">
-                                                <div className="icon-wrapper-bg bg-white opacity-3" />
-                                                <i className="lnr-cog text-white" />
-                                            </div>
-                                            <div className="widget-numbers">
-                                                45.8k
-                                        </div>
-                                            <div className="widget-subheading">
-                                                Total Views
-                                        </div>
-                                            <div className="widget-description text-dark">
-                                                <FontAwesomeIcon icon={faAngleUp} />
-                                                <span className="pl-1">175.5%</span>
-                                            </div>
-                                        </div>
-                                        <div className="widget-chart-wrapper chart-wrapper-relative">
-                                            <ResponsiveContainer width='100%' aspect={3.0 / 1.0}>
-                                                <LineChart data={data}
-                                                    margin={{ top: 5, right: 5, left: 5, bottom: 0 }}>
-                                                    <Line type='monotone' dataKey='pv' stroke='#ffffff'
-                                                        strokeWidth={3} />
-                                                </LineChart>
-                                            </ResponsiveContainer>
-                                        </div>
-                                    </div>
-                                </Col>
-                                <Col md="4">
-                                    <div className="card mb-3 widget-chart bg-tempting-azure card-border">
-                                        <div className="widget-chart-content text-white">
-                                            <div className="icon-wrapper rounded-circle">
-                                                <div className="icon-wrapper-bg bg-white opacity-3" />
-                                                <i className="lnr-screen text-success" />
-                                            </div>
-                                            <div className="widget-numbers">
-                                                17.2k
-                                        </div>
-                                            <div className="widget-subheading">
-                                                Profiles
-                                        </div>
-                                            <div className="widget-description text-dark">
-                                                <span className="pr-1">175.5%</span>
-                                                <FontAwesomeIcon icon={faArrowLeft} />
-                                            </div>
-                                        </div>
-                                        <div className="widget-chart-wrapper chart-wrapper-relative">
-                                            <ResponsiveContainer width='100%' aspect={3.0 / 1.0}>
-                                                <AreaChart data={data}
-                                                    margin={{ top: 0, right: 0, left: 0, bottom: 0 }}>
-                                                    <Area type='monotoneX' dataKey='uv' stroke='#ffffff' fill='rgba(255,255,255,.2)' />
-                                                </AreaChart>
-                                            </ResponsiveContainer>
-                                        </div>
-                                    </div>
-                                </Col>
-                                <Col md="4">
-                                    <div className="card mb-3 widget-chart bg-amy-crisp card-border">
-                                        <div className="widget-chart-content text-white">
-                                            <div className="icon-wrapper rounded-circle">
-                                                <div className="icon-wrapper-bg bg-white opacity-3" />
-                                                <i className="lnr-laptop-phone text-danger" />
-                                            </div>
-                                            <div className="widget-numbers">
-                                                5.82k
-                                        </div>
-                                            <div className="widget-subheading">
-                                                Reports Submitted
-                                        </div>
-                                            <div className="widget-description text-danger">
-                                                <FontAwesomeIcon icon={faAngleDown} />
-                                                <span className="pl-1">54.1%</span>
-                                            </div>
-                                        </div>
-                                        <div className="widget-chart-wrapper chart-wrapper-relative">
-                                            <ResponsiveContainer width='100%' aspect={3.0 / 1.0}>
-                                                <BarChart data={data}>
-                                                    <Bar dataKey='uv' fill='#81a4ff' stroke='#3f6ad8' strokeWidth={1} />
-                                                </BarChart>
-                                            </ResponsiveContainer>
-                                        </div>
-                                    </div>
-                                </Col>
-                                <Col md="4">
-                                    <div className="card mb-3 widget-chart bg-arielle-smile card-border">
-                                        <div className="widget-chart-content text-white">
-                                            <div className="icon-wrapper rounded-circle">
-                                                <div className="icon-wrapper-bg bg-white opacity-7" />
-                                                <i className="lnr-graduation-hat text-info" />
-                                            </div>
-                                            <div className="widget-numbers">
-                                                63.2k
-                                        </div>
-                                            <div className="widget-subheading">
-                                                Bugs Fixed
-                                        </div>
-                                            <div className="widget-description text-white">
-                                                <FontAwesomeIcon icon={faArrowRight} />
-                                                <span className="pl-1">175.5%</span>
-                                            </div>
-                                        </div>
-                                        <div className="widget-chart-wrapper chart-wrapper-relative">
-                                            <ResponsiveContainer width='100%' aspect={3.0 / 1.0}>
-                                                <AreaChart data={data}
-                                                    margin={{ top: 0, right: 0, left: 0, bottom: 0 }}>
-                                                    <Area type='stepAfter' dataKey='uv' stroke='rgba(255,255,255,.7)' fill='rgba(255,255,255,.5)' />
-                                                </AreaChart>
-                                            </ResponsiveContainer>
-                                        </div>
-                                    </div>
-                                </Col>
-                                <Col md="4">
-                                    <div className="card mb-3 widget-chart bg-happy-itmeo card-border">
-                                        <div className="widget-chart-content text-white">
-                                            <div className="icon-wrapper rounded">
-                                                <div className="icon-wrapper-bg bg-white opacity-6" />
-                                                <i className="lnr-heart icon-gradient bg-premium-dark"> </i>
-                                            </div>
-                                            <div className="widget-numbers">
-                                                5.82k
-                                        </div>
-                                            <div className="widget-subheading">
-                                                Active Social Profiles
-                                        </div>
-                                            <div className="widget-description">
-                                                Down by
-                                            <span className="text-white pl-1 pr-1">
-                                                    <FontAwesomeIcon icon={faAngleDown} />
-                                                    <span className="pl-1">54.1%</span>
-                                                </span>
-                                                from 30 days ago
-                                        </div>
-                                        </div>
-                                        <div className="widget-chart-wrapper chart-wrapper-relative">
-                                            <ResponsiveContainer width='100%' aspect={3.0 / 1.0}>
-                                                <LineChart data={data2}
-                                                    margin={{ top: 0, right: 5, left: 5, bottom: 0 }}>
-                                                    <Line type="monotone" dataKey="pv" stroke="#ffffff" strokeWidth={2} />
-                                                    <Line type="monotone" dataKey="uv" stroke="rgba(255,255,255,.7)" strokeWidth={2} />
-                                                </LineChart>
-                                            </ResponsiveContainer>
-                                        </div>
-                                    </div>
-                                </Col>
-                                <Col md="4">
-                                    <div className="card mb-3 widget-chart bg-strong-bliss card-border">
-                                        <div className="widget-chart-content text-white">
-                                            <div className="icon-wrapper rounded">
-                                                <div className="icon-wrapper-bg bg-white opacity-4" />
-                                                <i className="lnr-graduation-hat text-white" />
-                                            </div>
-                                            <div className="widget-numbers">
-                                                1.5M
-                                        </div>
-                                            <div className="widget-subheading">
-                                                Bugs Fixed
-                                        </div>
-                                            <div className="widget-description text-white">
-                                                Down by
-                                            <span className="text-white pl-1 pr-1 opacity-8">
-                                                    <FontAwesomeIcon icon={faAngleDown} />
-                                                    <span className="pl-1">54.1%</span>
-                                                </span>
-                                                from 30 days ago
-                                        </div>
-                                        </div>
-                                        <div className="widget-chart-wrapper chart-wrapper-relative">
-                                            <ResponsiveContainer width='100%' aspect={3.0 / 1.0}>
-                                                <ComposedChart data={data2}>
-                                                    <CartesianGrid stroke="rgba(255,255,255,.1)" />
-                                                    <Area type="monotone" dataKey="amt" fill="rgba(255,255,255,.4)" stroke="transparent" />
-                                                    <Bar dataKey="pv" barSize={5} fill="rgba(255,255,255,.9)" />
-                                                    <Line type="monotone" dataKey="uv" stroke="#ffffff" />
-                                                </ComposedChart>
-                                            </ResponsiveContainer>
-                                        </div>
-                                    </div>
-                                </Col>
-                            </Row> */}
                             <Row>
                                 {
-                                    influencers.items && influencers.items.influencer.map((item, key) => {
-                                        //if ((brand && brand.published) || (brandFromLoading && brandFromLoading.published)) {
-                                        imgSrc = item.photo.urls.length === 0 ? defaultAvatar : "http://bdo8.com" + item.photo.urls[0] + '?&width=240&height=240&rmode=';
-                                        //}
+                                    elements.map((value, index) => {
                                         return (
-                                            <Col key={key} md="4">
-                                                <div className={"card mb-3 widget-chart " + colors[key] + " card-border"}>
-                                                    <div className="rounded-circle">
-                                                        <img className="mx-auto rounded-circle" style={{ width: '88px', height: '88px' }} src={imgSrc} alt="" />
+                                            <Col key={index} md="4">
+                                                <div className="card mb-3 bg-success widget-chart text-white card-border">
+                                                    <div className="widget-chart-actions">
+                                                        <UncontrolledButtonDropdown>
+                                                            <DropdownToggle color="link" className="text-white">
+                                                                <FontAwesomeIcon icon={faEllipsisH} />
+                                                            </DropdownToggle>
+                                                            <DropdownMenu className="dropdown-menu-lg dropdown-menu-right">
+                                                                <Nav vertical>
+                                                                    <NavItem className="nav-item-header">
+                                                                        Activity
+                                                            </NavItem>
+                                                                    <NavItem>
+                                                                        <NavLink href="javascript:void(0);">
+                                                                            Chat
+                                                                    <div className="ml-auto badge badge-pill badge-info">8</div>
+                                                                        </NavLink>
+                                                                    </NavItem>
+                                                                    <NavItem>
+                                                                        <NavLink href="javascript:void(0);">Recover Password</NavLink>
+                                                                    </NavItem>
+                                                                    <NavItem className="nav-item-header">
+                                                                        My Account
+                                                            </NavItem>
+                                                                    <NavItem>
+                                                                        <NavLink href="javascript:void(0);">
+                                                                            Settings
+                                                                    <div className="ml-auto badge badge-success">New</div>
+                                                                        </NavLink>
+                                                                    </NavItem>
+                                                                    <NavItem>
+                                                                        <NavLink href="javascript:void(0);">
+                                                                            Messages
+                                                                    <div className="ml-auto badge badge-warning">512</div>
+                                                                        </NavLink>
+                                                                    </NavItem>
+                                                                    <NavItem>
+                                                                        <NavLink href="javascript:void(0);">
+                                                                            Logs
+                                                                </NavLink>
+                                                                    </NavItem>
+                                                                    <NavItem className="nav-item-divider" />
+                                                                    <NavItem className="nav-item-btn">
+                                                                        <Button size="sm" className="btn-wide btn-shadow"
+                                                                            color="danger">
+                                                                            Cancel
+                                                                </Button>
+                                                                    </NavItem>
+                                                                </Nav>
+                                                            </DropdownMenu>
+                                                        </UncontrolledButtonDropdown>
                                                     </div>
-                                                    <div className="divide" style={{ marginBottom: '5px' }} />
-                                                    <div className="widget-heading">
-                                                        {item.fullName} - {item.description}
+                                                    <div className="icon-wrapper rounded-circle">
+                                                        <div className="icon-wrapper-bg bg-white opacity-10" />
+                                                        <i className="lnr-screen text-success" />
                                                     </div>
-                                                    <Row>
-                                                        <Col>
-                                                            <div className="widget-subheading" style={{ textAlign: 'left' }}>
-                                                                Hướng về lứa: {item.ageDemorgraphic.ageGraphicsName}
-                                                            </div>
-                                                        </Col>
-                                                        {/* <Col>
-                                                            <div className="widget-subheading" style={{ textAlign: 'left' }}>
-                                                                {
-                                                                    ((brand && brand.published) || (brandFromLoading && brandFromLoading.published)) ?
-                                                                        'Share Link: ' + (item.shareLink ? item.shareLink : 'Call') : 'Share Link: 1000000'
-                                                                }
-                                                            </div>
-                                                        </Col> */}
-                                                    </Row>
-                                                    <Row>
-                                                        <Col>
-                                                            <div className="widget-subheading" style={{ textAlign: 'left' }}>
-                                                                Hướng về giới: {item.genderDemorgraphic.genderGraphicsName}
-                                                            </div>
-                                                        </Col>
-                                                        {/* <Col>
-                                                            <div className="widget-subheading" style={{ textAlign: 'left' }}>
-                                                                {
-                                                                    ((brand && brand.published) || (brandFromLoading && brandFromLoading.published)) ?
-                                                                        'Post Image: ' + (item.postImage ? item.postImage : 'Call') : 'Post Image: 1000000'
-                                                                }
-                                                            </div>
-                                                        </Col> */}
-                                                    </Row>
-                                                    <Row>
-                                                        <Col>
-                                                            <div className="widget-subheading" style={{ textAlign: 'left' }}>
-                                                                Hướng về nơi: {item.geoDemorgraphic.geoGraphicName}
-                                                            </div>
-                                                        </Col>
-                                                        {/* <Col>
-                                                            <div className="widget-subheading" style={{ textAlign: 'left' }}>
-                                                                {
-                                                                    ((brand && brand.published) || (brandFromLoading && brandFromLoading.published)) ?
-                                                                        'Video: ' + (item.video ? item.video : 'Call') : 'Video: 1000000'
-                                                                }
-                                                            </div>
-                                                        </Col> */}
-                                                    </Row>
-                                                    <Row>
-                                                        <Col>
-                                                        </Col>
-                                                        {/* <Col>
-                                                            <div className="widget-subheading" style={{ textAlign: 'left' }}>
-                                                                {
-                                                                    ((brand && brand.published) || (brandFromLoading && brandFromLoading.published)) ?
-                                                                        'CheckIn: ' + (item.checkIn ? item.checkIn : 'Call') : 'CheckIn: 1000000'
-                                                                }
-                                                            </div>
-                                                        </Col> */}
-                                                    </Row>
-                                                    <Row>
-                                                        <Col>
-                                                        </Col>
-                                                        {/* <Col>
-                                                            <div className="widget-subheading" style={{ textAlign: 'left' }}>
-                                                                {
-                                                                    ((brand && brand.published) || (brandFromLoading && brandFromLoading.published)) ?
-                                                                        'LiveStream: ' + (item.liveStream ? item.liveStream : 'Call') : 'LiveStream: 1000000'
-                                                                }
-                                                            </div>
-                                                        </Col> */}
-                                                    </Row>
-                                                    {/* <div className="widget-description text-success">
-                                                        <CustomInput type="checkbox" id={item.contentItemId} name={item.contentItemId} onChange={this.handleCheckBoxChange} checked={this.state.checkedInfluencers.get(item.contentItemId) ? this.state.checkedInfluencers.get(item.contentItemId) : false}
-                                                            label="Select" />
-                                                    </div> */}
+                                                    <div className="widget-numbers">
+                                                        17.2k
+                                                    </div>
+                                                    <div className="widget-subheading">
+                                                        Profiles
+                                                    </div>
+                                                    <div className="widget-description text-white">
+                                                        <span className="pr-1">175.5%</span>
+                                                        <FontAwesomeIcon icon={faArrowLeft} />
+                                                    </div>
+                                                    <div className="divider" />
+                                                    <ButtonGroup>
+                                                        <Button color="success" onClick={() => this.gotoDetail(index)}>Two</Button>
+                                                        <Button color="alternate" onClick={() => this.onCheckboxBtnClick(index)}
+                                                            active={this.state.cSelected.includes(index)}>Three</Button>
+                                                    </ButtonGroup>
                                                 </div>
-                                            </Col>
-                                        )
+                                            </Col>)
                                     })
                                 }
                             </Row>
-
                         </div>
                     </CSSTransition>
                 </TransitionGroup>
