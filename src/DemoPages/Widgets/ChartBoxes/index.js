@@ -25,6 +25,10 @@ export default class WidgetsChartBoxes extends React.Component {
                 {
                     title: 'Vertical Menus',
                     content: <NavsVertical />
+                },
+                {
+                    title: 'Create Campaingn',
+                    content: <NavsVertical />
                 }
             ]
         };

@@ -22,7 +22,6 @@ const Widgets = ({match}) => (
 
                     <Route path={`${match.url}/dashboard-boxes`} component={WidgetsChartBoxes}/>
                 </div>
-                <AppFooter/>
             </div>
         </div>
 
