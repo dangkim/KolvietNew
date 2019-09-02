@@ -28,9 +28,13 @@ export default class WidgetsChartBoxes extends React.Component {
         this.callbackFunction = this.callbackFunction.bind(this);
     }
 
-    callbackFunction = (childData) => {
-        if (childData && childData.contentType === 'Influencer') {
-            this.setState({ selectedTabKey: 3, Influencer: childData })
+    callbackFunction = (selectedTabKey, childData, index) => {
+        debugger;
+        if (index) {
+            this.setState({ selectedTabKey: selectedTabKey, Influencer: childData[index] })
+        }
+        else {
+            this.setState({ selectedTabKey: selectedTabKey, ComparedInfluencers: childData })
         }
     }
     // onChangeProp = propsName =>

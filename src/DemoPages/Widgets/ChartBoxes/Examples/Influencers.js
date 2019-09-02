@@ -141,11 +141,11 @@ class Influencers extends Component {
         }
     }
 
-    createCampaign(index) {
+    createCampaign(selected) {
         const { influencers } = this.props;
-        const influencer = influencers.items ? influencers.items[index] : null;
+        const influencer = influencers.items ? influencers.items[selected] : null;
         if (influencer) {
-            this.sendData(influencer);
+            this.sendData(3, influencers.items, selected);
         }
     }
 
@@ -163,14 +163,18 @@ class Influencers extends Component {
         }
     }
 
-    sendData = (tabIndex) => {
+    sendData = (tabIndex, object, index) => {
         // Back to first tab
-        this.props.parentCallback(tabIndex);
+        this.props.parentCallback(tabIndex, object, index);
     }
 
     gotoDetail(selected) {
-        const index = this.state.cSelected.indexOf(selected);
-        this.sendData(1);
+        debugger;
+        const { influencers } = this.props;
+        const influencer = influencers.items ? influencers.items[selected] : null;
+        if (influencer) {
+            this.sendData(1, influencers.items, selected);
+        }
         //history.push('/dashboards/basic');
     }
 
@@ -183,10 +187,18 @@ class Influencers extends Component {
         }
 
         this.setState({ cSelected: [...this.state.cSelected] });
-
-        // if (this.state.cSelected.length > 1) {
-        //     this.sendData(2);
-        // }
+        
+        const { influencers } = this.props;
+        if (influencers && influencers.items) {
+            if (this.state.cSelected.length > 1) {
+                let items=[];
+                this.state.cSelected.map((item, key) => {
+                    items.push(influencers.items[item]);
+                })
+                debugger;
+                this.sendData(2, items, null);
+            }
+        }
     }
 
     nextPageFluencers(skip) {
