@@ -6,6 +6,8 @@ import {
     TransitionGroup,
 } from 'react-transition-group';
 
+import { toast } from "react-toastify";
+
 import {
     Button, Form,
     FormGroup, Label,
@@ -43,6 +45,7 @@ import NumberFormat from 'react-number-format';
 
 import { campaignActions, infActions, brandActions } from '../../../../_actions';
 import { createLocations, createInterestings, createJobs } from '../../../../_models/CommonModels';
+import { history } from '../../../../_helpers';
 
 class CreateCampaign extends Component {
 
@@ -66,23 +69,25 @@ class CreateCampaign extends Component {
             budget: '',
             currency: 'VND'
         }
+        const job = {
+            jobName: '',
+            jobHashTag: '',
+            jobKeyword: '',
+            jobDescription: '',
+            jobLink: '',
+            jobTasks: []
+        }
 
+        const jobStorage = localStorage.getItem('job') ? JSON.parse(localStorage.getItem('job')) : job;
         const campaignStorage = localStorage.getItem('campaign') ? JSON.parse(localStorage.getItem('campaign')) : campaign;
         const dateValue = localStorage.getItem('dateValue') ? moment.range(JSON.parse(localStorage.getItem('dateValue')).start, JSON.parse(localStorage.getItem('dateValue')).end) : moment.range(today.clone(), today.clone().add(7, "days"));
         const locationStorage = localStorage.getItem('selectedOptionLocation') ? JSON.parse(localStorage.getItem('selectedOptionLocation')) : [{ value: "TPHCM", label: "TPHCM" }];
         const interestingStorage = localStorage.getItem('selectedOptionInteresting') ? JSON.parse(localStorage.getItem('selectedOptionInteresting')) : [{ value: "Fashion", label: "Fashion" }];
         const jobCategoryStorage = localStorage.getItem('selectedOptionJobCategory') ? JSON.parse(localStorage.getItem('selectedOptionJobCategory')) : [{ value: 'Share Link', label: 'Share Link' }, { value: 'Post Image', label: 'Post Image' }];
-        debugger;
+
         this.state = {
             campaign: campaignStorage,
-            job: {
-                jobName: '',
-                jobHashTag: '',
-                jobKeyword: '',
-                jobDescription: '',
-                jobLink: '',
-                jobTasks: []
-            },
+            job: jobStorage,
             selectedOptionLocation: locationStorage,//[{ value: "TPHCM", label: "TPHCM" }],
             selectedOptionInteresting: interestingStorage,//[{ value: "Fashion", label: "Fashion" }],
             selectedOptionJobCategory: jobCategoryStorage,//[{ value: 'Share Link', label: 'Share Link' }, { value: 'Post Image', label: 'Post Image' }],
@@ -153,7 +158,7 @@ class CreateCampaign extends Component {
     }
 
     handleSubmitJobs(event) {
-        
+
         event.preventDefault();
 
         this.setState({ submitted: true });
@@ -358,11 +363,21 @@ class CreateCampaign extends Component {
             exampleItems,
             first } = this.state;
         const { Brand, Influencer } = this.props;
+
+        // Check Brand and back to Login again
+        if(!Brand)
+        {
+            toast.warn("Please Login Again!");
+            history.push('/pages/loginpage');
+        }
+
         let imgSrc = defaultAvatar;
 
         const locations = createLocations();
         const interestings = createInterestings();
         const jobs = createJobs();
+
+        localStorage.setItem('job', JSON.stringify(job));
 
         localStorage.setItem('campaign', JSON.stringify(campaign));
 
@@ -550,7 +565,7 @@ class CreateCampaign extends Component {
                                             <FormGroup>
                                                 <Label htmlFor="name" className="">
                                                     <span className="text-danger">*</span> Job Description</Label>
-                                                <Input disabled={Influencer === null} type="text" className="form-control" name="jobDescription" id="jobDescription" placeholder="Description of your job" value={campaign.jobDescription} onChange={this.handleJobChange} />
+                                                <Input disabled={Influencer === null} type="text" className="form-control" name="jobDescription" id="jobDescription" placeholder="Description of your job" value={job.jobDescription} onChange={this.handleJobChange} />
                                                 {
                                                     submitted && !job.jobDescription &&
                                                     <div className="help-block text-danger">Job Description is required</div>
@@ -602,7 +617,7 @@ class CreateCampaign extends Component {
 }
 
 function mapStateToProps(state) {
-
+    debugger;
     const { campaigns, influencers, locations, interestings, jobCategories, jobs, brands } = state;
     //const { brand } = influencers;
     return {

@@ -25,7 +25,7 @@ function register(campaign,
     brandLocation,
     selectedInfluencer) {
     return dispatch => {
-        
+
         dispatch(request());
 
         const campaignLocal = createCampaign(campaign,
@@ -48,7 +48,9 @@ function register(campaign,
                 campaignService.register(campaignsLocal)
                     .then(campaignsType => {
                         dispatch(success(campaignsType));
-                        history.push('/registerBrandPage');
+                        localStorage.removeItem('campaign');
+                        localStorage.removeItem('job');
+                        //history.push('/widgets/dashboard-boxes');
                         //dispatch(alertActions.success('Registration Campaigns Successful'));
                         toast.success("Registration Campaigns Successful");
                     }),
@@ -96,7 +98,7 @@ function getAll() {
 function getAllLocation() {
     return dispatch => {
         dispatch(request());
-        
+
         campaignService.getAllLocation()
             .then(
                 locations => dispatch(success(locations)),
