@@ -4,7 +4,7 @@ export function createCampaigns(brandName, brandFullName, businessAreas, brandLo
     ContentItemId: '',
     ContentItemVersionId: '',
     ContentType: 'Campaigns',
-    DisplayText: brandName + ';' + businessAreas+ ';' + brandFullName + ';' + brandLocation,//brand.Brand.BrandName.Text,
+    DisplayText: brandName + ';' + businessAreas + ';' + brandFullName + ';' + brandLocation,//brand.Brand.BrandName.Text,
     Latest: true,
     Published: false,
     ModifiedUtc: '',
@@ -45,7 +45,7 @@ export function createCampaigns(brandName, brandFullName, businessAreas, brandLo
       ]
     },
     TitlePart: {
-      Title: brandName + ';' + businessAreas+ ';' + brandFullName + ';' + brandLocation
+      Title: brandName + ';' + businessAreas + ';' + brandFullName + ';' + brandLocation
     }
   }
 
@@ -60,7 +60,7 @@ export function createCampaign(campaign,
   selectedOptionInteresting,
   selectedOptionJobCategory,
   brandName,
-  selectedInfluencers) {
+  selectedInfluencer) {
 
   let locationString = '';
   var i;
@@ -86,25 +86,22 @@ export function createCampaign(campaign,
   let isLiveStream = 0;
 
   // Calculate Total Cost each
-  if (selectedInfluencers) {
-    selectedInfluencers.forEach(function (influencer, key) {
-      if (influencer.shareLink) {
-        shareLinkCost = shareLinkCost + Number(influencer.shareLink);
-      }
-      if (influencer.postImage) {
-        postImageCost = postImageCost + Number(influencer.postImage);
-      }
-      if (influencer.video) {
-        videoCost = videoCost + Number(influencer.video);
-      }
-      if (influencer.checkIn) {
-        checkInCost = checkInCost + Number(influencer.checkIn);
-      }
-      if (influencer.liveStream) {
-        liveStreamCost = liveStreamCost + Number(influencer.liveStream);
-      }
-    })
-  }
+  // if (influencer.shareLink) {
+  //   shareLinkCost = shareLinkCost + Number(influencer.shareLink);
+  // }
+  // if (influencer.postImage) {
+  //   postImageCost = postImageCost + Number(influencer.postImage);
+  // }
+  // if (influencer.video) {
+  //   videoCost = videoCost + Number(influencer.video);
+  // }
+  // if (influencer.checkIn) {
+  //   checkInCost = checkInCost + Number(influencer.checkIn);
+  // }
+  // if (influencer.liveStream) {
+  //   liveStreamCost = liveStreamCost + Number(influencer.liveStream);
+  // }
+
   ///////////////////////
 
   // Check Cost of each job
@@ -130,98 +127,94 @@ export function createCampaign(campaign,
 
   var campaignContentItems = [];
 
-  if (selectedInfluencers) {
-    selectedInfluencers.forEach(function (influencer, key) {
-      
-      const influencerLocal = {
-        ContentItemId: influencer.contentItemId,
-        ContentItemVersionId: influencer.contentItemVersionId,
-        ContentType: 'Influencer',
-        DisplayText: influencer.displayText,
-        Latest: true,
-        Published: false,
-        ModifiedUtc: influencer.modifiedUtc,
-        PublishedUtc: influencer.publishedUtc,
-        CreatedUtc: influencer.createdUtc,
-        Owner: 'admin',
-        Author: 'admin',
-        Influencer: {
-          Description: {
-            Text: influencer.description
-          },
-          Photo: {
-            Paths: influencer.photo.paths,
-            Urls: influencer.photo.urls
-          },
-          Fanpage: {
-            Text: influencer.fanpage
-          },
-          Email: {
-            Text: ''
-          },
-          FullName: {
-            Text: influencer.fullName
-          },
-          ShareLink: {
-            Text: influencer.shareLink
-          },
-          PostImage: {
-            Text: influencer.postImage
-          },
-          LiveStream: {
-            Text: influencer.liveStream
-          },
-          CheckIn: {
-            Text: influencer.checkIn
-          },
-          Video: {
-            Text: influencer.video
-          },
-          Phone: {
-            Text: influencer.phone
-          },
-          NumberOfShare: {
-            Text: influencer.numberOfShare
-          },
-          NumberOfReaction: {
-            Text: influencer.numberOfReaction
-          },
-          NumberOfComment: {
-            Text: influencer.numberOfComment
-          }
+  if (selectedInfluencer) {
+    const influencerLocal = {
+      ContentItemId: selectedInfluencer.contentItemId,
+      ContentItemVersionId: selectedInfluencer.contentItemVersionId,
+      ContentType: 'Influencer',
+      DisplayText: selectedInfluencer.displayText,
+      Latest: true,
+      Published: false,
+      ModifiedUtc: selectedInfluencer.modifiedUtc,
+      PublishedUtc: selectedInfluencer.publishedUtc,
+      CreatedUtc: selectedInfluencer.createdUtc,
+      Owner: 'admin',
+      Author: 'admin',
+      Influencer: {
+        Description: {
+          Text: selectedInfluencer.description
         },
-        TitlePart: {
-          Title: influencer.displayText
+        Photo: {
+          Paths: selectedInfluencer.photo.paths,
+          Urls: selectedInfluencer.photo.urls
         },
-        AgeDemorgraphic: {
-          AgePercentage: {
-            Text: influencer.agePercentage
-          },
-          AgeGraphicsName: {
-            Text: influencer.ageGraphicsName
-          }
+        Fanpage: {
+          Text: selectedInfluencer.fanpage
         },
-        GenderDemorgraphic: {
-          GenderPercentage: {
-            Text: influencer.genderDemorgraphic
-          },
-          GenderGraphicName: {
-            Text: influencer.genderGraphicName
-          }
+        Email: {
+          Text: ''
         },
-        GeoDemorgraphic: {
-          GeoPercentage: {
-            Text: influencer.geoPercentage
-          },
-          GeoGraphicName: {
-            Text: influencer.geoGraphicName
-          }
+        FullName: {
+          Text: selectedInfluencer.fullName
+        },
+        ShareLink: {
+          Text: selectedInfluencer.shareLink
+        },
+        PostImage: {
+          Text: selectedInfluencer.postImage
+        },
+        LiveStream: {
+          Text: selectedInfluencer.liveStream
+        },
+        CheckIn: {
+          Text: selectedInfluencer.checkIn
+        },
+        Video: {
+          Text: selectedInfluencer.video
+        },
+        Phone: {
+          Text: selectedInfluencer.phone
+        },
+        NumberOfShare: {
+          Text: selectedInfluencer.numberOfShare
+        },
+        NumberOfReaction: {
+          Text: selectedInfluencer.numberOfReaction
+        },
+        NumberOfComment: {
+          Text: selectedInfluencer.numberOfComment
+        }
+      },
+      TitlePart: {
+        Title: selectedInfluencer.displayText
+      },
+      AgeDemorgraphic: {
+        AgePercentage: {
+          Text: selectedInfluencer.agePercentage
+        },
+        AgeGraphicsName: {
+          Text: selectedInfluencer.ageGraphicsName
+        }
+      },
+      GenderDemorgraphic: {
+        GenderPercentage: {
+          Text: selectedInfluencer.genderDemorgraphic
+        },
+        GenderGraphicName: {
+          Text: selectedInfluencer.genderGraphicName
+        }
+      },
+      GeoDemorgraphic: {
+        GeoPercentage: {
+          Text: selectedInfluencer.geoPercentage
+        },
+        GeoGraphicName: {
+          Text: selectedInfluencer.geoGraphicName
         }
       }
+    }
 
-      campaignContentItems.push(influencerLocal);
-    });
-
+    campaignContentItems.push(influencerLocal);
   }
 
   const compaignType = {
@@ -270,7 +263,7 @@ export function createCampaign(campaign,
       Gender: {
         Value: campaign.gender
       },
-      JobName:{
+      JobName: {
         Text: job.jobName
       },
       HashTag: {
@@ -297,22 +290,22 @@ export function createCampaign(campaign,
     },
     CheckIn: {
       Cost: {
-        Text: isCheckIn ? checkInCost : 0
+        Text: isCheckIn ? selectedInfluencer.checkIn : 0
       }
     },
     LiveStream: {
       Cost: {
-        Text: isLiveStream ? liveStreamCost : 0
+        Text: isLiveStream ? selectedInfluencer.liveStream : 0
       }
     },
     PostImage: {
       Cost: {
-        Text: isPostImage ? postImageCost : 0
+        Text: isPostImage ? selectedInfluencer.postImage : 0
       }
     },
     ShareLink: {
       Cost: {
-        Text: isShareLink ? shareLinkCost : 0
+        Text: isShareLink ? selectedInfluencer.shareLink : 0
       }
     },
     Video: {
@@ -321,7 +314,7 @@ export function createCampaign(campaign,
       }
     }
   }
-  
+
   //var myJSON = JSON.stringify(compaignType);
 
   return compaignType;

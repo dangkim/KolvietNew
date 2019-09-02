@@ -153,7 +153,7 @@ class CreateCampaign extends Component {
     }
 
     handleSubmitJobs(event) {
-
+        
         event.preventDefault();
 
         this.setState({ submitted: true });
@@ -162,30 +162,9 @@ class CreateCampaign extends Component {
             selectedOptionLocation,
             selectedOptionInteresting,
             selectedOptionJobCategory,
-            selectedInfluencers,
-            checkedInfluencers,
             dateValue } = this.state;
-        const { dispatch, brands } = this.props;
-        const { brand, userName } = this.props.location.state;
-        //const brandObject = brand? brand.Brand: brands.brand;
-        let brandObject = {};
 
-        if (brand) {
-            brandObject = {
-                brandName: brand.Brand.BrandName.Text,
-                fullName: brand.Brand.FullName.Text,
-                businessAreas: brand.Brand.BusinessAreas.Text,
-                location: brand.Brand.Location.Text,
-            }
-        }
-        else {
-            brandObject = {
-                brandName: brands.brand.brandName,
-                fullName: brands.brand.fullName,
-                businessAreas: brands.brand.businessAreas,
-                location: brands.brand.location,
-            }
-        }
+        const { dispatch, Brand, Influencer } = this.props;
 
         if (campaign.campaignName &&
             campaign.campaignTarget &&
@@ -200,10 +179,7 @@ class CreateCampaign extends Component {
             selectedOptionInteresting &&
             selectedOptionJobCategory &&
             job.jobDescription &&
-            job.jobName &&
-            selectedInfluencers.length > 0) {
-
-            this.setState({ isFormStep: true, isInfluencerStep: false, isJobStep: false });
+            job.jobName) {
 
             dispatch(campaignActions.register(campaign,
                 dateValue.start.format("DD MMM YYYY"),
@@ -212,12 +188,11 @@ class CreateCampaign extends Component {
                 selectedOptionLocation,
                 selectedOptionInteresting,
                 selectedOptionJobCategory,
-                brandObject.brandName,
-                brandObject.fullName,
-                brandObject.businessAreas,
-                brandObject.location,
-                selectedInfluencers,
-                checkedInfluencers));
+                Brand.brandName,
+                Brand.fullName,
+                Brand.businessAreas,
+                Brand.location,
+                Influencer));
         }
     }
 
@@ -398,9 +373,6 @@ class CreateCampaign extends Component {
         localStorage.setItem('selectedOptionInteresting', JSON.stringify(selectedOptionInteresting));
 
         localStorage.setItem('selectedOptionJobCategory', JSON.stringify(selectedOptionJobCategory));
-
-
-        debugger;
 
         return (
             <Fragment>
@@ -618,7 +590,7 @@ class CreateCampaign extends Component {
                                             <span></span> Job Link</Label>
                                         <Input disabled={Influencer === null} type="text" name="jobLink" id="jobLink" placeholder="Link of your page" value={job.jobLink} onChange={this.handleJobChange} />
                                     </FormGroup>
-                                    <Button onClick={this.handleInfluencerStep} disabled={Influencer === null} color="primary" className="mt-2">Submit</Button>
+                                    <Button onClick={this.handleSubmitJobs} disabled={Influencer === null} color="primary" className="mt-2">Submit</Button>
                                 </Form>
                             </CardBody>
                         </Card>

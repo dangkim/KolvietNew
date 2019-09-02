@@ -23,8 +23,7 @@ function register(campaign,
     brandFullName,
     businessAreas,
     brandLocation,
-    selectedInfluencers,
-    checkedInfluencers) {
+    selectedInfluencer) {
     return dispatch => {
         
         dispatch(request());
@@ -37,7 +36,7 @@ function register(campaign,
             selectedOptionInteresting,
             selectedOptionJobCategory,
             brandName,
-            selectedInfluencers);
+            selectedInfluencer);
 
         campaignService.register(campaignLocal)
             .then(campaignType => {

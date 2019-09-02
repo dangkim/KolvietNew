@@ -18,7 +18,7 @@ export default class WidgetsChartBoxes extends React.Component {
         super(props);
 
         this.state = {
-            Brand: this.props.location.state ? this.props.location.state.Brand : null,
+            Brand: this.props.location.state ? this.props.location.state.Brand[0] : null,
             UserName: '',
             selectedTabKey: 0,
             Influencer: null,
@@ -39,7 +39,7 @@ export default class WidgetsChartBoxes extends React.Component {
     //     };
 
     render() {
-        
+
         const { Influencer, Brand, Campaign } = this.state;
         const tabsContent = [
             {
@@ -56,7 +56,7 @@ export default class WidgetsChartBoxes extends React.Component {
             },
             {
                 title: 'Create Campaign',
-                content: <CreateCampaign Brand={Brand} Influencer={Influencer}/>
+                content: <CreateCampaign Brand={Brand} Influencer={Influencer} />
             }
         ]
 
