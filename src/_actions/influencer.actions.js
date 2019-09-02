@@ -12,7 +12,8 @@ export const infActions = {
     getCostByUserName,
     registerJobs,
     updateInfluencers,
-    getInfluencersByName
+    getInfluencersByName,
+    infiniteScrollLoader,
 };
 
 function register(infType, userType) {
@@ -89,7 +90,7 @@ function getAll(first, skip) {
 
         influencerService.getAll(first, skip)
             .then(
-                influencers => dispatch(success(influencers)),
+                influencers => dispatch(success(influencers.influencer)),
                 error => {
                     dispatch(failure(error.toString()));
                     dispatch(alertActions.error(error.toString()));
@@ -102,6 +103,31 @@ function getAll(first, skip) {
     function request() { return { type: infConstants.INFS_GETALL_REQUEST } }
     function success(influencers) { return { type: infConstants.INFS_GETALL_SUCCESS, influencers } }
     function failure(error) { return { type: infConstants.INFS_GETALL_FAILURE, error } }
+}
+
+function infiniteScrollLoader(previousValues, first, skip) {
+    return dispatch => {
+        dispatch(request());
+        debugger;
+        influencerService.getAll(first, skip)
+            .then(
+                influencers => {
+                    previousValues.push(...influencers.influencer);
+                    debugger;
+                    dispatch(success(previousValues))
+                },
+                error => {
+                    dispatch(failure(error.toString()));
+                    dispatch(alertActions.error(error.toString()));
+                    toast.error("Please login again");
+                    history.push('/Login');
+                }
+            );
+    };
+
+    function request() { return { type: infConstants.INFS_INFINITE_REQUEST } }
+    function success(influencers) { return { type: infConstants.INFS_INFINITE_SUCCESS, influencers } }
+    function failure(error) { return { type: infConstants.INFS_INFINITE_FAILURE, error } }
 }
 
 function getInfluencersByName(first, skip, userName) {
@@ -147,7 +173,7 @@ function getCostByUserName(userName) {
 
         influencerService.getCostByUserName(userName)
             .then(
-                influencer => {                    
+                influencer => {
                     dispatch(success(influencer))
                 },
                 error => dispatch(failure(error.toString()))
@@ -168,7 +194,7 @@ function updateInfluencers(infType, userName) {
         influencerService.updateInfluencers(influencerType)
             .then(
                 infType => {
-                    
+
                     dispatch(success(infType));
                     //history.push('/dashBoard');
                     //dispatch(alertActions.success('Registration Influencer successful'));

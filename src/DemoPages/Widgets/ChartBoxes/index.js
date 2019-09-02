@@ -6,8 +6,9 @@ import PageTitle from '../../../Layout/AppMain/PageTitle';
 
 // Examples
 import BasicExample from './Examples/Basic';
-import ColorsExample from './Examples/Colors';
+import { ColorsExample } from './Examples/Colors';
 import { Influencers } from './Examples/Influencers';
+import { CreateCampaign } from './Examples/CreateCampaign';
 import { InfluencerDetail } from './Examples/InfluencerDetail';
 import NavsVertical from '../../Elements/Navs/Examples/NavVertical';
 
@@ -17,53 +18,20 @@ export default class WidgetsChartBoxes extends React.Component {
         super(props);
 
         this.state = {
+            Brand: this.props.location.state ? this.props.location.state.Brand : null,
+            UserName: '',
             selectedTabKey: 0,
-            tabsContent: [
-                {
-                    title: 'Influencers',
-                    content: <Influencers parentCallback={this.callbackFunction} />
-                },
-                {
-                    title: 'Vertical Menus',
-                    content: <NavsVertical />
-                },
-                {
-                    title: 'Create Campaingn',
-                    content: <NavsVertical />
-                }
-            ]
+            Influencer: null,
+            ComparedInfluencers: [],
         };
 
         this.callbackFunction = this.callbackFunction.bind(this);
-        this.getTabs = this.getTabs.bind(this);
-    }
-
-    getTabs = () => {
-        return (this.state.tabsContent.map((tab, index) => ({
-            title: tab.title,
-            getContent: () => tab.content,
-            key: index,
-        })))
     }
 
     callbackFunction = (childData) => {
-        if (childData === 1) {
-
-            const tabsContent = this.state.tabsContent;
-
-            let duplicateTab = tabsContent.filter(tab => { return tab.title === "Influencer details"; }).length;
-            if (!duplicateTab) {
-                tabsContent.splice(1, 0, {
-                    title: 'Influencer details',
-                    content: <InfluencerDetail />
-                })                
-            }
-            this.setState({ selectedTabKey: childData, tabsContent: tabsContent })
+        if (childData && childData.contentType === 'Influencer') {
+            this.setState({ selectedTabKey: 3, Influencer: childData })
         }
-        if (childData === 2) {
-            this.setState({ selectedTabKey: childData })
-        }
-
     }
     // onChangeProp = propsName =>
     //     evt => {
@@ -71,6 +39,35 @@ export default class WidgetsChartBoxes extends React.Component {
     //     };
 
     render() {
+        
+        const { Influencer, Brand, Campaign } = this.state;
+        const tabsContent = [
+            {
+                title: 'Influencers',
+                content: <Influencers parentCallback={this.callbackFunction} />
+            },
+            {
+                title: 'Influencer details',
+                content: <InfluencerDetail />
+            },
+            {
+                title: 'Vertical Menus',
+                content: <NavsVertical />
+            },
+            {
+                title: 'Create Campaign',
+                content: <CreateCampaign Brand={Brand} Influencer={Influencer}/>
+            }
+        ]
+
+        const getTabs = () => {
+            return (tabsContent.map((tab, index) => ({
+                title: tab.title,
+                getContent: () => tab.content,
+                key: index,
+            })))
+        }
+
         return (
             <Fragment>
                 <PageTitle
@@ -78,7 +75,7 @@ export default class WidgetsChartBoxes extends React.Component {
                     subheading="These boxes can be used to show numbers and data in a breautiful user friendly way."
                     icon="pe-7s-star icon-gradient bg-ripe-malin"
                 />
-                <Tabs selectedTabKey={this.state.selectedTabKey} tabsWrapperClass="body-tabs body-tabs-layout" transform={false} showInkBar={true} items={this.getTabs()} />
+                <Tabs selectedTabKey={this.state.selectedTabKey} tabsWrapperClass="body-tabs body-tabs-layout" transform={false} showInkBar={true} items={getTabs()} />
             </Fragment>
         );
     }

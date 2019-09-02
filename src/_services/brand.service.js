@@ -10,9 +10,10 @@ export const brandService = {
 function getBrandByName(userName) {
     const GET_BRANDBYNAME = `
     {
-        brand(where: {displayText_contains: "` + userName + `"}, status: ALL) {
+        brand(where: {displayText_contains: "` + userName + `"}, status: LATEST) {
           contentItemId
           brandName
+          email
           businessAreas
           fullName
           location

@@ -1,4 +1,5 @@
 import React, { Component, Fragment } from 'react';
+import { connect } from 'react-redux';
 import {
     CSSTransition,
     TransitionGroup,
@@ -13,7 +14,7 @@ import {
     NavItem,
     NavLink
 } from 'reactstrap';
-
+import { infActions, brandActions } from '../../../../_actions';
 import {
     AreaChart, Area, LineChart, Line,
     ResponsiveContainer,
@@ -62,225 +63,710 @@ const data2 = [
     { name: 'Page G', uv: 5349, pv: 3430, amt: 3210 },
 ];
 
-class BasicExample extends Component {
+class ColorsExample extends Component {
+
+    componentDidMount() {
+        debugger;
+        const { dispatch } = this.props;
+        //const { first } = this.state;
+        dispatch(infActions.getAll(9, 0));
+    }
 
     render() {
+        debugger;
         return (
             <Fragment>
                 <TransitionGroup component="div">
                     <CSSTransition timeout={1500} unmountOnExit appear classNames="TabsAnimation">
                         <div>
-                            <Row>
-                                <Col md="4">
-                                    <div className="card mb-3 bg-primary widget-chart text-white card-border">
-                                        <div className="icon-wrapper rounded-circle">
-                                            <div className="icon-wrapper-bg bg-white opacity-1" />
-                                            <i className="lnr-cog text-white" />
-                                        </div>
-                                        <div className="widget-numbers">
-                                            45.8k
-                                    </div>
-                                        <div className="widget-subheading">
-                                            Total Views
-                                    </div>
-                                        <div className="widget-description text-success">
-                                            <FontAwesomeIcon icon={faAngleUp} />
-                                            <span className="pl-1">175.5%</span>
-                                        </div>
-                                    </div>
-                                </Col>
-                                <Col md="4">
-                                    <div className="card mb-3 bg-success widget-chart text-white card-border">
-                                        <div className="widget-chart-actions">
-                                            <UncontrolledButtonDropdown>
-                                                <DropdownToggle color="link" className="text-white">
-                                                    <FontAwesomeIcon icon={faEllipsisH} />
-                                                </DropdownToggle>
-                                                <DropdownMenu className="dropdown-menu-lg dropdown-menu-right">
-                                                    <Nav vertical>
-                                                        <NavItem className="nav-item-header">
-                                                            Activity
+                            {
+                                //(this.props.influencers && this.props.influencers.items && this.props.influencers.items.length > 0) ?
+                                <Row>
+
+                                    <Col md="4">
+                                        <div className="card mb-3 bg-success widget-chart text-white card-border">
+                                            <div className="widget-chart-actions">
+                                                <UncontrolledButtonDropdown>
+                                                    <DropdownToggle color="link" className="text-white">
+                                                        <FontAwesomeIcon icon={faEllipsisH} />
+                                                    </DropdownToggle>
+                                                    <DropdownMenu className="dropdown-menu-lg dropdown-menu-right">
+                                                        <Nav vertical>
+                                                            <NavItem className="nav-item-header">
+                                                                Activity
                                                     </NavItem>
-                                                        <NavItem>
-                                                            <NavLink href="javascript:void(0);">
-                                                                Chat
+                                                            <NavItem>
+                                                                <NavLink href="javascript:void(0);">
+                                                                    Chat
                                                             <div className="ml-auto badge badge-pill badge-info">8</div>
-                                                            </NavLink>
-                                                        </NavItem>
-                                                        <NavItem>
-                                                            <NavLink href="javascript:void(0);">Recover Password</NavLink>
-                                                        </NavItem>
-                                                        <NavItem className="nav-item-header">
-                                                            My Account
+                                                                </NavLink>
+                                                            </NavItem>
+                                                            <NavItem>
+                                                                <NavLink href="javascript:void(0);">Recover Password</NavLink>
+                                                            </NavItem>
+                                                            <NavItem className="nav-item-header">
+                                                                My Account
                                                     </NavItem>
-                                                        <NavItem>
-                                                            <NavLink href="javascript:void(0);">
-                                                                Settings
+                                                            <NavItem>
+                                                                <NavLink href="javascript:void(0);">
+                                                                    Settings
                                                             <div className="ml-auto badge badge-success">New</div>
-                                                            </NavLink>
-                                                        </NavItem>
-                                                        <NavItem>
-                                                            <NavLink href="javascript:void(0);">
-                                                                Messages
+                                                                </NavLink>
+                                                            </NavItem>
+                                                            <NavItem>
+                                                                <NavLink href="javascript:void(0);">
+                                                                    Messages
                                                             <div className="ml-auto badge badge-warning">512</div>
-                                                            </NavLink>
-                                                        </NavItem>
-                                                        <NavItem>
-                                                            <NavLink href="javascript:void(0);">
-                                                                Logs
+                                                                </NavLink>
+                                                            </NavItem>
+                                                            <NavItem>
+                                                                <NavLink href="javascript:void(0);">
+                                                                    Logs
                                                         </NavLink>
-                                                        </NavItem>
-                                                        <NavItem className="nav-item-divider" />
-                                                        <NavItem className="nav-item-btn">
-                                                            <Button size="sm" className="btn-wide btn-shadow"
-                                                                color="danger">
-                                                                Cancel
+                                                            </NavItem>
+                                                            <NavItem className="nav-item-divider" />
+                                                            <NavItem className="nav-item-btn">
+                                                                <Button size="sm" className="btn-wide btn-shadow"
+                                                                    color="danger">
+                                                                    Cancel
                                                         </Button>
-                                                        </NavItem>
-                                                    </Nav>
-                                                </DropdownMenu>
-                                            </UncontrolledButtonDropdown>
+                                                            </NavItem>
+                                                        </Nav>
+                                                    </DropdownMenu>
+                                                </UncontrolledButtonDropdown>
+                                            </div>
+                                            <div className="icon-wrapper rounded-circle">
+                                                <div className="icon-wrapper-bg bg-white opacity-10" />
+                                                <i className="lnr-screen text-success" />
+                                            </div>
+                                            <div className="widget-numbers">
+                                                17.2k
+                                    </div>
+                                            <div className="widget-subheading">
+                                                Profiles
+                                    </div>
+                                            <div className="widget-description text-white">
+                                                <span className="pr-1">175.5%</span>
+                                                <FontAwesomeIcon icon={faArrowLeft} />
+                                            </div>
                                         </div>
-                                        <div className="icon-wrapper rounded-circle">
-                                            <div className="icon-wrapper-bg bg-white opacity-10" />
-                                            <i className="lnr-screen text-success" />
-                                        </div>
-                                        <div className="widget-numbers">
-                                            17.2k
-                                    </div>
-                                        <div className="widget-subheading">
-                                            Profiles
-                                    </div>
-                                        <div className="widget-description text-white">
-                                            <span className="pr-1">175.5%</span>
-                                            <FontAwesomeIcon icon={faArrowLeft} />
-                                        </div>
-                                    </div>
-                                </Col>
-                                <Col md="4">
-                                    <div className="card mb-3 bg-warning widget-chart text-white card-border">
-                                        <div className="icon-wrapper rounded-circle">
-                                            <div className="icon-wrapper-bg bg-white opacity-2" />
-                                            <i className="lnr-laptop-phone text-white" />
-                                        </div>
-                                        <div className="widget-numbers">
-                                            5.82k
-                                    </div>
-                                        <div className="widget-subheading">
-                                            Reports Submitted
-                                    </div>
-                                        <div className="widget-description text-white">
-                                            <span className="pl-1">54.1%</span>
-                                            <FontAwesomeIcon icon={faAngleUp} />
-                                        </div>
-                                    </div>
-                                </Col>
-                                <Col md="4">
-                                    <div className="card mb-3 bg-primary widget-chart text-white card-border">
-                                        <div className="icon-wrapper rounded-circle">
-                                            <div className="icon-wrapper-bg bg-white opacity-1" />
-                                            <i className="lnr-cog text-white" />
-                                        </div>
-                                        <div className="widget-numbers">
-                                            45.8k
-                                    </div>
-                                        <div className="widget-subheading">
-                                            Total Views
-                                    </div>
-                                        <div className="widget-description text-success">
-                                            <FontAwesomeIcon icon={faAngleUp} />
-                                            <span className="pl-1">175.5%</span>
-                                        </div>
-                                    </div>
-                                </Col>
-                                <Col md="4">
-                                    <div className="card mb-3 bg-success widget-chart text-white card-border">
-                                        <div className="widget-chart-actions">
-                                            <UncontrolledButtonDropdown>
-                                                <DropdownToggle color="link" className="text-white">
-                                                    <FontAwesomeIcon icon={faEllipsisH} />
-                                                </DropdownToggle>
-                                                <DropdownMenu className="dropdown-menu-lg dropdown-menu-right">
-                                                    <Nav vertical>
-                                                        <NavItem className="nav-item-header">
-                                                            Activity
+                                    </Col>
+                                    <Col md="4">
+                                        <div className="card mb-3 bg-success widget-chart text-white card-border">
+                                            <div className="widget-chart-actions">
+                                                <UncontrolledButtonDropdown>
+                                                    <DropdownToggle color="link" className="text-white">
+                                                        <FontAwesomeIcon icon={faEllipsisH} />
+                                                    </DropdownToggle>
+                                                    <DropdownMenu className="dropdown-menu-lg dropdown-menu-right">
+                                                        <Nav vertical>
+                                                            <NavItem className="nav-item-header">
+                                                                Activity
                                                     </NavItem>
-                                                        <NavItem>
-                                                            <NavLink href="javascript:void(0);">
-                                                                Chat
+                                                            <NavItem>
+                                                                <NavLink href="javascript:void(0);">
+                                                                    Chat
                                                             <div className="ml-auto badge badge-pill badge-info">8</div>
-                                                            </NavLink>
-                                                        </NavItem>
-                                                        <NavItem>
-                                                            <NavLink href="javascript:void(0);">Recover Password</NavLink>
-                                                        </NavItem>
-                                                        <NavItem className="nav-item-header">
-                                                            My Account
+                                                                </NavLink>
+                                                            </NavItem>
+                                                            <NavItem>
+                                                                <NavLink href="javascript:void(0);">Recover Password</NavLink>
+                                                            </NavItem>
+                                                            <NavItem className="nav-item-header">
+                                                                My Account
                                                     </NavItem>
-                                                        <NavItem>
-                                                            <NavLink href="javascript:void(0);">
-                                                                Settings
+                                                            <NavItem>
+                                                                <NavLink href="javascript:void(0);">
+                                                                    Settings
                                                             <div className="ml-auto badge badge-success">New</div>
-                                                            </NavLink>
-                                                        </NavItem>
-                                                        <NavItem>
-                                                            <NavLink href="javascript:void(0);">
-                                                                Messages
+                                                                </NavLink>
+                                                            </NavItem>
+                                                            <NavItem>
+                                                                <NavLink href="javascript:void(0);">
+                                                                    Messages
                                                             <div className="ml-auto badge badge-warning">512</div>
-                                                            </NavLink>
-                                                        </NavItem>
-                                                        <NavItem>
-                                                            <NavLink href="javascript:void(0);">
-                                                                Logs
+                                                                </NavLink>
+                                                            </NavItem>
+                                                            <NavItem>
+                                                                <NavLink href="javascript:void(0);">
+                                                                    Logs
                                                         </NavLink>
-                                                        </NavItem>
-                                                        <NavItem className="nav-item-divider" />
-                                                        <NavItem className="nav-item-btn">
-                                                            <Button size="sm" className="btn-wide btn-shadow"
-                                                                color="danger">
-                                                                Cancel
+                                                            </NavItem>
+                                                            <NavItem className="nav-item-divider" />
+                                                            <NavItem className="nav-item-btn">
+                                                                <Button size="sm" className="btn-wide btn-shadow"
+                                                                    color="danger">
+                                                                    Cancel
                                                         </Button>
-                                                        </NavItem>
-                                                    </Nav>
-                                                </DropdownMenu>
-                                            </UncontrolledButtonDropdown>
+                                                            </NavItem>
+                                                        </Nav>
+                                                    </DropdownMenu>
+                                                </UncontrolledButtonDropdown>
+                                            </div>
+                                            <div className="icon-wrapper rounded-circle">
+                                                <div className="icon-wrapper-bg bg-white opacity-10" />
+                                                <i className="lnr-screen text-success" />
+                                            </div>
+                                            <div className="widget-numbers">
+                                                17.2k
+                                    </div>
+                                            <div className="widget-subheading">
+                                                Profiles
+                                    </div>
+                                            <div className="widget-description text-white">
+                                                <span className="pr-1">175.5%</span>
+                                                <FontAwesomeIcon icon={faArrowLeft} />
+                                            </div>
                                         </div>
-                                        <div className="icon-wrapper rounded-circle">
-                                            <div className="icon-wrapper-bg bg-white opacity-10" />
-                                            <i className="lnr-screen text-success" />
+                                    </Col>
+                                    <Col md="4">
+                                        <div className="card mb-3 bg-success widget-chart text-white card-border">
+                                            <div className="widget-chart-actions">
+                                                <UncontrolledButtonDropdown>
+                                                    <DropdownToggle color="link" className="text-white">
+                                                        <FontAwesomeIcon icon={faEllipsisH} />
+                                                    </DropdownToggle>
+                                                    <DropdownMenu className="dropdown-menu-lg dropdown-menu-right">
+                                                        <Nav vertical>
+                                                            <NavItem className="nav-item-header">
+                                                                Activity
+                                                    </NavItem>
+                                                            <NavItem>
+                                                                <NavLink href="javascript:void(0);">
+                                                                    Chat
+                                                            <div className="ml-auto badge badge-pill badge-info">8</div>
+                                                                </NavLink>
+                                                            </NavItem>
+                                                            <NavItem>
+                                                                <NavLink href="javascript:void(0);">Recover Password</NavLink>
+                                                            </NavItem>
+                                                            <NavItem className="nav-item-header">
+                                                                My Account
+                                                    </NavItem>
+                                                            <NavItem>
+                                                                <NavLink href="javascript:void(0);">
+                                                                    Settings
+                                                            <div className="ml-auto badge badge-success">New</div>
+                                                                </NavLink>
+                                                            </NavItem>
+                                                            <NavItem>
+                                                                <NavLink href="javascript:void(0);">
+                                                                    Messages
+                                                            <div className="ml-auto badge badge-warning">512</div>
+                                                                </NavLink>
+                                                            </NavItem>
+                                                            <NavItem>
+                                                                <NavLink href="javascript:void(0);">
+                                                                    Logs
+                                                        </NavLink>
+                                                            </NavItem>
+                                                            <NavItem className="nav-item-divider" />
+                                                            <NavItem className="nav-item-btn">
+                                                                <Button size="sm" className="btn-wide btn-shadow"
+                                                                    color="danger">
+                                                                    Cancel
+                                                        </Button>
+                                                            </NavItem>
+                                                        </Nav>
+                                                    </DropdownMenu>
+                                                </UncontrolledButtonDropdown>
+                                            </div>
+                                            <div className="icon-wrapper rounded-circle">
+                                                <div className="icon-wrapper-bg bg-white opacity-10" />
+                                                <i className="lnr-screen text-success" />
+                                            </div>
+                                            <div className="widget-numbers">
+                                                17.2k
+                                    </div>
+                                            <div className="widget-subheading">
+                                                Profiles
+                                    </div>
+                                            <div className="widget-description text-white">
+                                                <span className="pr-1">175.5%</span>
+                                                <FontAwesomeIcon icon={faArrowLeft} />
+                                            </div>
                                         </div>
-                                        <div className="widget-numbers">
-                                            17.2k
+                                    </Col>
+                                    <Col md="4">
+                                        <div className="card mb-3 bg-success widget-chart text-white card-border">
+                                            <div className="widget-chart-actions">
+                                                <UncontrolledButtonDropdown>
+                                                    <DropdownToggle color="link" className="text-white">
+                                                        <FontAwesomeIcon icon={faEllipsisH} />
+                                                    </DropdownToggle>
+                                                    <DropdownMenu className="dropdown-menu-lg dropdown-menu-right">
+                                                        <Nav vertical>
+                                                            <NavItem className="nav-item-header">
+                                                                Activity
+                                                    </NavItem>
+                                                            <NavItem>
+                                                                <NavLink href="javascript:void(0);">
+                                                                    Chat
+                                                            <div className="ml-auto badge badge-pill badge-info">8</div>
+                                                                </NavLink>
+                                                            </NavItem>
+                                                            <NavItem>
+                                                                <NavLink href="javascript:void(0);">Recover Password</NavLink>
+                                                            </NavItem>
+                                                            <NavItem className="nav-item-header">
+                                                                My Account
+                                                    </NavItem>
+                                                            <NavItem>
+                                                                <NavLink href="javascript:void(0);">
+                                                                    Settings
+                                                            <div className="ml-auto badge badge-success">New</div>
+                                                                </NavLink>
+                                                            </NavItem>
+                                                            <NavItem>
+                                                                <NavLink href="javascript:void(0);">
+                                                                    Messages
+                                                            <div className="ml-auto badge badge-warning">512</div>
+                                                                </NavLink>
+                                                            </NavItem>
+                                                            <NavItem>
+                                                                <NavLink href="javascript:void(0);">
+                                                                    Logs
+                                                        </NavLink>
+                                                            </NavItem>
+                                                            <NavItem className="nav-item-divider" />
+                                                            <NavItem className="nav-item-btn">
+                                                                <Button size="sm" className="btn-wide btn-shadow"
+                                                                    color="danger">
+                                                                    Cancel
+                                                        </Button>
+                                                            </NavItem>
+                                                        </Nav>
+                                                    </DropdownMenu>
+                                                </UncontrolledButtonDropdown>
+                                            </div>
+                                            <div className="icon-wrapper rounded-circle">
+                                                <div className="icon-wrapper-bg bg-white opacity-10" />
+                                                <i className="lnr-screen text-success" />
+                                            </div>
+                                            <div className="widget-numbers">
+                                                17.2k
                                     </div>
-                                        <div className="widget-subheading">
-                                            Profiles
+                                            <div className="widget-subheading">
+                                                Profiles
                                     </div>
-                                        <div className="widget-description text-white">
-                                            <span className="pr-1">175.5%</span>
-                                            <FontAwesomeIcon icon={faArrowLeft} />
+                                            <div className="widget-description text-white">
+                                                <span className="pr-1">175.5%</span>
+                                                <FontAwesomeIcon icon={faArrowLeft} />
+                                            </div>
                                         </div>
+                                    </Col>
+                                    <Col md="4">
+                                        <div className="card mb-3 bg-success widget-chart text-white card-border">
+                                            <div className="widget-chart-actions">
+                                                <UncontrolledButtonDropdown>
+                                                    <DropdownToggle color="link" className="text-white">
+                                                        <FontAwesomeIcon icon={faEllipsisH} />
+                                                    </DropdownToggle>
+                                                    <DropdownMenu className="dropdown-menu-lg dropdown-menu-right">
+                                                        <Nav vertical>
+                                                            <NavItem className="nav-item-header">
+                                                                Activity
+                                                    </NavItem>
+                                                            <NavItem>
+                                                                <NavLink href="javascript:void(0);">
+                                                                    Chat
+                                                            <div className="ml-auto badge badge-pill badge-info">8</div>
+                                                                </NavLink>
+                                                            </NavItem>
+                                                            <NavItem>
+                                                                <NavLink href="javascript:void(0);">Recover Password</NavLink>
+                                                            </NavItem>
+                                                            <NavItem className="nav-item-header">
+                                                                My Account
+                                                    </NavItem>
+                                                            <NavItem>
+                                                                <NavLink href="javascript:void(0);">
+                                                                    Settings
+                                                            <div className="ml-auto badge badge-success">New</div>
+                                                                </NavLink>
+                                                            </NavItem>
+                                                            <NavItem>
+                                                                <NavLink href="javascript:void(0);">
+                                                                    Messages
+                                                            <div className="ml-auto badge badge-warning">512</div>
+                                                                </NavLink>
+                                                            </NavItem>
+                                                            <NavItem>
+                                                                <NavLink href="javascript:void(0);">
+                                                                    Logs
+                                                        </NavLink>
+                                                            </NavItem>
+                                                            <NavItem className="nav-item-divider" />
+                                                            <NavItem className="nav-item-btn">
+                                                                <Button size="sm" className="btn-wide btn-shadow"
+                                                                    color="danger">
+                                                                    Cancel
+                                                        </Button>
+                                                            </NavItem>
+                                                        </Nav>
+                                                    </DropdownMenu>
+                                                </UncontrolledButtonDropdown>
+                                            </div>
+                                            <div className="icon-wrapper rounded-circle">
+                                                <div className="icon-wrapper-bg bg-white opacity-10" />
+                                                <i className="lnr-screen text-success" />
+                                            </div>
+                                            <div className="widget-numbers">
+                                                17.2k
                                     </div>
-                                </Col>
-                                <Col md="4">
-                                    <div className="card mb-3 bg-warning widget-chart text-white card-border">
-                                        <div className="icon-wrapper rounded-circle">
-                                            <div className="icon-wrapper-bg bg-white opacity-2" />
-                                            <i className="lnr-laptop-phone text-white" />
+                                            <div className="widget-subheading">
+                                                Profiles
+                                    </div>
+                                            <div className="widget-description text-white">
+                                                <span className="pr-1">175.5%</span>
+                                                <FontAwesomeIcon icon={faArrowLeft} />
+                                            </div>
                                         </div>
-                                        <div className="widget-numbers">
-                                            5.82k
+                                    </Col>
+                                    <Col md="4">
+                                        <div className="card mb-3 bg-success widget-chart text-white card-border">
+                                            <div className="widget-chart-actions">
+                                                <UncontrolledButtonDropdown>
+                                                    <DropdownToggle color="link" className="text-white">
+                                                        <FontAwesomeIcon icon={faEllipsisH} />
+                                                    </DropdownToggle>
+                                                    <DropdownMenu className="dropdown-menu-lg dropdown-menu-right">
+                                                        <Nav vertical>
+                                                            <NavItem className="nav-item-header">
+                                                                Activity
+                                                    </NavItem>
+                                                            <NavItem>
+                                                                <NavLink href="javascript:void(0);">
+                                                                    Chat
+                                                            <div className="ml-auto badge badge-pill badge-info">8</div>
+                                                                </NavLink>
+                                                            </NavItem>
+                                                            <NavItem>
+                                                                <NavLink href="javascript:void(0);">Recover Password</NavLink>
+                                                            </NavItem>
+                                                            <NavItem className="nav-item-header">
+                                                                My Account
+                                                    </NavItem>
+                                                            <NavItem>
+                                                                <NavLink href="javascript:void(0);">
+                                                                    Settings
+                                                            <div className="ml-auto badge badge-success">New</div>
+                                                                </NavLink>
+                                                            </NavItem>
+                                                            <NavItem>
+                                                                <NavLink href="javascript:void(0);">
+                                                                    Messages
+                                                            <div className="ml-auto badge badge-warning">512</div>
+                                                                </NavLink>
+                                                            </NavItem>
+                                                            <NavItem>
+                                                                <NavLink href="javascript:void(0);">
+                                                                    Logs
+                                                        </NavLink>
+                                                            </NavItem>
+                                                            <NavItem className="nav-item-divider" />
+                                                            <NavItem className="nav-item-btn">
+                                                                <Button size="sm" className="btn-wide btn-shadow"
+                                                                    color="danger">
+                                                                    Cancel
+                                                        </Button>
+                                                            </NavItem>
+                                                        </Nav>
+                                                    </DropdownMenu>
+                                                </UncontrolledButtonDropdown>
+                                            </div>
+                                            <div className="icon-wrapper rounded-circle">
+                                                <div className="icon-wrapper-bg bg-white opacity-10" />
+                                                <i className="lnr-screen text-success" />
+                                            </div>
+                                            <div className="widget-numbers">
+                                                17.2k
                                     </div>
-                                        <div className="widget-subheading">
-                                            Reports Submitted
+                                            <div className="widget-subheading">
+                                                Profiles
                                     </div>
-                                        <div className="widget-description text-white">
-                                            <span className="pl-1">54.1%</span>
-                                            <FontAwesomeIcon icon={faAngleUp} />
+                                            <div className="widget-description text-white">
+                                                <span className="pr-1">175.5%</span>
+                                                <FontAwesomeIcon icon={faArrowLeft} />
+                                            </div>
                                         </div>
+                                    </Col>
+                                    <Col md="4">
+                                        <div className="card mb-3 bg-success widget-chart text-white card-border">
+                                            <div className="widget-chart-actions">
+                                                <UncontrolledButtonDropdown>
+                                                    <DropdownToggle color="link" className="text-white">
+                                                        <FontAwesomeIcon icon={faEllipsisH} />
+                                                    </DropdownToggle>
+                                                    <DropdownMenu className="dropdown-menu-lg dropdown-menu-right">
+                                                        <Nav vertical>
+                                                            <NavItem className="nav-item-header">
+                                                                Activity
+                                                    </NavItem>
+                                                            <NavItem>
+                                                                <NavLink href="javascript:void(0);">
+                                                                    Chat
+                                                            <div className="ml-auto badge badge-pill badge-info">8</div>
+                                                                </NavLink>
+                                                            </NavItem>
+                                                            <NavItem>
+                                                                <NavLink href="javascript:void(0);">Recover Password</NavLink>
+                                                            </NavItem>
+                                                            <NavItem className="nav-item-header">
+                                                                My Account
+                                                    </NavItem>
+                                                            <NavItem>
+                                                                <NavLink href="javascript:void(0);">
+                                                                    Settings
+                                                            <div className="ml-auto badge badge-success">New</div>
+                                                                </NavLink>
+                                                            </NavItem>
+                                                            <NavItem>
+                                                                <NavLink href="javascript:void(0);">
+                                                                    Messages
+                                                            <div className="ml-auto badge badge-warning">512</div>
+                                                                </NavLink>
+                                                            </NavItem>
+                                                            <NavItem>
+                                                                <NavLink href="javascript:void(0);">
+                                                                    Logs
+                                                        </NavLink>
+                                                            </NavItem>
+                                                            <NavItem className="nav-item-divider" />
+                                                            <NavItem className="nav-item-btn">
+                                                                <Button size="sm" className="btn-wide btn-shadow"
+                                                                    color="danger">
+                                                                    Cancel
+                                                        </Button>
+                                                            </NavItem>
+                                                        </Nav>
+                                                    </DropdownMenu>
+                                                </UncontrolledButtonDropdown>
+                                            </div>
+                                            <div className="icon-wrapper rounded-circle">
+                                                <div className="icon-wrapper-bg bg-white opacity-10" />
+                                                <i className="lnr-screen text-success" />
+                                            </div>
+                                            <div className="widget-numbers">
+                                                17.2k
                                     </div>
-                                </Col>
-                        
-                            </Row>
+                                            <div className="widget-subheading">
+                                                Profiles
+                                    </div>
+                                            <div className="widget-description text-white">
+                                                <span className="pr-1">175.5%</span>
+                                                <FontAwesomeIcon icon={faArrowLeft} />
+                                            </div>
+                                        </div>
+                                    </Col>
+                                    <Col md="4">
+                                        <div className="card mb-3 bg-success widget-chart text-white card-border">
+                                            <div className="widget-chart-actions">
+                                                <UncontrolledButtonDropdown>
+                                                    <DropdownToggle color="link" className="text-white">
+                                                        <FontAwesomeIcon icon={faEllipsisH} />
+                                                    </DropdownToggle>
+                                                    <DropdownMenu className="dropdown-menu-lg dropdown-menu-right">
+                                                        <Nav vertical>
+                                                            <NavItem className="nav-item-header">
+                                                                Activity
+                                                    </NavItem>
+                                                            <NavItem>
+                                                                <NavLink href="javascript:void(0);">
+                                                                    Chat
+                                                            <div className="ml-auto badge badge-pill badge-info">8</div>
+                                                                </NavLink>
+                                                            </NavItem>
+                                                            <NavItem>
+                                                                <NavLink href="javascript:void(0);">Recover Password</NavLink>
+                                                            </NavItem>
+                                                            <NavItem className="nav-item-header">
+                                                                My Account
+                                                    </NavItem>
+                                                            <NavItem>
+                                                                <NavLink href="javascript:void(0);">
+                                                                    Settings
+                                                            <div className="ml-auto badge badge-success">New</div>
+                                                                </NavLink>
+                                                            </NavItem>
+                                                            <NavItem>
+                                                                <NavLink href="javascript:void(0);">
+                                                                    Messages
+                                                            <div className="ml-auto badge badge-warning">512</div>
+                                                                </NavLink>
+                                                            </NavItem>
+                                                            <NavItem>
+                                                                <NavLink href="javascript:void(0);">
+                                                                    Logs
+                                                        </NavLink>
+                                                            </NavItem>
+                                                            <NavItem className="nav-item-divider" />
+                                                            <NavItem className="nav-item-btn">
+                                                                <Button size="sm" className="btn-wide btn-shadow"
+                                                                    color="danger">
+                                                                    Cancel
+                                                        </Button>
+                                                            </NavItem>
+                                                        </Nav>
+                                                    </DropdownMenu>
+                                                </UncontrolledButtonDropdown>
+                                            </div>
+                                            <div className="icon-wrapper rounded-circle">
+                                                <div className="icon-wrapper-bg bg-white opacity-10" />
+                                                <i className="lnr-screen text-success" />
+                                            </div>
+                                            <div className="widget-numbers">
+                                                17.2k
+                                    </div>
+                                            <div className="widget-subheading">
+                                                Profiles
+                                    </div>
+                                            <div className="widget-description text-white">
+                                                <span className="pr-1">175.5%</span>
+                                                <FontAwesomeIcon icon={faArrowLeft} />
+                                            </div>
+                                        </div>
+                                    </Col>
+                                    <Col md="4">
+                                        <div className="card mb-3 bg-success widget-chart text-white card-border">
+                                            <div className="widget-chart-actions">
+                                                <UncontrolledButtonDropdown>
+                                                    <DropdownToggle color="link" className="text-white">
+                                                        <FontAwesomeIcon icon={faEllipsisH} />
+                                                    </DropdownToggle>
+                                                    <DropdownMenu className="dropdown-menu-lg dropdown-menu-right">
+                                                        <Nav vertical>
+                                                            <NavItem className="nav-item-header">
+                                                                Activity
+                                                    </NavItem>
+                                                            <NavItem>
+                                                                <NavLink href="javascript:void(0);">
+                                                                    Chat
+                                                            <div className="ml-auto badge badge-pill badge-info">8</div>
+                                                                </NavLink>
+                                                            </NavItem>
+                                                            <NavItem>
+                                                                <NavLink href="javascript:void(0);">Recover Password</NavLink>
+                                                            </NavItem>
+                                                            <NavItem className="nav-item-header">
+                                                                My Account
+                                                    </NavItem>
+                                                            <NavItem>
+                                                                <NavLink href="javascript:void(0);">
+                                                                    Settings
+                                                            <div className="ml-auto badge badge-success">New</div>
+                                                                </NavLink>
+                                                            </NavItem>
+                                                            <NavItem>
+                                                                <NavLink href="javascript:void(0);">
+                                                                    Messages
+                                                            <div className="ml-auto badge badge-warning">512</div>
+                                                                </NavLink>
+                                                            </NavItem>
+                                                            <NavItem>
+                                                                <NavLink href="javascript:void(0);">
+                                                                    Logs
+                                                        </NavLink>
+                                                            </NavItem>
+                                                            <NavItem className="nav-item-divider" />
+                                                            <NavItem className="nav-item-btn">
+                                                                <Button size="sm" className="btn-wide btn-shadow"
+                                                                    color="danger">
+                                                                    Cancel
+                                                        </Button>
+                                                            </NavItem>
+                                                        </Nav>
+                                                    </DropdownMenu>
+                                                </UncontrolledButtonDropdown>
+                                            </div>
+                                            <div className="icon-wrapper rounded-circle">
+                                                <div className="icon-wrapper-bg bg-white opacity-10" />
+                                                <i className="lnr-screen text-success" />
+                                            </div>
+                                            <div className="widget-numbers">
+                                                17.2k
+                                    </div>
+                                            <div className="widget-subheading">
+                                                Profiles
+                                    </div>
+                                            <div className="widget-description text-white">
+                                                <span className="pr-1">175.5%</span>
+                                                <FontAwesomeIcon icon={faArrowLeft} />
+                                            </div>
+                                        </div>
+                                    </Col>
+                                    <Col md="4">
+                                        <div className="card mb-3 bg-success widget-chart text-white card-border">
+                                            <div className="widget-chart-actions">
+                                                <UncontrolledButtonDropdown>
+                                                    <DropdownToggle color="link" className="text-white">
+                                                        <FontAwesomeIcon icon={faEllipsisH} />
+                                                    </DropdownToggle>
+                                                    <DropdownMenu className="dropdown-menu-lg dropdown-menu-right">
+                                                        <Nav vertical>
+                                                            <NavItem className="nav-item-header">
+                                                                Activity
+                                                    </NavItem>
+                                                            <NavItem>
+                                                                <NavLink href="javascript:void(0);">
+                                                                    Chat
+                                                            <div className="ml-auto badge badge-pill badge-info">8</div>
+                                                                </NavLink>
+                                                            </NavItem>
+                                                            <NavItem>
+                                                                <NavLink href="javascript:void(0);">Recover Password</NavLink>
+                                                            </NavItem>
+                                                            <NavItem className="nav-item-header">
+                                                                My Account
+                                                    </NavItem>
+                                                            <NavItem>
+                                                                <NavLink href="javascript:void(0);">
+                                                                    Settings
+                                                            <div className="ml-auto badge badge-success">New</div>
+                                                                </NavLink>
+                                                            </NavItem>
+                                                            <NavItem>
+                                                                <NavLink href="javascript:void(0);">
+                                                                    Messages
+                                                            <div className="ml-auto badge badge-warning">512</div>
+                                                                </NavLink>
+                                                            </NavItem>
+                                                            <NavItem>
+                                                                <NavLink href="javascript:void(0);">
+                                                                    Logs
+                                                        </NavLink>
+                                                            </NavItem>
+                                                            <NavItem className="nav-item-divider" />
+                                                            <NavItem className="nav-item-btn">
+                                                                <Button size="sm" className="btn-wide btn-shadow"
+                                                                    color="danger">
+                                                                    Cancel
+                                                        </Button>
+                                                            </NavItem>
+                                                        </Nav>
+                                                    </DropdownMenu>
+                                                </UncontrolledButtonDropdown>
+                                            </div>
+                                            <div className="icon-wrapper rounded-circle">
+                                                <div className="icon-wrapper-bg bg-white opacity-10" />
+                                                <i className="lnr-screen text-success" />
+                                            </div>
+                                            <div className="widget-numbers">
+                                                17.2k
+                                    </div>
+                                            <div className="widget-subheading">
+                                                Profiles
+                                    </div>
+                                            <div className="widget-description text-white">
+                                                <span className="pr-1">175.5%</span>
+                                                <FontAwesomeIcon icon={faArrowLeft} />
+                                            </div>
+                                        </div>
+                                    </Col>
+
+                                </Row>
+                                //: ''
+                            }
                         </div>
                     </CSSTransition>
                 </TransitionGroup>
@@ -288,5 +774,22 @@ class BasicExample extends Component {
         );
     }
 }
+function mapStateToProps(state) {
 
-export default BasicExample;
+    const { campaigns, influencers, locations, interestings, jobCategories, jobs, brands } = state;
+    //const { brand } = influencers;
+    return {
+        //loggingIn,
+        brands,
+        jobs,
+        jobCategories,
+        interestings,
+        locations,
+        campaigns,
+        influencers
+    };
+}
+
+const connectedColorsExample = connect(mapStateToProps)(ColorsExample);
+export { connectedColorsExample as ColorsExample };
+//export default BasicExample;

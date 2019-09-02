@@ -73,33 +73,6 @@ import bg1 from '../../../../assets/utils/images/dropdown-header/abstract1.jpg';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { history } from '../../../../_helpers';
 
-const data = [
-    { name: 'Page A', uv: 4000, pv: 2400, amt: 2400 },
-    { name: 'Page B', uv: 3000, pv: 1398, amt: 2210 },
-    { name: 'Page C', uv: 2000, pv: 9800, amt: 2290 },
-    { name: 'Page D', uv: 2780, pv: 3908, amt: 2000 },
-    { name: 'Page E', uv: 1890, pv: 4800, amt: 2181 },
-    { name: 'Page F', uv: 2390, pv: 3800, amt: 2500 },
-    { name: 'Page G', uv: 3490, pv: 4300, amt: 2100 },
-    { name: 'Page C', uv: 2000, pv: 6800, amt: 2290 },
-    { name: 'Page D', uv: 4780, pv: 7908, amt: 2000 },
-    { name: 'Page E', uv: 2890, pv: 9800, amt: 2181 },
-    { name: 'Page F', uv: 1390, pv: 3800, amt: 1500 },
-    { name: 'Page G', uv: 3490, pv: 4300, amt: 2100 },
-];
-
-const data2 = [
-    { name: 'Page A', uv: 5400, pv: 5240, amt: 1240 },
-    { name: 'Page B', uv: 7300, pv: 4139, amt: 3221 },
-    { name: 'Page C', uv: 8200, pv: 7980, amt: 5229 },
-    { name: 'Page D', uv: 6278, pv: 4390, amt: 3200 },
-    { name: 'Page E', uv: 3189, pv: 7480, amt: 6218 },
-    { name: 'Page D', uv: 9478, pv: 6790, amt: 2200 },
-    { name: 'Page E', uv: 1289, pv: 1980, amt: 7218 },
-    { name: 'Page F', uv: 3139, pv: 2380, amt: 5150 },
-    { name: 'Page G', uv: 5349, pv: 3430, amt: 3210 },
-];
-
 class Influencers extends Component {
     constructor(props) {
         super(props);
@@ -129,6 +102,16 @@ class Influencers extends Component {
         this.gotoDetail = this.gotoDetail.bind(this);
         this.toggle1 = this.toggle1.bind(this);
         this.toggle = this.toggle.bind(this);
+        this.createCampaign = this.createCampaign.bind(this);
+    }
+
+    createCampaign(index) {
+        const { influencers } = this.props;
+        const influencer = influencers.items ? influencers.items[index] : null;
+        if(influencer)
+        {
+            this.sendData(influencer);
+        }
     }
 
     toggle() {
@@ -156,7 +139,7 @@ class Influencers extends Component {
         //history.push('/dashboards/basic');
     }
 
-    onCheckboxBtnClick(selected) {
+    onCheckboxBtnClick(selected) {        
         const index = this.state.cSelected.indexOf(selected);
         if (index < 0) {
             this.state.cSelected.push(selected);
@@ -164,11 +147,11 @@ class Influencers extends Component {
             this.state.cSelected.splice(index, 1);
         }
 
-        this.setState({ cSelected: [...this.state.cSelected] });
-
-        if (this.state.cSelected.length > 1) {
-            this.sendData(2);
-        }
+        this.setState({ cSelected: [...this.state.cSelected] });        
+        
+        // if (this.state.cSelected.length > 1) {
+        //     this.sendData(2);
+        // }
     }
 
     nextPageFluencers(skip) {
@@ -250,7 +233,7 @@ class Influencers extends Component {
         };
         const { } = this.state;
         const { influencers } = this.props;
-        //const infItems = influencers.items ? influencers.items.influencer : [];
+        const infItems = influencers.items ? influencers.items : [];
         let imgSrc = defaultAvatar;
 
         const colors = [
@@ -346,9 +329,10 @@ class Influencers extends Component {
                                                     </div>
                                                     <div className="divider" />
                                                     <ButtonGroup>
-                                                        <Button color="success" onClick={() => this.gotoDetail(index)}>Two</Button>
+                                                        <Button color="success" onClick={() => this.gotoDetail(index)}>Detail</Button>
                                                         <Button color="alternate" onClick={() => this.onCheckboxBtnClick(index)}
-                                                            active={this.state.cSelected.includes(index)}>Three</Button>
+                                                            active={this.state.cSelected.includes(index)}>Compare</Button>
+                                                        <Button color="primary" onClick={() => this.createCampaign(index)}>Campaign</Button>
                                                     </ButtonGroup>
                                                 </div>
                                             </Col>)

@@ -1,5 +1,5 @@
 import { userConstants } from '../_constants';
-import { userService } from '../_services';
+import { userService, brandService } from '../_services';
 import { alertActions } from './';
 import { history } from '../_helpers';
 import { toast } from "react-toastify";
@@ -21,11 +21,22 @@ function getToken(userName, password, pathname) {
                 userService.getContentType(token)
                     .then(type => {
                         if (type === "Brand") {
-                            
-                            history.push({
-                                pathname: '/widgets/dashboard-boxes',
-                                state: { userName: userName, type: type }
-                            })
+                            // get Brand
+                            brandService.getBrandByName(userName)
+                                .then(
+                                    brand => {
+                                        //dispatch(success(brand));
+                                        history.push({
+                                            pathname: '/widgets/dashboard-boxes',
+                                            state: { Brand: brand.brand, type: type }
+                                        })
+                                    },
+                                    error => {
+                                        toast.warn(error.toString() + " Please login again");
+                                        history.push('/login');
+                                    }
+                                )
+
                         }
                         else if (type === "Influencer") {
                             history.push({
