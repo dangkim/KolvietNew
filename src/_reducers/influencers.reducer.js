@@ -40,7 +40,8 @@ export function influencers(state = {}, action) {
       };
     case infConstants.INFS_INFINITE_REQUEST:
       return {
-        loading: true
+        loading: true,
+        items: action.previousValues
       };
     case infConstants.INFS_INFINITE_SUCCESS:
       return {

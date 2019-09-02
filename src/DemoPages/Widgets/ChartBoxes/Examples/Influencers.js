@@ -65,7 +65,7 @@ import 'react-daterange-picker/dist/css/react-calendar.css'
 import JwPagination from 'jw-react-pagination';
 //import { SearchBox } from '../SearchBox';
 import cx from 'classnames';
-import Skeleton from 'react-loading-skeleton';
+import Skeleton, { SkeletonTheme } from 'react-loading-skeleton';
 import new_logo from '../../../../assets/utils/images/new_logo.png'
 
 import bg1 from '../../../../assets/utils/images/dropdown-header/abstract1.jpg';
@@ -77,7 +77,7 @@ class Influencers extends Component {
     constructor(props) {
         super(props);
         const moment = extendMoment(originalMoment);
-
+        debugger;
         const today = moment();
         //const startDate = today;
         //const dateValue = today;
@@ -89,6 +89,7 @@ class Influencers extends Component {
             first: 9,
             searchValue: '',
             cSelected: [],
+            hasMore: true,
             dateValue: moment.range(today.clone(), today.clone().add(7, "days"))
         };
 
@@ -103,13 +104,47 @@ class Influencers extends Component {
         this.toggle1 = this.toggle1.bind(this);
         this.toggle = this.toggle.bind(this);
         this.createCampaign = this.createCampaign.bind(this);
+        this.loadInfinity = this.loadInfinity.bind(this);
+        // Binds our scroll event handler
+        window.onscroll = () => {
+            const {
+                loadInfinity,
+                state: {
+                    hasMore,
+                },
+            } = this;
+
+            // Bails early if:
+            // * there's an error
+            // * it's already loading
+            // * there's nothing left to load
+            if (!hasMore) return;
+
+            // Checks that the page has scrolled to the bottom
+            if (window.innerHeight + document.documentElement.scrollTop
+                === document.documentElement.offsetHeight
+            ) {
+                loadInfinity();
+            }
+        };
+    }
+
+    loadInfinity() {
+        const { dispatch, influencers } = this.props;
+        const { first, hasMore } = this.state;
+        const infItems = influencers.items ? influencers.items : [];
+        if (infItems.length >= 45) {
+            this.setState = ({ hasMore: false });
+        }
+        else {
+            dispatch(infActions.infiniteScrollLoader(infItems, first, infItems.length));
+        }
     }
 
     createCampaign(index) {
         const { influencers } = this.props;
         const influencer = influencers.items ? influencers.items[index] : null;
-        if(influencer)
-        {
+        if (influencer) {
             this.sendData(influencer);
         }
     }
@@ -139,7 +174,7 @@ class Influencers extends Component {
         //history.push('/dashboards/basic');
     }
 
-    onCheckboxBtnClick(selected) {        
+    onCheckboxBtnClick(selected) {
         const index = this.state.cSelected.indexOf(selected);
         if (index < 0) {
             this.state.cSelected.push(selected);
@@ -147,8 +182,8 @@ class Influencers extends Component {
             this.state.cSelected.splice(index, 1);
         }
 
-        this.setState({ cSelected: [...this.state.cSelected] });        
-        
+        this.setState({ cSelected: [...this.state.cSelected] });
+
         // if (this.state.cSelected.length > 1) {
         //     this.sendData(2);
         // }
@@ -232,7 +267,7 @@ class Influencers extends Component {
             slidesToScroll: 1
         };
         const { } = this.state;
-        const { influencers } = this.props;
+        const { influencers, loading } = this.props;
         const infItems = influencers.items ? influencers.items : [];
         let imgSrc = defaultAvatar;
 
@@ -257,90 +292,132 @@ class Influencers extends Component {
                 <TransitionGroup component="div">
                     <CSSTransition timeout={1500} unmountOnExit appear classNames="TabsAnimation">
                         <div>
-                            <Row>
-                                {
-                                    elements.map((value, index) => {
-                                        return (
-                                            <Col key={index} md="4">
-                                                <div className="card mb-3 bg-success widget-chart text-white card-border">
-                                                    <div className="widget-chart-actions">
-                                                        <UncontrolledButtonDropdown>
-                                                            <DropdownToggle color="link" className="text-white">
-                                                                <FontAwesomeIcon icon={faEllipsisH} />
-                                                            </DropdownToggle>
-                                                            <DropdownMenu className="dropdown-menu-lg dropdown-menu-right">
-                                                                <Nav vertical>
-                                                                    <NavItem className="nav-item-header">
-                                                                        Activity
+                            {
+                                infItems && infItems.length > 0 ?
+                                    <Row>
+                                        {
+                                            infItems.map((value, index) => {
+                                                return (
+                                                    <Col key={index} md="4">
+                                                        <div className="card mb-3 bg-success widget-chart text-white card-border">
+                                                            <div className="widget-chart-actions">
+                                                                <UncontrolledButtonDropdown>
+                                                                    <DropdownToggle color="link" className="text-white">
+                                                                        <FontAwesomeIcon icon={faEllipsisH} />
+                                                                    </DropdownToggle>
+                                                                    <DropdownMenu className="dropdown-menu-lg dropdown-menu-right">
+                                                                        <Nav vertical>
+                                                                            <NavItem className="nav-item-header">
+                                                                                Activity
                                                             </NavItem>
-                                                                    <NavItem>
-                                                                        <NavLink href="javascript:void(0);">
-                                                                            Chat
+                                                                            <NavItem>
+                                                                                <NavLink href="javascript:void(0);">
+                                                                                    Chat
                                                                     <div className="ml-auto badge badge-pill badge-info">8</div>
-                                                                        </NavLink>
-                                                                    </NavItem>
-                                                                    <NavItem>
-                                                                        <NavLink href="javascript:void(0);">Recover Password</NavLink>
-                                                                    </NavItem>
-                                                                    <NavItem className="nav-item-header">
-                                                                        My Account
+                                                                                </NavLink>
+                                                                            </NavItem>
+                                                                            <NavItem>
+                                                                                <NavLink href="javascript:void(0);">Recover Password</NavLink>
+                                                                            </NavItem>
+                                                                            <NavItem className="nav-item-header">
+                                                                                My Account
                                                             </NavItem>
-                                                                    <NavItem>
-                                                                        <NavLink href="javascript:void(0);">
-                                                                            Settings
+                                                                            <NavItem>
+                                                                                <NavLink href="javascript:void(0);">
+                                                                                    Settings
                                                                     <div className="ml-auto badge badge-success">New</div>
-                                                                        </NavLink>
-                                                                    </NavItem>
-                                                                    <NavItem>
-                                                                        <NavLink href="javascript:void(0);">
-                                                                            Messages
+                                                                                </NavLink>
+                                                                            </NavItem>
+                                                                            <NavItem>
+                                                                                <NavLink href="javascript:void(0);">
+                                                                                    Messages
                                                                     <div className="ml-auto badge badge-warning">512</div>
-                                                                        </NavLink>
-                                                                    </NavItem>
-                                                                    <NavItem>
-                                                                        <NavLink href="javascript:void(0);">
-                                                                            Logs
+                                                                                </NavLink>
+                                                                            </NavItem>
+                                                                            <NavItem>
+                                                                                <NavLink href="javascript:void(0);">
+                                                                                    Logs
                                                                 </NavLink>
-                                                                    </NavItem>
-                                                                    <NavItem className="nav-item-divider" />
-                                                                    <NavItem className="nav-item-btn">
-                                                                        <Button size="sm" className="btn-wide btn-shadow"
-                                                                            color="danger">
-                                                                            Cancel
+                                                                            </NavItem>
+                                                                            <NavItem className="nav-item-divider" />
+                                                                            <NavItem className="nav-item-btn">
+                                                                                <Button size="sm" className="btn-wide btn-shadow"
+                                                                                    color="danger">
+                                                                                    Cancel
                                                                 </Button>
-                                                                    </NavItem>
-                                                                </Nav>
-                                                            </DropdownMenu>
-                                                        </UncontrolledButtonDropdown>
+                                                                            </NavItem>
+                                                                        </Nav>
+                                                                    </DropdownMenu>
+                                                                </UncontrolledButtonDropdown>
+                                                            </div>
+                                                            <div className="icon-wrapper rounded-circle">
+                                                                <div className="icon-wrapper-bg bg-white opacity-10" />
+                                                                <i className="lnr-screen text-success" />
+                                                            </div>
+                                                            <div className="widget-numbers">
+                                                                17.2k
                                                     </div>
-                                                    <div className="icon-wrapper rounded-circle">
-                                                        <div className="icon-wrapper-bg bg-white opacity-10" />
-                                                        <i className="lnr-screen text-success" />
+                                                            <div className="widget-subheading">
+                                                                Profiles
                                                     </div>
-                                                    <div className="widget-numbers">
-                                                        17.2k
-                                                    </div>
-                                                    <div className="widget-subheading">
-                                                        Profiles
-                                                    </div>
-                                                    <div className="widget-description text-white">
-                                                        <span className="pr-1">175.5%</span>
-                                                        <FontAwesomeIcon icon={faArrowLeft} />
-                                                    </div>
-                                                    <div className="divider" />
-                                                    <ButtonGroup>
-                                                        <Button color="success" onClick={() => this.gotoDetail(index)}>Detail</Button>
-                                                        <Button color="alternate" onClick={() => this.onCheckboxBtnClick(index)}
-                                                            active={this.state.cSelected.includes(index)}>Compare</Button>
-                                                        <Button color="primary" onClick={() => this.createCampaign(index)}>Campaign</Button>
-                                                    </ButtonGroup>
-                                                </div>
-                                            </Col>)
-                                    })
-                                }
-                            </Row>
+                                                            <div className="widget-description text-white">
+                                                                <span className="pr-1">175.5%</span>
+                                                                <FontAwesomeIcon icon={faArrowLeft} />
+                                                            </div>
+                                                            <div className="divider" />
+                                                            <ButtonGroup>
+                                                                <Button color="success" onClick={() => this.gotoDetail(index)}>Detail</Button>
+                                                                <Button color="alternate" onClick={() => this.onCheckboxBtnClick(index)}
+                                                                    active={this.state.cSelected.includes(index)}>Compare</Button>
+                                                                <Button color="primary" onClick={() => this.createCampaign(index)}>Campaign</Button>
+                                                            </ButtonGroup>
+                                                        </div>
+                                                    </Col>
+                                                )
+                                            })
+                                        }
+                                    </Row>
+                                    :
+                                    <Row>
+                                        {
+                                            elements.map((value, index) => {
+                                                return (
+                                                    <Col key={index} md="4">
+                                                        <div className="">
+                                                            <div className="icon-wrapper rounded-circle">
+                                                                <div className="icon-wrapper-bg bg-white opacity-10" />
+                                                                <Skeleton circle={true} />
+                                                            </div>
+                                                            <div className="">
+                                                                <SkeletonTheme color="#d1cfcf" highlightColor="#999999">
+                                                                    <p>
+                                                                        <Skeleton />
+                                                                    </p>
+                                                                </SkeletonTheme>
+                                                            </div>
+                                                            <div className="">
+                                                                <SkeletonTheme color="#d1cfcf" highlightColor="#999999">
+                                                                    <p>
+                                                                        <Skeleton />
+                                                                    </p>
+                                                                </SkeletonTheme>
+                                                            </div>
+                                                            <div className="widget-description">
+                                                                <SkeletonTheme color="#d1cfcf" highlightColor="#999999">
+                                                                    <p>
+                                                                        <Skeleton count={2} />
+                                                                    </p>
+                                                                </SkeletonTheme>
+                                                            </div>
+                                                            <div className="divider" />
+                                                        </div>
+                                                    </Col>
+                                                )
+                                            })
+                                        }
+                                    </Row>
+                            }
                         </div>
-
                     </CSSTransition>
                 </TransitionGroup>
             </Fragment>

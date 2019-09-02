@@ -107,13 +107,11 @@ function getAll(first, skip) {
 
 function infiniteScrollLoader(previousValues, first, skip) {
     return dispatch => {
-        dispatch(request());
-        debugger;
+        dispatch(request(previousValues));
         influencerService.getAll(first, skip)
             .then(
                 influencers => {
                     previousValues.push(...influencers.influencer);
-                    debugger;
                     dispatch(success(previousValues))
                 },
                 error => {
@@ -125,7 +123,7 @@ function infiniteScrollLoader(previousValues, first, skip) {
             );
     };
 
-    function request() { return { type: infConstants.INFS_INFINITE_REQUEST } }
+    function request(previousValues) { return { type: infConstants.INFS_INFINITE_REQUEST, previousValues } }
     function success(influencers) { return { type: infConstants.INFS_INFINITE_SUCCESS, influencers } }
     function failure(error) { return { type: infConstants.INFS_INFINITE_FAILURE, error } }
 }
