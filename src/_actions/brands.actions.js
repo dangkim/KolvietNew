@@ -80,7 +80,7 @@ function getBrandByName(userName) {
                 brand => dispatch(success(brand)),
                 error => {
                     toast.warn(error.toString() + " Please login again");
-                    history.push('/login');
+                    history.push('/pages/loginpages');
                 }
             )
             //dispatch(success(brand));

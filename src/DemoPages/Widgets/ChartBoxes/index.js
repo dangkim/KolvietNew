@@ -43,7 +43,7 @@ export default class WidgetsChartBoxes extends React.Component {
     //     };
 
     render() {
-
+        debugger;
         const { Influencer, Brand, Campaign } = this.state;
         const tabsContent = [
             {

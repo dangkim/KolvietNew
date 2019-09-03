@@ -166,7 +166,7 @@ const AppMain = () => {
             </Suspense>
 
             <Route exact path="/" render={() => (
-                <Redirect to="/pages/loginpage" />
+                <Redirect to="/pages/landingpage" />
             )} />
             <ToastContainer />
         </Fragment>

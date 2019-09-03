@@ -92,10 +92,10 @@ function getAll(first, skip) {
             .then(
                 influencers => dispatch(success(influencers.influencer)),
                 error => {
-                    dispatch(failure(error.toString()));
-                    dispatch(alertActions.error(error.toString()));
+                    //dispatch(failure(error.toString()));
+                    //dispatch(alertActions.error(error.toString()));
                     toast.error("Please login again");
-                    history.push('/Login');
+                    history.push('/pages/loginpages');
                 }
             );
     };
@@ -118,7 +118,7 @@ function infiniteScrollLoader(previousValues, first, skip) {
                     dispatch(failure(error.toString()));
                     dispatch(alertActions.error(error.toString()));
                     toast.error("Please login again");
-                    history.push('/Login');
+                    history.push('/pages/loginpages');
                 }
             );
     };
@@ -139,7 +139,7 @@ function getInfluencersByName(first, skip, userName) {
                     dispatch(failure(error.toString()));
                     dispatch(alertActions.error(error.toString()));
                     toast.error("Please login again");
-                    history.push('/Login');
+                    history.push('/pages/loginpages');
                 }
             );
     };

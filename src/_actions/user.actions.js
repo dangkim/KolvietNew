@@ -25,6 +25,7 @@ function getToken(userName, password, pathname) {
                             brandService.getBrandByName(userName)
                                 .then(
                                     brand => {
+                                        debugger;
                                         //dispatch(success(brand));
                                         history.push({
                                             pathname: '/widgets/dashboard-boxes',
@@ -33,7 +34,7 @@ function getToken(userName, password, pathname) {
                                     },
                                     error => {
                                         toast.warn(error.toString() + " Please login again");
-                                        history.push('/login');
+                                        history.push('/pages/loginpages');
                                     }
                                 )
 
@@ -101,7 +102,7 @@ function register(user) {
             .then(
                 user => {
                     dispatch(success());
-                    history.push('/login');
+                    history.push('/pages/loginpages');
                     //dispatch(alertActions.success('Registration successful'));
                 },
                 error => {

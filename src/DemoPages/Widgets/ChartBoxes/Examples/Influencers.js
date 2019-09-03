@@ -238,7 +238,7 @@ class Influencers extends Component {
     componentDidMount() {
         const { dispatch } = this.props;
         const { first } = this.state;
-        dispatch(infActions.getAll(first, 0));
+        //dispatch(infActions.getAll(first, 0));
     }
 
     onToggle = () => {

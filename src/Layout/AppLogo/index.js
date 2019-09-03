@@ -17,7 +17,6 @@ class HeaderLogo extends React.Component {
     }
 
     toggleEnableClosedSidebar = () => {
-        debugger;
         let { enableClosedSidebar, setEnableClosedSidebar } = this.props;
         setEnableClosedSidebar(!enableClosedSidebar);
     }
@@ -35,7 +34,6 @@ class HeaderLogo extends React.Component {
         let {
             enableClosedSidebar,
         } = this.props;
-        debugger;
         return (
             <Fragment>
                 <div className="app-header__logo">
@@ -58,7 +56,6 @@ class HeaderLogo extends React.Component {
 
 
 const mapStateToProps = state => {
-    debugger;
     return ({
         enableClosedSidebar: state.theme.enableClosedSidebar,
         enableMobileMenu: state.theme.enableMobileMenu,
@@ -67,7 +64,6 @@ const mapStateToProps = state => {
 };
 
 const mapDispatchToProps = dispatch => {
-    debugger;
     return ({
         setEnableClosedSidebar: enable => dispatch(themeActions.setEnableClosedSidebar(enable)),
         setEnableMobileMenu: enable => dispatch(themeActions.setEnableMobileMenu(enable)),

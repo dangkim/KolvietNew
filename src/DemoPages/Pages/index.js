@@ -5,7 +5,7 @@ import { Route } from 'react-router-dom';
 
 import { LoginPage } from './LoginPage';
 import { RegisterBrandPage } from './RegisterBrandPage';
-// import { RegisterCampaignPage } from './RegisterCampaignPage';
+import { LandingPage } from './LandingPage';
 import { RegisterInfluencerPage } from './RegisterInfluencerPage';
 
 // Layout
@@ -18,7 +18,7 @@ const Pages = ({ match }) => {
         <Fragment>
             <Route path={`${match.url}/loginpage`} component={LoginPage} />
             <Route path={`${match.url}/registerbrandpage`} component={RegisterBrandPage} />
-            {/* <Route path={`${match.url}/registercampaignpage`} component={RegisterCampaignPage} /> */}
+            <Route path={`${match.url}/landingpage`} component={LandingPage} />
             <Route path={`${match.url}/registerinfluencerpage`} component={RegisterInfluencerPage} />
             {/* <Route path={`${match.url}/loginpage`} component={LoginPage} />
         <Route path={`${match.url}/loginpage`} component={LoginPage} />

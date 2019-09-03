@@ -1,28 +1,24 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
-import bg3 from '../assets/images/template/bg3.jpg'
-import iphone3 from '../assets/images/template/iphone3.png'
-import mac from '../assets/images/template/mac.png'
-import big_logo from '../assets/images/big_logo.png'
-import citydark from '../assets/images/originals/citydark.jpg'
-import bogolive from '../assets/images/logos/bogolive.png'
-import momo from '../assets/images/logos/momo.png'
-import nct from '../assets/images/logos/nct.png'
-import sofy from '../assets/images/logos/sofy.png'
-import vnngaynay from '../assets/images/logos/vnngaynay.png'
-import gkitchen from '../assets/images/logos/gkitchen.png'
-import vinaphone from '../assets/images/logos/vinaphone.png'
-import home_33 from '../assets/images/template/examples/home_33.jpg'
-import home_22 from '../assets/images/template/examples/home_22.jpg'
-import home_11 from '../assets/images/template/examples/home_11.jpg'
-//import face1 from '../assets/images/faces/face1.jpg'
-import face2 from '../assets/images/faces/face2.jpg'
-import face3 from '../assets/images/faces/face3.jpg'
-import face4 from '../assets/images/faces/face4.jpg'
-// import home_33 from '../assets/images/template/examples/home_33.jpg'
-// import home_33 from '../assets/images/template/examples/home_33.jpg'
-import { userActions } from '../_actions';
+import bg3 from '../../../assets/utils/images/bg3.jpg'
+import iphone3 from '../../../assets/utils/images/iphone3.png'
+import mac from '../../../assets/utils/images/mac.png'
+import big_logo from '../../../assets/utils/images/big_logo.png'
+import bogolive from '../../../assets/utils/images/bogolive.png'
+import momo from '../../../assets/utils/images/momo.png'
+import nct from '../../../assets/utils/images/nct.png'
+import sofy from '../../../assets/utils/images/sofy.png'
+import vnngaynay from '../../../assets/utils/images/vnngaynay.png'
+import gkitchen from '../../../assets/utils/images/gkitchen.png'
+import vinaphone from '../../../assets/utils/images/vinaphone.png'
+import home_33 from '../../../assets/utils/images/home_33.jpg'
+import home_22 from '../../../assets/utils/images/home_22.jpg'
+import home_11 from '../../../assets/utils/images/home_11.jpg'
+
+// import home_33 from '../../../assets/utils/images/home_33.jpg'
+// import home_33 from '../../../assets/utils/images/home_33.jpg'
+import { userActions } from '../../../_actions';
 
 class LandingPage extends Component {
     constructor(props) {
@@ -104,7 +100,7 @@ class LandingPage extends Component {
                                         <br />
                                         {/* <h5>Be amazed by the best looking bootstrap landing page on the web! Your new app deserves an amazing page to show all of its features. Clear visual, light colours and beautifully aligned elements - they all try to make the users aware of your great app features!</h5> */}
                                         <div className="">
-                                            <Link to="/login" className="btn btn-fill btn-info">Get Free Access</Link>
+                                            <Link to="/pages/loginpage" className="btn btn-fill btn-info">Get Free Access</Link>
                                         </div>
                                     </div>
                                 </div>
@@ -175,7 +171,7 @@ class LandingPage extends Component {
                                     <p>&bull;Hệ thống phân tích thống kê dữ liệu toàn diện - real-time</p>
                                     <p>&bull;Các gói dịch vụ hỗ trợ triển khai chiến dịch toàn diện</p>
                                     <p>&bull;Và hơn hết KOLV là cấu nối nhịp nhàng giữa nhãn hàng và các Influencer để tạo nên hiệu quả nhất cho chiến dịch</p>
-                                    <Link to="/login" className="btn btn-fill btn-info">Get Free Access</Link>
+                                    <Link to="/pages/loginpage" className="btn btn-fill btn-info">Get Free Access</Link>
                                     {/* <a href="http://www.creative-tim.com/product/awesome-landing-page" id="Demo3" className="btn btn-fill btn-info" data-button="info">Get Free Access</a> */}
                                 </div>
                             </div>
@@ -272,7 +268,7 @@ class LandingPage extends Component {
                             <div className="info">
                                 <h1>Try this for free!</h1>
                                 <p>Beautiful places for you.</p>
-                                <Link to="/login" className="btn btn-neutral btn-lg btn-fill">Get Free Access</Link>
+                                <Link to="/pages/loginpage" className="btn btn-neutral btn-lg btn-fill">Get Free Access</Link>
                                 {/* <a href="http://www.creative-tim.com/product/awesome-landing-page" className="btn btn-neutral btn-lg btn-fill">EXPLORE</a> */}
                             </div>
                         </div>
