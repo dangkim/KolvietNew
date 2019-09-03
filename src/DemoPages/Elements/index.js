@@ -33,7 +33,7 @@ import NavigationExample from './Navs/';
 
 // REGISTER CAMPAIGN
 
-import {RegisterCampaignPage} from './RegisterCampaignPage';
+//import {RegisterCampaignPage} from './RegisterCampaignPage';
 
 // UTILITIES
 

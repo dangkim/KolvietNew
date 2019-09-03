@@ -98,7 +98,7 @@ function getAll(first, skip) {
                     dispatch(failure(error.toString()));
                     //dispatch(alertActions.error(error.toString()));
                     toast.error("Please login again");
-                    history.push('/pages/loginpages');
+                    history.push('/pages/loginpage');
                 }
             );
     };
@@ -121,7 +121,7 @@ function infiniteScrollLoader(previousValues, first, skip) {
                     dispatch(failure(error.toString()));
                     dispatch(alertActions.error(error.toString()));
                     toast.error("Please login again");
-                    history.push('/pages/loginpages');
+                    history.push('/pages/loginpage');
                 }
             );
     };
@@ -142,7 +142,7 @@ function getInfluencersByName(first, skip, userName) {
                     dispatch(failure(error.toString()));
                     dispatch(alertActions.error(error.toString()));
                     toast.error("Please login again");
-                    history.push('/pages/loginpages');
+                    history.push('/pages/loginpage');
                 }
             );
     };

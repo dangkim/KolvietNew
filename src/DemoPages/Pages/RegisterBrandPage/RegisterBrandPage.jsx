@@ -299,7 +299,7 @@ class RegisterBrandPage extends React.Component {
                                         and Conditions</a>.</label></div>
                                             <div className="mt-4 d-flex align-items-center">
                                                 <h5 className="mb-0">Already have an account?
-                                                <Link to="/pages/loginpages" className="text-primary">Sign in</Link>
+                                                <Link to="/pages/loginpage" className="text-primary">Sign in</Link>
                                                 </h5>
                                                 <div className="ml-auto">
                                                     {/* <button className="btn-wide btn-pill btn-shadow btn-hover-shine btn btn-primary btn-lg">Create Account</button> */}

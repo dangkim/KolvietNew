@@ -104,12 +104,12 @@ class LoginPage extends React.Component {
                                     <div className="row">
                                         <div className="col-md-6">
                                             <h6 className="mt-3">No account?
-                                                <Link to="/registerBrandPage">Sign up as Brand now</Link>
+                                                <Link to="/pages/registerBrandPage">Sign up as Brand now</Link>
                                             </h6>
                                         </div>
                                         <div className="col-md-6">
                                             <h6 className="mt-3">
-                                                <Link to="/registerInfluencerPage">Sign up as Influencer now</Link>
+                                                <Link to="/pages/registerInfluencerPage">Sign up as Influencer now</Link>
                                             </h6>
                                         </div>
                                     </div>

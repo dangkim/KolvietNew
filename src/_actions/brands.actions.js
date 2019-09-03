@@ -21,9 +21,10 @@ function register(brandType, userType) {
                         brandService.register(brandType)
                             .then(brand => {
                                 dispatch(success(brand));
+                                debugger;
                                 history.push({
-                                    pathname: '/registerCampaignPage',
-                                    state: { brand: brand }
+                                    pathname: '/widgets/dashboard-boxes',
+                                    state: { Brand: brand.Brand, type: "Brand" }
                                 })
                                 toast.success("Welcome " + userType.UserName + " Let create a Campaign");
                                 //dispatch(alertActions.success('Registration successful'));
@@ -80,7 +81,7 @@ function getBrandByName(userName) {
                 brand => dispatch(success(brand)),
                 error => {
                     toast.warn(error.toString() + " Please login again");
-                    history.push('/pages/loginpages');
+                    history.push('/pages/loginpage');
                 }
             )
             //dispatch(success(brand));

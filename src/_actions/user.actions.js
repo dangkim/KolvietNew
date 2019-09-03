@@ -34,7 +34,7 @@ function getToken(userName, password, pathname) {
                                     },
                                     error => {
                                         toast.warn(error.toString() + " Please login again");
-                                        history.push('/pages/loginpages');
+                                        history.push('/pages/loginpage');
                                     }
                                 )
 
@@ -102,7 +102,7 @@ function register(user) {
             .then(
                 user => {
                     dispatch(success());
-                    history.push('/pages/loginpages');
+                    history.push('/pages/loginpage');
                     //dispatch(alertActions.success('Registration successful'));
                 },
                 error => {

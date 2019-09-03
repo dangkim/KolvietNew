@@ -564,7 +564,7 @@ class RegisterCampaignPage extends Component {
                                                 <div className="mt-4 d-flex align-items-center">
                                                     <div className="ml-auto">
                                                         <input type="submit" name="nextStep" id="nextStep" className="btn-wide btn-pill btn-shadow btn-hover-shine btn btn-primary btn-lg" value="Next Step" />
-                                                        {/* <Link to="/pages/loginpages" className="btn btn-link">Cancel</Link> */}
+                                                        {/* <Link to="/pages/loginpage" className="btn btn-link">Cancel</Link> */}
                                                     </div>
                                                 </div>
                                             </form>
