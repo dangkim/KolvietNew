@@ -27,7 +27,7 @@ function register(infType, userType) {
                         influencerService.register(infType, token)
                             .then(influencer => {
                                 history.push({
-                                    pathname: '/dashBoardPage',
+                                    pathname: '/widgets/dashboard-boxes',
                                     state: { userName: userType.UserName }
                                 })
                                 //dispatch(alertActions.success('Registration successful'));
