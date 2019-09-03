@@ -193,7 +193,7 @@ class InfluencerDetail extends Component {
             if (item.contentItemId === event.target.name && isChecked == true) {
                 selectedInfluencersLocal.push(item);
             }
-            else if (item.contentItemId === event.target.name && isChecked == false) {
+            else if (item.contentItemId === event.target.name && isChecked === false) {
                 selectedInfluencersLocal.splice(selectedInfluencersLocal.indexOf(item), 1);
             }
         });
@@ -203,8 +203,8 @@ class InfluencerDetail extends Component {
 
     componentDidMount() {
         const { dispatch } = this.props;
-        const { first } = this.state;
-        dispatch(infActions.getAll(first, 0));
+        //const { first } = this.state;
+        //dispatch(infActions.getAll(first, 0));
     }
 
     onToggle = () => {

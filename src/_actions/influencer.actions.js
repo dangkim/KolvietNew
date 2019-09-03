@@ -90,9 +90,12 @@ function getAll(first, skip) {
 
         influencerService.getAll(first, skip)
             .then(
-                influencers => dispatch(success(influencers.influencer)),
+                influencers => {
+                    debugger;
+                    dispatch(success(influencers.influencer))
+                },
                 error => {
-                    //dispatch(failure(error.toString()));
+                    dispatch(failure(error.toString()));
                     //dispatch(alertActions.error(error.toString()));
                     toast.error("Please login again");
                     history.push('/pages/loginpages');
