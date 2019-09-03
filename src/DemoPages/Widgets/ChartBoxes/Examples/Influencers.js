@@ -77,7 +77,7 @@ class Influencers extends Component {
     constructor(props) {
         super(props);
         const moment = extendMoment(originalMoment);
-        debugger;
+
         const today = moment();
         //const startDate = today;
         //const dateValue = today;
@@ -187,11 +187,11 @@ class Influencers extends Component {
         }
 
         this.setState({ cSelected: [...this.state.cSelected] });
-        
+
         const { influencers } = this.props;
         if (influencers && influencers.items) {
             if (this.state.cSelected.length > 1) {
-                let items=[];
+                let items = [];
                 this.state.cSelected.map((item, key) => {
                     items.push(influencers.items[item]);
                 })
@@ -269,6 +269,7 @@ class Influencers extends Component {
     }
 
     render() {
+        debugger;
         const settings = {
             dots: true,
             infinite: true,
@@ -298,7 +299,7 @@ class Influencers extends Component {
         //const { brand, userName } = this.props.location.state;
 
         const brandFromLoading = this.props.brands.brand;
-        const elements = ['1', '2', '3', '4', '5', '6'];
+        const elements = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12];
         return (
             <Fragment>
                 <TransitionGroup component="div">

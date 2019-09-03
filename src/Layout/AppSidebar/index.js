@@ -59,20 +59,23 @@ class AppSidebar extends Component {
                             }}>
                         </div>
                     </CSSTransition>
-                </TransitionGroup>                
+                </TransitionGroup>
             </Fragment>
         )
     }
 }
 
-const mapStateToProps = state => ({
-    enableBackgroundImage:state.theme.enableBackgroundImage,
-    enableSidebarShadow:state.theme.enableSidebarShadow,
-    enableMobileMenu:state.theme.enableMobileMenu,
-    backgroundColor:state.theme.backgroundColor,
-    backgroundImage:state.theme.backgroundImage,
-    backgroundImageOpacity:state.theme.backgroundImageOpacity,
-});
+const mapStateToProps = state => {
+    
+    return ({
+        enableBackgroundImage: state.theme.enableBackgroundImage,
+        enableSidebarShadow: state.theme.enableSidebarShadow,
+        enableMobileMenu: state.theme.enableMobileMenu,
+        backgroundColor: state.theme.backgroundColor,
+        backgroundImage: state.theme.backgroundImage,
+        backgroundImageOpacity: state.theme.backgroundImageOpacity,
+    })
+};
 
 const mapDispatchToProps = dispatch => ({
 

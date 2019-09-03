@@ -10,7 +10,8 @@ export const themeActions = {
     enablePageTitleSubheading,
     enablePageTabsAlt,
     enableFixedSidebar,
-    enableMobileMenuSmall,
+    setEnableMobileMenu,
+    setEnableMobileMenuSmall,
     setEnableClosedSidebar,
     enableFixedFooter,
     backgroundColor,
@@ -20,131 +21,139 @@ export const themeActions = {
     backgroundImageOpacity
 };
 
-function enableBackgroundImage() {
+function enableBackgroundImage(backgroundImage) {
     return dispatch => {
-        dispatch(enable());
+        dispatch(enable(backgroundImage));
     };
 
-    function enable() { return { type: themeConstants.SET_ENABLE_BACKGROUND_IMAGE } }
+    function enable(backgroundImage) { return { type: themeConstants.SET_ENABLE_BACKGROUND_IMAGE, backgroundImage } }
 }
 
-function enableFixedHeader() {
+function enableFixedHeader(enableFixedHeader) {
     return dispatch => {
-        dispatch(enable());
+        dispatch(enable(enableFixedHeader));
     };
 
-    function enable() { return { type: themeConstants.SET_ENABLE_FIXED_HEADER } }
+    function enable(enableFixedHeader) { return { type: themeConstants.SET_ENABLE_FIXED_HEADER, enableFixedHeader } }
 }
 
-function enableHeaderShadow() {
+function enableHeaderShadow(enableHeaderShadow) {
     return dispatch => {
-        dispatch(enable());
+        dispatch(enable(enableHeaderShadow));
     };
 
-    function enable() { return { type: themeConstants.SET_ENABLE_HEADER_SHADOW } }
+    function enable(enableHeaderShadow) { return { type: themeConstants.SET_ENABLE_HEADER_SHADOW, enableHeaderShadow } }
 }
 
-function enableSidebarShadow() {
+function enableSidebarShadow(enableSidebarShadow) {
     return dispatch => {
-        dispatch(enable());
+        dispatch(enable(enableSidebarShadow));
     };
 
-    function enable() { return { type: themeConstants.SET_ENABLE_SIDEBAR_SHADOW } }
+    function enable(enableSidebarShadow) { return { type: themeConstants.SET_ENABLE_SIDEBAR_SHADOW, enableSidebarShadow } }
 }
 
-function enablePageTitleIcon() {
+function enablePageTitleIcon(enablePageTitleIcon) {
     return dispatch => {
-        dispatch(enable());
+        dispatch(enable(enablePageTitleIcon));
     };
 
-    function enable() { return { type: themeConstants.SET_ENABLE_PAGETITLE_ICON } }
+    function enable(enablePageTitleIcon) { return { type: themeConstants.SET_ENABLE_PAGETITLE_ICON, enablePageTitleIcon } }
 }
 
-function enablePageTitleSubheading() {
+function enablePageTitleSubheading(enablePageTitleSubheading) {
     return dispatch => {
-        dispatch(enable());
+        dispatch(enable(enablePageTitleSubheading));
     };
 
-    function enable() { return { type: themeConstants.SET_ENABLE_PAGETITLE_SUBHEADING } }
+    function enable(enablePageTitleSubheading) { return { type: themeConstants.SET_ENABLE_PAGETITLE_SUBHEADING, enablePageTitleSubheading } }
 }
 
-function enablePageTabsAlt() {
+function enablePageTabsAlt(enablePageTabsAlt) {
     return dispatch => {
-        dispatch(enable());
+        dispatch(enable(enablePageTabsAlt));
     };
 
-    function enable() { return { type: themeConstants.SET_ENABLE_PAGE_TABS_ALT } }
+    function enable(enablePageTabsAlt) { return { type: themeConstants.SET_ENABLE_PAGE_TABS_ALT, enablePageTabsAlt } }
 }
 
-function enableFixedSidebar() {
+function enableFixedSidebar(enableFixedSidebar) {
     return dispatch => {
-        dispatch(enable());
+        dispatch(enable(enableFixedSidebar));
     };
 
-    function enable() { return { type: themeConstants.SET_ENABLE_FIXED_SIDEBAR } }
+    function enable(enableFixedSidebar) { return { type: themeConstants.SET_ENABLE_FIXED_SIDEBAR, enableFixedSidebar } }
 }
 
-function enableMobileMenuSmall() {
+function setEnableMobileMenuSmall(enableMobileMenuSmall) {
     return dispatch => {
-        dispatch(enable());
+        dispatch(enable(enableMobileMenuSmall));
     };
 
-    function enable() { return { type: themeConstants.SET_ENABLE_MOBILE_MENU_SMALL } }
+    function enable(enableMobileMenuSmall) { return { type: themeConstants.SET_ENABLE_MOBILE_MENU_SMALL, enableMobileMenuSmall } }
 }
 
-function setEnableClosedSidebar() {
+function setEnableMobileMenu(enableMobileMenu) {
     return dispatch => {
-        dispatch(enable());
+        dispatch(enable(enableMobileMenu));
     };
 
-    function enable() { return { type: themeConstants.SET_ENABLE_CLOSED_SIDEBAR } }
+    function enable(enableMobileMenu) { return { type: themeConstants.SET_ENABLE_MOBILE_MENU, enableMobileMenu } }
 }
 
-function enableFixedFooter() {
+function setEnableClosedSidebar(enableClosedSidebar) {
     return dispatch => {
-        dispatch(enable());
+        dispatch(enable(enableClosedSidebar));
     };
-
-    function enable() { return { type: themeConstants.SET_ENABLE_FIXED_FOOTER } }
+    
+    function enable(enableClosedSidebar) { return { type: themeConstants.SET_ENABLE_CLOSED_SIDEBAR, enableClosedSidebar } }
 }
 
-function backgroundColor() {
+function enableFixedFooter(enableFixedFooter) {
     return dispatch => {
-        dispatch(enable());
+        dispatch(enable(enableFixedFooter));
     };
 
-    function enable() { return { type: themeConstants.SET_BACKGROUND_COLOR } }
+    function enable(enableFixedFooter) { return { type: themeConstants.SET_ENABLE_FIXED_FOOTER, enableFixedFooter } }
 }
 
-function headerBackgroundColor() {
+function backgroundColor(backgroundColor) {
     return dispatch => {
-        dispatch(enable());
+        dispatch(enable(backgroundColor));
     };
 
-    function enable() { return { type: themeConstants.SET_HEADER_BACKGROUND_COLOR } }
+    function enable(backgroundColor) { return { type: themeConstants.SET_BACKGROUND_COLOR, backgroundColor } }
 }
 
-function colorScheme() {
+function headerBackgroundColor(headerBackgroundColor) {
     return dispatch => {
-        dispatch(enable());
+        dispatch(enable(headerBackgroundColor));
     };
 
-    function enable() { return { type: themeConstants.SET_COLOR_SCHEME } }
+    function enable(headerBackgroundColor) { return { type: themeConstants.SET_HEADER_BACKGROUND_COLOR, headerBackgroundColor } }
 }
 
-function backgroundImage() {
+function colorScheme(colorScheme) {
     return dispatch => {
-        dispatch(enable());
+        dispatch(enable(colorScheme));
     };
 
-    function enable() { return { type: themeConstants.SET_BACKGROUND_IMAGE } }
+    function enable(colorScheme) { return { type: themeConstants.SET_COLOR_SCHEME, colorScheme } }
 }
 
-function backgroundImageOpacity() {
+function backgroundImage(enableBackgroundImage) {
     return dispatch => {
-        dispatch(enable());
+        dispatch(enable(enableBackgroundImage));
     };
 
-    function enable() { return { type: themeConstants.SET_BACKGROUND_IMAGE_OPACITY } }
+    function enable(enableBackgroundImage) { return { type: themeConstants.SET_BACKGROUND_IMAGE, enableBackgroundImage } }
+}
+
+function backgroundImageOpacity(backgroundImageOpacity) {
+    return dispatch => {
+        dispatch(enable(backgroundImageOpacity));
+    };
+
+    function enable(backgroundImageOpacity) { return { type: themeConstants.SET_BACKGROUND_IMAGE_OPACITY, backgroundImageOpacity } }
 }
     

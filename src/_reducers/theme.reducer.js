@@ -4,6 +4,7 @@ import { themeConstants } from '../_constants';
 export function theme(state = {
   backgroundColor: 'bg-royal sidebar-text-light',
   headerBackgroundColor: 'bg-strong-bliss header-text-light',
+  enableMobileMenu: '',
   enableMobileMenuSmall: '',
   enableBackgroundImage: true,
   enableClosedSidebar: false,
@@ -81,6 +82,7 @@ export function theme(state = {
       };
 
     case themeConstants.SET_ENABLE_CLOSED_SIDEBAR:
+      debugger;
       return {
         ...state,
         enableClosedSidebar: action.enableClosedSidebar

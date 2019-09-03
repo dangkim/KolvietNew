@@ -1,5 +1,5 @@
-import React, {Fragment} from 'react';
-import {connect} from 'react-redux';
+import React, { Fragment } from 'react';
+import { connect } from 'react-redux';
 import { themeActions } from '../../_actions';
 import Hamburger from 'react-hamburgers';
 
@@ -17,7 +17,8 @@ class HeaderLogo extends React.Component {
     }
 
     toggleEnableClosedSidebar = () => {
-        let {enableClosedSidebar, setEnableClosedSidebar} = this.props;
+        debugger;
+        let { enableClosedSidebar, setEnableClosedSidebar } = this.props;
         setEnableClosedSidebar(!enableClosedSidebar);
     }
 
@@ -34,43 +35,45 @@ class HeaderLogo extends React.Component {
         let {
             enableClosedSidebar,
         } = this.props;
-
-        const {
-        } = this.state;
-
+        debugger;
         return (
             <Fragment>
                 <div className="app-header__logo">
-                    <div className="logo-src"/>
+                    <div className="logo-src" />
                     <div className="header__pane ml-auto">
                         <div onClick={this.toggleEnableClosedSidebar}>
                             <Hamburger
                                 active={enableClosedSidebar}
                                 type="elastic"
-                                onClick={() => this.setState({active: !this.state.active})}
+                                onClick={() => this.setState({ active: !this.state.active })}
                             />
                         </div>
                     </div>
                 </div>
-                <AppMobileMenu/>
+                <AppMobileMenu />
             </Fragment>
         )
     }
 }
 
 
-const mapStateToProps = state => ({
-    enableClosedSidebar:state.theme.enableClosedSidebar,
-    enableMobileMenu:state.theme.enableMobileMenu,
-    enableMobileMenuSmall:state.theme.enableMobileMenuSmall,
-});
+const mapStateToProps = state => {
+    debugger;
+    return ({
+        enableClosedSidebar: state.theme.enableClosedSidebar,
+        enableMobileMenu: state.theme.enableMobileMenu,
+        enableMobileMenuSmall: state.theme.enableMobileMenuSmall,
+    })
+};
 
-const mapDispatchToProps = dispatch => ({
+const mapDispatchToProps = dispatch => {
+    debugger;
+    return ({
+        setEnableClosedSidebar: enable => dispatch(themeActions.setEnableClosedSidebar(enable)),
+        setEnableMobileMenu: enable => dispatch(themeActions.setEnableMobileMenu(enable)),
+        setEnableMobileMenuSmall: enable => dispatch(themeActions.setEnableMobileMenuSmall(enable)),
 
-    setEnableClosedSidebar: enable => dispatch(themeActions.setEnableClosedSidebar(enable)),
-    setEnableMobileMenu: enable => dispatch(themeActions.setEnableMobileMenu(enable)),
-    setEnableMobileMenuSmall: enable => dispatch(themeActions.setEnableMobileMenuSmall(enable)),
-
-});
+    })
+};
 
 export default connect(mapStateToProps, mapDispatchToProps)(HeaderLogo);

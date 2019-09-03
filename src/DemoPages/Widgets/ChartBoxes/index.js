@@ -29,8 +29,8 @@ export default class WidgetsChartBoxes extends React.Component {
     }
 
     callbackFunction = (selectedTabKey, childData, index) => {
-        debugger;
-        if (index) {
+
+        if (index !== null) {
             this.setState({ selectedTabKey: selectedTabKey, Influencer: childData[index] })
         }
         else {
