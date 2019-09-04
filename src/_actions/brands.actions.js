@@ -21,7 +21,7 @@ function register(brandType, userType) {
                         brandService.register(brandType)
                             .then(brand => {
                                 dispatch(success(brand));
-                                debugger;
+                                
                                 history.push({
                                     pathname: '/widgets/dashboard-boxes',
                                     state: { Brand: brand.Brand, type: "Brand" }

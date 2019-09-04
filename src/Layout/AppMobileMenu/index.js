@@ -58,7 +58,7 @@ class AppMobileMenu extends React.Component {
             enableMobileMenu,
         } = this.props;
         const {activeMobile} = this.state;
-        //debugger;
+        //
         return (
             <Fragment>
                 <div className="app-header__mobile-menu">

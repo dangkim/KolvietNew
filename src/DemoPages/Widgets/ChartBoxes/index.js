@@ -20,7 +20,6 @@ export default class WidgetsChartBoxes extends React.Component {
         let brandLocal = null;
         if(this.props.location.state)
         {
-            debugger;
             if(this.props.location.state.Brand)
             {
                 brandLocal = this.props.location.state.Brand;

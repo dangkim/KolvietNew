@@ -349,6 +349,7 @@ class CreateCampaign extends Component {
     }
 
     render() {
+
         const { submitted,
             campaign,
             job,
@@ -617,7 +618,7 @@ class CreateCampaign extends Component {
 }
 
 function mapStateToProps(state) {
-    debugger;
+    
     const { campaigns, influencers, locations, interestings, jobCategories, jobs, brands } = state;
     //const { brand } = influencers;
     return {

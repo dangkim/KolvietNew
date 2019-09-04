@@ -169,7 +169,7 @@ class Influencers extends Component {
     }
 
     gotoDetail(selected) {
-        debugger;
+        
         const { influencers } = this.props;
         const influencer = influencers.items ? influencers.items[selected] : null;
         if (influencer) {
@@ -195,7 +195,7 @@ class Influencers extends Component {
                 this.state.cSelected.map((item, key) => {
                     items.push(influencers.items[item]);
                 })
-                debugger;
+                
                 this.sendData(2, items, null);
             }
         }
@@ -239,7 +239,7 @@ class Influencers extends Component {
         const { dispatch, influencers } = this.props;
         const { first } = this.state;
         if (!influencers || !influencers.items || influencers.items.length <= 0) {
-            debugger;
+            
             dispatch(infActions.getAll(first, 0));
         }
     }

@@ -25,7 +25,7 @@ function getToken(userName, password, pathname) {
                             brandService.getBrandByName(userName)
                                 .then(
                                     brand => {
-                                        debugger;
+                                        
                                         //dispatch(success(brand));
                                         history.push({
                                             pathname: '/widgets/dashboard-boxes',

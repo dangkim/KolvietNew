@@ -82,7 +82,7 @@ export function theme(state = {
       };
 
     case themeConstants.SET_ENABLE_CLOSED_SIDEBAR:
-      debugger;
+      
       return {
         ...state,
         enableClosedSidebar: action.enableClosedSidebar

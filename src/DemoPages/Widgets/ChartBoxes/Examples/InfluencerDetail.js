@@ -235,6 +235,7 @@ class InfluencerDetail extends Component {
     }
 
     render() {
+
         const settings = {
             dots: true,
             infinite: true,

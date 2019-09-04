@@ -91,7 +91,7 @@ function getAll(first, skip) {
         influencerService.getAll(first, skip)
             .then(
                 influencers => {
-                    debugger;
+                    
                     dispatch(success(influencers.influencer))
                 },
                 error => {

@@ -66,14 +66,14 @@ const data2 = [
 class ColorsExample extends Component {
 
     componentDidMount() {
-        debugger;
+        
         const { dispatch } = this.props;
         //const { first } = this.state;
         dispatch(infActions.getAll(9, 0));
     }
 
     render() {
-        debugger;
+        
         return (
             <Fragment>
                 <TransitionGroup component="div">
