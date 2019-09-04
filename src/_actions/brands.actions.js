@@ -22,10 +22,11 @@ function register(brandType, userType) {
                             .then(brand => {
                                 dispatch(success(brand));
                                 
-                                history.push({
-                                    pathname: '/widgets/dashboard-boxes',
-                                    state: { Brand: brand.Brand, type: "Brand" }
-                                })
+                                // history.push({
+                                //     pathname: '/widgets/dashboard-boxes',
+                                //     state: { Brand: brand.Brand, type: "Brand" }
+                                // })
+                                history.replace({ pathname: '/widgets/dashboard-boxes', state: { Brand: brand.Brand, type: "Brand" } });
                                 toast.success("Welcome " + userType.UserName + " Let create a Campaign");
                                 //dispatch(alertActions.success('Registration successful'));
                             },
@@ -81,7 +82,7 @@ function getBrandByName(userName) {
                 brand => dispatch(success(brand)),
                 error => {
                     toast.warn(error.toString() + " Please login again");
-                    history.push('/pages/loginpage');
+                    history.replace({ pathname: '/pages/loginpage' });
                 }
             )
             //dispatch(success(brand));

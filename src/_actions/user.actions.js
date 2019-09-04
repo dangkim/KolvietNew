@@ -25,25 +25,28 @@ function getToken(userName, password, pathname) {
                             brandService.getBrandByName(userName)
                                 .then(
                                     brand => {
-                                        
+
                                         //dispatch(success(brand));
-                                        history.push({
-                                            pathname: '/widgets/dashboard-boxes',
-                                            state: { Brand: brand.brand, type: type }
-                                        })
+                                        // history.push({
+                                        //     pathname: '/widgets/dashboard-boxes',
+                                        //     state: { Brand: brand.brand, type: type }
+                                        // })
+                                        history.replace({ pathname: '/widgets/dashboard-boxes', state: { Brand: brand.brand, type: type } });
                                     },
                                     error => {
                                         toast.warn(error.toString() + " Please login again");
-                                        history.push('/pages/loginpage');
+                                        //history.push('/pages/loginpage');
+                                        history.replace({ pathname: '/pages/loginpage' });
                                     }
                                 )
 
                         }
                         else if (type === "Influencer") {
-                            history.push({
-                                pathname: '/widgets/dashboard-boxes',
-                                state: { userName: userName, type: type }
-                            })
+                            // history.push({
+                            //     pathname: '/widgets/dashboard-boxes',
+                            //     state: { userName: userName, type: type }
+                            // })
+                            history.replace({ pathname: '/widgets/dashboard-boxes', state: { userName: userName, type: type } });
                         }
                         toast.success("Welcome " + userName);
                     },
@@ -102,7 +105,8 @@ function register(user) {
             .then(
                 user => {
                     dispatch(success());
-                    history.push('/pages/loginpage');
+                    //history.push('/pages/loginpage');
+                    history.replace({ pathname: '/pages/loginpage' });
                     //dispatch(alertActions.success('Registration successful'));
                 },
                 error => {

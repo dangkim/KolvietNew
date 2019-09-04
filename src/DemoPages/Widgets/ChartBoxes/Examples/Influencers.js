@@ -4,7 +4,7 @@ import {
     CSSTransition,
     TransitionGroup,
 } from 'react-transition-group';
-
+import { Prompt } from 'react-router'
 import city from '../../../../assets//utils//images/originals/city.jpg'
 import citynights from '../../../../assets/utils/images/originals/citynights.jpg'
 import citydark from '../../../../assets/utils/images/originals/citydark.jpg'
@@ -29,7 +29,8 @@ import {
     DropdownMenu,
     Nav,
     NavItem,
-    NavLink
+    NavLink,
+    Modal, ModalHeader, ModalBody, ModalFooter
 } from 'reactstrap';
 
 import {
@@ -90,19 +91,21 @@ class Influencers extends Component {
             searchValue: '',
             cSelected: [],
             hasMore: true,
-            dateValue: moment.range(today.clone(), today.clone().add(7, "days"))
+            dateValue: moment.range(today.clone(), today.clone().add(7, "days")),
+            confirmedNavigation: false,
+            modalVisible: false,
+            lastLocation: null,
         };
 
         this.handleCheckBoxChange = this.handleCheckBoxChange.bind(this);
-        this.nextPageFluencers = this.nextPageFluencers.bind(this);
-        this.prePageFluencers = this.prePageFluencers.bind(this);
-        this.onChangePage = this.onChangePage.bind(this);
+        this.handleConfirmNavigationClick = this.handleConfirmNavigationClick.bind(this);
+        this.handleBlockedNavigation = this.handleBlockedNavigation.bind(this);
         this.handleSearch = this.handleSearch.bind(this);
         this.onCheckboxBtnClick = this.onCheckboxBtnClick.bind(this);
         this.sendData = this.sendData.bind(this);
         this.gotoDetail = this.gotoDetail.bind(this);
-        this.toggle1 = this.toggle1.bind(this);
-        this.toggle = this.toggle.bind(this);
+        this.showModal = this.showModal.bind(this);
+        this.closeModal = this.closeModal.bind(this);
         this.createCampaign = this.createCampaign.bind(this);
         this.loadInfinity = this.loadInfinity.bind(this);
         // Binds our scroll event handler
@@ -149,19 +152,6 @@ class Influencers extends Component {
         }
     }
 
-    toggle() {
-        this.setState(prevState => ({
-            dropdownOpen: !prevState.dropdownOpen
-        }));
-    }
-
-    toggle1(tab) {
-        if (this.state.activeTab1 !== tab) {
-            this.setState({
-                activeTab1: tab
-            });
-        }
-    }
 
     sendData = (tabIndex, object, index) => {
         // Back to first tab
@@ -169,7 +159,7 @@ class Influencers extends Component {
     }
 
     gotoDetail(selected) {
-        
+
         const { influencers } = this.props;
         const influencer = influencers.items ? influencers.items[selected] : null;
         if (influencer) {
@@ -195,20 +185,9 @@ class Influencers extends Component {
                 this.state.cSelected.map((item, key) => {
                     items.push(influencers.items[item]);
                 })
-                
+
                 this.sendData(2, items, null);
             }
-        }
-    }
-
-    nextPageFluencers(skip) {
-        this.setState({ skip: skip + 1 });
-    }
-
-    prePageFluencers() {
-        const { skip } = this.state;
-        if (skip > 0) {
-            this.setState({ skip: skip - 1 });
         }
     }
 
@@ -239,15 +218,10 @@ class Influencers extends Component {
         const { dispatch, influencers } = this.props;
         const { first } = this.state;
         if (!influencers || !influencers.items || influencers.items.length <= 0) {
-            
+
             dispatch(infActions.getAll(first, 0));
         }
     }
-
-    onToggle = () => {
-        const { isOpen } = this.state;
-        this.setState({ isOpen: !isOpen });
-    };
 
     handleSearch(searchValue) {
         const { dispatch } = this.props;
@@ -260,19 +234,52 @@ class Influencers extends Component {
         }
     }
 
-    onChangePage(pageOfItems) {
-        const { dispatch } = this.props;
-        const { first, searchValue } = this.state;
-        const length = pageOfItems.length;
-        const currentPage = Math.ceil(pageOfItems[length - 1].id / first);
+    showModal = location => {
+        debugger;
+        this.setState({
+            modalVisible: true,
+            lastLocation: location
+        })
+    };
 
-        dispatch(infActions.getInfluencersByName(first, first * (currentPage - 1), searchValue));
-        // update local state with new page of items
-        this.setState({ pageOfItems });
-    }
+    closeModal = (callback = () => { }) =>
+        this.setState(
+            {
+                modalVisible: false
+            },
+            callback
+        );
+
+    handleBlockedNavigation = nextLocation => {
+        const { confirmedNavigation } = this.state;
+        if (!confirmedNavigation) {
+            this.showModal(nextLocation);
+            return false;
+        }
+
+        return true;
+    };
+
+    handleConfirmNavigationClick = () =>
+        this.closeModal(() => {
+            const { lastLocation } = this.state;
+            if (lastLocation) {
+                this.setState(
+                    {
+                        confirmedNavigation: true
+                    },
+                    () => {
+                        history.index = -1;
+                        // Navigate to the previous blocked location with your navigate function
+                        //history.push(lastLocation.pathname);
+                        history.replace({ pathname: lastLocation.pathname })
+                    }
+                );
+            }
+        });
 
     render() {
-        debugger;
+        //debugger;
         const settings = {
             dots: true,
             infinite: true,
@@ -282,7 +289,7 @@ class Influencers extends Component {
             autoplay: true,
             slidesToScroll: 1
         };
-        const { } = this.state;
+        const { modalVisible } = this.state;
         const { influencers, loading } = this.props;
         const infItems = influencers.items ? influencers.items : [];
         let imgSrc = defaultAvatar;
@@ -299,9 +306,6 @@ class Influencers extends Component {
             "bg-amy-crisp",
         ];
 
-        //const { brand, userName } = this.props.location.state;
-
-        const brandFromLoading = this.props.brands.brand;
         const elements = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12];
         return (
             <Fragment>
@@ -316,56 +320,6 @@ class Influencers extends Component {
                                                 return (
                                                     <Col key={index} md="4">
                                                         <div className="card mb-3 bg-success widget-chart text-white card-border">
-                                                            <div className="widget-chart-actions">
-                                                                <UncontrolledButtonDropdown>
-                                                                    <DropdownToggle color="link" className="text-white">
-                                                                        <FontAwesomeIcon icon={faEllipsisH} />
-                                                                    </DropdownToggle>
-                                                                    <DropdownMenu className="dropdown-menu-lg dropdown-menu-right">
-                                                                        <Nav vertical>
-                                                                            <NavItem className="nav-item-header">
-                                                                                Activity
-                                                            </NavItem>
-                                                                            <NavItem>
-                                                                                <NavLink href="javascript:void(0);">
-                                                                                    Chat
-                                                                    <div className="ml-auto badge badge-pill badge-info">8</div>
-                                                                                </NavLink>
-                                                                            </NavItem>
-                                                                            <NavItem>
-                                                                                <NavLink href="javascript:void(0);">Recover Password</NavLink>
-                                                                            </NavItem>
-                                                                            <NavItem className="nav-item-header">
-                                                                                My Account
-                                                            </NavItem>
-                                                                            <NavItem>
-                                                                                <NavLink href="javascript:void(0);">
-                                                                                    Settings
-                                                                    <div className="ml-auto badge badge-success">New</div>
-                                                                                </NavLink>
-                                                                            </NavItem>
-                                                                            <NavItem>
-                                                                                <NavLink href="javascript:void(0);">
-                                                                                    Messages
-                                                                    <div className="ml-auto badge badge-warning">512</div>
-                                                                                </NavLink>
-                                                                            </NavItem>
-                                                                            <NavItem>
-                                                                                <NavLink href="javascript:void(0);">
-                                                                                    Logs
-                                                                </NavLink>
-                                                                            </NavItem>
-                                                                            <NavItem className="nav-item-divider" />
-                                                                            <NavItem className="nav-item-btn">
-                                                                                <Button size="sm" className="btn-wide btn-shadow"
-                                                                                    color="danger">
-                                                                                    Cancel
-                                                                </Button>
-                                                                            </NavItem>
-                                                                        </Nav>
-                                                                    </DropdownMenu>
-                                                                </UncontrolledButtonDropdown>
-                                                            </div>
                                                             <div className="icon-wrapper rounded-circle">
                                                                 <div className="icon-wrapper-bg bg-white opacity-10" />
                                                                 <i className="lnr-screen text-success" />

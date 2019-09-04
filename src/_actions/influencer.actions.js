@@ -26,10 +26,11 @@ function register(infType, userType) {
                     .then(token => {
                         influencerService.register(infType, token)
                             .then(influencer => {
-                                history.push({
-                                    pathname: '/widgets/dashboard-boxes',
-                                    state: { userName: userType.UserName }
-                                })
+                                // history.push({
+                                //     pathname: '/widgets/dashboard-boxes',
+                                //     state: { userName: userType.UserName }
+                                // })
+                                history.replace({ pathname: '/widgets/dashboard-boxes', state: { userName: userType.UserName } });
                                 //dispatch(alertActions.success('Registration successful'));
                                 toast.success("Welcome" + influencer.fullName);
                             },
@@ -98,7 +99,8 @@ function getAll(first, skip) {
                     dispatch(failure(error.toString()));
                     //dispatch(alertActions.error(error.toString()));
                     toast.error("Please login again");
-                    history.push('/pages/loginpage');
+                    history.replace({ pathname: '/pages/loginpage' });
+                    //history.push('/pages/loginpage');
                 }
             );
     };
@@ -121,7 +123,8 @@ function infiniteScrollLoader(previousValues, first, skip) {
                     dispatch(failure(error.toString()));
                     dispatch(alertActions.error(error.toString()));
                     toast.error("Please login again");
-                    history.push('/pages/loginpage');
+                    //history.push('/pages/loginpage');
+                    history.replace({ pathname: '/pages/loginpage' });
                 }
             );
     };
@@ -142,7 +145,8 @@ function getInfluencersByName(first, skip, userName) {
                     dispatch(failure(error.toString()));
                     dispatch(alertActions.error(error.toString()));
                     toast.error("Please login again");
-                    history.push('/pages/loginpage');
+                    //history.push('/pages/loginpage');
+                    history.replace({ pathname: '/pages/loginpage' });
                 }
             );
     };

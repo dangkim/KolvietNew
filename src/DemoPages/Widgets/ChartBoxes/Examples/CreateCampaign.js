@@ -369,7 +369,8 @@ class CreateCampaign extends Component {
         if(!Brand)
         {
             toast.warn("Please Login Again!");
-            history.push('/pages/loginpage');
+            history.replace({ pathname: '/pages/loginpage' });
+            //history.push('/pages/loginpage');
         }
 
         let imgSrc = defaultAvatar;
