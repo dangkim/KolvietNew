@@ -10,6 +10,7 @@ import { ColorsExample } from './Examples/Colors';
 import { Influencers } from './Examples/Influencers';
 import { CreateCampaign } from './Examples/CreateCampaign';
 import { InfluencerDetail } from './Examples/InfluencerDetail';
+import { InfluencerUpdateCost } from './Examples/InfluencerUpdateCost';
 import NavsVertical from '../../Elements/Navs/Examples/NavVertical';
 import {
     Modal, ModalHeader, ModalBody, ModalFooter, Button,
@@ -23,17 +24,32 @@ export default class WidgetsChartBoxes extends React.Component {
         super(props);
 
         let brandLocal = null;
+        let type = '';
+        let userName = '';
         if (this.props.location.state) {
             if (this.props.location.state.Brand) {
-                brandLocal = this.props.location.state.Brand;
+                if (this.props.location.state.Brand[0]) {
+                    brandLocal = this.props.location.state.Brand[0];
+                }
+                else {
+                    brandLocal = this.props.location.state.Brand;
+                }
             }
-            else {
-                brandLocal = this.props.location.state.Brand[0];
+            
+            if (this.props.location.state.type) {
+                type = this.props.location.state.type;
+                userName = this.props.location.state.userName;
             }
+
+            if (this.props.location.state.userName) {
+                userName = this.props.location.state.userName;
+            }
+            
         }
         this.state = {
             Brand: brandLocal,
-            UserName: '',
+            userName: userName,
+            type: type,
             selectedTabKey: 0,
             Influencer: null,
             ComparedInfluencers: [],
@@ -110,7 +126,13 @@ export default class WidgetsChartBoxes extends React.Component {
 
     render() {
         debugger;
-        const { Influencer, Brand, Campaign, modalVisible } = this.state;
+        const { Influencer, Brand, Campaign, modalVisible, type, userName } = this.state;
+        const tabsContentUpdateCost = [
+            {
+                title: 'Vertical Menus',
+                content: <InfluencerUpdateCost userName={userName}/>
+            }
+        ]
         const tabsContent = [
             {
                 title: 'Influencers',
@@ -127,15 +149,25 @@ export default class WidgetsChartBoxes extends React.Component {
             {
                 title: 'Create Campaign',
                 content: <CreateCampaign Brand={Brand} Influencer={Influencer} />
-            }
+            },
         ]
 
         const getTabs = () => {
-            return (tabsContent.map((tab, index) => ({
-                title: tab.title,
-                getContent: () => tab.content,
-                key: index,
-            })))
+
+            if (type === "Influencer") {
+                return (tabsContentUpdateCost.map((tab, index) => ({
+                    title: tab.title,
+                    getContent: () => tab.content,
+                    key: index,
+                })))
+            }
+            else {
+                return (tabsContent.map((tab, index) => ({
+                    title: tab.title,
+                    getContent: () => tab.content,
+                    key: index,
+                })))
+            }
         }
 
         return (

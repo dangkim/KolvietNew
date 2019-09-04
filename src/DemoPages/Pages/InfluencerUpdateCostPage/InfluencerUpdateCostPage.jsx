@@ -1,16 +1,10 @@
 import React, { Component } from "react";
-import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
-import img from '../assets/images/hand.jpg'
-//import { campaignActions } from '../_actions';
-import { campaignActions, infActions, brandActions } from '../_actions';
-//import Select from 'react-select';
-import { createJobs } from '../_models/JobType';
-//import {configContent} from 'configContent';
-var NumberFormat = require('react-number-format');
+import { infActions } from '../_actions';
 import { history } from '../_helpers';
-import { LeftMenuPage } from '../LeftMenuPage';
-import { TopHeaderPage } from '../TopHeaderPage';
+
+
+var NumberFormat = require('react-number-format');
 
 class InfluencerUpdateCostPage extends Component {
 
@@ -27,35 +21,8 @@ class InfluencerUpdateCostPage extends Component {
             influencer: props.influencers.items
         };
 
-        //this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
-        //this.handleSubmitJobs = this.handleSubmitJobs.bind(this);
     }
-
-    // handleChange(values, e) {
-    //     
-    //     const { influencers } = this.props;
-    //     const { formattedValue, value } = values;
-
-    //     let influencer = influencers.items;
-    //     if (name == 'shareLink') {
-    //         influencer.shareLink = Number(value);
-    //     }
-    //     if (name == 'postImage') {
-    //         influencer.postImage = Number(value);
-    //     }
-    //     if (name == 'video') {
-    //         influencer.video = Number(value);
-    //     }
-    //     if (name == 'liveStream') {
-    //         influencer.liveStream = Number(value);
-    //     }
-    //     if (name == 'checkIn') {
-    //         influencer.checkIn = Number(value);
-    //     }
-    //     //const { influencer } = this.state;
-    //     this.setState({ influencer: influencer });
-    // }
 
     handleSubmit(e) {
         e.preventDefault();
@@ -85,13 +52,8 @@ class InfluencerUpdateCostPage extends Component {
     }
 
     render() {
-        const { influencers } = this.props;
         const userName = this.props.location.state;
         const { submitted, influencer } = this.state;
-        //const influencer = influencers.items ? influencers.items : [];
-        // const rates = influencer.items ?
-        //     influencer.items.influencer[0].bag.contentItems.filter(value => Object.keys(value).length !== 0 && value.contentType == "Rates")
-        //     : [];
 
         return (
             <div>
