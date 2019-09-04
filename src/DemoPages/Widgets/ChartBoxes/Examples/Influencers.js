@@ -279,7 +279,7 @@ class Influencers extends Component {
         });
 
     render() {
-        //debugger;
+        
         const settings = {
             dots: true,
             infinite: true,

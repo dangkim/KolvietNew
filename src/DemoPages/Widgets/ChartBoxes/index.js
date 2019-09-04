@@ -35,7 +35,7 @@ export default class WidgetsChartBoxes extends React.Component {
                     brandLocal = this.props.location.state.Brand;
                 }
             }
-            
+
             if (this.props.location.state.type) {
                 type = this.props.location.state.type;
                 userName = this.props.location.state.userName;
@@ -44,7 +44,7 @@ export default class WidgetsChartBoxes extends React.Component {
             if (this.props.location.state.userName) {
                 userName = this.props.location.state.userName;
             }
-            
+
         }
         this.state = {
             Brand: brandLocal,
@@ -125,12 +125,11 @@ export default class WidgetsChartBoxes extends React.Component {
     //     };
 
     render() {
-        debugger;
         const { Influencer, Brand, Campaign, modalVisible, type, userName } = this.state;
         const tabsContentUpdateCost = [
             {
                 title: 'Vertical Menus',
-                content: <InfluencerUpdateCost userName={userName}/>
+                content: <InfluencerUpdateCost userName={userName} />
             }
         ]
         const tabsContent = [
@@ -172,7 +171,7 @@ export default class WidgetsChartBoxes extends React.Component {
 
         return (
             <Fragment>
-                <Prompt message={this.handleBlockedNavigation} />
+                <Prompt when={!type || type !== "Influencer"} message={this.handleBlockedNavigation} />
                 <Modal isOpen={modalVisible}>
                     <ModalHeader></ModalHeader>
                     <ModalBody>

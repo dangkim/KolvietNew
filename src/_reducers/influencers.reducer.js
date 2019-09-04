@@ -20,7 +20,7 @@ export function influencers(state = {}, action) {
       };
     case infConstants.INF_UPDATE_SUCCESS:
       return {
-        items: action.influencer
+        influencer: action.influencer
       };
     case infConstants.INF_UPDATE_FAILURE:
       return {
@@ -81,7 +81,7 @@ export function influencers(state = {}, action) {
       };
     case infConstants.INFS_GETCOST_SUCCESS:
       return {
-        items: action.influencer
+        influencer: action.influencer
       };
     case infConstants.INFS_GETCOST_REQUEST:
       return {

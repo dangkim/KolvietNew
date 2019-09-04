@@ -39,10 +39,10 @@ class InfluencerUpdateCost extends Component {
 
     handleSubmit(e) {
         e.preventDefault();
-
+        debugger;
         this.setState({ submitted: true });
         const { influencer } = this.state;
-        const { dispatch } = this.props;
+        const { dispatch, userName } = this.props;
 
         if (influencer.shareLink &&
             influencer.postImage &&
@@ -50,21 +50,30 @@ class InfluencerUpdateCost extends Component {
             influencer.checkIn &&
             influencer.video) {
             //let obj = JSON.parse(influencer.items);
-            const { userName } = this.props.location.state;
             dispatch(infActions.updateInfluencers(influencer, userName));
         }
     }
 
     componentDidMount() {
-        debugger;
         const { dispatch, userName } = this.props;
         dispatch(infActions.getCostByUserName(userName));
     }
 
     render() {
-
+        
         const { submitted, influencer } = this.state;
-
+        //let influencerProps = null;
+        // if (this.props.influencers.influencer) {
+        //     influencerProps = {
+        //         shareLink: this.props.influencers.influencer.shareLink? this.props.influencers.influencer.shareLink: this.props.influencers.influencer.ShareLink.Text,
+        //         postImage: this.props.influencers.influencer.postImage? this.props.influencers.influencer.postImage: this.props.influencers.influencer.PostImage.Text,
+        //         video: this.props.influencers.influencer.video? this.props.influencers.influencer.video: this.props.influencers.influencer.Video.Text,
+        //         checkIn: this.props.influencers.influencer.checkIn? this.props.influencers.influencer.checkIn: this.props.influencers.influencer.CheckIn.Text,
+        //         liveStream: this.props.influencers.influencer.liveStream? this.props.influencers.influencer.liveStream: this.props.influencers.influencer.LiveStream.Text
+        //     }
+        // }
+        const influencerProps = this.props.influencers.influencer;
+        debugger;
         return (
             <Fragment>
                 <TransitionGroup component="div">
@@ -82,9 +91,9 @@ class InfluencerUpdateCost extends Component {
                                             <FormGroup>
                                                 <Label for="ShareLink" className=""> <span className="text-danger">*</span> Share Link</Label>
                                                 <div>
-                                                    <NumberFormat className="form-control" id="shareLink" name="shareLink" thousandSeparator={true} suffix={'đ'} value={this.props.influencers.items ? this.props.influencers.items.shareLink : ''} placeholder="Price..." onValueChange={(values) => {
+                                                    <NumberFormat className="form-control" id="shareLink" name="shareLink" thousandSeparator={true} suffix={'đ'} value={influencerProps ? influencerProps.shareLink : ''} placeholder="Price..." onValueChange={(values) => {
                                                         const { value } = values;
-                                                        const influencer = this.props.influencers.items;
+                                                        const influencer = this.props.influencers.influencer;
                                                         if (influencer) {
                                                             influencer.shareLink = value;
                                                             this.setState({ influencer: influencer })
@@ -101,9 +110,9 @@ class InfluencerUpdateCost extends Component {
                                                 <Label for="postImage" className="">
                                                     <span className="text-danger">*</span> Post Image
                                                         </Label>
-                                                <NumberFormat className="form-control" id="postImage" name="postImage" thousandSeparator={true} suffix={'đ'} value={this.props.influencers.items ? this.props.influencers.items.postImage : ''} placeholder="Price..." onValueChange={(values) => {
+                                                <NumberFormat className="form-control" id="postImage" name="postImage" thousandSeparator={true} suffix={'đ'} value={influencerProps ? influencerProps.postImage : ''} placeholder="Price..." onValueChange={(values) => {
                                                     const { value } = values;
-                                                    const influencer = this.props.influencers.items;
+                                                    const influencer = this.props.influencers.influencer;
                                                     if (influencer) {
                                                         influencer.postImage = value;
                                                         this.setState({ influencer: influencer })
@@ -119,9 +128,9 @@ class InfluencerUpdateCost extends Component {
                                                 <Label for="video" className="">
                                                     <span className="text-danger">*</span> Video
                                                         </Label>
-                                                <NumberFormat className="form-control" id="video" name="video" thousandSeparator={true} suffix={'đ'} value={this.props.influencers.items ? this.props.influencers.items.video : ''} placeholder="Price..." onValueChange={(values) => {
+                                                <NumberFormat className="form-control" id="video" name="video" thousandSeparator={true} suffix={'đ'} value={influencerProps ? influencerProps.video : ''} placeholder="Price..." onValueChange={(values) => {
                                                     const { value } = values;
-                                                    const influencer = this.props.influencers.items;
+                                                    const influencer = this.props.influencers.influencer;
                                                     if (influencer) {
                                                         influencer.video = value;
                                                         this.setState({ influencer: influencer })
@@ -136,9 +145,9 @@ class InfluencerUpdateCost extends Component {
                                             <FormGroup>
                                                 <Label for="checkIn" className="">
                                                     <span className="text-danger">*</span> Check In</Label>
-                                                <NumberFormat className="form-control" id="checkIn" name="checkIn" thousandSeparator={true} suffix={'đ'} value={this.props.influencers.items ? this.props.influencers.items.checkIn : ''} placeholder="Price..." onValueChange={(values) => {
+                                                <NumberFormat className="form-control" id="checkIn" name="checkIn" thousandSeparator={true} suffix={'đ'} value={influencerProps ? influencerProps.checkIn : ''} placeholder="Price..." onValueChange={(values) => {
                                                     const { value } = values;
-                                                    const influencer = this.props.influencers.items;
+                                                    const influencer = this.props.influencers.influencer;
                                                     if (influencer) {
                                                         influencer.checkIn = value;
                                                         this.setState({ influencer: influencer })
@@ -153,9 +162,9 @@ class InfluencerUpdateCost extends Component {
                                             <FormGroup>
                                                 <Label for="liveStream" className="">
                                                     <span className="text-danger">*</span> Live Stream</Label>
-                                                <NumberFormat className="form-control" id="liveStream" name="liveStream" thousandSeparator={true} suffix={'đ'} value={this.props.influencers.items ? this.props.influencers.items.liveStream : ''} placeholder="Price..." onValueChange={(values) => {
+                                                <NumberFormat className="form-control" id="liveStream" name="liveStream" thousandSeparator={true} suffix={'đ'} value={influencerProps ? influencerProps.liveStream : ''} placeholder="Price..." onValueChange={(values) => {
                                                     const { value } = values;
-                                                    const influencer = this.props.influencers.items;
+                                                    const influencer = this.props.influencers.influencer;
                                                     if (influencer) {
                                                         influencer.liveStream = value;
                                                         this.setState({ influencer: influencer })
@@ -167,6 +176,7 @@ class InfluencerUpdateCost extends Component {
                                             </FormGroup>
                                         </Col>
                                     </Row>
+                                    <Button onClick={this.handleSubmit} color="primary" className="mt-2">Confirm</Button>
                                 </Form>
                             </CardBody>
                         </Card>

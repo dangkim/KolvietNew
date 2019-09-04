@@ -1,6 +1,6 @@
 import configContent from 'configContent';
 import configOrchardCore from 'configOrchardCore';
-import { authHeader } from '../_helpers';
+import { authHeader, history } from '../_helpers';
 
 var qs = require('qs');
 
@@ -66,9 +66,18 @@ function login(userName, password) {
 }
 
 function logout() {
+    debugger;
     // remove user from local storage to log user out
     localStorage.removeItem('user');
     localStorage.removeItem('token');
+    localStorage.removeItem('campaign');
+    localStorage.removeItem('job');
+    localStorage.removeItem('dateValue');
+    localStorage.removeItem('selectedOptionLocation');
+    localStorage.removeItem('selectedOptionInteresting');
+    localStorage.removeItem('selectedOptionJobCategory');
+    history.index = -1;
+    history.replace({ pathname: '/pages/loginpage' });
 }
 
 function getAll() {
@@ -132,8 +141,7 @@ function handleResponseRegisterUser(response) {
             return Promise.reject(error);
         }
 
-        if(response.status === 204)
-        {
+        if (response.status === 204) {
             const error = response.statusText;
             return Promise.reject(error);
         }

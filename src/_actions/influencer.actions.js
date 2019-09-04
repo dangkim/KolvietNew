@@ -92,7 +92,7 @@ function getAll(first, skip) {
         influencerService.getAll(first, skip)
             .then(
                 influencers => {
-                    
+
                     dispatch(success(influencers.influencer))
                 },
                 error => {
@@ -142,8 +142,8 @@ function getInfluencersByName(first, skip, userName) {
             .then(
                 influencers => dispatch(success(influencers)),
                 error => {
-                    dispatch(failure(error.toString()));
-                    dispatch(alertActions.error(error.toString()));
+                    //dispatch(failure(error.toString()));
+                    //dispatch(alertActions.error(error.toString()));
                     toast.error("Please login again");
                     //history.push('/pages/loginpage');
                     history.replace({ pathname: '/pages/loginpage' });
@@ -181,7 +181,11 @@ function getCostByUserName(userName) {
                 influencer => {
                     dispatch(success(influencer))
                 },
-                error => dispatch(failure(error.toString()))
+                error => {
+                    //dispatch(failure(error.toString()))
+                    toast.error("Please login again");
+                    history.replace({ pathname: '/pages/loginpage' });
+                }
             );
     };
 
@@ -199,10 +203,16 @@ function updateInfluencers(infType, userName) {
         influencerService.updateInfluencers(influencerType)
             .then(
                 infType => {
+                    //dispatch(success(infType));
+                    //get influencer by graplql again
+                    influencerService.getCostByUserName(userName)
+                        .then(
+                            influencer => {
+                                dispatch(success(influencer))
+                            },
+                            error => dispatch(failure(error.toString()))
+                        )
 
-                    dispatch(success(infType));
-                    //history.push('/dashBoard');
-                    //dispatch(alertActions.success('Registration Influencer successful'));
                     toast.success("Update successful");
                 },
                 error => {
