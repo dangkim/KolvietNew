@@ -96,7 +96,7 @@ function getAll(first, skip) {
                     dispatch(success(influencers.influencer))
                 },
                 error => {
-                    dispatch(failure(error.toString()));
+                    //dispatch(failure(error.toString()));
                     //dispatch(alertActions.error(error.toString()));
                     toast.error("Please login again");
                     history.replace({ pathname: '/pages/loginpage' });

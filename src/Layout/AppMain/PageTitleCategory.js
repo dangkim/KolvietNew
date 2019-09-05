@@ -18,9 +18,6 @@ class PageTitleCategory extends Component {
             <div className="app-page-title">
                 <div className="page-title-wrapper">
                     <div className="page-title-heading">
-                    <div className="font-icon-wrapper font-icon-lg">
-                                    <i className="pe-7s-filter icon-gradient bg-warm-flame"> </i>
-                                </div>
                         {/* <div>
                             <CardBody>
                                 <Row>
@@ -34,12 +31,17 @@ class PageTitleCategory extends Component {
                             </CardBody>
                         </div> */}
 
-
-                        {/* <Row>
-                            <div>
-                                {heading}
-                            </div>
-                        </Row> */}
+                        <div
+                            className={cx("page-title-icon", { 'd-none': !enablePageTitleIcon })}>
+                            <i className={icon} />
+                        </div>
+                        <div>
+                            {heading}
+                            {/* <div
+                                className={cx("page-title-subheading", { 'd-none': !enablePageTitleSubheading })}>
+                                {subheading}
+                            </div> */}
+                        </div>
                     </div>
                 </div>
             </div>

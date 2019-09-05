@@ -10,7 +10,6 @@ class PageTitle extends Component {
         let {
             enablePageTitleIcon,
             enablePageTitleSubheading,
-
             heading,
             icon,
             subheading
