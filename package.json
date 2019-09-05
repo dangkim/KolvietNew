@@ -87,6 +87,7 @@
     "react-responsive-tabs": "^3.2.0",
     "react-router-dom": "^5.0.1",
     "react-scroll": "^1.7.10",
+    "react-scroll-up-button": "^1.6.4",
     "react-scrollspy": "^3.3.5",
     "react-select": "^3.0.4",
     "react-simple-maps": "^0.12.1",

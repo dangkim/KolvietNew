@@ -2,7 +2,7 @@ import React, { Fragment } from 'react';
 
 import Tabs from 'react-responsive-tabs';
 
-import PageTitle from '../../../Layout/AppMain/PageTitle';
+import PageTitleCategory from '../../../Layout/AppMain/PageTitleCategory';
 import { history } from '../../../_helpers';
 // Examples
 import BasicExample from './Examples/Basic';
@@ -13,9 +13,9 @@ import { InfluencerDetail } from './Examples/InfluencerDetail';
 import { InfluencerUpdateCost } from './Examples/InfluencerUpdateCost';
 import NavsVertical from '../../Elements/Navs/Examples/NavVertical';
 import {
-    Modal, ModalHeader, ModalBody, ModalFooter, Button,
+    Modal, ModalHeader, ModalBody, ModalFooter, Button, Row, Col
 } from 'reactstrap';
-
+import { VerticleButton as ScrollUpButton } from "react-scroll-up-button";
 import { Prompt } from 'react-router'
 
 export default class WidgetsChartBoxes extends React.Component {
@@ -119,13 +119,9 @@ export default class WidgetsChartBoxes extends React.Component {
                 );
             }
         });
-    // onChangeProp = propsName =>
-    //     evt => {
-    //         this.setState({ [propsName]: evt.target.type === 'checkbox' ? evt.target.checked : +evt.target.value });
-    //     };
 
     render() {
-        const { Influencer, Brand, Campaign, modalVisible, type, userName } = this.state;
+        const { Influencer, Brand, modalVisible, type, userName } = this.state;
         const tabsContentUpdateCost = [
             {
                 title: 'Vertical Menus',
@@ -182,12 +178,13 @@ export default class WidgetsChartBoxes extends React.Component {
                         <Button color="primary" onClick={this.handleConfirmNavigationClick}>Yes</Button>{' '}
                     </ModalFooter>
                 </Modal>
-                <PageTitle
+                <PageTitleCategory
                     heading="Chart Boxes"
                     subheading="These boxes can be used to show numbers and data in a breautiful user friendly way."
                     icon="pe-7s-star icon-gradient bg-ripe-malin"
                 />
                 <Tabs selectedTabKey={this.state.selectedTabKey} tabsWrapperClass="body-tabs body-tabs-layout" transform={false} showInkBar={true} items={getTabs()} />
+                <ScrollUpButton />
             </Fragment>
         );
     }
