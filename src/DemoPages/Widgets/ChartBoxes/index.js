@@ -276,73 +276,73 @@ export default class WidgetsChartBoxes extends React.Component {
                             <CardBody>
                                 <Row>
                                     <Col md="2">
-                                        <div className="font-icon-wrapper text-primary">
+                                        <div className="font-icon-wrapper text-primary" style={{cursor:'pointer'}}>
                                             <FontAwesomeIcon icon={faHamburger} size="4x" />
                                             <p>Food</p>
                                         </div>
                                     </Col>
                                     <Col md="2">
-                                        <div className="font-icon-wrapper text-success">
+                                        <div className="font-icon-wrapper text-success" style={{cursor:'pointer'}}>
                                             <FontAwesomeIcon icon={faMortarPestle} size="4x" />
                                             <p>Cosmetics</p>
                                         </div>
                                     </Col>
                                     <Col md="2">
-                                        <div className="font-icon-wrapper text-danger">
+                                        <div className="font-icon-wrapper text-danger" style={{cursor:'pointer'}}>
                                             <FontAwesomeIcon icon={faTshirt} size="4x" />
                                             <p>Fashion</p>
                                         </div>
                                     </Col>
                                     <Col md="2">
-                                        <div className="font-icon-wrapper text-info">
+                                        <div className="font-icon-wrapper text-info" style={{cursor:'pointer'}}>
                                             <FontAwesomeIcon icon={faRunning} size="4x" />
                                             <p>Sport</p>
                                         </div>
                                     </Col>
                                     <Col md="2">
-                                        <div className="font-icon-wrapper text-warning">
+                                        <div className="font-icon-wrapper text-warning" style={{cursor:'pointer'}}>
                                             <FontAwesomeIcon icon={faPlaneDeparture} size="4x" />
                                             <p>Travel</p>
                                         </div>
                                     </Col>
                                     <Col md="2">
-                                        <div className="font-icon-wrapper text-danger">
+                                        <div className="font-icon-wrapper text-danger" style={{cursor:'pointer'}}>
                                             <FontAwesomeIcon icon={faMicrophoneAlt} size="4x" />
                                             <p>Events-Entertaining</p>
                                         </div>
                                     </Col>
                                     <Col md="2">
-                                        <div className="font-icon-wrapper text-focus">
+                                        <div className="font-icon-wrapper text-focus" style={{cursor:'pointer'}}>
                                             <FontAwesomeIcon icon={faStoreAlt} size="4x" />
                                             <p>HouseWife</p>
                                         </div>
                                     </Col>
                                     <Col md="2">
-                                        <div className="font-icon-wrapper text-info">
+                                        <div className="font-icon-wrapper text-info" style={{cursor:'pointer'}}>
                                             <FontAwesomeIcon icon={faMicrochip} size="4x" />
                                             <p>Technology</p>
                                         </div>
                                     </Col>
                                     <Col md="2">
-                                        <div className="font-icon-wrapper text-alternate">
+                                        <div className="font-icon-wrapper text-alternate" style={{cursor:'pointer'}}>
                                             <FontAwesomeIcon icon={faBlender} size="4x" />
                                             <p>Appliances</p>
                                         </div>
                                     </Col>
                                     <Col md="2">
-                                        <div className="font-icon-wrapper text-primary">
+                                        <div className="font-icon-wrapper text-primary" style={{cursor:'pointer'}}>
                                             <FontAwesomeIcon icon={faLandmark} size="4x" />
                                             <p>Real Estate</p>
                                         </div>
                                     </Col>
                                     <Col md="2">
-                                        <div className="font-icon-wrapper text-secondary">
+                                        <div className="font-icon-wrapper text-secondary" style={{cursor:'pointer'}}>
                                             <FontAwesomeIcon icon={faCouch} size="4x" />
                                             <p>Furniture</p>
                                         </div>
                                     </Col>
                                     <Col md="2">
-                                        <div className="font-icon-wrapper text-success">                                            
+                                        <div className="font-icon-wrapper text-success" style={{cursor:'pointer'}}>                                            
                                             <FontAwesomeIcon icon={faCar} size="4x" />
                                             <FontAwesomeIcon icon={faGamepad} size="3x" />
                                             <p>Auto-Games</p>
