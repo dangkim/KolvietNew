@@ -22,7 +22,16 @@ import { fab } from '@fortawesome/free-brands-svg-icons'
 import {
     faCoffee,
     faMusic,
+    faHamburger,
+    faMortarPestle,
     faCog,
+    faRunning,
+    faPlaneDeparture,
+    faMicrophoneAlt,
+    faStoreAlt,
+    faGuitar,
+    faCompactDisc,
+    faMicrochip,
     faSpinner,
     faQuoteLeft,
     faSquare,
@@ -46,13 +55,30 @@ import {
     faArrowCircleUp,
     faArrowDown,
     faArrowLeft,
+    faMemory,
+    faLandmark,
+    faCouch,
+    faBlenderPhone,
+    faBlender,
+    faGamepad,
+    faCar,
+    faTshirt,
 
 } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 library.add(
     fab,
     faCoffee,
+    faHamburger,
     faMusic,
+    faMortarPestle,
+    faRunning,
+    faPlaneDeparture,
+    faMicrophoneAlt,
+    faStoreAlt,
+    faGuitar,
+    faCompactDisc,
+    faMicrochip,
     faCog,
     faSpinner,
     faQuoteLeft,
@@ -251,107 +277,77 @@ export default class WidgetsChartBoxes extends React.Component {
                                 <Row>
                                     <Col md="2">
                                         <div className="font-icon-wrapper text-primary">
-                                            <FontAwesomeIcon icon={faMusic} size="4x" />
-                                            <p>size="4x"</p>
+                                            <FontAwesomeIcon icon={faHamburger} size="4x" />
+                                            <p>Food</p>
                                         </div>
                                     </Col>
                                     <Col md="2">
                                         <div className="font-icon-wrapper text-success">
-                                            <FontAwesomeIcon icon={faCoffee} size="4x" />
-                                            <p>faCoffee</p>
-                                        </div>
-                                    </Col>
-                                    <Col md="2">
-                                        <div className="font-icon-wrapper text-success">
-                                            <FontAwesomeIcon icon={faCalendarAlt} size="4x" />
-                                            <p>faCalendarAlt</p>
+                                            <FontAwesomeIcon icon={faMortarPestle} size="4x" />
+                                            <p>Cosmetics</p>
                                         </div>
                                     </Col>
                                     <Col md="2">
                                         <div className="font-icon-wrapper text-danger">
-                                            <FontAwesomeIcon
-                                                icon={['fas', 'cog']}
-                                                spin
-                                                fixedWidth={false}
-                                                size="4x"
-                                            />
-                                            <p>size="4x"</p>
+                                            <FontAwesomeIcon icon={faTshirt} size="4x" />
+                                            <p>Fashion</p>
                                         </div>
                                     </Col>
                                     <Col md="2">
                                         <div className="font-icon-wrapper text-info">
-                                            <FontAwesomeIcon
-                                                icon={['fas', 'spinner']}
-                                                pulse
-                                                fixedWidth
-                                                size="4x"
-                                            />
-                                            <p>size="4x"</p>
+                                            <FontAwesomeIcon icon={faRunning} size="4x" />
+                                            <p>Sport</p>
                                         </div>
                                     </Col>
                                     <Col md="2">
                                         <div className="font-icon-wrapper text-warning">
-                                            <FontAwesomeIcon
-                                                icon={['fab', 'internet-explorer'
-                                                ]
-                                                }
-                                                flip="both"
-                                                size="4x"
-                                            />
-                                            <p>size="4x"</p>
+                                            <FontAwesomeIcon icon={faPlaneDeparture} size="4x" />
+                                            <p>Travel</p>
+                                        </div>
+                                    </Col>
+                                    <Col md="2">
+                                        <div className="font-icon-wrapper text-danger">
+                                            <FontAwesomeIcon icon={faMicrophoneAlt} size="4x" />
+                                            <p>Events-Entertaining</p>
+                                        </div>
+                                    </Col>
+                                    <Col md="2">
+                                        <div className="font-icon-wrapper text-focus">
+                                            <FontAwesomeIcon icon={faStoreAlt} size="4x" />
+                                            <p>HouseWife</p>
+                                        </div>
+                                    </Col>
+                                    <Col md="2">
+                                        <div className="font-icon-wrapper text-info">
+                                            <FontAwesomeIcon icon={faMicrochip} size="4x" />
+                                            <p>Technology</p>
+                                        </div>
+                                    </Col>
+                                    <Col md="2">
+                                        <div className="font-icon-wrapper text-alternate">
+                                            <FontAwesomeIcon icon={faBlender} size="4x" />
+                                            <p>Appliances</p>
                                         </div>
                                     </Col>
                                     <Col md="2">
                                         <div className="font-icon-wrapper text-primary">
-                                            <FontAwesomeIcon icon={faMusic} size="4x" />
-                                            <p>size="4x"</p>
+                                            <FontAwesomeIcon icon={faLandmark} size="4x" />
+                                            <p>Real Estate</p>
                                         </div>
                                     </Col>
                                     <Col md="2">
-                                        <div className="font-icon-wrapper text-success">
-                                            <FontAwesomeIcon icon={faCoffee} size="4x" />
-                                            <p>faCoffee</p>
+                                        <div className="font-icon-wrapper text-secondary">
+                                            <FontAwesomeIcon icon={faCouch} size="4x" />
+                                            <p>Furniture</p>
                                         </div>
                                     </Col>
                                     <Col md="2">
-                                        <div className="font-icon-wrapper text-success">
-                                            <FontAwesomeIcon icon={faCalendarAlt} size="4x" />
-                                            <p>faCalendarAlt</p>
+                                        <div className="font-icon-wrapper text-success">                                            
+                                            <FontAwesomeIcon icon={faCar} size="4x" />
+                                            <FontAwesomeIcon icon={faGamepad} size="3x" />
+                                            <p>Auto-Games</p>
                                         </div>
-                                    </Col>
-                                    <Col md="2">
-                                        <div className="font-icon-wrapper text-danger">
-                                            <FontAwesomeIcon
-                                                icon={['fas', 'cog']}
-                                                spin
-                                                fixedWidth={false}
-                                                size="4x"
-                                            />
-                                            <p>size="4x"</p>
-                                        </div>
-                                    </Col>
-                                    <Col md="2">
-                                        <div className="font-icon-wrapper text-info">
-                                            <FontAwesomeIcon
-                                                icon={['fas', 'spinner']}
-                                                pulse
-                                                fixedWidth
-                                                size="4x"
-                                            />
-                                            <p>size="4x"</p>
-                                        </div>
-                                    </Col>
-                                    <Col md="2">
-                                        <div className="font-icon-wrapper text-warning">
-                                            <FontAwesomeIcon
-                                                icon={['fab', 'internet-explorer'
-                                                ]
-                                                }
-                                                flip="both"
-                                                size="4x"
-                                            />
-                                            <p>size="4x"</p>
-                                        </div>
+
                                     </Col>
                                 </Row>
                             </CardBody>
