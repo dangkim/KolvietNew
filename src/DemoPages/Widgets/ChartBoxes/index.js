@@ -21,6 +21,7 @@ import { library } from '@fortawesome/fontawesome-svg-core'
 import { fab } from '@fortawesome/free-brands-svg-icons'
 import {
     faCoffee,
+    faMusic,
     faCog,
     faSpinner,
     faQuoteLeft,
@@ -51,6 +52,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 library.add(
     fab,
     faCoffee,
+    faMusic,
     faCog,
     faSpinner,
     faQuoteLeft,
@@ -249,7 +251,7 @@ export default class WidgetsChartBoxes extends React.Component {
                                 <Row>
                                     <Col md="2">
                                         <div className="font-icon-wrapper text-primary">
-                                            <FontAwesomeIcon icon={['fab', 'font-awesome']} size="4x" />
+                                            <FontAwesomeIcon icon={faMusic} size="4x" />
                                             <p>size="4x"</p>
                                         </div>
                                     </Col>
@@ -298,7 +300,59 @@ export default class WidgetsChartBoxes extends React.Component {
                                             />
                                             <p>size="4x"</p>
                                         </div>
-                                    </Col>                                    
+                                    </Col>
+                                    <Col md="2">
+                                        <div className="font-icon-wrapper text-primary">
+                                            <FontAwesomeIcon icon={faMusic} size="4x" />
+                                            <p>size="4x"</p>
+                                        </div>
+                                    </Col>
+                                    <Col md="2">
+                                        <div className="font-icon-wrapper text-success">
+                                            <FontAwesomeIcon icon={faCoffee} size="4x" />
+                                            <p>faCoffee</p>
+                                        </div>
+                                    </Col>
+                                    <Col md="2">
+                                        <div className="font-icon-wrapper text-success">
+                                            <FontAwesomeIcon icon={faCalendarAlt} size="4x" />
+                                            <p>faCalendarAlt</p>
+                                        </div>
+                                    </Col>
+                                    <Col md="2">
+                                        <div className="font-icon-wrapper text-danger">
+                                            <FontAwesomeIcon
+                                                icon={['fas', 'cog']}
+                                                spin
+                                                fixedWidth={false}
+                                                size="4x"
+                                            />
+                                            <p>size="4x"</p>
+                                        </div>
+                                    </Col>
+                                    <Col md="2">
+                                        <div className="font-icon-wrapper text-info">
+                                            <FontAwesomeIcon
+                                                icon={['fas', 'spinner']}
+                                                pulse
+                                                fixedWidth
+                                                size="4x"
+                                            />
+                                            <p>size="4x"</p>
+                                        </div>
+                                    </Col>
+                                    <Col md="2">
+                                        <div className="font-icon-wrapper text-warning">
+                                            <FontAwesomeIcon
+                                                icon={['fab', 'internet-explorer'
+                                                ]
+                                                }
+                                                flip="both"
+                                                size="4x"
+                                            />
+                                            <p>size="4x"</p>
+                                        </div>
+                                    </Col>
                                 </Row>
                             </CardBody>
                         </Card>
