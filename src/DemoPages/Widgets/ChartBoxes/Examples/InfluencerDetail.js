@@ -20,25 +20,7 @@ import {
     Card,
     CardHeader,
     CardBody,
-    Progress,
-    TabContent,
-    TabPane,
-    Tooltip,
-    UncontrolledButtonDropdown,
-    DropdownToggle,
-    DropdownMenu,
-    Nav,
-    NavItem,
-    NavLink
 } from 'reactstrap';
-
-import {
-    AreaChart, Area, LineChart, Line,
-    ResponsiveContainer,
-    BarChart, Bar,
-    ComposedChart,
-    CartesianGrid
-} from 'recharts';
 
 import {
     faAngleUp,
@@ -73,33 +55,6 @@ import bg1 from '../../../../assets/utils/images/dropdown-header/abstract1.jpg';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { history } from '../../../../_helpers';
 
-const data = [
-    { name: 'Page A', uv: 4000, pv: 2400, amt: 2400 },
-    { name: 'Page B', uv: 3000, pv: 1398, amt: 2210 },
-    { name: 'Page C', uv: 2000, pv: 9800, amt: 2290 },
-    { name: 'Page D', uv: 2780, pv: 3908, amt: 2000 },
-    { name: 'Page E', uv: 1890, pv: 4800, amt: 2181 },
-    { name: 'Page F', uv: 2390, pv: 3800, amt: 2500 },
-    { name: 'Page G', uv: 3490, pv: 4300, amt: 2100 },
-    { name: 'Page C', uv: 2000, pv: 6800, amt: 2290 },
-    { name: 'Page D', uv: 4780, pv: 7908, amt: 2000 },
-    { name: 'Page E', uv: 2890, pv: 9800, amt: 2181 },
-    { name: 'Page F', uv: 1390, pv: 3800, amt: 1500 },
-    { name: 'Page G', uv: 3490, pv: 4300, amt: 2100 },
-];
-
-const data2 = [
-    { name: 'Page A', uv: 5400, pv: 5240, amt: 1240 },
-    { name: 'Page B', uv: 7300, pv: 4139, amt: 3221 },
-    { name: 'Page C', uv: 8200, pv: 7980, amt: 5229 },
-    { name: 'Page D', uv: 6278, pv: 4390, amt: 3200 },
-    { name: 'Page E', uv: 3189, pv: 7480, amt: 6218 },
-    { name: 'Page D', uv: 9478, pv: 6790, amt: 2200 },
-    { name: 'Page E', uv: 1289, pv: 1980, amt: 7218 },
-    { name: 'Page F', uv: 3139, pv: 2380, amt: 5150 },
-    { name: 'Page G', uv: 5349, pv: 3430, amt: 3210 },
-];
-
 class InfluencerDetail extends Component {
     constructor(props) {
         super(props);
@@ -108,37 +63,12 @@ class InfluencerDetail extends Component {
         const today = moment();
 
         this.state = {
-            skip: 0,
-            first: 9,
             searchValue: '',
             cSelected: [],
             dateValue: moment.range(today.clone(), today.clone().add(7, "days"))
         };
 
-        this.handleCheckBoxChange = this.handleCheckBoxChange.bind(this);
-        this.nextPageFluencers = this.nextPageFluencers.bind(this);
-        this.prePageFluencers = this.prePageFluencers.bind(this);
-        this.onChangePage = this.onChangePage.bind(this);
-        this.handleSearch = this.handleSearch.bind(this);
-        this.onCheckboxBtnClick = this.onCheckboxBtnClick.bind(this);
         this.sendData = this.sendData.bind(this);
-        this.gotoDetail = this.gotoDetail.bind(this);
-        this.toggle1 = this.toggle1.bind(this);
-        this.toggle = this.toggle.bind(this);
-    }
-
-    toggle() {
-        this.setState(prevState => ({
-            dropdownOpen: !prevState.dropdownOpen
-        }));
-    }
-
-    toggle1(tab) {
-        if (this.state.activeTab1 !== tab) {
-            this.setState({
-                activeTab1: tab
-            });
-        }
     }
 
     sendData = (tabIndex) => {
@@ -146,92 +76,10 @@ class InfluencerDetail extends Component {
         this.props.parentCallback(tabIndex);
     }
 
-    gotoDetail(selected) {
-        const index = this.state.cSelected.indexOf(selected);
-
-        history.push('/dashboards/basic');
-    }
-
-    onCheckboxBtnClick(selected) {
-        const index = this.state.cSelected.indexOf(selected);
-        if (index < 0) {
-            this.state.cSelected.push(selected);
-        } else {
-            this.state.cSelected.splice(index, 1);
-        }
-
-        this.setState({ cSelected: [...this.state.cSelected] });
-
-        if (this.state.cSelected.length > 1) {
-            this.sendData(1);
-        }
-    }
-
-    nextPageFluencers(skip) {
-        this.setState({ skip: skip + 1 });
-    }
-
-    prePageFluencers() {
-        const { skip } = this.state;
-        if (skip > 0) {
-            this.setState({ skip: skip - 1 });
-        }
-    }
-
-    handleCheckBoxChange(event) {
-
-        const { influencers } = this.props;
-        const { selectedInfluencers } = this.state;
-        const selectedInfluencersLocal = selectedInfluencers;
-
-        const item = event.target.name;
-        const isChecked = event.target.checked;
-
-        this.setState(prevState => ({ checkedInfluencers: prevState.checkedInfluencers.set(item, isChecked) }));
-
-        influencers.items.influencer.map((item, key) => {
-            if (item.contentItemId === event.target.name && isChecked == true) {
-                selectedInfluencersLocal.push(item);
-            }
-            else if (item.contentItemId === event.target.name && isChecked === false) {
-                selectedInfluencersLocal.splice(selectedInfluencersLocal.indexOf(item), 1);
-            }
-        });
-
-        this.setState({ selectedInfluencers: selectedInfluencersLocal })
-    };
-
     componentDidMount() {
         const { dispatch } = this.props;
         //const { first } = this.state;
         //dispatch(infActions.getAll(first, 0));
-    }
-
-    onToggle = () => {
-        const { isOpen } = this.state;
-        this.setState({ isOpen: !isOpen });
-    };
-
-    handleSearch(searchValue) {
-        const { dispatch } = this.props;
-        const { first } = this.state;
-        this.setState({ searchValue: searchValue });
-        if (searchValue !== '') {
-            dispatch(infActions.getInfluencersByName(first, 0, searchValue));
-        } else {
-            dispatch(infActions.getAll(first, 0));
-        }
-    }
-
-    onChangePage(pageOfItems) {
-        const { dispatch } = this.props;
-        const { first, searchValue } = this.state;
-        const length = pageOfItems.length;
-        const currentPage = Math.ceil(pageOfItems[length - 1].id / first);
-
-        dispatch(infActions.getInfluencersByName(first, first * (currentPage - 1), searchValue));
-        // update local state with new page of items
-        this.setState({ pageOfItems });
     }
 
     render() {
@@ -261,18 +109,55 @@ class InfluencerDetail extends Component {
             "bg-tempting-azure",
             "bg-amy-crisp",
         ];
-
-        //const { brand, userName } = this.props.location.state;
-
-        const brandFromLoading = this.props.brands.brand;
         const elements = ['1', '2', '3', '4', '5', '6'];
-        const strOfReaction = Influencer.numberOfReaction;
-        const strOfComment = Influencer.numberOfComment;
-        const strOfShare = Influencer.numberOfShare;
-        const numberOfReaction = strOfReaction.charAt(strOfReaction.length - 1) == 'k' ? (strOfReaction.substring(0, strOfReaction.length - 1)) * 1000 : strOfReaction;
-        const numberOfComment = strOfComment.charAt(strOfComment.length - 1) == 'k' ? (strOfComment.substring(0, strOfComment.length - 1)) * 1000 : strOfComment;
-        const numberOfShare = strOfShare.charAt(strOfShare.length - 1) == 'k' ? (strOfShare.substring(0, strOfShare.length - 1)) * 1000 : strOfShare;
+        const strOfReaction = Influencer ? Influencer.numberOfReaction : '';
+        const strOfComment = Influencer ? Influencer.numberOfComment : '';
+        const strOfShare = Influencer ? Influencer.numberOfShare : '';
+        const numberOfReaction = strOfReaction.charAt(strOfReaction.length - 1) == 'k' ? Number((strOfReaction.substring(0, strOfReaction.length - 1))) * 1000 : Number(strOfReaction);
+        const numberOfComment = strOfComment.charAt(strOfComment.length - 1) == 'k' ? Number((strOfComment.substring(0, strOfComment.length - 1))) * 1000 : Number(strOfComment);
+        const numberOfShare = strOfShare.charAt(strOfShare.length - 1) == 'k' ? Number((strOfShare.substring(0, strOfShare.length - 1))) * 1000 : Number(strOfShare);
         const engagement = numberOfReaction + (numberOfComment * 2) + (numberOfShare * 3)
+
+        const strOfReaction1 = Influencer ? Influencer.post1.numberOfReaction : '';
+        const strOfComment1 = Influencer ? Influencer.post1.numberOfComment : '';
+        const strOfShare1 = Influencer ? Influencer.post1.numberOfShare : '';
+        const numberOfReaction1 = strOfReaction1.charAt(strOfReaction1.length - 1) == 'k' ? Number((strOfReaction1.substring(0, strOfReaction1.length - 1))) * 1000 : Number(strOfReaction1);
+        const numberOfComment1 = strOfComment1.charAt(strOfComment1.length - 1) == 'k' ? Number((strOfComment1.substring(0, strOfComment1.length - 1))) * 1000 : Number(strOfComment1);
+        const numberOfShare1 = strOfShare1.charAt(strOfShare1.length - 1) == 'k' ? Number((strOfShare1.substring(0, strOfShare1.length - 1))) * 1000 : Number(strOfShare1);
+        const engagement1 = numberOfReaction1 + (numberOfComment1 * 2) + (numberOfShare1 * 3)
+
+        const strOfReaction2 = Influencer ? Influencer.post2.numberOfReaction : '';
+        const strOfComment2 = Influencer ? Influencer.post2.numberOfComment : '';
+        const strOfShare2 = Influencer ? Influencer.post2.numberOfShare : '';
+        const numberOfReaction2 = strOfReaction2.charAt(strOfReaction2.length - 2) == 'k' ? Number((strOfReaction2.substring(0, strOfReaction2.length - 1))) * 1000 : Number(strOfReaction2);
+        const numberOfComment2 = strOfComment2.charAt(strOfComment2.length - 2) == 'k' ? Number((strOfComment2.substring(0, strOfComment2.length - 1))) * 1000 : Number(strOfComment2);
+        const numberOfShare2 = strOfShare2.charAt(strOfShare2.length - 2) == 'k' ? Number((strOfShare2.substring(0, strOfShare2.length - 1))) * 1000 : Number(strOfShare2);
+        const engagement2 = numberOfReaction2 + (numberOfComment2 * 2) + (numberOfShare2 * 3)
+
+        const strOfReaction3 = Influencer ? Influencer.post3.numberOfReaction : '';
+        const strOfComment3 = Influencer ? Influencer.post3.numberOfComment : '';
+        const strOfShare3 = Influencer ? Influencer.post3.numberOfShare : '';
+        const numberOfReaction3 = strOfReaction3.charAt(strOfReaction3.length - 2) == 'k' ? Number((strOfReaction3.substring(0, strOfReaction3.length - 1))) * 1000 : Number(strOfReaction3);
+        const numberOfComment3 = strOfComment3.charAt(strOfComment3.length - 2) == 'k' ? Number((strOfComment3.substring(0, strOfComment3.length - 1))) * 1000 : Number(strOfComment3);
+        const numberOfShare3 = strOfShare3.charAt(strOfShare3.length - 2) == 'k' ? Number((strOfShare3.substring(0, strOfShare3.length - 1))) * 1000 : Number(strOfShare3);
+        const engagement3 = numberOfReaction3 + (numberOfComment3 * 2) + (numberOfShare3 * 3)
+
+        const strOfReaction4 = Influencer ? Influencer.post4.numberOfReaction : '';
+        const strOfComment4 = Influencer ? Influencer.post4.numberOfComment : '';
+        const strOfShare4 = Influencer ? Influencer.post4.numberOfShare : '';
+        const numberOfReaction4 = strOfReaction4.charAt(strOfReaction4.length - 1) == 'k' ? Number((strOfReaction4.substring(0, strOfReaction4.length - 1))) * 1000 : Number(strOfReaction4);
+        const numberOfComment4 = strOfComment4.charAt(strOfComment4.length - 1) == 'k' ? Number((strOfComment4.substring(0, strOfComment4.length - 1))) * 1000 : Number(strOfComment4);
+        const numberOfShare4 = strOfShare4.charAt(strOfShare4.length - 1) == 'k' ? Number((strOfShare4.substring(0, strOfShare4.length - 1))) * 1000 : Number(strOfShare4);
+        const engagement4 = numberOfReaction4 + (numberOfComment4 * 2) + (numberOfShare4 * 3)
+
+        const strOfReaction5 = Influencer ? Influencer.post5.numberOfReaction : '';
+        const strOfComment5 = Influencer ? Influencer.post5.numberOfComment : '';
+        const strOfShare5 = Influencer ? Influencer.post5.numberOfShare : '';
+        const numberOfReaction5 = strOfReaction5.charAt(strOfReaction5.length - 1) == 'k' ? Number((strOfReaction5.substring(0, strOfReaction5.length - 1))) * 1000 : Number(strOfReaction5);
+        const numberOfComment5 = strOfComment5.charAt(strOfComment5.length - 1) == 'k' ? Number((strOfComment5.substring(0, strOfComment5.length - 1))) * 1000 : Number(strOfComment5);
+        const numberOfShare5 = strOfShare5.charAt(strOfShare5.length - 1) == 'k' ? Number((strOfShare5.substring(0, strOfShare5.length - 1))) * 1000 : Number(strOfShare5);
+        const engagement5 = numberOfReaction5 + (numberOfComment5 * 2) + (numberOfShare5 * 3)
+
         return (
             <Fragment>
                 <TransitionGroup component="div">
@@ -289,7 +174,7 @@ class InfluencerDetail extends Component {
                                                         <i className="lnr-cog text-primary" />
                                                     </div>
                                                     <div className="widget-numbers">
-                                                        {Influencer.numberOfReaction}
+                                                        {Influencer ? Influencer.numberOfReaction : 0}
                                                     </div>
                                                     <div className="widget-subheading">
                                                         Reactions
@@ -305,7 +190,7 @@ class InfluencerDetail extends Component {
                                                         <i className="lnr-laptop-phone text-danger" />
                                                     </div>
                                                     <div className="widget-numbers">
-                                                        {Influencer.numberOfComment}
+                                                        {Influencer ? Influencer.numberOfComment : 0}
                                                     </div>
                                                     <div className="widget-subheading">
                                                         Comments
@@ -324,7 +209,7 @@ class InfluencerDetail extends Component {
                                                     <i className="lnr-cog icon-gradient bg-arielle-smile" />
                                                 </div>
                                                 <div className="widget-numbers">
-                                                    {Influencer.numberOfShare}
+                                                    {Influencer ? Influencer.numberOfShare : 0}
                                                 </div>
                                                 <div className="widget-subheading">
                                                     Share
@@ -351,8 +236,8 @@ class InfluencerDetail extends Component {
                             <Row>
                                 <Col md="12">
                                     <Card className="main-card mb-3">
-                                        <div className="card-header">Active Users
-                                        <div className="btn-actions-pane-right">
+                                        <div className="card-header">{Influencer ? Influencer.email : ''}
+                                            <div className="btn-actions-pane-right">
                                                 <div role="group" className="btn-group-sm btn-group">
                                                     <button className="active btn btn-info">Last Week</button>
                                                     <button className="btn btn-info">All Month</button>
@@ -363,109 +248,145 @@ class InfluencerDetail extends Component {
                                             <table className="align-middle mb-0 table table-borderless table-striped table-hover">
                                                 <thead>
                                                     <tr>
-                                                        <th className="text-center">#</th>
-                                                        <th>Name</th>
-                                                        <th className="text-center">City</th>
-                                                        <th className="text-center">Status</th>
+                                                        <th className="text-center">Time</th>
+                                                        <th>Status</th>
+                                                        <th className="text-center">Reaction|Comment|Share</th>
+                                                        <th className="text-center">Engagement</th>
                                                         <th className="text-center">Actions</th>
                                                     </tr>
                                                 </thead>
                                                 <tbody>
                                                     <tr>
-                                                        <td className="text-center text-muted">#345</td>
+                                                        <td className="text-center text-muted">{Influencer ? Influencer.post1.time : ''}</td>
                                                         <td>
                                                             <div className="widget-content p-0">
                                                                 <div className="widget-content-wrapper">
-                                                                    <div className="widget-content-left mr-3">
+                                                                    {/* <div className="widget-content-left mr-3">
                                                                         <div className="widget-content-left">
                                                                             <img width={40} className="rounded-circle" src={avatar4} alt="Avatar" />
                                                                         </div>
-                                                                    </div>
+                                                                    </div> */}
                                                                     <div className="widget-content-left flex2">
-                                                                        <div className="widget-heading">John Doe</div>
-                                                                        <div className="widget-subheading opacity-7">Web Developer</div>
+                                                                        <div className="widget-heading">{Influencer ? Influencer.post1.title : ''}</div>
+                                                                        <div className="widget-subheading opacity-7">{Influencer ? Influencer.post1.status : ''}</div>
                                                                     </div>
                                                                 </div>
                                                             </div>
                                                         </td>
-                                                        <td className="text-center">Madrid</td>
                                                         <td className="text-center">
-                                                            <div className="badge badge-warning">Pending</div>
+                                                            <div className="badge badge-primary">{numberOfReaction1}</div>
+                                                            <div className="badge badge-info">{numberOfComment1}</div>
+                                                            <div className="badge badge-alternate">{numberOfShare1}</div>
                                                         </td>
+                                                        <td className="text-center">{engagement1}</td>
                                                         <td className="text-center">
                                                             <button type="button" className="btn btn-primary btn-sm">Details</button>
                                                         </td>
                                                     </tr>
                                                     <tr>
-                                                        <td className="text-center text-muted">#347</td>
+                                                        <td className="text-center text-muted">{Influencer ? Influencer.post2.time : ''}</td>
                                                         <td>
                                                             <div className="widget-content p-0">
                                                                 <div className="widget-content-wrapper">
-                                                                    <div className="widget-content-left mr-3">
+                                                                    {/* <div className="widget-content-left mr-3">
                                                                         <div className="widget-content-left">
-                                                                            <img width={40} className="rounded-circle" src={avatar3} alt="Avatar" />
+                                                                            <img width={40} className="rounded-circle" src={avatar4} alt="Avatar" />
                                                                         </div>
-                                                                    </div>
+                                                                    </div> */}
                                                                     <div className="widget-content-left flex2">
-                                                                        <div className="widget-heading">Ruben Tillman</div>
-                                                                        <div className="widget-subheading opacity-7">Etiam sit amet orci eget</div>
+                                                                        <div className="widget-heading">{Influencer ? Influencer.post2.title : ''}</div>
+                                                                        <div className="widget-subheading opacity-7">{Influencer ? Influencer.post2.status : ''}</div>
                                                                     </div>
                                                                 </div>
                                                             </div>
                                                         </td>
-                                                        <td className="text-center">Berlin</td>
                                                         <td className="text-center">
-                                                            <div className="badge badge-success">Completed</div>
+                                                            <div className="badge badge-primary">{numberOfReaction2}</div>
+                                                            <div className="badge badge-info">{numberOfComment2}</div>
+                                                            <div className="badge badge-alternate">{numberOfShare2}</div>
                                                         </td>
+                                                        <td className="text-center">{engagement2}</td>
                                                         <td className="text-center">
                                                             <button type="button" className="btn btn-primary btn-sm">Details</button>
                                                         </td>
                                                     </tr>
                                                     <tr>
-                                                        <td className="text-center text-muted">#321</td>
+                                                        <td className="text-center text-muted">{Influencer ? Influencer.post3.time : ''}</td>
                                                         <td>
                                                             <div className="widget-content p-0">
                                                                 <div className="widget-content-wrapper">
-                                                                    <div className="widget-content-left mr-3">
+                                                                    {/* <div className="widget-content-left mr-3">
                                                                         <div className="widget-content-left">
-                                                                            <img width={40} className="rounded-circle" src={avatar2} alt="Avatar" />
+                                                                            <img width={40} className="rounded-circle" src={avatar4} alt="Avatar" />
                                                                         </div>
-                                                                    </div>
+                                                                    </div> */}
                                                                     <div className="widget-content-left flex2">
-                                                                        <div className="widget-heading">Elliot Huber</div>
-                                                                        <div className="widget-subheading opacity-7">Lorem ipsum dolor sic</div>
+                                                                        <div className="widget-heading">{Influencer ? Influencer.post3.title : ''}</div>
+                                                                        <div className="widget-subheading opacity-7">{Influencer ? Influencer.post3.status : ''}</div>
                                                                     </div>
                                                                 </div>
                                                             </div>
                                                         </td>
-                                                        <td className="text-center">London</td>
                                                         <td className="text-center">
-                                                            <div className="badge badge-danger">In Progress</div>
+                                                            <div className="badge badge-primary">{numberOfReaction3}</div>
+                                                            <div className="badge badge-info">{numberOfComment3}</div>
+                                                            <div className="badge badge-alternate">{numberOfShare3}</div>
                                                         </td>
+                                                        <td className="text-center">{engagement3}</td>
                                                         <td className="text-center">
                                                             <button type="button" className="btn btn-primary btn-sm">Details</button>
                                                         </td>
                                                     </tr>
                                                     <tr>
-                                                        <td className="text-center text-muted">#55</td>
+                                                        <td className="text-center text-muted">{Influencer ? Influencer.post4.time : ''}</td>
                                                         <td>
                                                             <div className="widget-content p-0">
                                                                 <div className="widget-content-wrapper">
-                                                                    <div className="widget-content-left mr-3">
+                                                                    {/* <div className="widget-content-left mr-3">
                                                                         <div className="widget-content-left">
-                                                                            <img width={40} className="rounded-circle" src={avatar1} alt="Avatar" /></div>
-                                                                    </div>
+                                                                            <img width={40} className="rounded-circle" src={avatar4} alt="Avatar" />
+                                                                        </div>
+                                                                    </div> */}
                                                                     <div className="widget-content-left flex2">
-                                                                        <div className="widget-heading">Vinnie Wagstaff</div>
-                                                                        <div className="widget-subheading opacity-7">UI Designer</div>
+                                                                        <div className="widget-heading">{Influencer ? Influencer.post4.title : ''}</div>
+                                                                        <div className="widget-subheading opacity-7">{Influencer ? Influencer.post4.status : ''}</div>
                                                                     </div>
                                                                 </div>
                                                             </div>
                                                         </td>
-                                                        <td className="text-center">Amsterdam</td>
                                                         <td className="text-center">
-                                                            <div className="badge badge-info">On Hold</div>
+                                                            <div className="badge badge-primary">{numberOfReaction4}</div>
+                                                            <div className="badge badge-info">{numberOfComment4}</div>
+                                                            <div className="badge badge-alternate">{numberOfShare4}</div>
                                                         </td>
+                                                        <td className="text-center">{engagement4}</td>
+                                                        <td className="text-center">
+                                                            <button type="button" className="btn btn-primary btn-sm">Details</button>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td className="text-center text-muted">{Influencer ? Influencer.post5.time : ''}</td>
+                                                        <td>
+                                                            <div className="widget-content p-0">
+                                                                <div className="widget-content-wrapper">
+                                                                    {/* <div className="widget-content-left mr-3">
+                                                                        <div className="widget-content-left">
+                                                                            <img width={40} className="rounded-circle" src={avatar4} alt="Avatar" />
+                                                                        </div>
+                                                                    </div> */}
+                                                                    <div className="widget-content-left flex2">
+                                                                        <div className="widget-heading">{Influencer ? Influencer.post5.title : ''}</div>
+                                                                        <div className="widget-subheading opacity-7">{Influencer ? Influencer.post5.status : ''}</div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </td>
+                                                        <td className="text-center">
+                                                            <div className="badge badge-primary">{numberOfReaction5}</div>
+                                                            <div className="badge badge-info">{numberOfComment5}</div>
+                                                            <div className="badge badge-alternate">{numberOfShare5}</div>
+                                                        </td>
+                                                        <td className="text-center">{engagement5}</td>
                                                         <td className="text-center">
                                                             <button type="button" className="btn btn-primary btn-sm">Details</button>
                                                         </td>

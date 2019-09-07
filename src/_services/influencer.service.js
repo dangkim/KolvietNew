@@ -16,15 +16,9 @@ function getAll(first, skip) {
     const GET_ALL_INFS = `
     {
         influencer(first: `+ first + `, skip: ` + skip + `){
-            author
             checkIn
-            contentItemId
-            contentItemVersionId
-            contentType
-            createdUtc
-            description
-            email
             fullName
+            email
             genderDemorgraphic {
               genderGraphicName
               genderPercentage
@@ -33,13 +27,9 @@ function getAll(first, skip) {
               geoGraphicName
               geoPercentage
             }
-            latest
-            modifiedUtc
             numberOfShare
             numberOfReaction
             numberOfComment
-            owner
-            phone
             ageDemorgraphic {
               ageGraphicsName
               agePercentage
@@ -48,8 +38,56 @@ function getAll(first, skip) {
               paths
               urls
             }
-            published
-            publishedUtc
+            post1 {
+                link
+                numberOfComment
+                numberOfReaction
+                numberOfShare
+                status
+                time
+                title
+                type
+              }
+              post2 {
+                link
+                numberOfComment
+                numberOfReaction
+                numberOfShare
+                status
+                time
+                title
+                type
+              }
+              post3 {
+                link
+                numberOfComment
+                numberOfReaction
+                numberOfShare
+                status
+                time
+                title
+                type
+              }
+              post4 {
+                numberOfComment
+                numberOfReaction
+                link
+                numberOfShare
+                status
+                time
+                title
+                type
+              }
+              post5 {
+                link
+                numberOfComment
+                numberOfReaction
+                numberOfShare
+                status
+                time
+                title
+                type
+              }
           }
     }
     `;
@@ -71,7 +109,7 @@ function getAll(first, skip) {
 function getInfluencersByName(first, skip, userName) {
     const GET_ALL_INFS = `
     {
-        influencer(first: `+ first + `, skip: ` + skip + `, where: {displayText_contains: "`+ userName +`"}){
+        influencer(first: `+ first + `, skip: ` + skip + `, where: {displayText_contains: "` + userName + `"}){
             author
             checkIn
             contentItemId
@@ -287,7 +325,7 @@ function handleTokenContentResponse(response) {
             const error = (data && data.message) || response.statusText;
             return Promise.reject(error);
         }
-        
+
         return data;
     });
 }
@@ -341,12 +379,12 @@ function handleGraphInfResponse(response) {
             // auto logout if 401 response returned from api
             logout();
             //location.reload(true);
-            const error = response.statusText;            
+            const error = response.statusText;
             return Promise.reject(error);
         }
     }
 
-    return response.json().then(text => {        
+    return response.json().then(text => {
         const data = text.data;
         return data;
     });
@@ -355,7 +393,7 @@ function handleGraphInfResponse(response) {
 function handleContentResponse(response) {
     return response.text().then(text => {
         const data = text && JSON.parse(text);
-        
+
         if (!response.ok) {
             if (response.status === 401) {
                 // auto logout if 401 response returned from api
@@ -389,7 +427,7 @@ function handleContentJobsResponse(response) {
     });
 }
 
-function logout() {    
+function logout() {
     debugger;
     // remove user from local storage to log user out
     localStorage.removeItem('user');

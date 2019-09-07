@@ -108,30 +108,31 @@ class Influencers extends Component {
         this.closeModal = this.closeModal.bind(this);
         this.createCampaign = this.createCampaign.bind(this);
         this.loadInfinity = this.loadInfinity.bind(this);
-        // Binds our scroll event handler
-        window.onscroll = () => {
-            debugger;
-            const {
-                loadInfinity,
-                state: {
-                    hasMore,
-                },
-            } = this;
-
-            // Bails early if:
-            // * there's an error
-            // * it's already loading
-            // * there's nothing left to load
-            if (!hasMore) return;
-
-            // Checks that the page has scrolled to the bottom
-            if (window.innerHeight + document.documentElement.scrollTop
-                === document.documentElement.offsetHeight
-            ) {
-                loadInfinity();
-            }
-        };
+        this.handleScroll = this.handleScroll.bind(this);
     }
+
+    handleScroll = () => {
+        //debugger;
+        const {
+            loadInfinity,
+            state: {
+                hasMore,
+            },
+        } = this;
+
+        // Bails early if:
+        // * there's an error
+        // * it's already loading
+        // * there's nothing left to load
+        if (!hasMore) return;
+
+        // Checks that the page has scrolled to the bottom
+        if (window.innerHeight + document.documentElement.scrollTop
+            === document.documentElement.offsetHeight
+        ) {
+            loadInfinity();
+        }
+    };
 
     loadInfinity() {
         const { dispatch, influencers } = this.props;
@@ -218,11 +219,16 @@ class Influencers extends Component {
     componentDidMount() {
         const { dispatch, influencers } = this.props;
         const { first } = this.state;
-        if (!influencers || !influencers.items || influencers.items.length <= 0) {
-
+        window.addEventListener('scroll', this.handleScroll, true);
+        if (!influencers || !influencers.items || influencers.items.length <= 0) {            
             dispatch(infActions.getAll(first, 0));
         }
     }
+
+    componentWillUnmount() {
+        debugger;
+        window.removeEventListener('scroll', this.handleScroll, true);
+      }
 
     handleSearch(searchValue) {
         const { dispatch } = this.props;
@@ -280,7 +286,7 @@ class Influencers extends Component {
         });
 
     render() {
-        
+
         const settings = {
             dots: true,
             infinite: true,
