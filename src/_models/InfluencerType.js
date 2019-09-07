@@ -91,8 +91,25 @@ export function createInfluencer(influencer, userName) {
       }
     }
 
-    
 
+
+    var myJSON = JSON.stringify(influencerType);
+
+    return influencerType;
+  }
+}
+
+export function updateInfluencerCostModel(influencer, userName) {
+  if (influencer) {
+
+    const influencerType = {
+      ContentItemId: influencer.contentItemId,
+      ShareLinkCost: influencer.shareLink,
+      VideoCost: influencer.video,
+      PostImageCost: influencer.postImage,
+      CheckinCost: influencer.checkIn,
+      LiveStreamCost: influencer.liveStream,
+    }
     var myJSON = JSON.stringify(influencerType);
 
     return influencerType;

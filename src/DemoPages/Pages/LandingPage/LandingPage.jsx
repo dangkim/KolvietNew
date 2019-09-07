@@ -3,9 +3,12 @@ import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import bg3 from '../../../assets/utils/images/bg3.jpg'
 import iphone3 from '../../../assets/utils/images/iphone3.png'
-import mac from '../../../assets/utils/images/mac.png'
-import big_logo from '../../../assets/utils/images/big_logo.png'
+import m3 from '../../../assets/utils/images/m3.png'
+import m2 from '../../../assets/utils/images/m2.gif'
+// import mac from '../../../assets/utils/images/mac.png'
+import big_logo from '../../../assets/utils/images/big_logo.jpg'
 import bogolive from '../../../assets/utils/images/bogolive.png'
+import clients from '../../../assets/utils/images/clients.jpg'
 import momo from '../../../assets/utils/images/momo.png'
 import nct from '../../../assets/utils/images/nct.png'
 import sofy from '../../../assets/utils/images/sofy.png'
@@ -71,7 +74,7 @@ class LandingPage extends Component {
                     <div className="container">
                         <div className="navbar-header">
                             <div className="logo-container">
-                                <div className="logo" style={{ border: 'none', width: '150px' }}>
+                                <div className="logo" style={{ border: 'none', width: '150px', borderRadius:'unset' }}>
                                     <img src={big_logo} alt="Kols Viet" />
                                 </div>
                                 {/* <div className="brand">
@@ -114,7 +117,7 @@ class LandingPage extends Component {
                                 KOLV tự tin cung cấp giải pháp Influencer Marketing hiệu quả đối với các nhãn hàng và mang đến nguồn thu nhập thỏa đáng cùng cơ hội trải nghiệm sản phẩm chất lượng cho Influencer. Với đội ngũ nhân sự giàu kinh nghiệm trong lĩnh vực truyền thông cùng nền tảng công nghệ hiện đại được đầu tư và phát triển hơn 2 năm.
                                 <br />
                             </p>
-                            <div className="logos">
+                            {/* <div className="logos">                                
                                 <ul className="list-unstyled">
                                     <li ><img src={bogolive} /></li>
                                     <li ><img src={gkitchen} /></li>
@@ -124,7 +127,7 @@ class LandingPage extends Component {
                                     <li ><img src={vnngaynay} /></li>
                                     <li ><img src={vinaphone} /></li>
                                 </ul>
-                            </div>
+                            </div> */}
                         </div>
                     </div>
                     <div className="section section-presentation">
@@ -137,7 +140,7 @@ class LandingPage extends Component {
                                     </div>
                                 </div>
                                 <div className="col-md-5 col-md-offset-1 hidden-xs">
-                                    <img src={mac} />
+                                    <img src={m2} />
                                 </div>
                             </div>
                         </div>
@@ -152,7 +155,7 @@ class LandingPage extends Component {
                                                 <img src={home_33} alt="" />
                                             </div>
                                             <div className="item active">
-                                                <img src={home_22} alt="" />
+                                                <img src={m3} alt="" />
                                             </div>
                                             <div className="item">
                                                 <img src={home_11} alt="" />

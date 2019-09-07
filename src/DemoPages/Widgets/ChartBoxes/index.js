@@ -222,7 +222,7 @@ export default class WidgetsChartBoxes extends React.Component {
             },
             {
                 title: 'Influencer details',
-                content: <InfluencerDetail />
+                content: <InfluencerDetail  Influencer={Influencer}/>
             },
             {
                 title: 'Vertical Menus',

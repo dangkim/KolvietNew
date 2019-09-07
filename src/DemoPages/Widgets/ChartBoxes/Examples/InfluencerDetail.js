@@ -246,10 +246,10 @@ class InfluencerDetail extends Component {
             slidesToScroll: 1
         };
         const { } = this.state;
-        const { influencers } = this.props;
+        const { influencers, Influencer } = this.props;
         //const infItems = influencers.items ? influencers.items.influencer : [];
         let imgSrc = defaultAvatar;
-
+        debugger;
         const colors = [
             "bg-mean-fruit",
             "bg-tempting-azure",
@@ -266,6 +266,13 @@ class InfluencerDetail extends Component {
 
         const brandFromLoading = this.props.brands.brand;
         const elements = ['1', '2', '3', '4', '5', '6'];
+        const strOfReaction = Influencer.numberOfReaction;
+        const strOfComment = Influencer.numberOfComment;
+        const strOfShare = Influencer.numberOfShare;
+        const numberOfReaction = strOfReaction.charAt(strOfReaction.length - 1) == 'k' ? (strOfReaction.substring(0, strOfReaction.length - 1)) * 1000 : strOfReaction;
+        const numberOfComment = strOfComment.charAt(strOfComment.length - 1) == 'k' ? (strOfComment.substring(0, strOfComment.length - 1)) * 1000 : strOfComment;
+        const numberOfShare = strOfShare.charAt(strOfShare.length - 1) == 'k' ? (strOfShare.substring(0, strOfShare.length - 1)) * 1000 : strOfShare;
+        const engagement = numberOfReaction + (numberOfComment * 2) + (numberOfShare * 3)
         return (
             <Fragment>
                 <TransitionGroup component="div">
@@ -282,15 +289,11 @@ class InfluencerDetail extends Component {
                                                         <i className="lnr-cog text-primary" />
                                                     </div>
                                                     <div className="widget-numbers">
-                                                        45.8k
-                                                </div>
-                                                    <div className="widget-subheading">
-                                                        Total Views
-                                                </div>
-                                                    <div className="widget-description text-success">
-                                                        <FontAwesomeIcon icon={faAngleUp} />
-                                                        <span className="pl-1">175.5%</span>
+                                                        {Influencer.numberOfReaction}
                                                     </div>
+                                                    <div className="widget-subheading">
+                                                        Reactions
+                                                </div>
                                                 </div>
                                             </div>
                                         </Col>
@@ -302,15 +305,11 @@ class InfluencerDetail extends Component {
                                                         <i className="lnr-laptop-phone text-danger" />
                                                     </div>
                                                     <div className="widget-numbers">
-                                                        5.82k
-                                                </div>
-                                                    <div className="widget-subheading">
-                                                        Reports Submitted
-                                                </div>
-                                                    <div className="widget-description text-danger">
-                                                        <FontAwesomeIcon icon={faAngleDown} />
-                                                        <span className="pl-1">54.1%</span>
+                                                        {Influencer.numberOfComment}
                                                     </div>
+                                                    <div className="widget-subheading">
+                                                        Comments
+                                                </div>
                                                 </div>
                                             </div>
                                         </Col>
@@ -325,15 +324,11 @@ class InfluencerDetail extends Component {
                                                     <i className="lnr-cog icon-gradient bg-arielle-smile" />
                                                 </div>
                                                 <div className="widget-numbers">
-                                                    87,4
-                                            </div>
-                                                <div className="widget-subheading">
-                                                    Reports Generated
-                                            </div>
-                                                <div className="widget-description text-white">
-                                                    <FontAwesomeIcon icon={faAngleUp} />
-                                                    <span className="pl-1">54.9%</span>
+                                                    {Influencer.numberOfShare}
                                                 </div>
+                                                <div className="widget-subheading">
+                                                    Share
+                                            </div>
                                             </div>
                                         </Col>
                                         <Col md="6">
@@ -343,15 +338,11 @@ class InfluencerDetail extends Component {
                                                     <i className="lnr-screen icon-gradient bg-warm-flame" />
                                                 </div>
                                                 <div className="widget-numbers">
-                                                    17.2k
-                                            </div>
-                                                <div className="widget-subheading">
-                                                    Profiles
-                                            </div>
-                                                <div className="widget-description text-white">
-                                                    <span className="pr-1">62,7%</span>
-                                                    <FontAwesomeIcon icon={faArrowLeft} />
+                                                    {engagement}
                                                 </div>
+                                                <div className="widget-subheading">
+                                                    Engagement
+                                            </div>
                                             </div>
                                         </Col>
                                     </Row>

@@ -2,7 +2,7 @@ import { infConstants } from '../_constants';
 import { influencerService, userService } from '../_services';
 import { alertActions } from '.';
 import { history } from '../_helpers';
-import { createInfluencer } from '../_models/InfluencerType';
+import { createInfluencer, updateInfluencerCostModel } from '../_models/InfluencerType';
 import { toast } from "react-toastify";
 
 export const infActions = {
@@ -198,7 +198,7 @@ function updateInfluencers(infType, userName) {
     return dispatch => {
         dispatch(request(infType));
 
-        const influencerType = createInfluencer(infType, userName);
+        const influencerType = updateInfluencerCostModel(infType, userName);
 
         influencerService.updateInfluencers(influencerType)
             .then(

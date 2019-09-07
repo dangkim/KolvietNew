@@ -23,7 +23,6 @@ function getAll(first, skip) {
             contentType
             createdUtc
             description
-            displayText
             email
             fullName
             genderDemorgraphic {
@@ -80,8 +79,6 @@ function getInfluencersByName(first, skip, userName) {
             contentType
             createdUtc
             description
-            displayText
-            email
             fullName
             genderDemorgraphic {
               genderGraphicName

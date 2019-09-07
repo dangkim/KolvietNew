@@ -54,7 +54,7 @@ class InfluencerUpdateCostPage extends Component {
     render() {
         const userName = this.props.location.state;
         const { submitted, influencer } = this.state;
-
+        const { loading } = this.props;
         return (
             <div>
                 <TopHeaderPage />
@@ -127,7 +127,7 @@ class InfluencerUpdateCostPage extends Component {
                                                         <div className="help-block" style={{ color: 'red' }}>Price is required</div>
                                                     }
                                                 </div>
-                                            </div>                                            
+                                            </div>
                                             <div className="col-md-3">
                                                 <label htmlFor="checkIn">Check In</label>
                                                 <div>
@@ -165,6 +165,10 @@ class InfluencerUpdateCostPage extends Component {
                                         <div className="d-flex align-items-center">
                                             <div className="ml-auto">
                                                 <button onClick={this.handleSubmit} className="btn btn-primary btn-lg">Confirm</button>
+                                                {
+                                                    (this.props.influencers.loading) &&
+                                                    <img src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA==" />
+                                                }
                                             </div>
                                         </div>
                                     </form>

@@ -110,6 +110,7 @@ class Influencers extends Component {
         this.loadInfinity = this.loadInfinity.bind(this);
         // Binds our scroll event handler
         window.onscroll = () => {
+            debugger;
             const {
                 loadInfinity,
                 state: {
