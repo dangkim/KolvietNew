@@ -1,5 +1,5 @@
 import React, { Fragment } from 'react';
-
+import { connect } from 'react-redux';
 import Tabs from 'react-responsive-tabs';
 
 import PageTitleCategory from '../../../Layout/AppMain/PageTitleCategory';
@@ -15,97 +15,28 @@ import { CompareInfluencers } from './Examples/CompareInfluencers';
 import {
     Modal, ModalHeader, ModalBody, ModalFooter, Button, Row, Col, Card, CardBody
 } from 'reactstrap';
-import ScrollUpButton  from "react-scroll-up-button";
+import ScrollUpButton from "react-scroll-up-button";
 import { Prompt } from 'react-router'
-import { library } from '@fortawesome/fontawesome-svg-core'
 import { fab } from '@fortawesome/free-brands-svg-icons'
 import {
-    faCoffee,
-    faMusic,
     faHamburger,
     faMortarPestle,
-    faCog,
     faRunning,
     faPlaneDeparture,
     faMicrophoneAlt,
     faStoreAlt,
-    faGuitar,
-    faCompactDisc,
     faMicrochip,
-    faSpinner,
-    faQuoteLeft,
-    faSquare,
-    faCheckSquare,
-    faAngleLeft,
-    faAngleRight,
-    faAngleUp,
-    faAngry,
-    faAnkh,
-    faAppleAlt,
-    faArchive,
-    faCalendarAlt,
-    faArchway,
-    faArrowAltCircleDown,
-    faArrowAltCircleLeft,
-    faArrowAltCircleRight,
-    faArrowAltCircleUp,
-    faArrowCircleDown,
-    faArrowCircleLeft,
-    faArrowCircleRight,
-    faArrowCircleUp,
-    faArrowDown,
-    faArrowLeft,
-    faMemory,
     faLandmark,
     faCouch,
-    faBlenderPhone,
     faBlender,
     faGamepad,
     faCar,
     faTshirt,
-
 } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-library.add(
-    fab,
-    faCoffee,
-    faHamburger,
-    faMusic,
-    faMortarPestle,
-    faRunning,
-    faPlaneDeparture,
-    faMicrophoneAlt,
-    faStoreAlt,
-    faGuitar,
-    faCompactDisc,
-    faMicrochip,
-    faCog,
-    faSpinner,
-    faQuoteLeft,
-    faSquare,
-    faCheckSquare,
-    faAngleLeft,
-    faCalendarAlt,
-    faAngleRight,
-    faAngleUp,
-    faAngry,
-    faAnkh,
-    faAppleAlt,
-    faArchive,
-    faArchway,
-    faArrowAltCircleDown,
-    faArrowAltCircleLeft,
-    faArrowAltCircleRight,
-    faArrowAltCircleUp,
-    faArrowCircleDown,
-    faArrowCircleLeft,
-    faArrowCircleRight,
-    faArrowCircleUp,
-    faArrowDown,
-    faArrowLeft,
-);
+import { infActions } from '../../../_actions';
 
-export default class WidgetsChartBoxes extends React.Component {
+class WidgetsChartBoxes extends React.Component {
 
     constructor(props) {
         super(props);
@@ -142,6 +73,10 @@ export default class WidgetsChartBoxes extends React.Component {
             ComparedInfluencers: [],
             confirmedNavigation: false,
             modalVisible: false,
+            FilterInfluencers: [],
+            first: 9,
+            SearchValue: '',
+            cSelected: [],
             lastLocation: "/widgets/dashboard-boxes",
         };
 
@@ -150,6 +85,17 @@ export default class WidgetsChartBoxes extends React.Component {
         this.handleBlockedNavigation = this.handleBlockedNavigation.bind(this);
         this.showModal = this.showModal.bind(this);
         this.closeModal = this.closeModal.bind(this);
+        this.filterCategory = this.filterCategory.bind(this);
+        this.onCheckboxBtnClick = this.onCheckboxBtnClick.bind(this);
+    }
+
+    filterCategory(event) {
+        const { first } = this.state;
+        const { dispatch } = this.props;
+        const searchValue = (event.target.value);
+        this.setState({ SearchValue: searchValue });
+
+        dispatch(infActions.getInfluencersByName(first, 0, searchValue));
     }
 
     callbackFunction = (selectedTabKey, childData, index) => {
@@ -207,8 +153,40 @@ export default class WidgetsChartBoxes extends React.Component {
             }
         });
 
+    onCheckboxBtnClick(selected1, selected2) {
+        const { cSelected, first, SearchValue } = this.state;
+        let index = cSelected.indexOf(selected1);
+        if (index < 0) {
+            cSelected.push(selected1);
+        } else {
+            cSelected.splice(index, 1);
+        }
+
+        if (selected2 !== '') {
+            index = cSelected.indexOf(selected2);
+            if (index < 0) {
+                cSelected.push(selected2);
+            } else {
+                cSelected.splice(index, 1);
+            }
+        }
+
+        this.setState({ cSelected: [...cSelected] });
+
+        if (cSelected.length > 1) {
+            let items = [];
+            cSelected.map((item, key) => {
+                items.push(influencers.items[item]);
+            })
+
+            infActions.getInfluencersByCategory([], first, 0, items);
+        }
+    }
+
     render() {
-        const { Influencer, Brand, modalVisible, type, userName, ComparedInfluencers } = this.state;
+        const { cSelected, Influencer, Brand, modalVisible, type, userName, ComparedInfluencers } = this.state;
+        const { FilterInfluencers, SearchValue } = this.props;
+        
         const tabsContentUpdateCost = [
             {
                 title: 'Vertical Menus',
@@ -218,7 +196,7 @@ export default class WidgetsChartBoxes extends React.Component {
         const tabsContent = [
             {
                 title: 'Influencers',
-                content: <Influencers parentCallback={this.callbackFunction} />
+                content: <Influencers SearchValue={SearchValue} FilterInfluencers={FilterInfluencers} parentCallback={this.callbackFunction} />
             },
             {
                 title: 'Influencer details',
@@ -233,6 +211,15 @@ export default class WidgetsChartBoxes extends React.Component {
                 content: <CreateCampaign Brand={Brand} Influencer={Influencer} />
             },
         ]
+
+        const clickedStyle = {
+            color: '#B1BBC4',
+            cursor: 'pointer',
+        };
+
+        const noClickedStyle = {
+            cursor: 'pointer',
+        };
 
         const getTabs = () => {
 
@@ -276,73 +263,85 @@ export default class WidgetsChartBoxes extends React.Component {
                             <CardBody>
                                 <Row>
                                     <Col md="2">
-                                        <div className="font-icon-wrapper text-primary" style={{ cursor: 'pointer' }}>
+                                        <div onClick={() => this.onCheckboxBtnClick('Food', '')}
+                                            className={"font-icon-wrapper" + (!cSelected.includes('Food') ? " text-primary" : '')}>
                                             <FontAwesomeIcon icon={faHamburger} size="4x" />
                                             <p>Food</p>
                                         </div>
                                     </Col>
                                     <Col md="2">
-                                        <div className="font-icon-wrapper text-success" style={{ cursor: 'pointer' }}>
+                                        <div onClick={() => this.onCheckboxBtnClick('Cosmetics', '')}
+                                            className={"font-icon-wrapper" + (!cSelected.includes('Cosmetics') ? " text-success" : '')}>
                                             <FontAwesomeIcon icon={faMortarPestle} size="4x" />
                                             <p>Cosmetics</p>
                                         </div>
                                     </Col>
                                     <Col md="2">
-                                        <div className="font-icon-wrapper text-danger" style={{ cursor: 'pointer' }}>
+                                        <div onClick={() => this.onCheckboxBtnClick('Fashion', '')}
+                                            className={"font-icon-wrapper" + (!cSelected.includes('Fashion') ? " text-danger" : '')}>
                                             <FontAwesomeIcon icon={faTshirt} size="4x" />
                                             <p>Fashion</p>
                                         </div>
                                     </Col>
                                     <Col md="2">
-                                        <div className="font-icon-wrapper text-info" style={{ cursor: 'pointer' }}>
+                                        <div onClick={() => this.onCheckboxBtnClick('Sport', '')}
+                                            className={"font-icon-wrapper" + (!cSelected.includes('Sport') ? " text-info" : '')}>
                                             <FontAwesomeIcon icon={faRunning} size="4x" />
                                             <p>Sport</p>
                                         </div>
                                     </Col>
                                     <Col md="2">
-                                        <div className="font-icon-wrapper text-warning" style={{ cursor: 'pointer' }}>
+                                        <div onClick={() => this.onCheckboxBtnClick('Travel', '')}
+                                            className={"font-icon-wrapper" + (!cSelected.includes('Travel') ? " text-warning" : '')}>
                                             <FontAwesomeIcon icon={faPlaneDeparture} size="4x" />
                                             <p>Travel</p>
                                         </div>
                                     </Col>
                                     <Col md="2">
-                                        <div className="font-icon-wrapper text-danger" style={{ cursor: 'pointer' }}>
+                                        <div onClick={() => this.onCheckboxBtnClick('Events', 'Entertaining')}
+                                            className={"font-icon-wrapper" + (!cSelected.includes('Events') || !cSelected.includes('Events') ? " text-danger" : '')}>
                                             <FontAwesomeIcon icon={faMicrophoneAlt} size="4x" />
                                             <p>Events-Entertaining</p>
                                         </div>
                                     </Col>
                                     <Col md="2">
-                                        <div className="font-icon-wrapper text-focus" style={{ cursor: 'pointer' }}>
+                                        <div onClick={() => this.onCheckboxBtnClick('HouseWife', '')}
+                                            className={"font-icon-wrapper" + (!cSelected.includes('HouseWife') ? " text-focus" : '')}>
                                             <FontAwesomeIcon icon={faStoreAlt} size="4x" />
                                             <p>HouseWife</p>
                                         </div>
                                     </Col>
                                     <Col md="2">
-                                        <div className="font-icon-wrapper text-info" style={{ cursor: 'pointer' }}>
+                                        <div onClick={() => this.onCheckboxBtnClick('Technology', '')}
+                                            className={"font-icon-wrapper" + (!cSelected.includes('Technology') ? " text-info" : '')}>
                                             <FontAwesomeIcon icon={faMicrochip} size="4x" />
                                             <p>Technology</p>
                                         </div>
                                     </Col>
                                     <Col md="2">
-                                        <div className="font-icon-wrapper text-alternate" style={{ cursor: 'pointer' }}>
+                                        <div onClick={() => this.onCheckboxBtnClick('Appliances', '')}
+                                            className={"font-icon-wrapper" + (!cSelected.includes('Appliances') ? " text-alternate" : '')}>
                                             <FontAwesomeIcon icon={faBlender} size="4x" />
                                             <p>Appliances</p>
                                         </div>
                                     </Col>
                                     <Col md="2">
-                                        <div className="font-icon-wrapper text-primary" style={{ cursor: 'pointer' }}>
+                                        <div onClick={() => this.onCheckboxBtnClick('Real Estate', '')}
+                                            className={"font-icon-wrapper" + (!cSelected.includes('Real Estate') ? " text-primary" : '')}>
                                             <FontAwesomeIcon icon={faLandmark} size="4x" />
                                             <p>Real Estate</p>
                                         </div>
                                     </Col>
                                     <Col md="2">
-                                        <div className="font-icon-wrapper text-secondary" style={{ cursor: 'pointer' }}>
+                                        <div onClick={() => this.onCheckboxBtnClick('Furniture', '')}
+                                            className={"font-icon-wrapper" + (!cSelected.includes('Furniture') ? " text-secondary" : '')}>
                                             <FontAwesomeIcon icon={faCouch} size="4x" />
                                             <p>Furniture</p>
                                         </div>
                                     </Col>
                                     <Col md="2">
-                                        <div className="font-icon-wrapper text-success" style={{ cursor: 'pointer' }}>
+                                        <div onClick={() => this.onCheckboxBtnClick('Auto', 'Games')}
+                                            className={"font-icon-wrapper" + (!cSelected.includes('Auto') || !cSelected.includes('Games') ? " text-success" : '')}>
                                             <FontAwesomeIcon icon={faCar} size="4x" />
                                             <FontAwesomeIcon icon={faGamepad} size="3x" />
                                             <p>Auto-Games</p>
@@ -361,3 +360,22 @@ export default class WidgetsChartBoxes extends React.Component {
         );
     }
 }
+
+function mapStateToProps(state) {
+
+    const { campaigns, influencers, locations, interestings, jobCategories, jobs, brands } = state;
+    //const { brand } = influencers;
+    return {
+        //loggingIn,
+        brands,
+        jobs,
+        jobCategories,
+        interestings,
+        locations,
+        campaigns,
+        influencers
+    };
+}
+
+const connectedWidgetsChartBoxes = connect(mapStateToProps)(WidgetsChartBoxes);
+export { connectedWidgetsChartBoxes as WidgetsChartBoxes };

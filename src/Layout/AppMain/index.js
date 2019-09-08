@@ -7,7 +7,7 @@ import {
 
 const Dashboards = lazy(() => import('../../DemoPages/Dashboards'));
 
-const Widgets = lazy(() => import('../../DemoPages/Widgets'));
+const connectedWidgets = lazy(() => import('../../DemoPages/Widgets'));
 const Elements = lazy(() => import('../../DemoPages/Elements'));
 const Components = lazy(() => import('../../DemoPages/Components'));
 const Pages = lazy(() => import('../../DemoPages/Pages'));
@@ -147,7 +147,7 @@ const AppMain = () => {
                     </div>
                 </div>
             }>
-                <Route path="/widgets" component={Widgets} />
+                <Route path="/widgets" component={connectedWidgets} />
             </Suspense>
 
             {/* Dashboards */}

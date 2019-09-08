@@ -4,42 +4,11 @@ import {
     CSSTransition,
     TransitionGroup,
 } from 'react-transition-group';
-import { Prompt } from 'react-router'
-import city from '../../../../assets//utils//images/originals/city.jpg'
-import citynights from '../../../../assets/utils/images/originals/citynights.jpg'
-import citydark from '../../../../assets/utils/images/originals/citydark.jpg'
-import Slider from "react-slick";
-
-import ReactPlayer from 'react-player';
-
-import classnames from 'classnames';
 
 import {
     Row, Col, ButtonGroup,
-    Button,
-    Card,
-    CardHeader,
-    CardBody,
-    Progress,
-    TabContent,
-    TabPane,
-    Tooltip,
-    UncontrolledButtonDropdown,
-    DropdownToggle,
-    DropdownMenu,
-    Nav,
-    NavItem,
-    NavLink,
-    Modal, ModalHeader, ModalBody, ModalFooter
+    Button
 } from 'reactstrap';
-
-import {
-    AreaChart, Area, LineChart, Line,
-    ResponsiveContainer,
-    BarChart, Bar,
-    ComposedChart,
-    CartesianGrid
-} from 'recharts';
 
 import {
     faAngleUp,
@@ -55,7 +24,7 @@ import avatar2 from '../../../../assets/utils/images/avatars/2.jpg';
 import avatar3 from '../../../../assets/utils/images/avatars/3.jpg';
 import avatar4 from '../../../../assets/utils/images/avatars/4.jpg';
 
-import { infActions, brandActions } from '../../../../_actions';
+import { infActions } from '../../../../_actions';
 import Select from 'react-select';
 
 import defaultAvatar from '../../../../assets/utils/images/avatars/default.jpg'
@@ -63,13 +32,7 @@ import defaultAvatar from '../../../../assets/utils/images/avatars/default.jpg'
 import originalMoment from "moment";
 import { extendMoment } from "moment-range";
 import 'react-daterange-picker/dist/css/react-calendar.css'
-import JwPagination from 'jw-react-pagination';
-//import { SearchBox } from '../SearchBox';
-import cx from 'classnames';
 import Skeleton, { SkeletonTheme } from 'react-loading-skeleton';
-import new_logo from '../../../../assets/utils/images/new_logo.png'
-
-import bg1 from '../../../../assets/utils/images/dropdown-header/abstract1.jpg';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { history } from '../../../../_helpers';
@@ -80,15 +43,11 @@ class Influencers extends Component {
         const moment = extendMoment(originalMoment);
 
         const today = moment();
-        //const startDate = today;
-        //const dateValue = today;
-        // an example array of items to be paged
-        var exampleItems = [...Array(45).keys()].map(i => ({ id: (i + 1), name: 'Item ' + (i + 1) }));
 
         this.state = {
             skip: 0,
             first: 9,
-            searchValue: '',
+            searchValue: props.SearchValue,
             cSelected: [],
             hasMore: true,
             dateValue: moment.range(today.clone(), today.clone().add(7, "days")),
@@ -135,14 +94,24 @@ class Influencers extends Component {
     };
 
     loadInfinity() {
-        const { dispatch, influencers } = this.props;
-        const { first, hasMore } = this.state;
-        const infItems = influencers.items ? influencers.items : [];
-        if (infItems.length >= 45) {
-            this.setState = ({ hasMore: false });
-        }
-        else {
-            dispatch(infActions.infiniteScrollLoader(infItems, first, infItems.length));
+        const { dispatch, influencers, FilterInfluencers } = this.props;
+        //const influencersLocal = (FilterInfluencers && FilterInfluencers.length > 0) ? FilterInfluencers : influencers;
+        //debugger;
+        const { first, hasMore, searchValue } = this.state;
+        const influencerItems = (influencers && influencers.items) ? influencers.items : [];
+        const influencersLocal = (FilterInfluencers && FilterInfluencers.length > 0) ? FilterInfluencers : influencerItems;
+
+        const infItems = influencersLocal;
+        //const infItems = influencersLocal.items ? influencersLocal.items : [];
+
+        if (infItems.length < 45) {
+            //dispatch(infActions.infiniteScrollLoader(infItems, first, infItems.length));
+            if (searchValue && searchValue !== '') {
+                dispatch(infActions.getInfluencersByCategory(infItems, first, infItems.length, SearchValue));
+            }
+            else {
+                dispatch(infActions.infiniteScrollLoader(infItems, first, infItems.length));
+            }
         }
     }
 
@@ -217,18 +186,24 @@ class Influencers extends Component {
     };
 
     componentDidMount() {
-        const { dispatch, influencers } = this.props;
-        const { first } = this.state;
+        debugger;
+        const { dispatch, influencers, FilterInfluencers } = this.props;
+        const { first, searchValue } = this.state;        
         window.addEventListener('scroll', this.handleScroll, true);
-        if (!influencers || !influencers.items || influencers.items.length <= 0) {            
-            dispatch(infActions.getAll(first, 0));
+
+        const influencerItems = (influencers && influencers.items) ? influencers.items : [];
+        const influencersLocal = (FilterInfluencers && FilterInfluencers.length > 0) ? FilterInfluencers : influencerItems;
+
+        if (searchValue !== '' || influencersLocal.length <= 0) {
+            
+            dispatch(infActions.getInfluencersByName(first, 0, searchValue));
         }
+
     }
 
     componentWillUnmount() {
-        debugger;
         window.removeEventListener('scroll', this.handleScroll, true);
-      }
+    }
 
     handleSearch(searchValue) {
         const { dispatch } = this.props;
@@ -297,9 +272,13 @@ class Influencers extends Component {
             slidesToScroll: 1
         };
         const { modalVisible } = this.state;
-        const { influencers, loading } = this.props;
-        const infItems = influencers.items ? influencers.items : [];
-        let imgSrc = defaultAvatar;
+        const { influencers, SearchValue, FilterInfluencers } = this.props;
+
+        const influencerItems = (influencers && influencers.items) ? influencers.items : [];
+        const influencersLocal = (FilterInfluencers && FilterInfluencers.length > 0) ? FilterInfluencers : influencerItems;
+
+        const infItems = influencersLocal;
+        //let imgSrc = defaultAvatar;
 
         const colors = [
             "bg-mean-fruit",
@@ -324,29 +303,31 @@ class Influencers extends Component {
                                     <Row>
                                         {
                                             infItems.map((value, index) => {
+                                                const strOfReaction = value ? value.numberOfReaction : '';
+                                                const strOfComment = value ? value.numberOfComment : '';
+                                                const strOfShare = value ? value.numberOfShare : '';
+                                                const numberOfReaction = strOfReaction.charAt(strOfReaction.length - 1) == 'k' ? Number((strOfReaction.substring(0, strOfReaction.length - 1))) * 1000 : Number(strOfReaction);
+                                                const numberOfComment = strOfComment.charAt(strOfComment.length - 1) == 'k' ? Number((strOfComment.substring(0, strOfComment.length - 1))) * 1000 : Number(strOfComment);
+                                                const numberOfShare = strOfShare.charAt(strOfShare.length - 1) == 'k' ? Number((strOfShare.substring(0, strOfShare.length - 1))) * 1000 : Number(strOfShare);
+                                                const engagement = numberOfReaction + (numberOfComment * 2) + (numberOfShare * 3)
                                                 return (
                                                     <Col key={index} md="4">
-                                                        <div className="card mb-3 bg-success widget-chart text-white card-border">
-                                                            <div className="icon-wrapper rounded-circle">
-                                                                <div className="icon-wrapper-bg bg-white opacity-10" />
-                                                                <i className="lnr-screen text-success" />
+                                                        <div className="card mb-3 widget-chart">
+                                                            <div className="">
+                                                                <img className="rounded-circle" style={{ maxHeight: '120px', maxWidth: '120px' }} src={"https://scontent.fmnl5-1.fna.fbcdn.net/v/t1.0-9/70319472_2365613000221954_4395913428481343488_n.jpg?_nc_cat=101&_nc_oc=AQnhNDfPSp1aIMK6kHr6rc9rSa8O-844fpoxAxf6OUz8nVz9Urgme625hqWEzKeTQ0k&_nc_ht=scontent.fmnl5-1.fna&oh=b43bb96b3f1dbfd01737c5098963caf8&oe=5DFD499C"} />
                                                             </div>
                                                             <div className="widget-numbers">
-                                                                17.2k
-                                                    </div>
+                                                                {engagement}
+                                                            </div>
                                                             <div className="widget-subheading">
-                                                                Profiles
-                                                    </div>
-                                                            <div className="widget-description text-white">
-                                                                <span className="pr-1">175.5%</span>
-                                                                <FontAwesomeIcon icon={faArrowLeft} />
+                                                                Engagement
                                                             </div>
                                                             <div className="divider" />
                                                             <ButtonGroup>
-                                                                <Button color="success" onClick={() => this.gotoDetail(index)}>Detail</Button>
-                                                                <Button color="alternate" onClick={() => this.onCheckboxBtnClick(index)}
+                                                                <Button color="info" onClick={() => this.gotoDetail(index)}>Detail</Button>
+                                                                <Button color="success" onClick={() => this.onCheckboxBtnClick(index)}
                                                                     active={this.state.cSelected.includes(index)}>Compare</Button>
-                                                                <Button color="primary" onClick={() => this.createCampaign(index)}>Campaign</Button>
+                                                                <Button color="warning" onClick={() => this.createCampaign(index)}>Campaign</Button>
                                                             </ButtonGroup>
                                                         </div>
                                                     </Col>

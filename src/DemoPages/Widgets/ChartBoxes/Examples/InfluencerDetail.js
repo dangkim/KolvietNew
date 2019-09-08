@@ -5,9 +5,6 @@ import {
     TransitionGroup,
 } from 'react-transition-group';
 
-import city from '../../../../assets//utils//images/originals/city.jpg'
-import citynights from '../../../../assets/utils/images/originals/citynights.jpg'
-import citydark from '../../../../assets/utils/images/originals/citydark.jpg'
 import Slider from "react-slick";
 
 import ReactPlayer from 'react-player';
@@ -22,38 +19,11 @@ import {
     CardBody,
 } from 'reactstrap';
 
-import {
-    faAngleUp,
-    faAngleDown,
-    faArrowLeft,
-    faArrowRight,
-    faEllipsisH,
-    faArrowUp,
-} from '@fortawesome/free-solid-svg-icons';
-
-import avatar1 from '../../../../assets/utils/images/avatars/1.jpg';
-import avatar2 from '../../../../assets/utils/images/avatars/2.jpg';
-import avatar3 from '../../../../assets/utils/images/avatars/3.jpg';
-import avatar4 from '../../../../assets/utils/images/avatars/4.jpg';
-
-import { infActions, brandActions } from '../../../../_actions';
-import Select from 'react-select';
-
 import defaultAvatar from '../../../../assets/utils/images/avatars/default.jpg'
 
 import originalMoment from "moment";
 import { extendMoment } from "moment-range";
 import 'react-daterange-picker/dist/css/react-calendar.css'
-import JwPagination from 'jw-react-pagination';
-//import { SearchBox } from '../SearchBox';
-import cx from 'classnames';
-import Skeleton from 'react-loading-skeleton';
-import new_logo from '../../../../assets/utils/images/new_logo.png'
-
-import bg1 from '../../../../assets/utils/images/dropdown-header/abstract1.jpg';
-
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { history } from '../../../../_helpers';
 
 class InfluencerDetail extends Component {
     constructor(props) {
@@ -73,23 +43,18 @@ class InfluencerDetail extends Component {
     }
 
     nextVideo(event) {
-        debugger;
-        const { Influencer } = this.props
         const { currentVideoIndex } = this.state;
         const nextVideoIndex =  currentVideoIndex + Number(event.target.value);
-        //const urls = Influencer.videoLink.urls;
         this.setState({ currentVideoIndex: nextVideoIndex });
-        //return (urls[nextVideoIndex]);
     }
 
-    componentDidMount() {
-        const { dispatch } = this.props;
+    //componentDidMount() {
+        //const { dispatch } = this.props;
         //const { first } = this.state;
         //dispatch(infActions.getAll(first, 0));
-    }
+    //}
 
     render() {
-        debugger;
         const settings = {
             dots: true,
             infinite: true,

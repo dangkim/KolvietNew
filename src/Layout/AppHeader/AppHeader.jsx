@@ -22,10 +22,16 @@ import { UserBox } from './Components/UserBox/UserBox';
 
 class AppHeader extends React.Component {
 
-    state = {
-        showList: true,
-        highlightedHobby: false
-    };
+    constructor(props) {
+        super(props);
+
+        this.state = {
+            showList: true,
+            highlightedHobby: false
+        };
+
+        this.sendData = this.sendData.bind(this);
+    }
 
     switch = () => {
         this.setState(prevState => ({
@@ -38,6 +44,12 @@ class AppHeader extends React.Component {
             highlightedHobby: !state.highlightedHobby
         }));
     };
+
+    sendData = (searchValue) => {
+        // Back to first tab
+        debugger;
+        this.props.parentCallback(searchValue);
+    }
 
     render() {
         let {
@@ -55,7 +67,7 @@ class AppHeader extends React.Component {
                         <HeaderLogo />
                         <div className={cx("app-header__content", { 'header-mobile-open': enableMobileMenuSmall })}>
                             <div className="app-header-left">
-                                <SearchBox />
+                                <SearchBox handlerFromParent={this.sendData} />
                             </div>
                             <div className="app-header-right">
                                 <UserBox />
@@ -63,31 +75,6 @@ class AppHeader extends React.Component {
                         </div>
                     </div>
                 </CSSTransition>
-
-
-
-                {/* <TransitionGroup component="div" className={cx("app-header", headerBackgroundColor, { 'header-shadow': enableHeaderShadow })}>
-                    <CSSTransition timeout={1500}
-                        classNames="HeaderAnimation"                        
-                        appear>
-                        <div>
-                            <HeaderLogo />
-                        </div>
-                    </CSSTransition>
-                    <CSSTransition timeout={1500}
-                        classNames="HeaderAnimation"
-                        unmountOnExit
-                        appear>
-                        <div className={cx("app-header__content", { 'header-mobile-open': enableMobileMenuSmall })}>
-                            <div className="app-header-left">
-                                <SearchBox />
-                            </div>
-                            <div className="app-header-right">
-                                <UserBox />
-                            </div>
-                        </div>
-                    </CSSTransition>
-                </TransitionGroup > */}
             </Fragment>
         );
     }
@@ -95,11 +82,12 @@ class AppHeader extends React.Component {
 
 const mapStateToProps = state => {
     return ({
-    enableHeaderShadow:state.theme.enableHeaderShadow,
-    closedSmallerSidebar:state.theme.closedSmallerSidebar,
-    headerBackgroundColor:state.theme.headerBackgroundColor,
-    enableMobileMenuSmall:state.theme.enableMobileMenuSmall,
-})};
+        enableHeaderShadow: state.theme.enableHeaderShadow,
+        closedSmallerSidebar: state.theme.closedSmallerSidebar,
+        headerBackgroundColor: state.theme.headerBackgroundColor,
+        enableMobileMenuSmall: state.theme.enableMobileMenuSmall,
+    })
+};
 
 const mapDispatchToProps = dispatch => ({});
 

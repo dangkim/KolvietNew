@@ -8,6 +8,7 @@ export function influencers(state = {}, action) {
       };
     case infConstants.INF_REGISTER_SUCCESS:
       return {
+        loading: false,
         influencer: action.influencer
       };
     case infConstants.INF_REGISTER_FAILURE:
@@ -20,6 +21,7 @@ export function influencers(state = {}, action) {
       };
     case infConstants.INF_UPDATE_SUCCESS:
       return {
+        loading: false,
         influencer: action.influencer
       };
     case infConstants.INF_UPDATE_FAILURE:
@@ -32,6 +34,7 @@ export function influencers(state = {}, action) {
       };
     case infConstants.INFS_GETALL_SUCCESS:
       return {
+        loading: false,
         items: action.influencers
       };
     case infConstants.INFS_GETALL_FAILURE:
@@ -45,6 +48,7 @@ export function influencers(state = {}, action) {
       };
     case infConstants.INFS_INFINITE_SUCCESS:
       return {
+        loading: false,
         items: action.influencers
       };
     case infConstants.INFS_INFINITE_FAILURE:
@@ -57,6 +61,7 @@ export function influencers(state = {}, action) {
       };
     case infConstants.INFS_GETBYNAME_SUCCESS:
       return {
+        loading: false,
         items: action.influencers
       };
     case infConstants.INFS_GETBYNAME_FAILURE:
@@ -81,11 +86,26 @@ export function influencers(state = {}, action) {
       };
     case infConstants.INFS_GETCOST_SUCCESS:
       return {
+        loading: false,
         influencer: action.influencer
       };
     case infConstants.INFS_GETCOST_REQUEST:
       return {
         loading: true
+      };
+      case infConstants.INFS_GETBYCATEGORY_FAILURE:
+      return {
+        error: action.error
+      };
+    case infConstants.INFS_GETBYCATEGORY_SUCCESS:
+      return {
+        loading: false,
+        influencer: action.influencer
+      };
+    case infConstants.INFS_GETBYCATEGORY_REQUEST:
+      return {
+        loading: true,
+        items: action.previousValues
       };
     default:
       return state

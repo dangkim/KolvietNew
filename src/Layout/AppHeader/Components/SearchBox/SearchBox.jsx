@@ -1,4 +1,4 @@
-import React, {Fragment} from 'react';
+import React, { Fragment } from 'react';
 import { connect } from 'react-redux';
 import cx from 'classnames';
 
@@ -7,22 +7,41 @@ class SearchBox extends React.Component {
         super(props);
 
         this.state = {
-            activeSearch: false
+            activeSearch: false,
+            searchValue: ''
         };
+        this.handleChange = this.handleChange.bind(this);
+    }
+
+    handleChange(event) {
+        const { name, value } = event.target;
+        const { searchValue } = this.state;
+        this.setState({
+            [name]: value
+        });
     }
 
     render() {
+        const { activeSearch, searchValue } = this.state
         return (
             <Fragment>
                 <div className={cx("search-wrapper", {
-                    'active': this.state.activeSearch
+                    'active': activeSearch
                 })}>
                     <div className="input-holder">
-                        <input type="text" className="search-input"/>
-                        <button onClick={() => this.setState({activeSearch: !this.state.activeSearch})}
-                                className="search-icon"><span/></button>
+                        <input type="text" className="search-input" id="searchValue" name="searchValue" value={searchValue} onChange={this.handleChange} />
+                        <button onClick={() => {
+                            if (activeSearch === false) {
+                                this.setState({ activeSearch: !activeSearch })
+                            }
+                            else {
+                                this.props.handlerFromParent(searchValue)
+                                this.setState({ activeSearch: !activeSearch })
+                            }
+                        }}
+                            className="search-icon"><span /></button>
                     </div>
-                    <button onClick={() => this.setState({activeSearch: !this.state.activeSearch})} className="close"/>
+                    <button onClick={() => this.setState({ activeSearch: !activeSearch, searchValue: '' })} className="close" />
                 </div>
             </Fragment>
         )

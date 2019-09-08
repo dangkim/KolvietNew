@@ -14,6 +14,8 @@ export const infActions = {
     updateInfluencers,
     getInfluencersByName,
     infiniteScrollLoader,
+    searchScrollLoader,
+    getInfluencersByCategory
 };
 
 function register(infType, userType) {
@@ -92,7 +94,6 @@ function getAll(first, skip) {
         influencerService.getAll(first, skip)
             .then(
                 influencers => {
-
                     dispatch(success(influencers.influencer))
                 },
                 error => {
@@ -134,16 +135,18 @@ function infiniteScrollLoader(previousValues, first, skip) {
     function failure(error) { return { type: infConstants.INFS_INFINITE_FAILURE, error } }
 }
 
-function getInfluencersByName(first, skip, userName) {
+function searchScrollLoader(previousValues, first, skip, searchValue) {
     return dispatch => {
-        dispatch(request());
-
-        influencerService.getInfluencersByName(first, skip, userName)
+        dispatch(request(previousValues));
+        influencerService.getInfluencersByName(first, skip, searchValue)
             .then(
-                influencers => dispatch(success(influencers)),
+                influencers => {
+                    previousValues.push(...influencers.influencer);
+                    dispatch(success(previousValues))
+                },
                 error => {
-                    //dispatch(failure(error.toString()));
-                    //dispatch(alertActions.error(error.toString()));
+                    dispatch(failure(error.toString()));
+                    dispatch(alertActions.error(error.toString()));
                     toast.error("Please login again");
                     //history.push('/pages/loginpage');
                     history.replace({ pathname: '/pages/loginpage' });
@@ -151,9 +154,53 @@ function getInfluencersByName(first, skip, userName) {
             );
     };
 
+    function request(previousValues) { return { type: infConstants.INFS_INFINITE_SEARCH_REQUEST, previousValues } }
+    function success(influencers) { return { type: infConstants.INFS_INFINITE_SEARCH_SUCCESS, influencers } }
+    function failure(error) { return { type: infConstants.INFS_INFINITE_SEARCH_FAILURE, error } }
+}
+
+function getInfluencersByName(first, skip, userName) {
+    return dispatch => {
+        dispatch(request());
+
+        influencerService.getInfluencersByName(first, skip, userName)
+            .then(
+                influencers => dispatch(success(influencers.influencer)),
+                error => {
+                    //dispatch(failure(error.toString()));
+                    //dispatch(alertActions.error(error.toString()));
+                    toast.error("Please try again");
+                    //history.push('/pages/loginpage');
+                    //history.replace({ pathname: '/pages/loginpage' });
+                }
+            );
+    };
+
     function request() { return { type: infConstants.INFS_GETBYNAME_REQUEST } }
     function success(influencers) { return { type: infConstants.INFS_GETBYNAME_SUCCESS, influencers } }
     function failure(error) { return { type: infConstants.INFS_GETBYNAME_FAILURE, error } }
+}
+
+function getInfluencersByCategory(previousValues, first, skip, categories) {
+    return dispatch => {
+        dispatch(request(previousValues));
+
+        influencerService.getInfluencersByCategory(first, skip, categories)
+            .then(
+                influencers => dispatch(success(influencers)),
+                error => {
+                    //dispatch(failure(error.toString()));
+                    //dispatch(alertActions.error(error.toString()));
+                    toast.error("Please try again");
+                    //history.push('/pages/loginpage');
+                    //history.replace({ pathname: '/pages/loginpage' });
+                }
+            );
+    };
+
+    function request(previousValues) { return { type: infConstants.INFS_GETBYCATEGORY_REQUEST, previousValues } }
+    function success(influencers) { return { type: infConstants.INFS_GETBYCATEGORY_SUCCESS, influencers } }
+    function failure(error) { return { type: infConstants.INFS_GETBYCATEGORY_FAILURE, error } }
 }
 
 function getAllJobCategories() {

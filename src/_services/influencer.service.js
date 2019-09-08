@@ -9,7 +9,8 @@ export const influencerService = {
     getCostByUserName,
     updateInfluencers,
     registerJobs,
-    getInfluencersByName
+    getInfluencersByName,
+    getInfluencersByCategory
 };
 
 function getAll(first, skip) {
@@ -115,6 +116,116 @@ function getInfluencersByName(first, skip, userName) {
     const GET_ALL_INFS = `
     {
         influencer(first: `+ first + `, skip: ` + skip + `, where: {displayText_contains: "` + userName + `"}){
+            checkIn
+            fullName
+            email
+            genderDemorgraphic {
+              genderGraphicName
+              genderPercentage
+            }
+            geoDemorgraphic {
+              geoGraphicName
+              geoPercentage
+            }
+            videoLink {
+                urls
+              }
+            numberOfFollowers
+            numberOfPost
+            numberOfShare
+            numberOfReaction
+            numberOfComment
+            ageDemorgraphic {
+              ageGraphicsName
+              agePercentage
+            }
+            photo {
+              paths
+              urls
+            }
+            post1 {
+                link
+                numberOfComment
+                numberOfReaction
+                numberOfShare
+                status
+                time
+                title
+                type
+              }
+              post2 {
+                link
+                numberOfComment
+                numberOfReaction
+                numberOfShare
+                status
+                time
+                title
+                type
+              }
+              post3 {
+                link
+                numberOfComment
+                numberOfReaction
+                numberOfShare
+                status
+                time
+                title
+                type
+              }
+              post4 {
+                numberOfComment
+                numberOfReaction
+                link
+                numberOfShare
+                status
+                time
+                title
+                type
+              }
+              post5 {
+                link
+                numberOfComment
+                numberOfReaction
+                numberOfShare
+                status
+                time
+                title
+                type
+              }
+        }
+    }
+    `;
+
+    const token = localStorage.getItem('token');
+    const requestOptions = {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/graphql',
+            'Authorization': token
+        },
+        body: GET_ALL_INFS
+    };
+
+    return fetch(`${configOrchardCore.apiUrl}graphql`, requestOptions).then(handleGraphInfResponse);
+
+}
+
+function getInfluencersByCategory(first, skip, categories) {
+    let items = [];
+
+    categories.forEach(element => {
+        items.push(element);
+    });
+
+    for (let index = categories.length; index < 13; index++) {
+        const element = array[index];
+        items.push(element);
+    }
+
+    const GET_ALL_INFS = `
+    {
+        influencer(first: `+ first + `, skip: ` + skip + `, where: {displayText_contains: "` + items[0] + `", AND: {displayText_contains: "` + items[1] + `", AND: {displayText_contains: "` + items[2] + `", AND: {displayText_contains: "` + items[3] + `", AND: {displayText_contains: "` + items[4] + `", AND: {displayText_contains: "` + items[5] + `", AND: {displayText_contains: "` + items[6] + `", AND: {displayText_contains: "` + items[7] + `", AND: {displayText_contains: "` + items[8] + `", AND: {displayText_contains: "` + items[9] + `", AND: {displayText_contains: "` + items[10] + `", AND: {displayText_contains: "` + items[11] + `", AND: {displayText_contains: "` + items[12] + `}}}}}}}}}}}}){
             author
             checkIn
             contentItemId
