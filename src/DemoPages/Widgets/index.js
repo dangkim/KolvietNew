@@ -23,7 +23,6 @@ class Widgets extends React.Component {
     }
 
     sendData = (childData) => {
-        debugger;
         if (childData && childData !== '') {
             this.props.dispatch(infActions.getInfluencersByName(this.state.first, 0, childData));
             //this.setState({ searchValue: childData })

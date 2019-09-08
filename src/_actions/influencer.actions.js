@@ -162,7 +162,7 @@ function searchScrollLoader(previousValues, first, skip, searchValue) {
 function getInfluencersByName(first, skip, userName) {
     return dispatch => {
         dispatch(request());
-
+        debugger;
         influencerService.getInfluencersByName(first, skip, userName)
             .then(
                 influencers => dispatch(success(influencers.influencer)),
@@ -184,10 +184,9 @@ function getInfluencersByName(first, skip, userName) {
 function getInfluencersByCategory(previousValues, first, skip, categories) {
     return dispatch => {
         dispatch(request(previousValues));
-
         influencerService.getInfluencersByCategory(first, skip, categories)
             .then(
-                influencers => dispatch(success(influencers)),
+                influencers => dispatch(success(influencers.influencer)),
                 error => {
                     //dispatch(failure(error.toString()));
                     //dispatch(alertActions.error(error.toString()));

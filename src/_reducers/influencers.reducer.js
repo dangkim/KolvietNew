@@ -100,7 +100,7 @@ export function influencers(state = {}, action) {
     case infConstants.INFS_GETBYCATEGORY_SUCCESS:
       return {
         loading: false,
-        influencer: action.influencer
+        items: action.influencers
       };
     case infConstants.INFS_GETBYCATEGORY_REQUEST:
       return {

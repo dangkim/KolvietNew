@@ -155,6 +155,7 @@ class WidgetsChartBoxes extends React.Component {
 
     onCheckboxBtnClick(selected1, selected2) {
         const { cSelected, first, SearchValue } = this.state;
+        const { dispatch } = this.props;
         let index = cSelected.indexOf(selected1);
         if (index < 0) {
             cSelected.push(selected1);
@@ -173,20 +174,20 @@ class WidgetsChartBoxes extends React.Component {
 
         this.setState({ cSelected: [...cSelected] });
 
-        if (cSelected.length > 1) {
+        if (cSelected.length > 0) {
             let items = [];
             cSelected.map((item, key) => {
-                items.push(influencers.items[item]);
+                items.push(item);
             })
-            debugger;
-            infActions.getInfluencersByCategory([], first, 0, items);
+
+            dispatch(infActions.getInfluencersByCategory([], first, 0, items));
         }
     }
 
     render() {
         const { cSelected, Influencer, Brand, modalVisible, type, userName, ComparedInfluencers } = this.state;
         const { FilterInfluencers, SearchValue } = this.props;
-        
+
         const tabsContentUpdateCost = [
             {
                 title: 'Vertical Menus',
