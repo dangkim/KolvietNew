@@ -27,6 +27,9 @@ function getAll(first, skip) {
               geoGraphicName
               geoPercentage
             }
+            videoLink {
+                urls
+              }
             numberOfFollowers
             numberOfPost
             numberOfShare

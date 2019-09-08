@@ -65,15 +65,21 @@ class InfluencerDetail extends Component {
         this.state = {
             searchValue: '',
             cSelected: [],
+            currentVideoIndex: 0,
             dateValue: moment.range(today.clone(), today.clone().add(7, "days"))
         };
 
-        this.sendData = this.sendData.bind(this);
+        this.nextVideo = this.nextVideo.bind(this);
     }
 
-    sendData = (tabIndex) => {
-        // Back to first tab
-        this.props.parentCallback(tabIndex);
+    nextVideo(event) {
+        debugger;
+        const { Influencer } = this.props
+        const { currentVideoIndex } = this.state;
+        const nextVideoIndex =  currentVideoIndex + Number(event.target.value);
+        //const urls = Influencer.videoLink.urls;
+        this.setState({ currentVideoIndex: nextVideoIndex });
+        //return (urls[nextVideoIndex]);
     }
 
     componentDidMount() {
@@ -83,7 +89,7 @@ class InfluencerDetail extends Component {
     }
 
     render() {
-
+        debugger;
         const settings = {
             dots: true,
             infinite: true,
@@ -93,11 +99,10 @@ class InfluencerDetail extends Component {
             autoplay: true,
             slidesToScroll: 1
         };
-        const { } = this.state;
+        const { currentVideoIndex } = this.state;
         const { influencers, Influencer } = this.props;
         //const infItems = influencers.items ? influencers.items.influencer : [];
         let imgSrc = defaultAvatar;
-        debugger;
         const colors = [
             "bg-mean-fruit",
             "bg-tempting-azure",
@@ -407,23 +412,16 @@ class InfluencerDetail extends Component {
                                             <div className="slick-slider">
                                                 <div>
                                                     <Slider {...settings}>
-                                                        <div>
-                                                            <div className="position-relative h-100 d-flex justify-content-center align-items-center bg-plum-plate" tabIndex="-1">
-                                                                <div className="slide-img-bg" style={{ backgroundImage: `url(${"https://scontent.fmnl5-1.fna.fbcdn.net/v/t1.0-9/70319472_2365613000221954_4395913428481343488_n.jpg?_nc_cat=101&_nc_oc=AQnhNDfPSp1aIMK6kHr6rc9rSa8O-844fpoxAxf6OUz8nVz9Urgme625hqWEzKeTQ0k&_nc_ht=scontent.fmnl5-1.fna&oh=b43bb96b3f1dbfd01737c5098963caf8&oe=5DFD499C"})` }}></div>
-                                                            </div>
-                                                        </div>
-                                                        <div>
-                                                            <div className="position-relative h-100 d-flex justify-content-center align-items-center bg-premium-dark" tabIndex="-1">
-                                                                <div className="slide-img-bg" style={{ backgroundImage: `url(${citynights})` }}></div>
-                                                            </div>
-                                                        </div>
-                                                        <div>
-                                                            <div className="position-relative h-100 d-flex justify-content-center align-items-center bg-sunny-morning" tabIndex="-1">
-                                                                <div className="slide-img-bg" style={{ backgroundImage: `url(${citydark})` }}></div>
-                                                            </div>
-                                                        </div>
+                                                        {
+                                                            Influencer.photo.urls.map((url, index) => {
+                                                                <div key={index}>
+                                                                    <div className="position-relative h-100 d-flex justify-content-center align-items-center bg-plum-plate" tabIndex="-1">
+                                                                        <div className="slide-img-bg" style={{ backgroundImage: `url(${url})` }}></div>
+                                                                    </div>
+                                                                </div>
+                                                            })
+                                                        }
                                                     </Slider>
-
                                                 </div>
                                             </div>
                                         </div>
@@ -434,13 +432,13 @@ class InfluencerDetail extends Component {
                                         <div className="card-header">Videos
                                         <div className="btn-actions-pane-right">
                                                 <div role="group" className="btn-group-sm btn-group">
-                                                    <button className="btn btn-info">All Month</button>
+                                                    <Button onClick={this.nextVideo} value={-1} className="btn btn-info" disabled={currentVideoIndex === 0} >Back</Button>
+                                                    <Button onClick={this.nextVideo} value={1} className="btn btn-info" disabled={currentVideoIndex === (Influencer.videoLink.urls.length - 1)}>Next</Button>
                                                 </div>
                                             </div>
                                         </div>
                                         <ReactPlayer
-                                            url='https://www.facebook.com/kimyulin94/videos/vb.100003198303661/1509844989132097/?type=2&video_source=user_video_tab'
-
+                                            url={Influencer.videoLink.urls[currentVideoIndex]}
                                             playing={false}
                                             width='100%'
                                             height='100%'
