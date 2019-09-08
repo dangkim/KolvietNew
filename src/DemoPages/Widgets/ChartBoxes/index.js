@@ -178,7 +178,7 @@ class WidgetsChartBoxes extends React.Component {
             cSelected.map((item, key) => {
                 items.push(influencers.items[item]);
             })
-
+            debugger;
             infActions.getInfluencersByCategory([], first, 0, items);
         }
     }

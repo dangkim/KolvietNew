@@ -2,7 +2,7 @@ import React, { Fragment } from 'react';
 import { Route } from 'react-router-dom';
 import { connect } from 'react-redux';
 // Dashboard Widgets
-
+import { infActions } from '../../_actions';
 import { WidgetsChartBoxes } from "./ChartBoxes/";
 
 // Layout
@@ -16,6 +16,7 @@ class Widgets extends React.Component {
 
         this.state = {
             searchValue: '',
+            first: 9
         };
 
         this.sendData = this.sendData.bind(this);
@@ -24,13 +25,15 @@ class Widgets extends React.Component {
     sendData = (childData) => {
         debugger;
         if (childData && childData !== '') {
-            this.setState({ searchValue: childData })
+            this.props.dispatch(infActions.getInfluencersByName(this.state.first, 0, childData));
+            //this.setState({ searchValue: childData })
         }
     }
 
     render() {
-        const {searchValue} = this.state;
-
+        const { searchValue } = this.state;
+        const { influencers } = this.props;
+        const influencerItems = (influencers && influencers.items) ? influencers.items : [];
         return (<Fragment>
             <AppHeader parentCallback={this.sendData} />
             <div className="app-main">
@@ -42,7 +45,7 @@ class Widgets extends React.Component {
 
                         <Route path={`${this.props.match.url}/dashboard-boxes`}
                             render={(routeProps) => (
-                                <WidgetsChartBoxes SearchValue={searchValue} {...this.props}/>
+                                <WidgetsChartBoxes FilterInfluencers={influencerItems} SearchValue={searchValue} {...this.props} />
                             )} />
                     </div>
                 </div>
@@ -69,6 +72,6 @@ function mapStateToProps(state) {
 }
 
 const connectedWidgets = connect(mapStateToProps)(Widgets);
-export default connectedWidgets ;
+export default connectedWidgets;
 
 //export default Widgets;
