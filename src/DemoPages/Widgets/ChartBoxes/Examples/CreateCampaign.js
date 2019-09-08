@@ -400,7 +400,7 @@ class CreateCampaign extends Component {
                                 <CardTitle>
                                     {
                                         Influencer ?
-                                            <span>It only takes a <span className="text-success">few minutes</span> to create your Campaign</span>
+                                            <span className="text-success">Great! You have chosen {Influencer.fullName}</span>
                                             : <span>Please choose an Influencer to create your Campaign</span>
                                     }
                                 </CardTitle>

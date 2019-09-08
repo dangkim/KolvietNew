@@ -129,17 +129,17 @@ class InfluencerDetail extends Component {
         const strOfReaction2 = Influencer ? Influencer.post2.numberOfReaction : '';
         const strOfComment2 = Influencer ? Influencer.post2.numberOfComment : '';
         const strOfShare2 = Influencer ? Influencer.post2.numberOfShare : '';
-        const numberOfReaction2 = strOfReaction2.charAt(strOfReaction2.length - 2) == 'k' ? Number((strOfReaction2.substring(0, strOfReaction2.length - 1))) * 1000 : Number(strOfReaction2);
-        const numberOfComment2 = strOfComment2.charAt(strOfComment2.length - 2) == 'k' ? Number((strOfComment2.substring(0, strOfComment2.length - 1))) * 1000 : Number(strOfComment2);
-        const numberOfShare2 = strOfShare2.charAt(strOfShare2.length - 2) == 'k' ? Number((strOfShare2.substring(0, strOfShare2.length - 1))) * 1000 : Number(strOfShare2);
+        const numberOfReaction2 = strOfReaction2.charAt(strOfReaction2.length - 1) == 'k' ? Number((strOfReaction2.substring(0, strOfReaction2.length - 1))) * 1000 : Number(strOfReaction2);
+        const numberOfComment2 = strOfComment2.charAt(strOfComment2.length - 1) == 'k' ? Number((strOfComment2.substring(0, strOfComment2.length - 1))) * 1000 : Number(strOfComment2);
+        const numberOfShare2 = strOfShare2.charAt(strOfShare2.length - 1) == 'k' ? Number((strOfShare2.substring(0, strOfShare2.length - 1))) * 1000 : Number(strOfShare2);
         const engagement2 = numberOfReaction2 + (numberOfComment2 * 2) + (numberOfShare2 * 3)
 
         const strOfReaction3 = Influencer ? Influencer.post3.numberOfReaction : '';
         const strOfComment3 = Influencer ? Influencer.post3.numberOfComment : '';
         const strOfShare3 = Influencer ? Influencer.post3.numberOfShare : '';
-        const numberOfReaction3 = strOfReaction3.charAt(strOfReaction3.length - 2) == 'k' ? Number((strOfReaction3.substring(0, strOfReaction3.length - 1))) * 1000 : Number(strOfReaction3);
-        const numberOfComment3 = strOfComment3.charAt(strOfComment3.length - 2) == 'k' ? Number((strOfComment3.substring(0, strOfComment3.length - 1))) * 1000 : Number(strOfComment3);
-        const numberOfShare3 = strOfShare3.charAt(strOfShare3.length - 2) == 'k' ? Number((strOfShare3.substring(0, strOfShare3.length - 1))) * 1000 : Number(strOfShare3);
+        const numberOfReaction3 = strOfReaction3.charAt(strOfReaction3.length - 1) == 'k' ? Number((strOfReaction3.substring(0, strOfReaction3.length - 1))) * 1000 : Number(strOfReaction3);
+        const numberOfComment3 = strOfComment3.charAt(strOfComment3.length - 1) == 'k' ? Number((strOfComment3.substring(0, strOfComment3.length - 1))) * 1000 : Number(strOfComment3);
+        const numberOfShare3 = strOfShare3.charAt(strOfShare3.length - 1) == 'k' ? Number((strOfShare3.substring(0, strOfShare3.length - 1))) * 1000 : Number(strOfShare3);
         const engagement3 = numberOfReaction3 + (numberOfComment3 * 2) + (numberOfShare3 * 3)
 
         const strOfReaction4 = Influencer ? Influencer.post4.numberOfReaction : '';

@@ -11,11 +11,11 @@ import { Influencers } from './Examples/Influencers';
 import { CreateCampaign } from './Examples/CreateCampaign';
 import { InfluencerDetail } from './Examples/InfluencerDetail';
 import { InfluencerUpdateCost } from './Examples/InfluencerUpdateCost';
-import NavsVertical from '../../Elements/Navs/Examples/NavVertical';
+import { CompareInfluencers } from './Examples/CompareInfluencers';
 import {
     Modal, ModalHeader, ModalBody, ModalFooter, Button, Row, Col, Card, CardBody
 } from 'reactstrap';
-import { VerticleButton as ScrollUpButton } from "react-scroll-up-button";
+import ScrollUpButton  from "react-scroll-up-button";
 import { Prompt } from 'react-router'
 import { library } from '@fortawesome/fontawesome-svg-core'
 import { fab } from '@fortawesome/free-brands-svg-icons'
@@ -208,7 +208,7 @@ export default class WidgetsChartBoxes extends React.Component {
         });
 
     render() {
-        const { Influencer, Brand, modalVisible, type, userName } = this.state;
+        const { Influencer, Brand, modalVisible, type, userName, ComparedInfluencers } = this.state;
         const tabsContentUpdateCost = [
             {
                 title: 'Vertical Menus',
@@ -222,11 +222,11 @@ export default class WidgetsChartBoxes extends React.Component {
             },
             {
                 title: 'Influencer details',
-                content: <InfluencerDetail  Influencer={Influencer}/>
+                content: <InfluencerDetail Influencer={Influencer} />
             },
             {
-                title: 'Vertical Menus',
-                content: <NavsVertical />
+                title: 'Comparison Influencers',
+                content: <CompareInfluencers ComparedInfluencers={ComparedInfluencers} />
             },
             {
                 title: 'Create Campaign',
@@ -276,73 +276,73 @@ export default class WidgetsChartBoxes extends React.Component {
                             <CardBody>
                                 <Row>
                                     <Col md="2">
-                                        <div className="font-icon-wrapper text-primary" style={{cursor:'pointer'}}>
+                                        <div className="font-icon-wrapper text-primary" style={{ cursor: 'pointer' }}>
                                             <FontAwesomeIcon icon={faHamburger} size="4x" />
                                             <p>Food</p>
                                         </div>
                                     </Col>
                                     <Col md="2">
-                                        <div className="font-icon-wrapper text-success" style={{cursor:'pointer'}}>
+                                        <div className="font-icon-wrapper text-success" style={{ cursor: 'pointer' }}>
                                             <FontAwesomeIcon icon={faMortarPestle} size="4x" />
                                             <p>Cosmetics</p>
                                         </div>
                                     </Col>
                                     <Col md="2">
-                                        <div className="font-icon-wrapper text-danger" style={{cursor:'pointer'}}>
+                                        <div className="font-icon-wrapper text-danger" style={{ cursor: 'pointer' }}>
                                             <FontAwesomeIcon icon={faTshirt} size="4x" />
                                             <p>Fashion</p>
                                         </div>
                                     </Col>
                                     <Col md="2">
-                                        <div className="font-icon-wrapper text-info" style={{cursor:'pointer'}}>
+                                        <div className="font-icon-wrapper text-info" style={{ cursor: 'pointer' }}>
                                             <FontAwesomeIcon icon={faRunning} size="4x" />
                                             <p>Sport</p>
                                         </div>
                                     </Col>
                                     <Col md="2">
-                                        <div className="font-icon-wrapper text-warning" style={{cursor:'pointer'}}>
+                                        <div className="font-icon-wrapper text-warning" style={{ cursor: 'pointer' }}>
                                             <FontAwesomeIcon icon={faPlaneDeparture} size="4x" />
                                             <p>Travel</p>
                                         </div>
                                     </Col>
                                     <Col md="2">
-                                        <div className="font-icon-wrapper text-danger" style={{cursor:'pointer'}}>
+                                        <div className="font-icon-wrapper text-danger" style={{ cursor: 'pointer' }}>
                                             <FontAwesomeIcon icon={faMicrophoneAlt} size="4x" />
                                             <p>Events-Entertaining</p>
                                         </div>
                                     </Col>
                                     <Col md="2">
-                                        <div className="font-icon-wrapper text-focus" style={{cursor:'pointer'}}>
+                                        <div className="font-icon-wrapper text-focus" style={{ cursor: 'pointer' }}>
                                             <FontAwesomeIcon icon={faStoreAlt} size="4x" />
                                             <p>HouseWife</p>
                                         </div>
                                     </Col>
                                     <Col md="2">
-                                        <div className="font-icon-wrapper text-info" style={{cursor:'pointer'}}>
+                                        <div className="font-icon-wrapper text-info" style={{ cursor: 'pointer' }}>
                                             <FontAwesomeIcon icon={faMicrochip} size="4x" />
                                             <p>Technology</p>
                                         </div>
                                     </Col>
                                     <Col md="2">
-                                        <div className="font-icon-wrapper text-alternate" style={{cursor:'pointer'}}>
+                                        <div className="font-icon-wrapper text-alternate" style={{ cursor: 'pointer' }}>
                                             <FontAwesomeIcon icon={faBlender} size="4x" />
                                             <p>Appliances</p>
                                         </div>
                                     </Col>
                                     <Col md="2">
-                                        <div className="font-icon-wrapper text-primary" style={{cursor:'pointer'}}>
+                                        <div className="font-icon-wrapper text-primary" style={{ cursor: 'pointer' }}>
                                             <FontAwesomeIcon icon={faLandmark} size="4x" />
                                             <p>Real Estate</p>
                                         </div>
                                     </Col>
                                     <Col md="2">
-                                        <div className="font-icon-wrapper text-secondary" style={{cursor:'pointer'}}>
+                                        <div className="font-icon-wrapper text-secondary" style={{ cursor: 'pointer' }}>
                                             <FontAwesomeIcon icon={faCouch} size="4x" />
                                             <p>Furniture</p>
                                         </div>
                                     </Col>
                                     <Col md="2">
-                                        <div className="font-icon-wrapper text-success" style={{cursor:'pointer'}}>                                            
+                                        <div className="font-icon-wrapper text-success" style={{ cursor: 'pointer' }}>
                                             <FontAwesomeIcon icon={faCar} size="4x" />
                                             <FontAwesomeIcon icon={faGamepad} size="3x" />
                                             <p>Auto-Games</p>

@@ -27,6 +27,8 @@ function getAll(first, skip) {
               geoGraphicName
               geoPercentage
             }
+            numberOfFollowers
+            numberOfPost
             numberOfShare
             numberOfReaction
             numberOfComment
