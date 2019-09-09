@@ -4,6 +4,8 @@ import { connect } from 'react-redux';
 import bg3 from '../../../assets/utils/images/bg3.jpg'
 import iphone3 from '../../../assets/utils/images/iphone3.png'
 import m3 from '../../../assets/utils/images/m3.png'
+import m31 from '../../../assets/utils/images/m31.png'
+import mac from '../../../assets/utils/images/mac.png'
 import m2 from '../../../assets/utils/images/m2.gif'
 // import mac from '../../../assets/utils/images/mac.png'
 import big_logo from '../../../assets/utils/images/big_logo.jpg'
@@ -93,7 +95,7 @@ class LandingPage extends Component {
                             <div className="row">
                                 <div className="col-md-5 hidden-xs">
                                     <div className="parallax-image">
-                                        <img className="phone" src={iphone3} style={{ marginTop: '20px' }} />
+                                        {/* <img className="phone" src={iphone3} style={{ marginTop: '20px' }} /> */}
                                     </div>
                                 </div>
                                 <div className="col-md-6 col-md-offset-1">
@@ -117,7 +119,7 @@ class LandingPage extends Component {
                                 KOLV tự tin cung cấp giải pháp Influencer Marketing hiệu quả đối với các nhãn hàng và mang đến nguồn thu nhập thỏa đáng cùng cơ hội trải nghiệm sản phẩm chất lượng cho Influencer. Với đội ngũ nhân sự giàu kinh nghiệm trong lĩnh vực truyền thông cùng nền tảng công nghệ hiện đại được đầu tư và phát triển hơn 2 năm.
                                 <br />
                             </p>
-                            {/* <div className="logos">                                
+                            <div className="logos">                                
                                 <ul className="list-unstyled">
                                     <li ><img src={bogolive} /></li>
                                     <li ><img src={gkitchen} /></li>
@@ -127,7 +129,7 @@ class LandingPage extends Component {
                                     <li ><img src={vnngaynay} /></li>
                                     <li ><img src={vinaphone} /></li>
                                 </ul>
-                            </div> */}
+                            </div>
                         </div>
                     </div>
                     <div className="section section-presentation">
@@ -140,7 +142,7 @@ class LandingPage extends Component {
                                     </div>
                                 </div>
                                 <div className="col-md-5 col-md-offset-1 hidden-xs">
-                                    <img src={m2} />
+                                    <img src={m31} />
                                 </div>
                             </div>
                         </div>
@@ -155,7 +157,7 @@ class LandingPage extends Component {
                                                 <img src={home_33} alt="" />
                                             </div>
                                             <div className="item active">
-                                                <img src={m3} alt="" />
+                                                <img src={m2} alt="" />
                                             </div>
                                             <div className="item">
                                                 <img src={home_11} alt="" />
