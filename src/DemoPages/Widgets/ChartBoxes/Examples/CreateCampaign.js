@@ -364,10 +364,9 @@ class CreateCampaign extends Component {
             exampleItems,
             first } = this.state;
         const { Brand, Influencer } = this.props;
-
+        debugger;
         // Check Brand and back to Login again
-        if(!Brand)
-        {
+        if (!Brand) {
             toast.warn("Please Login Again!");
             history.replace({ pathname: '/pages/loginpage' });
             //history.push('/pages/loginpage');
@@ -619,7 +618,7 @@ class CreateCampaign extends Component {
 }
 
 function mapStateToProps(state) {
-    
+
     const { campaigns, influencers, locations, interestings, jobCategories, jobs, brands } = state;
     //const { brand } = influencers;
     return {

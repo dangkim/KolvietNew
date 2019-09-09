@@ -44,14 +44,14 @@ class InfluencerDetail extends Component {
 
     nextVideo(event) {
         const { currentVideoIndex } = this.state;
-        const nextVideoIndex =  currentVideoIndex + Number(event.target.value);
+        const nextVideoIndex = currentVideoIndex + Number(event.target.value);
         this.setState({ currentVideoIndex: nextVideoIndex });
     }
 
     //componentDidMount() {
-        //const { dispatch } = this.props;
-        //const { first } = this.state;
-        //dispatch(infActions.getAll(first, 0));
+    //const { dispatch } = this.props;
+    //const { first } = this.state;
+    //dispatch(infActions.getAll(first, 0));
     //}
 
     render() {
@@ -68,6 +68,7 @@ class InfluencerDetail extends Component {
         const { influencers, Influencer } = this.props;
         //const infItems = influencers.items ? influencers.items.influencer : [];
         let imgSrc = defaultAvatar;
+        debugger;
         const colors = [
             "bg-mean-fruit",
             "bg-tempting-azure",
@@ -378,7 +379,7 @@ class InfluencerDetail extends Component {
                                                 <div>
                                                     <Slider {...settings}>
                                                         {
-                                                            Influencer.photo.urls.map((url, index) => {
+                                                            Influencer && Influencer.photo.urls.map((url, index) => {
                                                                 <div key={index}>
                                                                     <div className="position-relative h-100 d-flex justify-content-center align-items-center bg-plum-plate" tabIndex="-1">
                                                                         <div className="slide-img-bg" style={{ backgroundImage: `url(${url})` }}></div>
@@ -398,12 +399,12 @@ class InfluencerDetail extends Component {
                                         <div className="btn-actions-pane-right">
                                                 <div role="group" className="btn-group-sm btn-group">
                                                     <Button onClick={this.nextVideo} value={-1} className="btn btn-info" disabled={currentVideoIndex === 0} >Back</Button>
-                                                    <Button onClick={this.nextVideo} value={1} className="btn btn-info" disabled={currentVideoIndex === (Influencer.videoLink.urls.length - 1)}>Next</Button>
+                                                    <Button onClick={this.nextVideo} value={1} className="btn btn-info" disabled={currentVideoIndex === (Influencer && (Influencer.videoLink.urls.length - 1))}>Next</Button>
                                                 </div>
                                             </div>
                                         </div>
                                         <ReactPlayer
-                                            url={Influencer.videoLink.urls[currentVideoIndex]}
+                                            url={Influencer ? Influencer.videoLink.urls[currentVideoIndex] : ''}
                                             playing={false}
                                             width='100%'
                                             height='100%'

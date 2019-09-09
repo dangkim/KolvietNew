@@ -299,8 +299,8 @@ class WidgetsChartBoxes extends React.Component {
                                         </div>
                                     </Col>
                                     <Col md="2">
-                                        <div onClick={() => this.onCheckboxBtnClick('Events', 'Entertaining')}
-                                            className={"font-icon-wrapper" + (!cSelected.includes('Events') || !cSelected.includes('Events') ? " text-danger" : '')}>
+                                        <div onClick={() => this.onCheckboxBtnClick('Event', 'Entertaining')}
+                                            className={"font-icon-wrapper" + (!cSelected.includes('Event') || !cSelected.includes('Event') ? " text-danger" : '')}>
                                             <FontAwesomeIcon icon={faMicrophoneAlt} size="4x" />
                                             <p>Events-Entertaining</p>
                                         </div>
@@ -327,8 +327,8 @@ class WidgetsChartBoxes extends React.Component {
                                         </div>
                                     </Col>
                                     <Col md="2">
-                                        <div onClick={() => this.onCheckboxBtnClick('Real Estate', '')}
-                                            className={"font-icon-wrapper" + (!cSelected.includes('Real Estate') ? " text-primary" : '')}>
+                                        <div onClick={() => this.onCheckboxBtnClick('RealEstate', '')}
+                                            className={"font-icon-wrapper" + (!cSelected.includes('RealEstate') ? " text-primary" : '')}>
                                             <FontAwesomeIcon icon={faLandmark} size="4x" />
                                             <p>Real Estate</p>
                                         </div>
@@ -341,8 +341,8 @@ class WidgetsChartBoxes extends React.Component {
                                         </div>
                                     </Col>
                                     <Col md="2">
-                                        <div onClick={() => this.onCheckboxBtnClick('Auto', 'Games')}
-                                            className={"font-icon-wrapper" + (!cSelected.includes('Auto') || !cSelected.includes('Games') ? " text-success" : '')}>
+                                        <div onClick={() => this.onCheckboxBtnClick('Auto', 'Game')}
+                                            className={"font-icon-wrapper" + (!cSelected.includes('Auto') || !cSelected.includes('Game') ? " text-success" : '')}>
                                             <FontAwesomeIcon icon={faCar} size="4x" />
                                             <FontAwesomeIcon icon={faGamepad} size="3x" />
                                             <p>Auto-Games</p>
