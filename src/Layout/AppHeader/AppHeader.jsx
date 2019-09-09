@@ -57,6 +57,8 @@ class AppHeader extends React.Component {
             enableMobileMenuSmall,
             enableHeaderShadow
         } = this.props;
+
+        const fullName = localStorage.getItem("brand");
         return (
             <Fragment>
                 <CSSTransition timeout={1500} unmountOnExit
@@ -70,7 +72,7 @@ class AppHeader extends React.Component {
                                 <SearchBox handlerFromParent={this.sendData} />
                             </div>
                             <div className="app-header-right">
-                                <UserBox />
+                                <UserBox FullName={fullName}/>
                             </div>
                         </div>
                     </div>

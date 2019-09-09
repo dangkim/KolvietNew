@@ -20,7 +20,7 @@ import {
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
-import avatar1 from '../../../../assets/utils/images/avatars/1.jpg';
+import avatar1 from '../../../../assets/utils/images/avatars/default-user.jpg';
 
 class UserBox extends React.Component {
     constructor(props) {
@@ -84,14 +84,14 @@ class UserBox extends React.Component {
                             </div>
                             <div className="widget-content-left  ml-3 header-user-info">
                                 <div className="widget-heading">
-                                    Alina Mclourd
+                                    {this.props.FullName}
                                 </div>
-                                <div className="widget-subheading">
+                                {/* <div className="widget-subheading">
                                     VP People Manager
-                                </div>
+                                </div> */}
                             </div>
 
-                            <div className="widget-content-right header-user-info ml-3">
+                            {/* <div className="widget-content-right header-user-info ml-3">
                                 <Button className="btn-shadow p-1" size="sm" onClick={this.notify2} color="info"
                                     id="Tooltip-1">
                                     <FontAwesomeIcon className="mr-2 ml-2" icon={faCalendarAlt} />
@@ -99,7 +99,7 @@ class UserBox extends React.Component {
                                 <UncontrolledTooltip placement="bottom" target={'Tooltip-1'}>
                                     Click for Toastify Notifications!
                                 </UncontrolledTooltip>
-                            </div>
+                            </div> */}
                         </div>
                     </div>
                 </div>
