@@ -186,18 +186,27 @@ class Influencers extends Component {
     };
 
     componentDidMount() {
-        debugger;
+
         const { dispatch, influencers, FilterInfluencers } = this.props;
-        const { first, searchValue } = this.state;        
+        const { first, searchValue } = this.state;
         window.addEventListener('scroll', this.handleScroll, true);
 
         const influencerItems = (influencers && influencers.items) ? influencers.items : [];
         const influencersLocal = (FilterInfluencers && FilterInfluencers.length > 0) ? FilterInfluencers : influencerItems;
+        debugger;
 
-        if (searchValue !== '' || influencersLocal.length <= 0) {
-            
+        if (!influencers.items) {
             dispatch(infActions.getInfluencersByName(first, 0, searchValue));
         }
+        // if ((searchValue !== '' || influencersLocal.length <= 0) && (influencers && influencers.loading === false)) {
+
+        //     dispatch(infActions.getInfluencersByName(first, 0, searchValue));
+        // }
+
+        // if (influencers && influencers.loading === false) {
+        //     debugger;
+        //     dispatch(infActions.getInfluencersByName(first, 0, searchValue));
+        // }
 
     }
 

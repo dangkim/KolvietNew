@@ -87,6 +87,11 @@ class WidgetsChartBoxes extends React.Component {
         this.closeModal = this.closeModal.bind(this);
         this.filterCategory = this.filterCategory.bind(this);
         this.onCheckboxBtnClick = this.onCheckboxBtnClick.bind(this);
+        this.onChangeTab = this.onChangeTab.bind(this);
+    }
+
+    onChangeTab(activeTab) {
+        this.setState({ selectedTabKey: activeTab })
     }
 
     filterCategory(event) {
@@ -173,15 +178,16 @@ class WidgetsChartBoxes extends React.Component {
         }
 
         this.setState({ cSelected: [...cSelected] });
-
+        this.setState({ selectedTabKey: 0 });
+        let items = [];
+        //debugger;
         if (cSelected.length > 0) {
-            let items = [];
             cSelected.map((item, key) => {
                 items.push(item);
             })
-
-            dispatch(infActions.getInfluencersByCategory([], first, 0, items));
         }
+
+        dispatch(infActions.getInfluencersByCategory([], first, 0, items));
     }
 
     render() {
@@ -355,7 +361,7 @@ class WidgetsChartBoxes extends React.Component {
 
                     </Col>
                 </Row>
-                <Tabs selectedTabKey={this.state.selectedTabKey} tabsWrapperClass="body-tabs body-tabs-layout" transform={false} showInkBar={true} items={getTabs()} />
+                <Tabs onChange={this.onChangeTab} selectedTabKey={this.state.selectedTabKey} tabsWrapperClass="body-tabs body-tabs-layout" transform={false} showInkBar={true} items={getTabs()} />
                 <ScrollUpButton />
             </Fragment>
         );
