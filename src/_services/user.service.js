@@ -5,15 +5,15 @@ import { authHeader, history } from '../_helpers';
 var qs = require('qs');
 
 export const userService = {
-    login,
+    //login,
     getToken,
     logout,
     getContentType,
     register,
-    getAll,
-    getById,
-    update,
-    delete: _delete
+    //getAll,
+    //getById,
+    //update,
+    //delete: _delete
 };
 
 const client_id = 'kolviet';
@@ -49,21 +49,21 @@ function getContentType(token) {
     return fetch(`${configOrchardCore.apiUrl}content/Post04`, requestOptions).then(handleContentTypeResponse);
 }
 
-function login(userName, password) {
-    const requestOptions = {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ userName, password })
-    };
+// function login(userName, password) {
+//     const requestOptions = {
+//         method: 'POST',
+//         headers: { 'Content-Type': 'application/json' },
+//         body: JSON.stringify({ userName, password })
+//     };
 
-    return fetch(`${configContent.apiUrl}/users/authenticate`, requestOptions)
-        .then(handleResponse)
-        .then(user => {
-            // store user details and jwt token in local storage to keep user logged in between page refreshes
-            localStorage.setItem('user', JSON.stringify(user));
-            return user;
-        });
-}
+//     return fetch(`${configContent.apiUrl}/users/authenticate`, requestOptions)
+//         .then(handleResponse)
+//         .then(user => {
+//             // store user details and jwt token in local storage to keep user logged in between page refreshes
+//             localStorage.setItem('user', JSON.stringify(user));
+//             return user;
+//         });
+// }
 
 function logout() {
     debugger;
@@ -80,23 +80,23 @@ function logout() {
     history.replace({ pathname: '/pages/loginpage' });
 }
 
-function getAll() {
-    const requestOptions = {
-        method: 'GET',
-        headers: authHeader()
-    };
+// function getAll() {
+//     const requestOptions = {
+//         method: 'GET',
+//         headers: authHeader()
+//     };
 
-    return fetch(`${configContent.apiUrl}/users`, requestOptions).then(handleResponse);
-}
+//     return fetch(`${configContent.apiUrl}/users`, requestOptions).then(handleResponse);
+// }
 
-function getById(id) {
-    const requestOptions = {
-        method: 'GET',
-        headers: authHeader()
-    };
+// function getById(id) {
+//     const requestOptions = {
+//         method: 'GET',
+//         headers: authHeader()
+//     };
 
-    return fetch(`${configContent.apiUrl}/users/${id}`, requestOptions).then(handleResponse);
-}
+//     return fetch(`${configContent.apiUrl}/users/${id}`, requestOptions).then(handleResponse);
+// }
 
 function register(user) {
     const requestOptions = {
@@ -108,25 +108,25 @@ function register(user) {
     return fetch(`${configOrchardCore.apiUrl}content/Post02`, requestOptions).then(handleResponseRegisterUser);
 }
 
-function update(user) {
-    const requestOptions = {
-        method: 'PUT',
-        headers: { ...authHeader(), 'Content-Type': 'application/json' },
-        body: JSON.stringify(user)
-    };
+// function update(user) {
+//     const requestOptions = {
+//         method: 'PUT',
+//         headers: { ...authHeader(), 'Content-Type': 'application/json' },
+//         body: JSON.stringify(user)
+//     };
 
-    return fetch(`${configContent.apiUrl}/users/${user.id}`, requestOptions).then(handleResponse);;
-}
+//     return fetch(`${configContent.apiUrl}/users/${user.id}`, requestOptions).then(handleResponse);;
+// }
 
-// prefixed function name with underscore because delete is a reserved word in javascript
-function _delete(id) {
-    const requestOptions = {
-        method: 'DELETE',
-        headers: authHeader()
-    };
+// // prefixed function name with underscore because delete is a reserved word in javascript
+// function _delete(id) {
+//     const requestOptions = {
+//         method: 'DELETE',
+//         headers: authHeader()
+//     };
 
-    return fetch(`${configContent.apiUrl}/users/${id}`, requestOptions).then(handleResponse);
-}
+//     return fetch(`${configContent.apiUrl}/users/${id}`, requestOptions).then(handleResponse);
+// }
 
 function handleResponseRegisterUser(response) {
     return response.text().then(text => {
@@ -135,7 +135,7 @@ function handleResponseRegisterUser(response) {
             if (response.status === 401) {
                 // auto logout if 401 response returned from api
                 logout();
-                location.reload(true);
+                //location.reload(true);
             }
             const error = (data && data.message) || response.statusText;
             return Promise.reject(error);
@@ -157,7 +157,7 @@ function handleTokenResponse(response) {
             if (response.status === 401) {
                 // auto logout if 401 response returned from api
                 logout();
-                location.reload(true);
+                //location.reload(true);
             }
 
             const error = response.statusText;
@@ -177,7 +177,7 @@ function handleContentTypeResponse(response) {
             if (response.status === 401) {
                 // auto logout if 401 response returned from api
                 logout();
-                location.reload(true);
+                //location.reload(true);
             }
 
             const error = (data && data.message) || response.statusText;

@@ -7,7 +7,7 @@ import { toast } from "react-toastify";
 
 export const campaignActions = {
     register,
-    getAll,
+    //getAll,
     getAllLocation,
     getAllInteresting
 };
@@ -79,21 +79,21 @@ function register(campaign,
     // function failure(error) { return { type: campaignConstants.CAM_REGISTER_FAILURE, error } }
 }
 
-function getAll() {
-    return dispatch => {
-        dispatch(request());
+// function getAll() {
+//     return dispatch => {
+//         dispatch(request());
 
-        userService.getAll()
-            .then(
-                campaign => dispatch(success(campaign)),
-                error => dispatch(failure(error.toString()))
-            );
-    };
+//         userService.getAll()
+//             .then(
+//                 campaign => dispatch(success(campaign)),
+//                 error => dispatch(failure(error.toString()))
+//             );
+//     };
 
-    function request() { return { type: campaignConstants.CAMS_GETALL_REQUEST } }
-    function success(campaign) { return { type: campaignConstants.CAMS_GETALL_SUCCESS, campaign } }
-    function failure(error) { return { type: campaignConstants.CAMS_GETALL_FAILURE, error } }
-}
+//     function request() { return { type: campaignConstants.CAMS_GETALL_REQUEST } }
+//     function success(campaign) { return { type: campaignConstants.CAMS_GETALL_SUCCESS, campaign } }
+//     function failure(error) { return { type: campaignConstants.CAMS_GETALL_FAILURE, error } }
+// }
 
 function getAllLocation() {
     return dispatch => {

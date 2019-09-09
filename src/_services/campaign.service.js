@@ -3,7 +3,7 @@ import { authHeader } from '../_helpers';
 
 export const campaignService = {
     register,
-    getAll,
+    //getAll,
     getAllInteresting,
     getAllLocation
 };
@@ -22,40 +22,40 @@ function register(campaignType) {
     return fetch(`${configOrchardCore.apiUrl}content/Post?draft=true`, requestOptions).then(handleContentResponse);
 }
 
-function getAll() {
-    const GET_ALL_COMPAIGN = `
-    {
-        campaigns{
-          title:displayText,
-          bag {
-            contentItems {
-              ... on Campaign {
-                title:displayText,
-                campaignName,
-                campaignTarget,
-                currency,
-                budget,
-                fromAge,
-                toAge,
-                fromDate,
-                toDate,
-                gender,
-                productInfo,
-                modifiedUtc
-              }
-            }
-          }
-        }
-      }
-    `;
-    const requestOptions = {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/graphql' },
-        body: GET_ALL_COMPAIGN
-    };
+// function getAll() {
+//     const GET_ALL_COMPAIGN = `
+//     {
+//         campaigns{
+//           title:displayText,
+//           bag {
+//             contentItems {
+//               ... on Campaign {
+//                 title:displayText,
+//                 campaignName,
+//                 campaignTarget,
+//                 currency,
+//                 budget,
+//                 fromAge,
+//                 toAge,
+//                 fromDate,
+//                 toDate,
+//                 gender,
+//                 productInfo,
+//                 modifiedUtc
+//               }
+//             }
+//           }
+//         }
+//       }
+//     `;
+//     const requestOptions = {
+//         method: 'POST',
+//         headers: { 'Content-Type': 'application/graphql' },
+//         body: GET_ALL_COMPAIGN
+//     };
 
-    return fetch(`${configOrchardCore.apiUrl}graphql`, requestOptions).then(handleGraphResponse);
-}
+//     return fetch(`${configOrchardCore.apiUrl}graphql`, requestOptions).then(handleGraphResponse);
+// }
 
 function getAllInteresting() {
     const GET_ALL_INTERESTING = `
@@ -125,8 +125,8 @@ function handleGraphLocationResponse(response) {
         if (!response.ok) {
             if (response.status === 401) {
                 // auto logout if 401 response returned from api
-                logout();
-                location.reload(true);
+                //logout();
+                //location.reload(true);
             }
 
             const error = (data && data.message) || response.statusText;
@@ -145,8 +145,8 @@ function handleGraphInterestingResponse(response) {
         if (!response.ok) {
             if (response.status === 401) {
                 // auto logout if 401 response returned from api
-                logout();
-                location.reload(true);
+                //logout();
+                //location.reload(true);
             }
 
             const error = (data && data.message) || response.statusText;
@@ -163,8 +163,8 @@ function handleContentResponse(response) {
         if (!response.ok) {
             if (response.status === 401) {
                 // auto logout if 401 response returned from api
-                logout();
-                location.reload(true);
+                //logout();
+                //location.reload(true);
             }
 
             const error = (data && data.message) || response.statusText;

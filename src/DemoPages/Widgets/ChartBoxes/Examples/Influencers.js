@@ -107,7 +107,7 @@ class Influencers extends Component {
         if (infItems.length < 45) {
             //dispatch(infActions.infiniteScrollLoader(infItems, first, infItems.length));
             if (searchValue && searchValue !== '') {
-                dispatch(infActions.getInfluencersByCategory(infItems, first, infItems.length, SearchValue));
+                dispatch(infActions.getInfluencersByCategory(infItems, first, infItems.length, searchValue));
             }
             else {
                 dispatch(infActions.infiniteScrollLoader(infItems, first, infItems.length));

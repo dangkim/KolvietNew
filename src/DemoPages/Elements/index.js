@@ -82,7 +82,7 @@ const Elements = ({match}) => (
 
                     {/* Register Campaign */}
 
-                    <Route path={`${match.url}/registercampaign`} component={RegisterCampaignPage}/>
+                    {/* <Route path={`${match.url}/registercampaign`} component={RegisterCampaignPage}/> */}
 
                     {/* Utilities */}
 
