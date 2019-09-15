@@ -20,7 +20,9 @@ import {
 } from 'reactstrap';
 
 import defaultAvatar from '../../../../assets/utils/images/avatars/default.jpg'
-
+import city from '../../../../assets//utils//images/originals/city.jpg'
+import citynights from '../../../../assets/utils/images/originals/citynights.jpg'
+import citydark from '../../../../assets/utils/images/originals/citydark.jpg'
 import originalMoment from "moment";
 import { extendMoment } from "moment-range";
 import 'react-daterange-picker/dist/css/react-calendar.css'
@@ -141,8 +143,8 @@ class InfluencerDetail extends Component {
                                             <div className="card mb-3 widget-chart">
                                                 <div className="widget-chart-content">
                                                     <div className="icon-wrapper rounded-circle">
-                                                        <div className="icon-wrapper-bg bg-primary" />
-                                                        <i className="lnr-cog text-primary" />
+                                                        <div className="icon-wrapper-bg bg-warning" />
+                                                        <i className="lnr-thumbs-up text-warning" />
                                                     </div>
                                                     <div className="widget-numbers">
                                                         {Influencer ? Influencer.numberOfReaction : 0}
@@ -157,8 +159,8 @@ class InfluencerDetail extends Component {
                                             <div className="card mb-3 widget-chart">
                                                 <div className="widget-chart-content">
                                                     <div className="icon-wrapper rounded-circle">
-                                                        <div className="icon-wrapper-bg bg-danger" />
-                                                        <i className="lnr-laptop-phone text-danger" />
+                                                        <div className="icon-wrapper-bg bg-info" />
+                                                        <i className="lnr-pencil text-info" />
                                                     </div>
                                                     <div className="widget-numbers">
                                                         {Influencer ? Influencer.numberOfComment : 0}
@@ -174,10 +176,10 @@ class InfluencerDetail extends Component {
                                 <Col md="12" lg="6">
                                     <Row>
                                         <Col md="6">
-                                            <div className="card mb-3 bg-arielle-smile widget-chart text-white card-border">
+                                            <div className="card mb-3 widget-chart">
                                                 <div className="icon-wrapper rounded-circle">
-                                                    <div className="icon-wrapper-bg bg-white opacity-10" />
-                                                    <i className="lnr-cog icon-gradient bg-arielle-smile" />
+                                                    <div className="icon-wrapper-bg bg-danger" />
+                                                    <i className="lnr-link text-danger" />
                                                 </div>
                                                 <div className="widget-numbers">
                                                     {Influencer ? Influencer.numberOfShare : 0}
@@ -188,10 +190,10 @@ class InfluencerDetail extends Component {
                                             </div>
                                         </Col>
                                         <Col md="6">
-                                            <div className="card mb-3 bg-midnight-bloom widget-chart text-white card-border">
-                                                <div className="icon-wrapper rounded">
-                                                    <div className="icon-wrapper-bg bg-white opacity-10" />
-                                                    <i className="lnr-screen icon-gradient bg-warm-flame" />
+                                            <div className="card mb-3 widget-chart">
+                                                <div className="icon-wrapper rounded-circle">
+                                                    <div className="icon-wrapper-bg bg-success" />
+                                                    <i className="lnr-license text-success" />
                                                 </div>
                                                 <div className="widget-numbers">
                                                     {engagement}
@@ -207,13 +209,7 @@ class InfluencerDetail extends Component {
                             <Row>
                                 <Col md="12">
                                     <Card className="main-card mb-3">
-                                        <div className="card-header">{Influencer ? Influencer.email : ''}
-                                            <div className="btn-actions-pane-right">
-                                                <div role="group" className="btn-group-sm btn-group">
-                                                    <button className="active btn btn-info">Last Week</button>
-                                                    <button className="btn btn-info">All Month</button>
-                                                </div>
-                                            </div>
+                                        <div className="card-header">{Influencer ? Influencer.fullName : ''}
                                         </div>
                                         <div className="table-responsive">
                                             <table className="align-middle mb-0 table table-borderless table-striped table-hover">
@@ -371,6 +367,17 @@ class InfluencerDetail extends Component {
                                 </Col>
                             </Row>
                             <Row>
+                                <Col md="12">
+                                    <Card className="main-card mb-3">
+                                        <div className="card-header">Description
+                                        </div>
+                                        <div className="text-center" style={{ whiteSpace: 'pre-wrap' }}>
+                                            {Influencer ? Influencer.description.split('|').join('\n') : ''}
+                                        </div>
+                                    </Card>
+                                </Col>
+                            </Row>
+                            <Row>
                                 <Col md="6">
                                     <Card className="main-card mb-3">
                                         <div className="card-header">Photos</div>
@@ -379,12 +386,14 @@ class InfluencerDetail extends Component {
                                                 <div>
                                                     <Slider {...settings}>
                                                         {
-                                                            Influencer && Influencer.photo.urls.map((url, index) => {
-                                                                <div key={index}>
-                                                                    <div className="position-relative h-100 d-flex justify-content-center align-items-center bg-plum-plate" tabIndex="-1">
-                                                                        <div className="slide-img-bg" style={{ backgroundImage: `url(${url})` }}></div>
+                                                            Influencer && Influencer.photo.paths.map((url, index) => {
+                                                                return (
+                                                                    <div>
+                                                                        <div className="position-relative h-100 d-flex justify-content-center align-items-center bg-plum-plate" tabIndex="-1">
+                                                                            <div className="slide-img-bg" style={{ backgroundImage: `url(${url})` }}></div>
+                                                                        </div>
                                                                     </div>
-                                                                </div>
+                                                                )
                                                             })
                                                         }
                                                     </Slider>
@@ -399,12 +408,12 @@ class InfluencerDetail extends Component {
                                         <div className="btn-actions-pane-right">
                                                 <div role="group" className="btn-group-sm btn-group">
                                                     <Button onClick={this.nextVideo} value={-1} className="btn btn-info" disabled={currentVideoIndex === 0} >Back</Button>
-                                                    <Button onClick={this.nextVideo} value={1} className="btn btn-info" disabled={currentVideoIndex === (Influencer && (Influencer.videoLink.urls.length - 1))}>Next</Button>
+                                                    <Button onClick={this.nextVideo} value={1} className="btn btn-info" disabled={currentVideoIndex === (Influencer && (Influencer.videoLink.paths.length - 1))}>Next</Button>
                                                 </div>
                                             </div>
                                         </div>
                                         <ReactPlayer
-                                            url={Influencer ? Influencer.videoLink.urls[currentVideoIndex] : ''}
+                                            url={Influencer ? Influencer.videoLink.paths[currentVideoIndex] : ''}
                                             playing={false}
                                             width='100%'
                                             height='100%'

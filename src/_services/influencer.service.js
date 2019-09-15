@@ -119,6 +119,7 @@ function getInfluencersByName(first, skip, userName) {
             checkIn
             fullName
             email
+            description
             genderDemorgraphic {
               genderGraphicName
               genderPercentage
@@ -128,7 +129,7 @@ function getInfluencersByName(first, skip, userName) {
               geoPercentage
             }
             videoLink {
-                urls
+                paths
               }
             numberOfFollowers
             numberOfPost
@@ -141,7 +142,6 @@ function getInfluencersByName(first, skip, userName) {
             }
             photo {
               paths
-              urls
             }
             post1 {
                 link
@@ -228,6 +228,7 @@ function getInfluencersByCategory(first, skip, categories) {
           checkIn
           fullName
           email
+          description
           genderDemorgraphic {
             genderGraphicName
             genderPercentage
@@ -237,7 +238,7 @@ function getInfluencersByCategory(first, skip, categories) {
             geoPercentage
           }
           videoLink {
-              urls
+              paths
             }
           numberOfFollowers
           numberOfPost
@@ -250,7 +251,6 @@ function getInfluencersByCategory(first, skip, categories) {
           }
           photo {
             paths
-            urls
           }
           post1 {
               link

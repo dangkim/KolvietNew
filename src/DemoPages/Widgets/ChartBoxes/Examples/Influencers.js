@@ -26,7 +26,7 @@ import avatar4 from '../../../../assets/utils/images/avatars/4.jpg';
 
 import { infActions } from '../../../../_actions';
 import Select from 'react-select';
-
+import default_user from '../../../../assets/utils/images/avatars/default_user.jpg';
 import defaultAvatar from '../../../../assets/utils/images/avatars/default.jpg'
 
 import originalMoment from "moment";
@@ -323,7 +323,10 @@ class Influencers extends Component {
                                                     <Col key={index} md="4">
                                                         <div className="card mb-3 widget-chart">
                                                             <div className="">
-                                                                <img className="rounded-circle" style={{ maxHeight: '120px', maxWidth: '120px' }} src={"https://scontent.fmnl5-1.fna.fbcdn.net/v/t1.0-9/70319472_2365613000221954_4395913428481343488_n.jpg?_nc_cat=101&_nc_oc=AQnhNDfPSp1aIMK6kHr6rc9rSa8O-844fpoxAxf6OUz8nVz9Urgme625hqWEzKeTQ0k&_nc_ht=scontent.fmnl5-1.fna&oh=b43bb96b3f1dbfd01737c5098963caf8&oe=5DFD499C"} />
+                                                                <img className="rounded-circle" style={{ maxHeight: '120px', maxWidth: '120px' }} src={value? value.photo.paths[2]: default_user} />
+                                                            </div>
+                                                            <div className="widget-numbers-sm">
+                                                                {value.fullName}
                                                             </div>
                                                             <div className="widget-numbers">
                                                                 {engagement}
