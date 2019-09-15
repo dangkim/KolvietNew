@@ -56,9 +56,9 @@ class CompareInfluencers extends React.Component {
         const numberOfShare1 = strOfShare1.charAt(strOfShare1.length - 1) == 'k' ? Number((strOfShare1.substring(0, strOfShare1.length - 1))) * 1000 : Number(strOfShare1);
         const engagement1 = numberOfReaction1 + (numberOfComment1 * 2) + (numberOfShare1 * 3)
 
-        const strOfReaction2 = ComparedInfluencers.length > 0 ? ComparedInfluencers[0].numberOfReaction : '';
-        const strOfComment2 = ComparedInfluencers.length > 0 ? ComparedInfluencers[0].numberOfComment : '';
-        const strOfShare2 = ComparedInfluencers.length > 0 ? ComparedInfluencers[0].numberOfShare : '';
+        const strOfReaction2 = ComparedInfluencers.length > 0 ? ComparedInfluencers[1].numberOfReaction : '';
+        const strOfComment2 = ComparedInfluencers.length > 0 ? ComparedInfluencers[1].numberOfComment : '';
+        const strOfShare2 = ComparedInfluencers.length > 0 ? ComparedInfluencers[1].numberOfShare : '';
         const numberOfReaction2 = strOfReaction2.charAt(strOfReaction2.length - 1) == 'k' ? Number((strOfReaction2.substring(0, strOfReaction2.length - 1))) * 1000 : Number(strOfReaction2);
         const numberOfComment2 = strOfComment2.charAt(strOfComment2.length - 1) == 'k' ? Number((strOfComment2.substring(0, strOfComment2.length - 1))) * 1000 : Number(strOfComment2);
         const numberOfShare2 = strOfShare2.charAt(strOfShare2.length - 1) == 'k' ? Number((strOfShare2.substring(0, strOfShare2.length - 1))) * 1000 : Number(strOfShare2);
