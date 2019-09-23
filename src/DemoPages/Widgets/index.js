@@ -23,8 +23,16 @@ class Widgets extends React.Component {
     }
 
     sendData = (childData) => {
+        const { dispatch } = this.props;
         if (childData && childData !== '') {
-            this.props.dispatch(infActions.getInfluencersByName(this.state.first, 0, childData));
+
+            let items = [];
+            debugger;
+
+            items.push(childData);
+
+            dispatch(infActions.getInfluencersByCategory([], this.state.first, 0, items));
+            //this.props.dispatch(infActions.getInfluencersByName(this.state.first, 0, childData));
             //this.setState({ searchValue: childData })
         }
     }
@@ -33,7 +41,7 @@ class Widgets extends React.Component {
         const { searchValue } = this.state;
         const { influencers } = this.props;
         const influencerItems = (influencers && influencers.items) ? influencers.items : [];
-        debugger;
+
         return (<Fragment>
             <AppHeader parentCallback={this.sendData} />
             <div className="app-main">

@@ -105,13 +105,30 @@ class Influencers extends Component {
         //const infItems = influencersLocal.items ? influencersLocal.items : [];
 
         if (infItems.length < 45) {
+
+            const { influencers } = this.props;
+            debugger;
+            if (influencers && influencers.items) {
+                if (this.state.cSelected.length > 1) {
+                    let items = [];
+                    this.state.cSelected.map((item, key) => {
+                        items.push(influencers.items[item]);
+                    })
+
+                    this.sendData(2, items, null);
+                }
+                else {
+                    dispatch(infActions.infiniteScrollLoader(infItems, first, infItems.length));
+                }
+            }
+
             //dispatch(infActions.infiniteScrollLoader(infItems, first, infItems.length));
-            if (searchValue && searchValue !== '') {
-                dispatch(infActions.getInfluencersByCategory(infItems, first, infItems.length, searchValue));
-            }
-            else {
-                dispatch(infActions.infiniteScrollLoader(infItems, first, infItems.length));
-            }
+            // if (searchValue && searchValue !== '') {
+            //     dispatch(infActions.getInfluencersByCategory(infItems, first, infItems.length, searchValue));
+            // }
+            // else {
+            //     dispatch(infActions.infiniteScrollLoader(infItems, first, infItems.length));
+            // }
         }
     }
 
@@ -323,7 +340,7 @@ class Influencers extends Component {
                                                     <Col key={index} md="4">
                                                         <div className="card mb-3 widget-chart">
                                                             <div className="">
-                                                                <img className="rounded-circle" style={{ maxHeight: '120px', maxWidth: '120px' }} src={value? value.photo.paths[2]: default_user} />
+                                                                <img className="rounded-circle" style={{ maxHeight: '120px', maxWidth: '120px' }} src={value ? value.photo.paths[2] : default_user} />
                                                             </div>
                                                             <div className="widget-numbers-sm">
                                                                 {value.fullName}

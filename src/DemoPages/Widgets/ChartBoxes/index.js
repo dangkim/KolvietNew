@@ -180,11 +180,15 @@ class WidgetsChartBoxes extends React.Component {
         this.setState({ cSelected: [...cSelected] });
         this.setState({ selectedTabKey: 0 });
         let items = [];
-        //debugger;
+        debugger;
         if (cSelected.length > 0) {
             cSelected.map((item, key) => {
                 items.push(item);
             })
+        }
+
+        if (SearchValue !== '') {
+            items.push(SearchValue);
         }
 
         dispatch(infActions.getInfluencersByCategory([], first, 0, items));

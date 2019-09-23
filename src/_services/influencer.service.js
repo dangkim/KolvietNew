@@ -17,87 +17,87 @@ function getAll(first, skip) {
   const GET_ALL_INFS = `
     {
         influencer(first: `+ first + `, skip: ` + skip + `){
-            checkIn
-            fullName
-            email
-            genderDemorgraphic {
-              genderGraphicName
-              genderPercentage
-            }
-            geoDemorgraphic {
-              geoGraphicName
-              geoPercentage
-            }
-            videoLink {
-                urls
-              }
-            numberOfFollowers
-            numberOfPost
-            numberOfShare
-            numberOfReaction
-            numberOfComment
-            ageDemorgraphic {
-              ageGraphicsName
-              agePercentage
-            }
-            photo {
-              paths
-              urls
-            }
-            post1 {
-                link
-                numberOfComment
-                numberOfReaction
-                numberOfShare
-                status
-                time
-                title
-                type
-              }
-              post2 {
-                link
-                numberOfComment
-                numberOfReaction
-                numberOfShare
-                status
-                time
-                title
-                type
-              }
-              post3 {
-                link
-                numberOfComment
-                numberOfReaction
-                numberOfShare
-                status
-                time
-                title
-                type
-              }
-              post4 {
-                numberOfComment
-                numberOfReaction
-                link
-                numberOfShare
-                status
-                time
-                title
-                type
-              }
-              post5 {
-                link
-                numberOfComment
-                numberOfReaction
-                numberOfShare
-                status
-                time
-                title
-                type
-              }
+          checkIn
+          fullName
+          email
+          description
+          genderDemorgraphic {
+            genderGraphicName
+            genderPercentage
           }
+          geoDemorgraphic {
+            geoGraphicName
+            geoPercentage
+          }
+          videoLink {
+              paths
+            }
+          numberOfFollowers
+          numberOfPost
+          numberOfShare
+          numberOfReaction
+          numberOfComment
+          ageDemorgraphic {
+            ageGraphicsName
+            agePercentage
+          }
+          photo {
+            paths
+          }
+          post1 {
+              link
+              numberOfComment
+              numberOfReaction
+              numberOfShare
+              status
+              time
+              title
+              type
+            }
+            post2 {
+              link
+              numberOfComment
+              numberOfReaction
+              numberOfShare
+              status
+              time
+              title
+              type
+            }
+            post3 {
+              link
+              numberOfComment
+              numberOfReaction
+              numberOfShare
+              status
+              time
+              title
+              type
+            }
+            post4 {
+              numberOfComment
+              numberOfReaction
+              link
+              numberOfShare
+              status
+              time
+              title
+              type
+            }
+            post5 {
+              link
+              numberOfComment
+              numberOfReaction
+              numberOfShare
+              status
+              time
+              title
+              type
+            }
+        }
     }
     `;
-
+  debugger;
   const token = localStorage.getItem('token');
   const requestOptions = {
     method: 'POST',
