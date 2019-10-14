@@ -115,7 +115,7 @@ export const WidgetsNav = [
     {
         icon: 'pe-7s-graph2',
         label: 'Campaigns',
-        to: '/components/modals',
+        to: '/widgets/campaigns-table',
     }
 ];
 export const ChartsNav = [

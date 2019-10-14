@@ -10,7 +10,7 @@ import { registration } from './registration.reducer';
 import { users } from './users.reducer';
 import { brands } from './brands.reducer';
 import { influencers } from './influencers.reducer';
-import { campaigns } from './campaigns.reducer';
+import { campaign } from './campaign.reducer';
 import { locations } from './locations.reducer';
 import { interestings } from './interestings.reducer';
 import { jobCategories } from './jobCategories.reducer';
@@ -23,7 +23,7 @@ const rootReducer = combineReducers({
   users,
   brands,
   influencers,
-  campaigns,
+  campaign,
   locations,
   interestings,
   jobCategories,
