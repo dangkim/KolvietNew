@@ -51,7 +51,8 @@ export default class CampaignsTable extends React.Component {
 
     componentDidMount() {
         const { dispatch } = this.props;
-        dispatch(campaignActions.getAll());
+        const brandName = localStorage.getItem("brandName");
+        dispatch(campaignActions.getCampaignByBrand(brandName));
     }
 
     render() {
