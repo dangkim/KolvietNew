@@ -38,12 +38,12 @@ export default class CampaignsTable extends React.Component {
                 { name: "toAge", title: "To Age" },
                 { name: "fromDate", title: "From Date" },
                 { name: "toDate", title: "To Date" },
-                { name: "hashTag", title: "HashTag" },
+                // { name: "hashTag", title: "HashTag" },
                 { name: "gender", title: "Gender" },
                 { name: "jobName", title: "JobName" },
-                { name: "keyword", title: "Keyword" },
-                { name: "link", title: "Link" },
-                { name: "influencer", title: "Influencer" },
+                // { name: "keyword", title: "Keyword" },
+                // { name: "link", title: "Link" },
+                { name: "influencerFullName", title: "Influencer" },
             ],
         };
 
@@ -55,12 +55,49 @@ export default class CampaignsTable extends React.Component {
     }
 
     render() {
+        const { columns } = this.state;
+        const { campaign } = this.props;
+        var rows = []
 
-        const { dispatch, campaign } = this.props;
+        const tableColumnExtensions = [
+            { columnName: "campaignName", align: 'left', wordWrapEnabled: true },
+            { columnName: "budget", align: 'left', wordWrapEnabled: true },
+            { columnName: "campaignTarget", align: 'left', wordWrapEnabled: true },
+            { columnName: "description", align: 'left', wordWrapEnabled: true },
+            { columnName: "fromAge", align: 'left', wordWrapEnabled: true },
+            { columnName: "toAge", align: 'left', wordWrapEnabled: true },
+            { columnName: "fromDate", align: 'left', wordWrapEnabled: true },
+            { columnName: "toDate", align: 'left', wordWrapEnabled: true },
+            // { columnName: "hashTag", align: 'left', wordWrapEnabled: true },
+            { columnName: "gender", align: 'left', wordWrapEnabled: true },
+            { columnName: "jobName", align: 'left', wordWrapEnabled: true },
+            // { columnName: "keyword", align: 'left', wordWrapEnabled: true },
+            // { columnName: "link", align: 'left', wordWrapEnabled: true },
+            { columnName: "influencerFullName", align: 'left', wordWrapEnabled: true }
+        ]
 
-        
+        if (campaign) {
+            rows = campaign.map((item, index) => {
+                return Object.assign(item, {
+                    campaignName: item.campaignName,
+                    budget: item.budget,
+                    campaignTarget: item.campaignTarget,
+                    description: item.description,
+                    fromAge: item.fromAge,
+                    toAge: item.toAge,
+                    fromDate: item.fromDate,
+                    toDate: item.toDate,
+                    hashTag: item.hashTag,
+                    gender: item.gender,
+                    jobName: item.jobName,
+                    keyword: item.keyword,
+                    link: item.link,
+                    influencerFullName: item.bag.contentItems[0].fullName,
+                });
+            })
+            debugger;
+        }
 
-        debugger;
 
         return (
             <Fragment>
@@ -71,10 +108,10 @@ export default class CampaignsTable extends React.Component {
                                 <Card className="main-card mb-3">
                                     <CardBody>
                                         <CardTitle>
-                                            Bootstrap 4 Modals
+                                            All Campaigns
                                     </CardTitle>
-                                        <Grid rows={campaign} columns={columns}>
-                                            <Table />
+                                        <Grid rows={rows} columns={columns}>
+                                            <Table columnExtensions={tableColumnExtensions}/>
                                             <TableHeaderRow />
                                         </Grid>
                                         <div className="divider" />
