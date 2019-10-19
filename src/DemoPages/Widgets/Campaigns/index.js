@@ -58,8 +58,6 @@ export default class CampaignsTable extends React.Component {
 
         const { dispatch, campaign } = this.props;
 
-        
-
         debugger;
 
         return (

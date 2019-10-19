@@ -340,7 +340,7 @@ class Influencers extends Component {
                                                     <Col key={index} md="4">
                                                         <div className="card mb-3 widget-chart">
                                                             <div className="">
-                                                                <img className="rounded-circle" style={{ maxHeight: '120px', maxWidth: '120px' }} src={value ? value.photo.paths[2] : default_user} />
+                                                                <img className="rounded-circle" style={{ maxHeight: '120px', maxWidth: '120px' }} src={value ? value.photo.paths[1] : default_user} />
                                                             </div>
                                                             <div className="widget-numbers-sm">
                                                                 {value.fullName}
