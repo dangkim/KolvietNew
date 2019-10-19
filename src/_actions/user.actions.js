@@ -32,7 +32,8 @@ function getToken(userName, password, pathname) {
                                         //     state: { Brand: brand.brand, type: type }
                                         // })
 
-                                        localStorage.setItem("brand", brand.brand[0].fullName);
+                                        localStorage.setItem("brandFullName", brand.brand[0].fullName);
+                                        localStorage.setItem("brandName", brand.brand[0].brandName);
                                         history.replace({ pathname: '/widgets/dashboard-boxes', state: { Brand: brand.brand, type: type } });
                                     },
                                     error => {
