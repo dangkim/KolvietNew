@@ -113,7 +113,7 @@ export const WidgetsNav = [
         to: '/widgets/dashboard-boxes',
     },
     {
-        icon: 'pe-7s-graph2',
+        icon: 'pe-7s-display2',
         label: 'Campaigns',
         to: '/widgets/campaigns-table',
     }

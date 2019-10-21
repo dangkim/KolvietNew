@@ -4,12 +4,12 @@ import { history } from '../../_helpers';
 import {
     ToastContainer,
 } from 'react-toastify';
-
+import Loader from 'react-loader-spinner'
 const Dashboards = lazy(() => import('../../DemoPages/Dashboards'));
 
 const connectedWidgets = lazy(() => import('../../DemoPages/Widgets'));
-const Elements = lazy(() => import('../../DemoPages/Elements'));
-const Components = lazy(() => import('../../DemoPages/Components'));
+//const Elements = lazy(() => import('../../DemoPages/Elements'));
+//const Components = lazy(() => import('../../DemoPages/Components'));
 const Pages = lazy(() => import('../../DemoPages/Pages'));
 //const RegisterBrandPage = lazy(() => import('../../DemoPages/RegisterBrandPage'));
 //const RegisterInfluencerPage = lazy(() => import('../../DemoPages/RegisterInfluencerPage'));
@@ -23,7 +23,7 @@ const AppMain = () => {
 
             {/* Components */}
 
-            <Suspense fallback={
+            {/* <Suspense fallback={
                 <div className="loader-container">
                     <div className="loader-container-inner">
                         <h6 className="mt-5">
@@ -34,7 +34,7 @@ const AppMain = () => {
                 </div>
             }>
                 <Route path="/components" component={Components} />
-            </Suspense>
+            </Suspense> */}
 
             <Suspense fallback={
                 <div className="loader-container">
@@ -122,7 +122,7 @@ const AppMain = () => {
 
             {/* Elements */}
 
-            <Suspense fallback={
+            {/* <Suspense fallback={
                 <div className="loader-container">
                     <div className="loader-container-inner">
                         <h6 className="mt-3">
@@ -133,17 +133,19 @@ const AppMain = () => {
                 </div>
             }>
                 <Route path="/elements" component={Elements} />
-            </Suspense>
+            </Suspense> */}
 
             {/* Dashboard Widgets */}
 
             <Suspense fallback={
                 <div className="loader-container">
                     <div className="loader-container-inner">
-                        <h6 className="mt-3">
-                            Please wait while we load all the Dashboard Widgets examples
-                <small>Because this is a demonstration we load at once all the Dashboard Widgets examples. This wouldn't happen in a real live app!</small>
-                        </h6>
+                        <Loader
+                            type="CradleLoader"
+                            color="#00BFFF"
+                            height={100}
+                            width={100}
+                        />
                     </div>
                 </div>
             }>
@@ -152,18 +154,21 @@ const AppMain = () => {
 
             {/* Dashboards */}
 
-            <Suspense fallback={
+            {/* <Suspense fallback={
                 <div className="loader-container">
                     <div className="loader-container-inner">
-                        <h6 className="mt-3">
-                            Please wait while we load all the Dashboards examples
-                <small>Because this is a demonstration, we load at once all the Dashboards examples. This wouldn't happen in a real live app!</small>
-                        </h6>
+                    <Loader
+                            type="CradleLoader"
+                            color="#00BFFF"
+                            height={100}
+                            width={100}
+                            timeout={3000} //3 secs
+                        />
                     </div>
                 </div>
             }>
                 <Route path="/dashboards" component={Dashboards} />
-            </Suspense>
+            </Suspense> */}
 
             <Route exact path="/" render={() => (
                 <Redirect to="/pages/landingpage" />
