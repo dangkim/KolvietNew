@@ -139,7 +139,7 @@ class LoginPage extends React.Component {
                                             {/* <div className="position-relative form-check"><input name="check" id="exampleCheck" type="checkbox" className="form-check-input" /><label htmlFor="exampleCheck" className="form-check-label">Keep me logged in</label></div> */}
                                             <div className="divider row"></div>
                                             <div className="d-flex align-items-center">
-                                                <div className="ml-auto"><a href="javascript:void(0);" className="btn-lg btn btn-link">Recover Password</a>
+                                                <div className="ml-auto"><a href="" className="btn-lg btn btn-link">Recover Password</a>
                                                     {/* <button type="submit" className="btn btn-primary btn-lg">Login to Dashboard</button> */}
                                                     <input type="submit" name="signup" id="signup" className="btn-wide btn-pill btn-shadow btn-hover-shine btn btn-primary btn-lg" value="Login" />
                                                     {

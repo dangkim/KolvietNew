@@ -115,7 +115,7 @@ function getAll(first, skip) {
 function getInfluencersByName(first, skip, userName) {
   const GET_ALL_INFS = `
     {
-        influencer(first: `+ first + `, skip: ` + skip + `, where: {displayText_contains: "` + userName + `"}){
+        influencer(first: `+ first + `, skip: ` + skip + `, where: {displayText_contains: "` + userName + `"}, status: LATEST){
             checkIn
             fullName
             email

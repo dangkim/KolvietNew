@@ -210,7 +210,6 @@ class Influencers extends Component {
 
         const influencerItems = (influencers && influencers.items) ? influencers.items : [];
         const influencersLocal = (FilterInfluencers && FilterInfluencers.length > 0) ? FilterInfluencers : influencerItems;
-        debugger;
 
         if (!influencers.items) {
             dispatch(infActions.getInfluencersByName(first, 0, searchValue));
@@ -305,7 +304,7 @@ class Influencers extends Component {
 
         const infItems = influencersLocal;
         //let imgSrc = defaultAvatar;
-
+        debugger;
         const colors = [
             "bg-mean-fruit",
             "bg-tempting-azure",
@@ -336,6 +335,7 @@ class Influencers extends Component {
                                                 const numberOfComment = strOfComment.charAt(strOfComment.length - 1) == 'k' ? Number((strOfComment.substring(0, strOfComment.length - 1))) * 1000 : Number(strOfComment);
                                                 const numberOfShare = strOfShare.charAt(strOfShare.length - 1) == 'k' ? Number((strOfShare.substring(0, strOfShare.length - 1))) * 1000 : Number(strOfShare);
                                                 const engagement = numberOfReaction + (numberOfComment * 2) + (numberOfShare * 3)
+                                                
                                                 return (
                                                     <Col key={index} md="4">
                                                         <div className="card mb-3 widget-chart">
