@@ -57,8 +57,15 @@ class AppHeader extends React.Component {
             enableMobileMenuSmall,
             enableHeaderShadow
         } = this.props;
-
-        const fullName = localStorage.getItem("brandFullName");
+        var fullName = ""
+        if (localStorage.getItem("type")=="brand") {
+            fullName = localStorage.getItem("brandFullName");
+        }
+        else
+        {
+            debugger;
+            fullName = localStorage.getItem("infName");
+        }
         return (
             <Fragment>
                 <CSSTransition timeout={1500} unmountOnExit

@@ -6,6 +6,7 @@ import { userActions, infActions } from '../../../_actions';
 import new_logo from '../../../assets/utils/images/originals/new_logo.png';
 import NumberFormat from 'react-number-format';
 import PasswordValidator from 'password-validator';
+import { isValid } from 'namor';
 
 class RegisterInfluencerPage extends React.Component {
     constructor(props) {
@@ -20,7 +21,8 @@ class RegisterInfluencerPage extends React.Component {
                 repeatPassword: '',
                 fanpage: '',
             },
-            submitted: false
+            submitted: false,
+            valid: false
         };
 
         this.handleChange = this.handleChange.bind(this);
@@ -63,26 +65,33 @@ class RegisterInfluencerPage extends React.Component {
             .has().symbols()
 
         const valid = schema.validate(password)
+        debugger;
+
         return valid;
     };
 
     handleSubmit(event) {
         event.preventDefault();
-
-        this.setState({ submitted: true });
         const { dispatch } = this.props;
         const { influencer } = this.state;
-
+        this.setState({ submitted: true });
         //const { influencers } = this.props;
+
+        debugger;
+        const isValidPassword = this.handlePassword(influencer.password);
+        const isValidRepeatPassword = this.handlePassword(influencer.repeatPassword);
+        
         if (influencer.fullName
             && influencer.phone
             && influencer.fanpage
             && influencer.email
-            && influencer.password
-            && influencer.repeatPassword) {
+            && isValidPassword
+            && isValidRepeatPassword) {
 
+            
             const userType = {
                 UserName: influencer.email,
+                FullName: influencer.fullName,
                 Email: influencer.email,
                 Password: influencer.password,
                 ConfirmPassword: influencer.repeatPassword,

@@ -32,9 +32,12 @@ function register(infType, userType) {
                                 //     pathname: '/widgets/dashboard-boxes',
                                 //     state: { userName: userType.UserName }
                                 // })
+                                debugger;
+                                localStorage.setItem("infName", userType.UserName);
+                                localStorage.setItem("type", "influencer");
                                 history.replace({ pathname: '/widgets/dashboard-boxes', state: { userName: userType.UserName } });
                                 //dispatch(alertActions.success('Registration successful'));
-                                toast.success("Welcome" + influencer.fullName);
+                                toast.success("Welcome " + userType.FullName);
                             },
                                 error => {
                                     dispatch(failure(error.toString()));

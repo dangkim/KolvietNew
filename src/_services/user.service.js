@@ -76,6 +76,10 @@ function logout() {
     localStorage.removeItem('selectedOptionLocation');
     localStorage.removeItem('selectedOptionInteresting');
     localStorage.removeItem('selectedOptionJobCategory');
+    localStorage.removeItem('type');
+    localStorage.removeItem('infName');
+    localStorage.removeItem('brandFullName');
+    localStorage.removeItem('brandName');
     history.index = -1;
     history.replace({ pathname: '/pages/loginpage' });
 }

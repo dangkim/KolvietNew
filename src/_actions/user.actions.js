@@ -31,7 +31,7 @@ function getToken(userName, password, pathname) {
                                         //     pathname: '/widgets/dashboard-boxes',
                                         //     state: { Brand: brand.brand, type: type }
                                         // })
-
+                                        localStorage.setItem("type", "brand");
                                         localStorage.setItem("brandFullName", brand.brand[0].fullName);
                                         localStorage.setItem("brandName", brand.brand[0].brandName);
                                         history.replace({ pathname: '/widgets/dashboard-boxes', state: { Brand: brand.brand, type: type } });
@@ -45,10 +45,8 @@ function getToken(userName, password, pathname) {
 
                         }
                         else if (type === "Influencer") {
-                            // history.push({
-                            //     pathname: '/widgets/dashboard-boxes',
-                            //     state: { userName: userName, type: type }
-                            // })
+                            localStorage.setItem("infName", userName);
+                            localStorage.setItem("type", "influencer");
                             history.replace({ pathname: '/widgets/dashboard-boxes', state: { userName: userName, type: type } });
                         }
                         toast.success("Welcome " + userName);
