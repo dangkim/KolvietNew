@@ -5,6 +5,8 @@ import bg3 from '../../../assets/utils/images/bg3.jpg'
 import bg1 from '../../../assets/utils/images/bg1.png'
 import iphone3 from '../../../assets/utils/images/iphone3.png'
 import m4 from '../../../assets/utils/images/m4.gif'
+import m51 from '../../../assets/utils/images/m5.gif'
+import m5 from '../../../assets/utils/images/m5.png'
 import m41 from '../../../assets/utils/images/m4.png'
 import m31 from '../../../assets/utils/images/m31.gif'
 import mac from '../../../assets/utils/images/mac.png'
@@ -116,7 +118,7 @@ class LandingPage extends Component {
                                         </p>
                                     </div>
                                 </div>
-                                <div className="col-md-3">                                    
+                                <div className="col-md-3">
                                 </div>
                             </div>
                         </div>
@@ -125,39 +127,20 @@ class LandingPage extends Component {
                     <div className="section section-presentation" style={{ backgroundImage: `url(${m31})`, minHeight: '840px' }}>
                         <div className="container">
                             <div className="row">
-                                <div className="col-md-6">
-                                    <div className="description">
-                                        <h6 className="header-text">CÔNG NGHỆ HIỆN ĐẠI</h6>
-                                        <p>KOLV không chỉ được kế thừa các công nghệ dẫn đầu thị trường về xử lý dữ liệu lớn và phân tích ngôn ngữ tự động mà còn được định vị sẽ mang đến các giá trị nổi bật và khác biệt</p>
-                                    </div>
-                                </div>
-                                {/* <div className="col-md-5 col-md-offset-1 hidden-xs">
-                                    <img src={m31} />
-                                </div> */}
-                            </div>
-                        </div>
-                    </div>
-                    <div className="section section-presentation">
-                        <div className="container" style={{ backgroundImage: `url(${m2})`, minHeight: '700px' }}>
-                            <div className="row" >
-                                <div className="col-md-4">
-                                </div>
                                 <div className="col-md-8">
                                     <div className="description">
-                                        <h6 className="header-text">KẾT NỐI DÀI LÂU</h6>
-                                        <p>&bull;Kho dữ liệu lớn nhất: 10,000 Influencers và tiếp tục mở rộng</p>
-                                        <p>&bull;Hệ thống phân tích thống kê dữ liệu toàn diện - real-time</p>
+                                        <h6 className="header-text">CÔNG NGHỆ HIỆN ĐẠI - KẾT NỐI DÀI LÂU</h6>
+                                        <p>KOLV không chỉ được kế thừa các công nghệ dẫn đầu thị trường về xử lý dữ liệu lớn và phân tích ngôn ngữ tự động mà còn được định vị sẽ mang đến các giá trị nổi bật và khác biệt như:</p>
                                     </div>
                                 </div>
                             </div>
-                            <div className="row" >
-                                <div className="col-md-7">
-                                </div>
-                                <div className="col-md-5">
+                            <div className="row">
+                                <div className="col-md-3">
                                     <div className="description">
-                                        <p>&bull;Các gói dịch vụ hỗ trợ triển khai chiến dịch toàn diện</p>
-                                        <p>&bull;Và hơn hết KOLV là cấu nối nhịp nhàng giữa nhãn hàng và các Influencer để tạo nên hiệu quả nhất cho chiến dịch</p>
-                                        <Link to="/pages/loginpage" className="btn btn-fill btn-info">Get Free Access</Link>
+                                        <p>•	Kho dữ liệu lớn nhất: 10,000 Influencers và đang tiếp tục mở rộng</p>
+                                        <p>•	Hệ thống phân tích thống kê dữ liệu toàn diện trên real-time</p>
+                                        <p>•	Các gói dịch vụ hỗ trợ triển khai chiến dịch toàn diện</p>
+                                        <p>•	Và hơn hết KOLV là cấu nối nhịp nhàng giữa nhãn hàng và các Influencer để tạo nên hiệu quả nhất cho chiến dịch</p>
                                     </div>
                                 </div>
                             </div>
@@ -166,8 +149,9 @@ class LandingPage extends Component {
                     <div className="section section-features">
                         <div className="container">
                             <h4 className="header-text text-center">ĐIỀU GÌ LÀM CHO KOLV KHÁC BIỆT</h4>
+                            <p className="text-center">Nền tảng công nghệ của KOLV cho phép thương hiệu tìm kiếm danh sách Influencer theo nhiều ngành hàng và hơn 70 nghề nghiệp – từ lĩnh vực phổ biến cho đến ngách nhất, thông qua:</p>
                             <div className="row">
-                                <div className="col-md-4">
+                                <div className="col-md-6">
                                     <div className="card card-blue">
                                         <div className="icon">
                                             <i className="pe-7s-note2"></i>
@@ -175,68 +159,61 @@ class LandingPage extends Component {
                                         <div className="text">
                                             <h4>Active User Rate</h4>
                                             <p>Giúp nhãn hàng chọn đúng Influencer khi vấn nạn “follower ảo” ngày càng cao</p>
-                                            <h4 style={{ marginTop: '0px' }}>Relevance Score</h4>
-                                            <p style={{ marginTop: '20px' }}>Thể hiện mức độ phù hợp của Influencer trong từng lĩnh vực, ngành hàng khác nhau.</p>
                                         </div>
                                     </div>
                                 </div>
-                                <div className="col-md-4">
-                                    <div className="card card-blue">
-                                        <div className="icon">
-                                            <i className="pe-7s-graph1"></i>
-                                        </div>
-                                        <h4>Sentiment Score</h4>
-                                        <p>Chỉ số cảm xúc tích cực: phản ánh cảm xúc của người dùng thông qua các phản hồi tích cực, tình cảm, thái độ của followers đối với các nội dung do Influencer chia sẻ.</p>
-                                    </div>
-                                </div>
-                                <div className="col-md-4">
-                                    <div className="card card-blue">
-                                        <div className="icon">
-                                            <i className="pe-7s-bell"></i>
-                                        </div>
-                                        <h4>Influence Score</h4>
-                                        <p>Chỉ số ảnh hưởng: tổng hợp từ các chỉ số trên và đã được thử nghiệm kỹ càng trên nhiều thuật toán. Vì vậy, Influence Score có thể phản ánh gần đúng nhất mức độ ảnh hưởng của Influencer trên từng chủ đề.</p>
-                                    </div>
-                                </div>
-                                <div className="col-md-2">
-                                </div>
-                                <div className="col-md-8">
+                                <div className="col-md-6">
                                     <div className="card card-blue">
                                         <div className="icon">
                                             <i className="pe-7s-note2"></i>
                                         </div>
                                         <div className="text">
-                                            <h4>Resonance Score</h4>
-                                            <p>Chỉ số cộng hưởng: tỷ lệ tương đồng giữa nội dung bình luận với nội dung post. Trong Influencer Marketing, comment liên quan đến chủ đề, thương hiệu là một chỉ số quan trọng để hiểu rõ nhu cầu, hứng thú của followers đến sản phẩm/thông điệp cũng như giúp đánh giá hiệu quả của Influencer/Chiến dịch. Nhưng làm sao con người có thể đọc hiểu hàng ngàn comment của followers? <b>Công nghệ của KOLV làm giúp Marketers việc này.</b></p>
+                                            <h4>Relevance Score</h4>
+                                            <p>Là chỉ số thể hiện mức độ phù hợp của Influencer trong từng lĩnh vực/ngành hàng khác nhau</p>
                                         </div>
                                     </div>
                                 </div>
-                                <div className="col-md-2">
+                                <div className="col-md-6">
+                                    <div className="card card-blue">
+                                        <div className="icon">
+                                            <i className="pe-7s-graph1"></i>
+                                        </div>
+                                        <h4>Sentiment Score</h4>
+                                        <p>Là chỉ số phản ánh cảm xúc của người dùng thông qua các phản hồi tích cực, tình cảm, thái độ của followers đối với các nội dung do Influencer chia sẻ.</p>
+                                    </div>
+                                </div>
+                                <div className="col-md-6">
+                                    <div className="card card-blue">
+                                        <div className="icon">
+                                            <i className="pe-7s-bell"></i>
+                                        </div>
+                                        <h4>Influence Score</h4>
+                                        <p>Là chỉ số ảnh hưởng, tổng hợp từ các chỉ số trên và đã được thử nghiệm kỹ càng trên nhiều thuật toán. Vì vậy, Influence Score có thể phản ánh gần đúng nhất mức độ ảnh hưởng của Influencer trên từng chủ đề.</p>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    {/* <div className="section section-testimonial">
-                        <div className="container">
-                            <h4 className="header-text text-center">What people think</h4>
-                            <div id="carousel-example-generic" className="carousel fade" data-ride="carousel">
-                                <div className="carousel-inner" role="listbox">
-                                    <div className="item active">
-                                        <div className="carousel-testimonial-caption">
-                                            <h3>"Đây là một trong những nền tảng tuyệt vời nhất tôi từng thấy! Chúc bạn may mắn KolsViet!"</h3>
-                                        </div>
+                    <div className="section section-presentation">
+                        <div className="container" style={{ backgroundImage: `url(${m5})`, minHeight: '366px' }}>
+                            <div className="row">
+                                <div className="col-md-2">
+
+                                </div>
+                                <div className="col-md-10">
+                                    <div className="description">
+                                        <h6 className="header-text">MẠNG LƯỚI RỘNG KHẮP – THÂN THIỆN NGƯỜI DÙNG</h6>
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                    </div> */}
-                    <div className="section section-presentation">
-                        <div className="container" style={{ backgroundImage: `url(${m4})`, minHeight: '466px' }}>
                             <div className="row">
-                                <div className="col-md-6">
+                                <div className="col-md-4">
+
+                                </div>
+                                <div className="col-md-8">
                                     <div className="description">
-                                        <h6 className="header-text">Mọi người nghĩ gì</h6>
-                                        <p>Đây là một trong những nền tảng tuyệt vời nhất tôi từng thấy! Chúc bạn may mắn KolViet!</p>
+                                        <p>•    Áp dụng công nghệ tiên tiến, trí tuệ nhân tạo (AI) vào toàn bộ quá trình của chiến dịch để giúp nhãn hàng và Influence kết nối một cách hiệu quả nhất trên diện rộng hơn</p>
+                                        <p>•	Nền tảng thân thiện với người dùng, giúp bạn dễ dàng truy cập và làm việc mọi lúc mọi nơi</p>
                                     </div>
                                 </div>
                             </div>
@@ -256,7 +233,7 @@ class LandingPage extends Component {
                         </div>
                     </div>
                 </div>
-            </div>
+            </div >
         );
     }
 }
