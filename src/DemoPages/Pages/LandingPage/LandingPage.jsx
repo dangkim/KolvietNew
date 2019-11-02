@@ -5,6 +5,7 @@ import bg3 from '../../../assets/utils/images/bg3.jpg'
 import bg1 from '../../../assets/utils/images/bg1.png'
 import iphone3 from '../../../assets/utils/images/iphone3.png'
 import m4 from '../../../assets/utils/images/m4.gif'
+import m41 from '../../../assets/utils/images/m4.png'
 import m31 from '../../../assets/utils/images/m31.gif'
 import mac from '../../../assets/utils/images/mac.png'
 import m2 from '../../../assets/utils/images/m2.png'
@@ -73,7 +74,7 @@ class LandingPage extends Component {
         };
         return (
             <div className="landing-page landing-page1">
-                
+
                 <div className="wrapper">
                     <div className="parallax filter-gradient blue" data-color="blue">
                         <div className="parallax-background">
@@ -98,26 +99,29 @@ class LandingPage extends Component {
                             </div>
                         </div>
                     </div>
-                    <div className="section section-gray section-clients">
-                        <div className="container text-center">
-                            <h4 className="header-text">GIỚI THIỆU DOANH NGHIỆP</h4>
-                            <p>
-                                KOLV tự tin cung cấp giải pháp Influencer Marketing hiệu quả đối với các nhãn hàng và mang đến nguồn thu nhập thỏa đáng cùng cơ hội trải nghiệm sản phẩm chất lượng cho Influencer. Với đội ngũ nhân sự giàu kinh nghiệm trong lĩnh vực truyền thông cùng nền tảng công nghệ hiện đại được đầu tư và phát triển hơn 2 năm.
-                                <br />
-                            </p>
-                            <div className="logos">
-                                <ul className="list-unstyled">
-                                    <li ><img src={bogolive} /></li>
-                                    <li ><img src={gkitchen} /></li>
-                                    <li ><img src={momo} /></li>
-                                    <li ><img src={nct} /></li>
-                                    <li ><img src={sofy} /></li>
-                                    <li ><img src={vnngaynay} /></li>
-                                    <li ><img src={vinaphone} /></li>
-                                </ul>
+                    <div className="section section-presentation" style={{ backgroundImage: `url(${m41})`, minHeight: '466px' }}>
+                        <div className="container">
+                            <div className="row">
+                                <div className="col-md-12">
+                                    <div className="description">
+                                        <h6 className="header-text">THẤU HIỂU KHÁCH HÀNG – AM HIỂU THỊ TRƯỜNG</h6>
+                                    </div>
+                                </div>
+                            </div>
+                            <div className="row">
+                                <div className="col-md-9">
+                                    <div className="description">
+                                        <p>
+                                            KOLV tự tin cung cấp giải pháp Influencer Marketing hiệu quả đối với các nhãn hàng và mang đến nguồn thu nhập thỏa đáng cùng cơ hội trải nghiệm sản phẩm chất lượng cho Influencer. Với đội ngũ nhân sự giàu kinh nghiệm trong lĩnh vực truyền thông cùng nền tảng công nghệ hiện đại được đầu tư và phát triển hơn 2 năm.
+                                        </p>
+                                    </div>
+                                </div>
+                                <div className="col-md-3">                                    
+                                </div>
                             </div>
                         </div>
                     </div>
+
                     <div className="section section-presentation" style={{ backgroundImage: `url(${m31})`, minHeight: '840px' }}>
                         <div className="container">
                             <div className="row">
