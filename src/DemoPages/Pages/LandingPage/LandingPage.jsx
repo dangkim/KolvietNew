@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import bg3 from '../../../assets/utils/images/bg3.jpg'
+import bg1 from '../../../assets/utils/images/bg1.png'
 import iphone3 from '../../../assets/utils/images/iphone3.png'
 import m4 from '../../../assets/utils/images/m4.gif'
 import m31 from '../../../assets/utils/images/m31.gif'
@@ -72,38 +73,23 @@ class LandingPage extends Component {
         };
         return (
             <div className="landing-page landing-page1">
-                <nav className="navbar navbar-transparent navbar-top" role="navigation">
-                    <div className="container">
-                        <div className="navbar-header">
-                            <div className="logo-container">
-                                <div className="logo" style={{ border: 'none', width: '150px', borderRadius: 'unset' }}>
-                                    <img src={big_logo} alt="Kols Viet" />
-                                </div>
-                                {/* <div className="brand">
-                                        Kols Viet
-                                    </div> */}
-                            </div>
-                        </div>
-                    </div>
-                </nav>
+                
                 <div className="wrapper">
                     <div className="parallax filter-gradient blue" data-color="blue">
                         <div className="parallax-background">
-                            <img className="parallax-background-image" src={bg3} />
+                            <img className="parallax-background-image" src={bg1} />
                         </div>
                         <div className="container">
                             <div className="row">
-                                <div className="col-md-5 hidden-xs">
-                                    <div className="parallax-image">
-                                        {/* <img className="phone" src={iphone3} style={{ marginTop: '20px' }} /> */}
-                                    </div>
+                                <div className="col-md-6 hidden-xs">
+
                                 </div>
                                 <div className="col-md-6 col-md-offset-1">
                                     <div className="description">
-                                        <h3>THẤU HIỂU KHÁCH HÀNG</h3>
-                                        <h3>AM HIỂU THỊ TRƯỜNG.</h3>
-                                        <br />
-                                        {/* <h5>Be amazed by the best looking bootstrap landing page on the web! Your new app deserves an amazing page to show all of its features. Clear visual, light colours and beautifully aligned elements - they all try to make the users aware of your great app features!</h5> */}
+                                        <div>
+                                            <img src={big_logo} alt="Kols Viet" style={{ border: 'none', width: '150px', borderRadius: 'unset' }} />
+                                        </div>
+                                        <h2>NỀN TẢNG THÔNG MINH</h2>
                                         <div className="">
                                             <Link to="/pages/loginpage" className="btn btn-fill btn-info">Get Free Access</Link>
                                         </div>
@@ -172,7 +158,7 @@ class LandingPage extends Component {
                                 </div>
                             </div>
                         </div>
-                    </div>                    
+                    </div>
                     <div className="section section-features">
                         <div className="container">
                             <h4 className="header-text text-center">ĐIỀU GÌ LÀM CHO KOLV KHÁC BIỆT</h4>
