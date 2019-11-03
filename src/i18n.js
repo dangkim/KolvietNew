@@ -7,12 +7,44 @@ import { initReactI18next } from "react-i18next";
 const resources = {
   en: {
     translation: {
-      "Welcome Back": "Welcome Back"
+      "Welcome Back": "Welcome Back",
+      "Compare": "Compare",
+      "Campaign": "Campaign",
+      "Detail": "Detail",
+      "Time": "Time",
+      "Status": "Status",
+      "Reactions": "Reactions",
+      "Comments": "Comments",
+      "Shares": "Shares",
+      "Reaction": "Reaction",
+      "Comment": "Comment",
+      "Share": "Share",
+      "Description": "Description",
+      "Engagement": "Engagement",
+      "Photos": "Photos",
+      "Videos": "Videos",
+      "Engagements": "Engagements"
     }
   },
   vn: {
     translation: {
-      "Welcome Back": "Chào mừng bạn trở lại,"
+      "Welcome Back": "Chào mừng bạn trở lại,",
+      "Compare": "So sánh",
+      "Campaign": "Chiến dịch",
+      "Detail": "Chi tiết",
+      "Time": "Thời Gian",
+      "Status": "Dòng trạng thái",
+      "Reactions": "Số cảm xúc",
+      "Comments": "Số bình luận",
+      "Shares": "Số chia sẻ",
+      "Reaction": "Cảm xúc",
+      "Comment": "Bình luận",
+      "Share": "Chia sẻ",
+      "Description": "Mô tả",
+      "Engagement": "Gắn Kết",
+      "Photos": "Hình ảnh",
+      "Videos": "Các đoạn phim ngắn",
+      "Engagements": "Mức độ gắn kết"
     }
   }
 };

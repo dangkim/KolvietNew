@@ -9,8 +9,6 @@ import Slider from "react-slick";
 
 import ReactPlayer from 'react-player';
 
-import classnames from 'classnames';
-
 import {
     Row, Col, ButtonGroup,
     Button,
@@ -20,12 +18,10 @@ import {
 } from 'reactstrap';
 
 import defaultAvatar from '../../../../assets/utils/images/avatars/default.jpg'
-import city from '../../../../assets//utils//images/originals/city.jpg'
-import citynights from '../../../../assets/utils/images/originals/citynights.jpg'
-import citydark from '../../../../assets/utils/images/originals/citydark.jpg'
 import originalMoment from "moment";
 import { extendMoment } from "moment-range";
 import 'react-daterange-picker/dist/css/react-calendar.css'
+import { Trans } from 'react-i18next';
 
 class InfluencerDetail extends Component {
     constructor(props) {
@@ -150,8 +146,8 @@ class InfluencerDetail extends Component {
                                                         {Influencer ? Influencer.numberOfReaction : 0}
                                                     </div>
                                                     <div className="widget-subheading">
-                                                        Reactions
-                                                </div>
+                                                        <Trans>Reactions</Trans>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </Col>
@@ -166,8 +162,8 @@ class InfluencerDetail extends Component {
                                                         {Influencer ? Influencer.numberOfComment : 0}
                                                     </div>
                                                     <div className="widget-subheading">
-                                                        Comments
-                                                </div>
+                                                        <Trans>Comments</Trans>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </Col>
@@ -185,8 +181,8 @@ class InfluencerDetail extends Component {
                                                     {Influencer ? Influencer.numberOfShare : 0}
                                                 </div>
                                                 <div className="widget-subheading">
-                                                    Share
-                                            </div>
+                                                    <Trans>Shares</Trans>
+                                                </div>
                                             </div>
                                         </Col>
                                         <Col md="6">
@@ -199,8 +195,8 @@ class InfluencerDetail extends Component {
                                                     {engagement}
                                                 </div>
                                                 <div className="widget-subheading">
-                                                    Engagement
-                                            </div>
+                                                    <Trans>Engagements</Trans>
+                                                </div>
                                             </div>
                                         </Col>
                                     </Row>
@@ -215,17 +211,17 @@ class InfluencerDetail extends Component {
                                             <table className="align-middle mb-0 table table-borderless table-striped table-hover">
                                                 <thead>
                                                     <tr>
-                                                        <th className="text-center">Time</th>
-                                                        <th>Status</th>
-                                                        <th className="text-center">Reaction|Comment|Share</th>
-                                                        <th className="text-center">Engagement</th>
-                                                        <th className="text-center">Actions</th>
+                                                        <th className="text-center"><Trans>Time</Trans></th>
+                                                        <th><Trans>Status</Trans></th>
+                                                        <th className="text-center"><Trans>Reaction</Trans>|<Trans>Comment</Trans>|<Trans>Share</Trans></th>
+                                                        <th className="text-center"><Trans>Engagement</Trans></th>
+                                                        {/* <th className="text-center"><Trans>Actions</Trans></th> */}
                                                     </tr>
                                                 </thead>
                                                 <tbody>
                                                     <tr>
-                                                        <td className="text-center text-muted">{Influencer ? Influencer.post1.time : ''}</td>
-                                                        <td>
+                                                        <td style={{ width: '10%' }} className="text-center text-muted">{Influencer ? Influencer.post1.time : ''}</td>
+                                                        <td style={{ width: '62%' }}>
                                                             <div className="widget-content p-0">
                                                                 <div className="widget-content-wrapper">
                                                                     {/* <div className="widget-content-left mr-3">
@@ -240,15 +236,15 @@ class InfluencerDetail extends Component {
                                                                 </div>
                                                             </div>
                                                         </td>
-                                                        <td className="text-center">
+                                                        <td style={{ width: '20%' }} className="text-center">
                                                             <div className="badge badge-primary">{numberOfReaction1}</div>
                                                             <div className="badge badge-info">{numberOfComment1}</div>
                                                             <div className="badge badge-alternate">{numberOfShare1}</div>
                                                         </td>
-                                                        <td className="text-center">{engagement1}</td>
-                                                        <td className="text-center">
+                                                        <td style={{ width: '8%' }} className="text-center">{engagement1}</td>
+                                                        {/* <td className="text-center">
                                                             <button type="button" className="btn btn-primary btn-sm">Details</button>
-                                                        </td>
+                                                        </td> */}
                                                     </tr>
                                                     <tr>
                                                         <td className="text-center text-muted">{Influencer ? Influencer.post2.time : ''}</td>
@@ -273,9 +269,9 @@ class InfluencerDetail extends Component {
                                                             <div className="badge badge-alternate">{numberOfShare2}</div>
                                                         </td>
                                                         <td className="text-center">{engagement2}</td>
-                                                        <td className="text-center">
+                                                        {/* <td className="text-center">
                                                             <button type="button" className="btn btn-primary btn-sm">Details</button>
-                                                        </td>
+                                                        </td> */}
                                                     </tr>
                                                     <tr>
                                                         <td className="text-center text-muted">{Influencer ? Influencer.post3.time : ''}</td>
@@ -300,9 +296,9 @@ class InfluencerDetail extends Component {
                                                             <div className="badge badge-alternate">{numberOfShare3}</div>
                                                         </td>
                                                         <td className="text-center">{engagement3}</td>
-                                                        <td className="text-center">
+                                                        {/* <td className="text-center">
                                                             <button type="button" className="btn btn-primary btn-sm">Details</button>
-                                                        </td>
+                                                        </td> */}
                                                     </tr>
                                                     <tr>
                                                         <td className="text-center text-muted">{Influencer ? Influencer.post4.time : ''}</td>
@@ -327,9 +323,9 @@ class InfluencerDetail extends Component {
                                                             <div className="badge badge-alternate">{numberOfShare4}</div>
                                                         </td>
                                                         <td className="text-center">{engagement4}</td>
-                                                        <td className="text-center">
+                                                        {/* <td className="text-center">
                                                             <button type="button" className="btn btn-primary btn-sm">Details</button>
-                                                        </td>
+                                                        </td> */}
                                                     </tr>
                                                     <tr>
                                                         <td className="text-center text-muted">{Influencer ? Influencer.post5.time : ''}</td>
@@ -354,9 +350,9 @@ class InfluencerDetail extends Component {
                                                             <div className="badge badge-alternate">{numberOfShare5}</div>
                                                         </td>
                                                         <td className="text-center">{engagement5}</td>
-                                                        <td className="text-center">
+                                                        {/* <td className="text-center">
                                                             <button type="button" className="btn btn-primary btn-sm">Details</button>
-                                                        </td>
+                                                        </td> */}
                                                     </tr>
                                                 </tbody>
                                             </table>
@@ -369,7 +365,7 @@ class InfluencerDetail extends Component {
                             <Row>
                                 <Col md="12">
                                     <Card className="main-card mb-3">
-                                        <div className="card-header">Description
+                                        <div className="card-header"><Trans>Description</Trans>
                                         </div>
                                         <div className="text-center" style={{ whiteSpace: 'pre-wrap' }}>
                                             {Influencer ? Influencer.description.split('|').join('\n') : ''}
@@ -380,7 +376,7 @@ class InfluencerDetail extends Component {
                             <Row>
                                 <Col md="6">
                                     <Card className="main-card mb-3">
-                                        <div className="card-header">Photos</div>
+                                        <div className="card-header"><Trans>Photos</Trans></div>
                                         <div className="slider-light">
                                             <div className="slick-slider">
                                                 <div>
@@ -404,8 +400,8 @@ class InfluencerDetail extends Component {
                                 </Col>
                                 <Col md="6">
                                     <Card className="main-card mb-3">
-                                        <div className="card-header">Videos
-                                        <div className="btn-actions-pane-right">
+                                        <div className="card-header"><Trans>Videos</Trans>
+                                            <div className="btn-actions-pane-right">
                                                 <div role="group" className="btn-group-sm btn-group">
                                                     <Button onClick={this.nextVideo} value={-1} className="btn btn-info" disabled={currentVideoIndex === 0} >Back</Button>
                                                     <Button onClick={this.nextVideo} value={1} className="btn btn-info" disabled={currentVideoIndex === (Influencer && (Influencer.videoLink.paths.length - 1))}>Next</Button>
@@ -448,4 +444,3 @@ function mapStateToProps(state) {
 
 const connectedInfluencerDetail = connect(mapStateToProps)(InfluencerDetail);
 export { connectedInfluencerDetail as InfluencerDetail };
-//export default Influencers;
