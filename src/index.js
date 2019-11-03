@@ -8,7 +8,8 @@ import './assets/base.css';
 import Main from './DemoPages/Main';
 //import {configureStore} from './config/configureStore';
 import { Provider } from 'react-redux';
-import "react-loader-spinner/dist/loader/css/react-spinner-loader.css"
+import "react-loader-spinner/dist/loader/css/react-spinner-loader.css";
+import './i18n';
 //const store = configureStore();
 const rootElement = document.getElementById('root');
 

@@ -7,6 +7,7 @@ import ResizeDetector from 'react-resize-detector';
 
 import AppMain from '../../Layout/AppMain';
 
+
 class Main extends React.Component {
     constructor(props) {
         super(props);

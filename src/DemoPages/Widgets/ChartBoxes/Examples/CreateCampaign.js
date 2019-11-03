@@ -35,7 +35,7 @@ import {
 } from '@fortawesome/free-solid-svg-icons';
 import citynights from '../../../../assets/utils/images/originals/citynights.jpg'
 import bg1 from '../../../../assets/utils/images/dropdown-header/abstract1.jpg';
-import new_logo from '../../../../assets/utils/images/new_logo.png'
+import new_logo from '../../../../assets/utils/images/originals/new_logo.jpg'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import defaultAvatar from '../../../../assets/utils/images/avatars/default.jpg'
 import DateRangePicker from 'react-daterange-picker'

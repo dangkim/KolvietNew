@@ -5,13 +5,15 @@ import city from '../../../assets/utils/images/originals/city.jpg'
 import citynights from '../../../assets/utils/images/originals/citynights.jpg'
 import citydark from '../../../assets/utils/images/originals/citydark.jpg'
 import Slider from "react-slick";
-import new_logo from '../../../assets/utils/images/originals/new_logo.png'
+import new_logo from '../../../assets/utils/images/originals/new_logo.jpg'
 import { userActions } from '../../../_actions';
 import { history } from '../../../_helpers';
+import { Trans } from 'react-i18next';
 
 class LoginPage extends React.Component {
     constructor(props) {
         super(props);
+
 
         // reset login status
         //this.props.dispatch(userActions.logout());
@@ -40,13 +42,14 @@ class LoginPage extends React.Component {
         const { userName, email, password } = this.state;
         const { dispatch } = this.props;
         if (userName && password) {
-            
+
             const pathname = this.props.location.pathname;
             dispatch(userActions.getToken(userName, password, pathname));
         }
     }
 
     render() {
+
         const { loggingIn, token } = this.props;
         const { userName, password, submitted } = this.state;
         const settings = {
@@ -95,11 +98,11 @@ class LoginPage extends React.Component {
                             <div className="h-100 d-flex bg-white justify-content-center align-items-center col-md-12 col-lg-8">
                                 <div className="mx-auto app-login-box col-sm-12 col-md-10 col-lg-9">
                                     {/* <div className="app-logo"></div> */}
-                                    <div style={{ marginBottom: '3rem', width: '97px', height: '23px' }}>
-                                        <img src={new_logo} alt="Kols Viet" />
+                                    <div>
+                                        <img src={new_logo} alt="Kols Viet" style={{  width: '95px' }}/>
                                     </div>
                                     <h4 className="mb-0">
-                                        <span className="d-block">Welcome back,</span>
+                                        <span className="d-block"><Trans>Welcome Back</Trans></span>
                                         <span>Please sign in to your account.</span></h4>
                                     <div className="row">
                                         <div className="col-md-6">

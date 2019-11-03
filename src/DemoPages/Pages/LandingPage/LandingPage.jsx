@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import bg3 from '../../../assets/utils/images/bg3.jpg'
 import bg1 from '../../../assets/utils/images/bg1.png'
 import iphone3 from '../../../assets/utils/images/iphone3.png'
+import m6 from '../../../assets/utils/images/m6.jpg'
 import m4 from '../../../assets/utils/images/m4.gif'
 import m51 from '../../../assets/utils/images/m5.gif'
 import m5 from '../../../assets/utils/images/m5.png'
@@ -194,7 +195,7 @@ class LandingPage extends Component {
                             </div>
                         </div>
                     </div>
-                    <div className="section section-presentation">
+                    <div className="section section-presentation" style={{  minHeight: 'unset' }}>
                         <div className="container" style={{ backgroundImage: `url(${m5})`, minHeight: '366px' }}>
                             <div className="row">
                                 <div className="col-md-2">
@@ -218,6 +219,14 @@ class LandingPage extends Component {
                                 </div>
                             </div>
                         </div>
+                    </div>
+                    <div className="section section-presentation" style={{  minHeight: 'unset' }}>
+                        <div className="container" style={{ backgroundImage: `url(${m6})`, minHeight: '285px' }}></div>
+                        {/* <div className="row">
+                            <div className="col-md-12" >
+                                <img className="parallax-background-image" src={m6} style={{ maxHeight: '300px' }} />
+                            </div>
+                        </div> */}
                     </div>
                     <div className="section section-no-padding">
                         <div className="parallax filter-gradient blue" data-color="blue">

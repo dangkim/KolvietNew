@@ -19,7 +19,7 @@ import JwPagination from 'jw-react-pagination';
 //import { SearchBox } from '../SearchBox';
 import cx from 'classnames';
 import Skeleton from 'react-loading-skeleton';
-import new_logo from '../../../assets/utils/images/new_logo.png'
+import new_logo from '../../../assets/utils/originals/new_logo.jpg'
 import {
     Row, Col, CustomInput
 } from 'reactstrap';

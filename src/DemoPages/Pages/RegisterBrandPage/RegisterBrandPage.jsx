@@ -8,7 +8,7 @@ import citydark from '../../../assets/utils/images/originals/citydark.jpg'
 import Slider from "react-slick";
 import { brandActions } from '../../../_actions';
 import Select from 'react-select';
-import new_logo from '../../../assets/utils/images/originals/new_logo.png'
+import new_logo from '../../../assets/utils/images/originals/new_logo.jpg'
 import { createLocations } from '../../../_models/CommonModels';
 import NumberFormat from 'react-number-format';
 import PasswordValidator from 'password-validator';
@@ -175,8 +175,8 @@ class RegisterBrandPage extends React.Component {
                         <div className="h-100 no-gutters row">
                             <div className="h-100 d-md-flex d-sm-block bg-white justify-content-center align-items-center col-md-12 col-lg-8">
                                 <div className="mx-auto app-login-box col-sm-12 col-md-10 col-lg-9">
-                                    <div style={{ marginBottom: '3rem', width: '97px', height: '23px' }}>
-                                        <img src={new_logo} alt="Kols Viet" />
+                                    <div>
+                                        <img src={new_logo} alt="Kols Viet" style={{  width: '95px' }}/>
                                     </div>
                                     <h4>
                                         <div>Welcome,</div>

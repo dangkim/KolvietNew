@@ -58,7 +58,7 @@ class Influencers extends Component {
 
         this.handleCheckBoxChange = this.handleCheckBoxChange.bind(this);
         this.handleConfirmNavigationClick = this.handleConfirmNavigationClick.bind(this);
-        this.handleBlockedNavigation = this.handleBlockedNavigation.bind(this);
+        //this.handleBlockedNavigation = this.handleBlockedNavigation.bind(this);
         this.handleSearch = this.handleSearch.bind(this);
         this.onCheckboxBtnClick = this.onCheckboxBtnClick.bind(this);
         this.sendData = this.sendData.bind(this);
@@ -257,15 +257,15 @@ class Influencers extends Component {
             callback
         );
 
-    handleBlockedNavigation = nextLocation => {
-        const { confirmedNavigation } = this.state;
-        if (!confirmedNavigation) {
-            this.showModal(nextLocation);
-            return false;
-        }
+    // handleBlockedNavigation = nextLocation => {
+    //     const { confirmedNavigation } = this.state;
+    //     if (!confirmedNavigation) {
+    //         this.showModal(nextLocation);
+    //         return false;
+    //     }
 
-        return true;
-    };
+    //     return true;
+    // };
 
     handleConfirmNavigationClick = () =>
         this.closeModal(() => {
