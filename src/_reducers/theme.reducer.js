@@ -3,7 +3,7 @@ import { themeConstants } from '../_constants';
 
 export function theme(state = {
   backgroundColor: 'bg-royal sidebar-text-light',
-  headerBackgroundColor: 'bg-strong-bliss header-text-light',
+  headerBackgroundColor: 'bg-plum-plate header-text-light',
   enableMobileMenu: '',
   enableMobileMenuSmall: '',
   enableBackgroundImage: true,

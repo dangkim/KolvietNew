@@ -46,9 +46,7 @@ class AppHeader extends React.Component {
     };
 
     sendData = (searchValue) => {
-        // Back to first tab
-        debugger;
-        this.props.parentCallback(searchValue);
+        this.props.parentSearchCallback(searchValue);
     }
 
     render() {
@@ -58,11 +56,10 @@ class AppHeader extends React.Component {
             enableHeaderShadow
         } = this.props;
         var fullName = ""
-        if (localStorage.getItem("type")=="brand") {
+        if (localStorage.getItem("type") === "brand") {
             fullName = localStorage.getItem("brandFullName");
         }
-        else
-        {
+        else {
             debugger;
             fullName = localStorage.getItem("infName");
         }
@@ -76,10 +73,10 @@ class AppHeader extends React.Component {
                         <HeaderLogo />
                         <div className={cx("app-header__content", { 'header-mobile-open': enableMobileMenuSmall })}>
                             <div className="app-header-left">
-                                <SearchBox handlerFromParent={this.sendData} />
+                                <SearchBox handlerSearchFromParent={this.sendData} />
                             </div>
                             <div className="app-header-right">
-                                <UserBox FullName={fullName}/>
+                                <UserBox FullName={fullName} />
                             </div>
                         </div>
                     </div>

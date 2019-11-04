@@ -11,14 +11,21 @@ class SearchBox extends React.Component {
             searchValue: ''
         };
         this.handleChange = this.handleChange.bind(this);
+        this.keyPressed = this.keyPressed.bind(this);
     }
 
     handleChange(event) {
         const { name, value } = event.target;
-        const { searchValue } = this.state;
         this.setState({
             [name]: value
         });
+    }
+
+    keyPressed(event) {
+        const { searchValue } = this.state
+        if (event.key === "Enter") {
+            this.props.handlerSearchFromParent(searchValue)
+        }
     }
 
     render() {
@@ -29,13 +36,13 @@ class SearchBox extends React.Component {
                     'active': activeSearch
                 })}>
                     <div className="input-holder">
-                        <input type="text" className="search-input" id="searchValue" name="searchValue" value={searchValue} onChange={this.handleChange} />
+                        <input type="text" className="search-input" id="searchValue" name="searchValue" value={searchValue} onChange={this.handleChange} onKeyPress={this.keyPressed}/>
                         <button onClick={() => {
                             if (activeSearch === false) {
                                 this.setState({ activeSearch: !activeSearch })
                             }
                             else {
-                                this.props.handlerFromParent(searchValue)
+                                this.props.handlerSearchFromParent(searchValue)
                                 this.setState({ activeSearch: !activeSearch })
                             }
                         }}
