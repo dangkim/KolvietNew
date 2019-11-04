@@ -8,6 +8,10 @@ const resources = {
   en: {
     translation: {
       "Welcome Back": "Welcome Back",
+      "Please sign in to your account.": "Please sign in to your account.",
+      "Sign up as Brand now": "Sign up as Brand now",
+      "Sign up as Influencer now": "Sign up as Influencer now",
+      "No account": "No account",
       "Compare": "Compare",
       "Campaign": "Campaign",
       "Detail": "Detail",
@@ -29,6 +33,10 @@ const resources = {
   vn: {
     translation: {
       "Welcome Back": "Chào mừng bạn trở lại,",
+      "Please sign in to your account.": "Hãy đăng nhập vào tài khoản của bạn.",
+      "Sign up as Brand now": "Đăng ký cho thương hiệu",
+      "Sign up as Influencer now": "Đăng ký bạn là một Kol",
+      "No account": "Bạn chưa có",
       "Compare": "So sánh",
       "Campaign": "Chiến dịch",
       "Detail": "Chi tiết",

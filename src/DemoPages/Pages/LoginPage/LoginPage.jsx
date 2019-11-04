@@ -99,20 +99,20 @@ class LoginPage extends React.Component {
                                 <div className="mx-auto app-login-box col-sm-12 col-md-10 col-lg-9">
                                     {/* <div className="app-logo"></div> */}
                                     <div>
-                                        <img src={new_logo} alt="Kols Viet" style={{  width: '95px' }}/>
+                                        <img src={new_logo} alt="Kols Viet" style={{ width: '95px' }} />
                                     </div>
                                     <h4 className="mb-0">
                                         <span className="d-block"><Trans>Welcome Back</Trans></span>
-                                        <span>Please sign in to your account.</span></h4>
+                                        <span><Trans>Please sign in to your account.</Trans></span></h4>
                                     <div className="row">
                                         <div className="col-md-6">
-                                            <h6 className="mt-3">No account?
-                                                <Link to="/pages/registerBrandPage">Sign up as Brand now</Link>
+                                            <h6 className="mt-3"><Trans>No account</Trans>?
+                                                <Link to="/pages/registerBrandPage"> <Trans>Sign up as Brand now</Trans></Link>
                                             </h6>
                                         </div>
                                         <div className="col-md-6">
                                             <h6 className="mt-3">
-                                                <Link to="/pages/registerInfluencerPage">Sign up as Influencer now</Link>
+                                                <Link to="/pages/registerInfluencerPage"><Trans>Sign up as Influencer now</Trans></Link>
                                             </h6>
                                         </div>
                                     </div>
