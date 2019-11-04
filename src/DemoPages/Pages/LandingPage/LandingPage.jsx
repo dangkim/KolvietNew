@@ -125,8 +125,8 @@ class LandingPage extends Component {
                         </div>
                     </div>
 
-                    <div className="section section-presentation" style={{ backgroundImage: `url(${m31})`, minHeight: '840px' }}>
-                        <div className="container">
+                    <div className="section section-presentation">
+                        <div className="container" style={{ backgroundImage: `url(${m31})`, minHeight: '840px', minWidth: '1482px' }}>
                             <div className="row">
                                 <div className="col-md-8">
                                     <div className="description">
@@ -136,7 +136,7 @@ class LandingPage extends Component {
                                 </div>
                             </div>
                             <div className="row">
-                                <div className="col-md-3">
+                                <div className="col-md-5">
                                     <div className="description">
                                         <p>•	Kho dữ liệu lớn nhất: 10,000 Influencers và đang tiếp tục mở rộng</p>
                                         <p>•	Hệ thống phân tích thống kê dữ liệu toàn diện trên real-time</p>
