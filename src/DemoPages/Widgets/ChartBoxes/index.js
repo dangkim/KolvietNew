@@ -35,6 +35,7 @@ import {
 } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { infActions } from '../../../_actions';
+import fur from '../../../assets/utils/images/originals/realestate.jpg'
 
 class WidgetsChartBoxes extends React.Component {
 
@@ -337,17 +338,20 @@ class WidgetsChartBoxes extends React.Component {
                                         </div>
                                     </Col>
                                     <Col md="2">
-                                        <div onClick={() => this.onCheckboxBtnClick('RealEstate', '')}
+                                        {/* <div onClick={() => this.onCheckboxBtnClick('RealEstate', '')}
                                             className={"font-icon-wrapper" + (!cSelected.includes('RealEstate') ? " text-primary" : '')}>
                                             <FontAwesomeIcon icon={faLandmark} size="4x" />
                                             <p>Real Estate</p>
+                                        </div> */}
+                                        <div onClick={() => this.onCheckboxBtnClick('RealEstate', '')}>
+                                            <img src={fur} style={{ width: '100%' }}></img>
+                                            <p className="text-center">Real Estate</p>
                                         </div>
                                     </Col>
                                     <Col md="2">
-                                        <div onClick={() => this.onCheckboxBtnClick('Furniture', '')}
-                                            className={"font-icon-wrapper" + (!cSelected.includes('Furniture') ? " text-secondary" : '')}>
-                                            <FontAwesomeIcon icon={faCouch} size="4x" />
-                                            <p>Furniture</p>
+                                    <div onClick={() => this.onCheckboxBtnClick('Furniture', '')}>
+                                            <img src={fur} style={{ width: '100%' }}></img>
+                                            <p className="text-center">Furniture</p>
                                         </div>
                                     </Col>
                                     <Col md="2">
