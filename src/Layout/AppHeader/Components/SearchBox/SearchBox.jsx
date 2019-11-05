@@ -22,9 +22,10 @@ class SearchBox extends React.Component {
     }
 
     keyPressed(event) {
-        const { searchValue } = this.state
+        const { activeSearch, searchValue } = this.state
         if (event.key === "Enter") {
             this.props.handlerSearchFromParent(searchValue)
+            this.setState({ activeSearch: !activeSearch });
         }
     }
 

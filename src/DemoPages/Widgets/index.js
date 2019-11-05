@@ -17,7 +17,8 @@ class Widgets extends React.Component {
 
         this.state = {
             searchValue: '',
-            first: 9
+            first: 9,
+            selectedTabKey: -1
         };
 
         this.sendData = this.sendData.bind(this);
@@ -25,6 +26,7 @@ class Widgets extends React.Component {
 
     sendData = (childData) => {
         const { dispatch } = this.props;
+        this.setState({ selectedTabKey: 0 })
         if (childData && childData !== '') {
 
             let items = [];
@@ -42,7 +44,7 @@ class Widgets extends React.Component {
     }
 
     render() {
-        const { searchValue } = this.state;
+        const { searchValue, selectedTabKey } = this.state;
         const { influencers } = this.props;
         const influencerItems = (influencers && influencers.items) ? influencers.items : [];
 
@@ -57,7 +59,7 @@ class Widgets extends React.Component {
 
                         <Route path={`${this.props.match.url}/dashboard-boxes`}
                             render={(routeProps) => (
-                                <WidgetsChartBoxes FilterInfluencers={influencerItems} SearchValue={searchValue} {...this.props} />
+                                <WidgetsChartBoxes SelectedTab={selectedTabKey} FilterInfluencers={influencerItems} SearchValue={searchValue} {...this.props} />
                             )} />
                         <Route path={`${this.props.match.url}/campaigns-table`}
                             render={(routeProps) => (

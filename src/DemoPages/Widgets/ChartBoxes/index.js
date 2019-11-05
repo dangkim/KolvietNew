@@ -77,6 +77,7 @@ class WidgetsChartBoxes extends React.Component {
             }
 
         }
+
         this.state = {
             Brand: brandLocal,
             userName: userName,
@@ -209,7 +210,7 @@ class WidgetsChartBoxes extends React.Component {
 
     render() {
         const { cSelected, Influencer, Brand, modalVisible, type, userName, ComparedInfluencers } = this.state;
-        const { FilterInfluencers, SearchValue } = this.props;
+        const { FilterInfluencers, SearchValue, SelectedTab } = this.props;
 
         const tabsContentUpdateCost = [
             {
