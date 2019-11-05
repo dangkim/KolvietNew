@@ -35,7 +35,19 @@ import {
 } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { infActions } from '../../../_actions';
-import fur from '../../../assets/utils/images/originals/realestate.jpg'
+import realestate from '../../../assets/utils/images/originals/realestate.jpg'
+import cosmetics from '../../../assets/utils/images/originals/cosmetics.jpg'
+import event from '../../../assets/utils/images/originals/event.jpg'
+import fashion from '../../../assets/utils/images/originals/fashion.jpg'
+import game from '../../../assets/utils/images/originals/game.jpg'
+import food from '../../../assets/utils/images/originals/food.jpg'
+import fur from '../../../assets/utils/images/originals/fur.jpg'
+import housewife from '../../../assets/utils/images/originals/housewife.jpg'
+import sport from '../../../assets/utils/images/originals/sport.jpg'
+import tech from '../../../assets/utils/images/originals/tech.jpg'
+import travel from '../../../assets/utils/images/originals/travel.jpg'
+import appliance from '../../../assets/utils/images/originals/appliance.jpg'
+
 
 class WidgetsChartBoxes extends React.Component {
 
@@ -275,66 +287,57 @@ class WidgetsChartBoxes extends React.Component {
                             <CardBody>
                                 <Row>
                                     <Col md="2">
-                                        <div onClick={() => this.onCheckboxBtnClick('Food', '')}
-                                            className={"font-icon-wrapper" + (!cSelected.includes('Food') ? " text-primary" : '')}>
-                                            <FontAwesomeIcon icon={faHamburger} size="4x" />
-                                            <p>Food</p>
+                                        <div onClick={() => this.onCheckboxBtnClick('Food', '')}>
+                                            <img src={food} style={{ width: '100%' }}></img>
+                                            <p className="text-center">Food</p>
                                         </div>
                                     </Col>
                                     <Col md="2">
-                                        <div onClick={() => this.onCheckboxBtnClick('Cosmetics', '')}
-                                            className={"font-icon-wrapper" + (!cSelected.includes('Cosmetics') ? " text-success" : '')}>
-                                            <FontAwesomeIcon icon={faMortarPestle} size="4x" />
-                                            <p>Cosmetics</p>
+                                        <div onClick={() => this.onCheckboxBtnClick('Cosmetics', '')}>
+                                            <img src={cosmetics} style={{ width: '100%' }}></img>
+                                            <p className="text-center">Cosmetics</p>
                                         </div>
                                     </Col>
                                     <Col md="2">
-                                        <div onClick={() => this.onCheckboxBtnClick('Fashion', '')}
-                                            className={"font-icon-wrapper" + (!cSelected.includes('Fashion') ? " text-danger" : '')}>
-                                            <FontAwesomeIcon icon={faTshirt} size="4x" />
-                                            <p>Fashion</p>
+                                        <div onClick={() => this.onCheckboxBtnClick('Fashion', '')}>
+                                            <img src={fashion} style={{ width: '100%' }}></img>
+                                            <p className="text-center">Fashion</p>
                                         </div>
                                     </Col>
                                     <Col md="2">
-                                        <div onClick={() => this.onCheckboxBtnClick('Sport', '')}
-                                            className={"font-icon-wrapper" + (!cSelected.includes('Sport') ? " text-info" : '')}>
-                                            <FontAwesomeIcon icon={faRunning} size="4x" />
-                                            <p>Sport</p>
+                                        <div onClick={() => this.onCheckboxBtnClick('Sport', '')}>
+                                            <img src={sport} style={{ width: '100%' }}></img>
+                                            <p className="text-center">Sport</p>
                                         </div>
                                     </Col>
                                     <Col md="2">
-                                        <div onClick={() => this.onCheckboxBtnClick('Travel', '')}
-                                            className={"font-icon-wrapper" + (!cSelected.includes('Travel') ? " text-warning" : '')}>
-                                            <FontAwesomeIcon icon={faPlaneDeparture} size="4x" />
-                                            <p>Travel</p>
+                                        <div onClick={() => this.onCheckboxBtnClick('Travel', '')}>
+                                            <img src={travel} style={{ width: '100%' }}></img>
+                                            <p className="text-center">Travel</p>
                                         </div>
                                     </Col>
                                     <Col md="2">
-                                        <div onClick={() => this.onCheckboxBtnClick('Event', 'Entertaining')}
-                                            className={"font-icon-wrapper" + (!cSelected.includes('Event') || !cSelected.includes('Event') ? " text-danger" : '')}>
-                                            <FontAwesomeIcon icon={faMicrophoneAlt} size="4x" />
-                                            <p>Events-Entertaining</p>
+                                        <div onClick={() => this.onCheckboxBtnClick('Event', 'Entertaining')}>
+                                            <img src={event} style={{ width: '100%' }}></img>
+                                            <p className="text-center">Events-Entertaining</p>
                                         </div>
                                     </Col>
                                     <Col md="2">
-                                        <div onClick={() => this.onCheckboxBtnClick('HouseWife', '')}
-                                            className={"font-icon-wrapper" + (!cSelected.includes('HouseWife') ? " text-focus" : '')}>
-                                            <FontAwesomeIcon icon={faStoreAlt} size="4x" />
-                                            <p>HouseWife</p>
+                                        <div onClick={() => this.onCheckboxBtnClick('HouseWife', '')}>
+                                            <img src={housewife} style={{ width: '100%' }}></img>
+                                            <p className="text-center">HouseWife</p>
                                         </div>
                                     </Col>
                                     <Col md="2">
-                                        <div onClick={() => this.onCheckboxBtnClick('Technology', '')}
-                                            className={"font-icon-wrapper" + (!cSelected.includes('Technology') ? " text-info" : '')}>
-                                            <FontAwesomeIcon icon={faMicrochip} size="4x" />
-                                            <p>Technology</p>
+                                        <div onClick={() => this.onCheckboxBtnClick('Technology', '')}>
+                                            <img src={tech} style={{ width: '100%' }}></img>
+                                            <p className="text-center">Technology</p>
                                         </div>
                                     </Col>
                                     <Col md="2">
-                                        <div onClick={() => this.onCheckboxBtnClick('Appliances', '')}
-                                            className={"font-icon-wrapper" + (!cSelected.includes('Appliances') ? " text-alternate" : '')}>
-                                            <FontAwesomeIcon icon={faBlender} size="4x" />
-                                            <p>Appliances</p>
+                                        <div onClick={() => this.onCheckboxBtnClick('Appliances', '')}>
+                                            <img src={appliance} style={{ width: '100%' }}></img>
+                                            <p className="text-center">Appliances</p>
                                         </div>
                                     </Col>
                                     <Col md="2">
@@ -344,24 +347,21 @@ class WidgetsChartBoxes extends React.Component {
                                             <p>Real Estate</p>
                                         </div> */}
                                         <div onClick={() => this.onCheckboxBtnClick('RealEstate', '')}>
-                                            <img src={fur} style={{ width: '100%' }}></img>
+                                            <img src={realestate} style={{ width: '100%' }}></img>
                                             <p className="text-center">Real Estate</p>
                                         </div>
                                     </Col>
                                     <Col md="2">
-                                    <div onClick={() => this.onCheckboxBtnClick('Furniture', '')}>
+                                        <div onClick={() => this.onCheckboxBtnClick('Furniture', '')}>
                                             <img src={fur} style={{ width: '100%' }}></img>
                                             <p className="text-center">Furniture</p>
                                         </div>
                                     </Col>
                                     <Col md="2">
-                                        <div onClick={() => this.onCheckboxBtnClick('Auto', 'Game')}
-                                            className={"font-icon-wrapper" + (!cSelected.includes('Auto') || !cSelected.includes('Game') ? " text-success" : '')}>
-                                            <FontAwesomeIcon icon={faCar} size="4x" />
-                                            <FontAwesomeIcon icon={faGamepad} size="3x" />
-                                            <p>Auto-Games</p>
+                                        <div onClick={() => this.onCheckboxBtnClick('Auto', 'Game')}                                            >
+                                            <img src={game} style={{ width: '100%' }}></img>
+                                            <p className="text-center">Auto-Games</p>
                                         </div>
-
                                     </Col>
                                 </Row>
                             </CardBody>
