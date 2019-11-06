@@ -212,7 +212,7 @@ class WidgetsChartBoxes extends React.Component {
     }
 
     render() {
-        const { Influencer, Brand, modalVisible, type, userName, ComparedInfluencers } = this.state;
+        const { cSelected, Influencer, Brand, modalVisible, type, userName, ComparedInfluencers } = this.state;
         const { FilterInfluencers, SearchValue, ActiveTab } = this.props;
 
         const tabsContentUpdateCost = [
@@ -292,55 +292,55 @@ class WidgetsChartBoxes extends React.Component {
                                 <Row>
                                     <Col md="2">
                                         <div onClick={() => this.onCheckboxBtnClick('Food', '')}>
-                                            <img src={food} style={{ width: '100%' }}></img>
+                                            <img src={food} style={{ width: '100%', borderStyle: !cSelected.includes('Food') ? 'none' : 'solid', borderColor: '#764ba2', borderWidth: 'thick' }}></img>
                                             <p className="text-center">Food</p>
                                         </div>
                                     </Col>
                                     <Col md="2">
                                         <div onClick={() => this.onCheckboxBtnClick('Cosmetics', '')}>
-                                            <img src={cosmetics} style={{ width: '100%' }}></img>
+                                            <img src={cosmetics} style={{ width: '100%', borderStyle: !cSelected.includes('Cosmetics') ? 'none' : 'solid', borderColor: '#764ba2', borderWidth: 'thick' }}></img>
                                             <p className="text-center">Cosmetics</p>
                                         </div>
                                     </Col>
                                     <Col md="2">
                                         <div onClick={() => this.onCheckboxBtnClick('Fashion', '')}>
-                                            <img src={fashion} style={{ width: '100%' }}></img>
+                                            <img src={fashion} style={{ width: '100%', borderStyle: !cSelected.includes('Fashion') ? 'none' : 'solid', borderColor: '#764ba2', borderWidth: 'thick' }}></img>
                                             <p className="text-center">Fashion</p>
                                         </div>
                                     </Col>
                                     <Col md="2">
                                         <div onClick={() => this.onCheckboxBtnClick('Sport', '')}>
-                                            <img src={sport} style={{ width: '100%' }}></img>
+                                            <img src={sport} style={{ width: '100%', borderStyle: !cSelected.includes('Sport') ? 'none' : 'solid', borderColor: '#764ba2', borderWidth: 'thick' }}></img>
                                             <p className="text-center">Sport</p>
                                         </div>
                                     </Col>
                                     <Col md="2">
                                         <div onClick={() => this.onCheckboxBtnClick('Travel', '')}>
-                                            <img src={travel} style={{ width: '100%' }}></img>
+                                            <img src={travel} style={{ width: '100%', borderStyle: !cSelected.includes('Travel') ? 'none' : 'solid', borderColor: '#764ba2', borderWidth: 'thick' }}></img>
                                             <p className="text-center">Travel</p>
                                         </div>
                                     </Col>
                                     <Col md="2">
                                         <div onClick={() => this.onCheckboxBtnClick('Event', 'Entertaining')}>
-                                            <img src={event} style={{ width: '100%' }}></img>
+                                            <img src={event} style={{ width: '100%', borderStyle: !cSelected.includes('Event') ? 'none' : 'solid', borderColor: '#764ba2', borderWidth: 'thick' }}></img>
                                             <p className="text-center">Events-Entertaining</p>
                                         </div>
                                     </Col>
                                     <Col md="2">
                                         <div onClick={() => this.onCheckboxBtnClick('HouseWife', '')}>
-                                            <img src={housewife} style={{ width: '100%' }}></img>
+                                            <img src={housewife} style={{ width: '100%', borderStyle: !cSelected.includes('HouseWife') ? 'none' : 'solid', borderColor: '#764ba2', borderWidth: 'thick' }}></img>
                                             <p className="text-center">HouseWife</p>
                                         </div>
                                     </Col>
                                     <Col md="2">
                                         <div onClick={() => this.onCheckboxBtnClick('Technology', '')}>
-                                            <img src={tech} style={{ width: '100%' }}></img>
+                                            <img src={tech} style={{ width: '100%', borderStyle: !cSelected.includes('Technology') ? 'none' : 'solid', borderColor: '#764ba2', borderWidth: 'thick' }}></img>
                                             <p className="text-center">Technology</p>
                                         </div>
                                     </Col>
                                     <Col md="2">
                                         <div onClick={() => this.onCheckboxBtnClick('Appliances', '')}>
-                                            <img src={appliance} style={{ width: '100%' }}></img>
+                                            <img src={appliance} style={{ width: '100%', borderStyle: !cSelected.includes('Appliances') ? 'none' : 'solid', borderColor: '#764ba2', borderWidth: 'thick' }}></img>
                                             <p className="text-center">Appliances</p>
                                         </div>
                                     </Col>
@@ -351,19 +351,19 @@ class WidgetsChartBoxes extends React.Component {
                                             <p>Real Estate</p>
                                         </div> */}
                                         <div onClick={() => this.onCheckboxBtnClick('RealEstate', '')}>
-                                            <img src={realestate} style={{ width: '100%' }}></img>
+                                            <img src={realestate} style={{ width: '100%', borderStyle: !cSelected.includes('RealEstate') ? 'none' : 'solid', borderColor: '#764ba2', borderWidth: 'thick' }}></img>
                                             <p className="text-center">Real Estate</p>
                                         </div>
                                     </Col>
                                     <Col md="2">
                                         <div onClick={() => this.onCheckboxBtnClick('Furniture', '')}>
-                                            <img src={fur} style={{ width: '100%' }}></img>
+                                            <img src={fur} style={{ width: '100%', borderStyle: !cSelected.includes('Furniture') ? 'none' : 'solid', borderColor: '#764ba2', borderWidth: 'thick' }}></img>
                                             <p className="text-center">Furniture</p>
                                         </div>
                                     </Col>
                                     <Col md="2">
-                                        <div onClick={() => this.onCheckboxBtnClick('Auto', 'Game')}                                            >
-                                            <img src={game} style={{ width: '100%' }}></img>
+                                        <div onClick={() => this.onCheckboxBtnClick('Auto', 'Game')}>
+                                            <img src={game} style={{ width: '100%', borderStyle: !cSelected.includes('Game') ? 'none' : 'solid', borderColor: '#764ba2', borderWidth: 'thick' }}></img>
                                             <p className="text-center">Auto-Games</p>
                                         </div>
                                     </Col>
