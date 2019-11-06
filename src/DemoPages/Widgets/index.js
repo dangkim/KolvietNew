@@ -18,29 +18,31 @@ class Widgets extends React.Component {
         this.state = {
             searchValue: '',
             first: 9,
-            selectedTabKey: -1
+            selectedTabKey: 0
         };
 
         this.sendData = this.sendData.bind(this);
+        this.sendTabData = this.sendTabData.bind(this);
     }
 
     sendData = (childData) => {
         const { dispatch } = this.props;
-        this.setState({ selectedTabKey: 0 })
-        if (childData && childData !== '') {
+        this.setState({ selectedTabKey: 0, searchValue: childData })
 
+        if (childData && childData !== '') {            
             let items = [];
 
             items.push(childData);
 
             dispatch(infActions.getInfluencersByCategory([], this.state.first, 0, items));
-            //this.props.dispatch(infActions.getInfluencersByName(this.state.first, 0, childData));
-            //this.setState({ searchValue: childData })
         }
-        else
-        {
+        else {
             this.props.dispatch(infActions.getInfluencersByName(this.state.first, 0, ""));
         }
+    }
+
+    sendTabData = (activeTab) => {
+        this.setState({ selectedTabKey: activeTab })       
     }
 
     render() {
@@ -59,7 +61,7 @@ class Widgets extends React.Component {
 
                         <Route path={`${this.props.match.url}/dashboard-boxes`}
                             render={(routeProps) => (
-                                <WidgetsChartBoxes SelectedTab={selectedTabKey} FilterInfluencers={influencerItems} SearchValue={searchValue} {...this.props} />
+                                <WidgetsChartBoxes parentTabCallback={this.sendTabData} ActiveTab={selectedTabKey} FilterInfluencers={influencerItems} SearchValue={searchValue} {...this.props} />
                             )} />
                         <Route path={`${this.props.match.url}/campaigns-table`}
                             render={(routeProps) => (

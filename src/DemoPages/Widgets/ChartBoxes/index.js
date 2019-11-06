@@ -82,7 +82,6 @@ class WidgetsChartBoxes extends React.Component {
             Brand: brandLocal,
             userName: userName,
             type: type,
-            selectedTabKey: 0,
             Influencer: null,
             ComparedInfluencers: [],
             confirmedNavigation: false,
@@ -105,7 +104,8 @@ class WidgetsChartBoxes extends React.Component {
     }
 
     onChangeTab(activeTab) {
-        this.setState({ selectedTabKey: activeTab })
+        this.props.parentTabCallback(activeTab);
+        //this.setState({ selectedTabKey: activeTab })
     }
 
     filterCategory(event) {
@@ -120,10 +120,12 @@ class WidgetsChartBoxes extends React.Component {
     callbackFunction = (selectedTabKey, childData, index) => {
 
         if (index !== null) {
-            this.setState({ selectedTabKey: selectedTabKey, Influencer: childData[index] })
+            this.props.parentTabCallback(selectedTabKey);
+            this.setState({ Influencer: childData[index] })
         }
         else {
-            this.setState({ selectedTabKey: selectedTabKey, ComparedInfluencers: childData })
+            this.props.parentTabCallback(selectedTabKey);
+            this.setState({ ComparedInfluencers: childData })
         }
     }
 
@@ -175,6 +177,9 @@ class WidgetsChartBoxes extends React.Component {
     onCheckboxBtnClick(selected1, selected2) {
         const { cSelected, first, SearchValue } = this.state;
         const { dispatch } = this.props;
+
+        this.props.parentTabCallback(0);
+
         let index = cSelected.indexOf(selected1);
         if (index < 0) {
             cSelected.push(selected1);
@@ -192,9 +197,7 @@ class WidgetsChartBoxes extends React.Component {
         }
 
         this.setState({ cSelected: [...cSelected] });
-        this.setState({ selectedTabKey: 0 });
         let items = [];
-        debugger;
         if (cSelected.length > 0) {
             cSelected.map((item, key) => {
                 items.push(item);
@@ -209,8 +212,8 @@ class WidgetsChartBoxes extends React.Component {
     }
 
     render() {
-        const { cSelected, Influencer, Brand, modalVisible, type, userName, ComparedInfluencers } = this.state;
-        const { FilterInfluencers, SearchValue, SelectedTab } = this.props;
+        const { Influencer, Brand, modalVisible, type, userName, ComparedInfluencers } = this.state;
+        const { FilterInfluencers, SearchValue, ActiveTab } = this.props;
 
         const tabsContentUpdateCost = [
             {
@@ -370,7 +373,7 @@ class WidgetsChartBoxes extends React.Component {
 
                     </Col>
                 </Row>
-                <Tabs onChange={this.onChangeTab} selectedTabKey={this.state.selectedTabKey} tabsWrapperClass="body-tabs body-tabs-layout" transform={false} showInkBar={true} items={getTabs()} />
+                <Tabs onChange={this.onChangeTab} selectedTabKey={ActiveTab} tabsWrapperClass="body-tabs body-tabs-layout" transform={false} showInkBar={true} items={getTabs()} />
                 <ScrollUpButton />
             </Fragment>
         );
