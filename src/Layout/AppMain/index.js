@@ -17,7 +17,7 @@ const Pages = lazy(() => import('../../DemoPages/Pages'));
 //const Forms = lazy(() => import('../../DemoPages/Forms'));
 //const Tables = lazy(() => import('../../DemoPages/Tables'));
 
-const AppMain = () => {
+const AppMain = (i18n) => {
     return (
         <Fragment>
 
@@ -48,7 +48,7 @@ const AppMain = () => {
                     </div>
                 </div>
             }>
-                <Route path="/pages" component={Pages} />
+                <Route path="/pages" render={props => <Pages i18n={i18n} {...props} />} />
             </Suspense>
 
             {/* <Suspense fallback={

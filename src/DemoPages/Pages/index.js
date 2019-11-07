@@ -13,12 +13,13 @@ import { AppHeader } from '../../Layout/AppHeader';
 import AppSidebar from '../../Layout/AppSidebar';
 import AppFooter from '../../Layout/AppFooter';
 
-const Pages = ({ match }) => {
+const Pages = ({ match, i18n }) => {
+
     return (
         <Fragment>
             <Route path={`${match.url}/loginpage`} component={LoginPage} />
             <Route path={`${match.url}/registerbrandpage`} component={RegisterBrandPage} />
-            <Route path={`${match.url}/landingpage`} component={LandingPage} />
+            <Route path={`${match.url}/landingpage`} component={() => <LandingPage i18n={i18n} />} />
             <Route path={`${match.url}/registerinfluencerpage`} component={RegisterInfluencerPage} />
             {/* <Route path={`${match.url}/loginpage`} component={LoginPage} />
         <Route path={`${match.url}/loginpage`} component={LoginPage} />

@@ -9,7 +9,7 @@ import Main from './DemoPages/Main';
 //import {configureStore} from './config/configureStore';
 import { Provider } from 'react-redux';
 import "react-loader-spinner/dist/loader/css/react-spinner-loader.css";
-import './i18n';
+import i18n from './i18n';
 //const store = configureStore();
 const rootElement = document.getElementById('root');
 
@@ -17,7 +17,7 @@ const renderApp = Component => {
   ReactDOM.render(
     <Provider store={store}>
       <Router history={history}>
-        <Component />
+        <Component i18n={i18n} />
       </Router>
     </Provider>,
     rootElement

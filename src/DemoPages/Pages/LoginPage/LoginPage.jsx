@@ -8,7 +8,7 @@ import Slider from "react-slick";
 import new_logo from '../../../assets/utils/images/originals/new_logo.jpg'
 import { userActions } from '../../../_actions';
 import { history } from '../../../_helpers';
-import { Trans } from 'react-i18next';
+import { Trans, i18next } from 'react-i18next';
 
 class LoginPage extends React.Component {
     constructor(props) {
@@ -50,7 +50,7 @@ class LoginPage extends React.Component {
 
     render() {
 
-        const { loggingIn, token } = this.props;
+        const { loggingIn, token, i18n } = this.props;
         const { userName, password, submitted } = this.state;
         const settings = {
             dots: true,

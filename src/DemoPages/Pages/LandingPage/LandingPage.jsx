@@ -29,6 +29,7 @@ import home_11 from '../../../assets/utils/images/home_11.jpg'
 // import home_33 from '../../../assets/utils/images/home_33.jpg'
 // import home_33 from '../../../assets/utils/images/home_33.jpg'
 import { userActions } from '../../../_actions';
+import { useTranslation } from 'react-i18next'
 
 class LandingPage extends Component {
     constructor(props) {
@@ -66,7 +67,7 @@ class LandingPage extends Component {
     }
 
     render() {
-        const { loggingIn, token } = this.props;
+        const { loggingIn, token, i18n } = this.props;
         const { userName, password, submitted } = this.state;
         const settings = {
             dots: true,
@@ -75,6 +76,7 @@ class LandingPage extends Component {
             slidesToShow: 1,
             slidesToScroll: 1
         };
+        debugger;
         return (
             <div className="landing-page landing-page1">
 
@@ -82,6 +84,20 @@ class LandingPage extends Component {
                     <div className="parallax filter-gradient blue" data-color="blue">
                         <div className="parallax-background">
                             <img className="parallax-background-image" src={bg1} />
+                        </div>
+                        <div className="container" style={{ marginRight: 'unset' }} >
+                            <div className="row">
+                                <div className="col-md-10 hidden-xs">
+
+                                </div>
+                                <div className="col-md-2 col-md-offset-1">
+                                    <div className="description" style={{ marginTop: '50px' }}>
+                                        <button onClick={() => i18n.i18n.changeLanguage('vn')}>vn</button>
+                                        <button onClick={() => i18n.i18n.changeLanguage('en')}>en</button>
+                                    </div>
+                                </div>
+
+                            </div>
                         </div>
                         <div className="container">
                             <div className="row">
@@ -195,7 +211,7 @@ class LandingPage extends Component {
                             </div>
                         </div>
                     </div>
-                    <div className="section section-presentation" style={{  minHeight: 'unset' }}>
+                    <div className="section section-presentation" style={{ minHeight: 'unset' }}>
                         <div className="container" style={{ backgroundImage: `url(${m5})`, minHeight: '366px' }}>
                             <div className="row">
                                 <div className="col-md-2">
@@ -220,7 +236,7 @@ class LandingPage extends Component {
                             </div>
                         </div>
                     </div>
-                    <div className="section section-presentation" style={{  minHeight: 'unset' }}>
+                    <div className="section section-presentation" style={{ minHeight: 'unset' }}>
                         <div className="container" style={{ backgroundImage: `url(${m6})`, minHeight: '285px' }}></div>
                         {/* <div className="row">
                             <div className="col-md-12" >
