@@ -27,7 +27,10 @@ const resources = {
       "Engagement": "Engagement",
       "Photos": "Photos",
       "Videos": "Videos",
-      "Engagements": "Engagements"
+      "Engagements": "Engagements",
+      "Get Free Access": "Get Free Access",
+      "Try this for free": "Try this for free",
+      "Beautiful places for you": "Beautiful places for you"
     }
   },
   vn: {
@@ -52,7 +55,10 @@ const resources = {
       "Engagement": "Gắn Kết",
       "Photos": "Hình ảnh",
       "Videos": "Các đoạn phim ngắn",
-      "Engagements": "Mức độ gắn kết"
+      "Engagements": "Mức độ gắn kết",
+      "Get Free Access": "Vào Miễn Phí",
+      "Try this for free": "Vào xài thử miễn phí nào",
+      "Beautiful places for you": "Nơi tuyệt vời cho bạn"
     }
   }
 };

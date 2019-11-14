@@ -3,33 +3,17 @@ import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import bg3 from '../../../assets/utils/images/bg3.jpg'
 import bg1 from '../../../assets/utils/images/bg1.png'
-import iphone3 from '../../../assets/utils/images/iphone3.png'
 import m6 from '../../../assets/utils/images/m6.jpg'
-import m4 from '../../../assets/utils/images/m4.gif'
-import m51 from '../../../assets/utils/images/m5.gif'
 import m5 from '../../../assets/utils/images/m5.png'
 import m41 from '../../../assets/utils/images/m4.png'
 import m31 from '../../../assets/utils/images/m31.gif'
-import mac from '../../../assets/utils/images/mac.png'
-import m2 from '../../../assets/utils/images/m2.png'
 // import mac from '../../../assets/utils/images/mac.png'
 import big_logo from '../../../assets/utils/images/big_logo.jpg'
-import bogolive from '../../../assets/utils/images/bogolive.png'
-import clients from '../../../assets/utils/images/clients.jpg'
-import momo from '../../../assets/utils/images/momo.png'
-import nct from '../../../assets/utils/images/nct.png'
-import sofy from '../../../assets/utils/images/sofy.png'
-import vnngaynay from '../../../assets/utils/images/vnngaynay.png'
-import gkitchen from '../../../assets/utils/images/gkitchen.png'
-import vinaphone from '../../../assets/utils/images/vinaphone.png'
-import home_33 from '../../../assets/utils/images/home_33.jpg'
-import home_22 from '../../../assets/utils/images/home_22.jpg'
-import home_11 from '../../../assets/utils/images/home_11.jpg'
 
 // import home_33 from '../../../assets/utils/images/home_33.jpg'
 // import home_33 from '../../../assets/utils/images/home_33.jpg'
 import { userActions } from '../../../_actions';
-import { useTranslation } from 'react-i18next'
+import { Trans } from 'react-i18next';
 
 class LandingPage extends Component {
     constructor(props) {
@@ -43,40 +27,27 @@ class LandingPage extends Component {
             email: '',
             password: '',
             submitted: false,
-            token: ''
+            token: '',
+            vnLanguage: 'Tiếng Việt',
+            enLanguage: 'English',
+            currentLanguage: ''
         };
 
-        this.handleChange = this.handleChange.bind(this);
-        this.handleSubmit = this.handleSubmit.bind(this);
+        this.handleChangeLanguage = this.handleChangeLanguage.bind(this);
     }
 
-    handleChange(e) {
+    handleChangeLanguage(e) {
+        const { i18n } = this.props;
         const { name, value } = e.target;
-        this.setState({ [name]: value });
-    }
-
-    handleSubmit(e) {
-        e.preventDefault();
-
-        this.setState({ submitted: true });
-        const { userName, email, password } = this.state;
-        const { dispatch } = this.props;
-        if (userName && password) {
-            dispatch(userActions.getToken(userName, password));
-        }
+        debugger;
+        i18n.i18n.changeLanguage(name.toLowerCase());
+        this.setState({ currentLanguage: value });
     }
 
     render() {
         const { loggingIn, token, i18n } = this.props;
-        const { userName, password, submitted } = this.state;
-        const settings = {
-            dots: true,
-            infinite: true,
-            speed: 500,
-            slidesToShow: 1,
-            slidesToScroll: 1
-        };
-        debugger;
+        const { vnLanguage, enLanguage } = this.state;
+
         return (
             <div className="landing-page landing-page1">
 
@@ -87,13 +58,15 @@ class LandingPage extends Component {
                         </div>
                         <div className="container" style={{ marginRight: 'unset' }} >
                             <div className="row">
-                                <div className="col-md-10 hidden-xs">
+                                <div className="col-md-9 hidden-xs">
 
                                 </div>
-                                <div className="col-md-2 col-md-offset-1">
+                                <div className="col-md-3 col-md-offset-1">
                                     <div className="description" style={{ marginTop: '50px' }}>
-                                        <button onClick={() => i18n.i18n.changeLanguage('vn')}>vn</button>
-                                        <button onClick={() => i18n.i18n.changeLanguage('en')}>en</button>
+                                        <input type="button" onClick={this.handleChangeLanguage} name="vn" id="vn" className="btn-wide btn-pill btn-shadow btn-hover-shine btn btn-alternate btn-lg" value={vnLanguage} />
+                                        <input type="button" onClick={this.handleChangeLanguage} name="en" id="en" className="btn-wide btn-pill btn-shadow btn-hover-shine btn btn-alternate btn-lg" value={enLanguage} />
+                                        {/* <button onClick={this.handleChangeLanguage} value={vnLanguage}></button>
+                                        <button onClick={this.handleChangeLanguage} value={vnLanguage}></button> */}
                                     </div>
                                 </div>
 
@@ -111,7 +84,7 @@ class LandingPage extends Component {
                                         </div>
                                         <h2>NỀN TẢNG THÔNG MINH</h2>
                                         <div className="">
-                                            <Link to="/pages/loginpage" className="btn btn-fill btn-info">Get Free Access</Link>
+                                            <Link to="/pages/loginpage" className="btn btn-fill btn-info"><Trans>Get Free Access</Trans></Link>
                                         </div>
                                     </div>
                                 </div>
@@ -250,9 +223,9 @@ class LandingPage extends Component {
                                 <img className="parallax-background-image" src={bg3} />
                             </div>
                             <div className="info">
-                                <h1>Try this for free!</h1>
-                                <p>Beautiful places for you.</p>
-                                <Link to="/pages/loginpage" className="btn btn-neutral btn-lg btn-fill">Get Free Access</Link>
+                                <h1><Trans>Try this for free</Trans>!</h1>
+                                <p><Trans>Beautiful places for you</Trans>.</p>
+                                <Link to="/pages/loginpage" className="btn btn-neutral btn-lg btn-fill"><Trans>Get Free Access</Trans></Link>
                                 {/* <a href="http://www.creative-tim.com/product/awesome-landing-page" className="btn btn-neutral btn-lg btn-fill">EXPLORE</a> */}
                             </div>
                         </div>
