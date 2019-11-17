@@ -267,6 +267,9 @@ export function createCampaign(campaign,
       JobName: {
         Text: job.jobName
       },
+      StatusOfCampaign: {
+        Value: 1
+      },
       HashTag: {
         Text: job.jobHashTag
       },

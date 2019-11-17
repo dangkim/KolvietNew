@@ -31,6 +31,7 @@ function getToken(userName, password, pathname) {
                                         //     pathname: '/widgets/dashboard-boxes',
                                         //     state: { Brand: brand.brand, type: type }
                                         // })
+
                                         localStorage.setItem("type", "brand");
                                         localStorage.setItem("brandFullName", brand.brand[0].fullName);
                                         localStorage.setItem("brandName", brand.brand[0].brandName);
@@ -48,6 +49,24 @@ function getToken(userName, password, pathname) {
                             localStorage.setItem("infName", userName);
                             localStorage.setItem("type", "influencer");
                             history.replace({ pathname: '/widgets/dashboard-boxes', state: { userName: userName, type: type } });
+                        }
+                        else if (userName === 'admin') {
+                            localStorage.setItem("type", "brand");
+                            localStorage.setItem("brandFullName", userName);
+                            localStorage.setItem("brandName", userName);
+
+                            var brand = {
+                                brandName: "admin",
+                                businessAreas: "",
+                                contentItemId: "",
+                                createdUtc: "",
+                                email: "",
+                                fullName: "admin",
+                                location: "",
+                                published: false
+                            }
+
+                            history.replace({ pathname: '/widgets/dashboard-boxes', state: { Brand: brand, type: type } });
                         }
                         toast.success("Welcome " + userName);
                     },

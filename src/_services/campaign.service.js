@@ -26,24 +26,24 @@ function register(campaignType) {
 function getAll() {
     const GET_ALL_COMPAIGN = `
     {
-        campaign(status: ALL) {
+        campaign {
           budget
           campaignName
           campaignTarget
-          contentItemId
-          description
           fromAge
-          toAge
           fromDate
-          toDate
-          hashTag
           gender
           jobName
           keyword
-          link
+          hashTag
+          interesting
           published
-          currency
+          toAge
+          toDate
+          statusOfCampaign
+          contentItemId
           createdUtc
+          description
           bag {
             contentItems {
               ... on Influencer {
@@ -84,6 +84,7 @@ function getCampaignByBrand(brandName) {
           hashTag
           gender
           jobName
+          statusOfCampaign
           keyword
           link
           published

@@ -98,3 +98,12 @@ export function createGender() {
     ];
     return gender;
 }
+
+export function createStatusOfCampaign() {
+    const statusOfCampaign = [
+        { value: 1, label: 'Pending' },
+        { value: 2, label: 'Started' },
+        { value: 3, label: 'Done' },
+    ];
+    return statusOfCampaign;
+}

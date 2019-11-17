@@ -344,7 +344,7 @@ class CreateCampaign extends Component {
             exampleItems,
             first } = this.state;
         const { Brand, Influencer } = this.props;
-        debugger;
+
         // Check Brand and back to Login again
         if (!Brand) {
             toast.warn("Please Login Again!");
