@@ -199,15 +199,6 @@ class Influencers extends Component {
         if (!influencers.items) {
             dispatch(infActions.getInfluencersByName(first, 0, searchValue));
         }
-        // if ((searchValue !== '' || influencersLocal.length <= 0) && (influencers && influencers.loading === false)) {
-
-        //     dispatch(infActions.getInfluencersByName(first, 0, searchValue));
-        // }
-
-        // if (influencers && influencers.loading === false) {
-        //     debugger;
-        //     dispatch(infActions.getInfluencersByName(first, 0, searchValue));
-        // }
 
     }
 
@@ -316,9 +307,9 @@ class Influencers extends Component {
                                                 const strOfReaction = value ? value.numberOfReaction : '';
                                                 const strOfComment = value ? value.numberOfComment : '';
                                                 const strOfShare = value ? value.numberOfShare : '';
-                                                const numberOfReaction = strOfReaction.charAt(strOfReaction.length - 1) == 'k' ? Number((strOfReaction.substring(0, strOfReaction.length - 1))) * 1000 : Number(strOfReaction);
-                                                const numberOfComment = strOfComment.charAt(strOfComment.length - 1) == 'k' ? Number((strOfComment.substring(0, strOfComment.length - 1))) * 1000 : Number(strOfComment);
-                                                const numberOfShare = strOfShare.charAt(strOfShare.length - 1) == 'k' ? Number((strOfShare.substring(0, strOfShare.length - 1))) * 1000 : Number(strOfShare);
+                                                const numberOfReaction = strOfReaction.charAt(strOfReaction.length - 1) === 'k' ? Number((strOfReaction.substring(0, strOfReaction.length - 1))) * 1000 : Number(strOfReaction);
+                                                const numberOfComment = strOfComment.charAt(strOfComment.length - 1) === 'k' ? Number((strOfComment.substring(0, strOfComment.length - 1))) * 1000 : Number(strOfComment);
+                                                const numberOfShare = strOfShare.charAt(strOfShare.length - 1) === 'k' ? Number((strOfShare.substring(0, strOfShare.length - 1))) * 1000 : Number(strOfShare);
                                                 const engagement = numberOfReaction + (numberOfComment * 2) + (numberOfShare * 3)
                                                 
                                                 return (

@@ -65,8 +65,6 @@ class LandingPage extends Component {
                                     <div className="description" style={{ marginTop: '50px' }}>
                                         <input type="button" onClick={this.handleChangeLanguage} name="vn" id="vn" className="btn-wide btn-pill btn-shadow btn-hover-shine btn btn-alternate btn-lg" value={vnLanguage} />
                                         <input type="button" onClick={this.handleChangeLanguage} name="en" id="en" className="btn-wide btn-pill btn-shadow btn-hover-shine btn btn-alternate btn-lg" value={enLanguage} />
-                                        {/* <button onClick={this.handleChangeLanguage} value={vnLanguage}></button>
-                                        <button onClick={this.handleChangeLanguage} value={vnLanguage}></button> */}
                                     </div>
                                 </div>
 
