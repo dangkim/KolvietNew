@@ -18,7 +18,8 @@ class Widgets extends React.Component {
         this.state = {
             searchValue: '',
             first: 9,
-            selectedTabKey: 0
+            selectedTabKey: 0,
+            language: 'vn'
         };
 
         this.sendData = this.sendData.bind(this);
@@ -29,7 +30,7 @@ class Widgets extends React.Component {
         const { dispatch } = this.props;
         this.setState({ selectedTabKey: 0, searchValue: childData })
 
-        if (childData && childData !== '') {            
+        if (childData && childData !== '') {
             let items = [];
 
             items.push(childData);
@@ -42,7 +43,13 @@ class Widgets extends React.Component {
     }
 
     sendTabData = (activeTab) => {
-        this.setState({ selectedTabKey: activeTab })       
+        this.setState({ selectedTabKey: activeTab })
+    }
+
+    componentDidMount() {
+        const { i18n } = this.props;
+        i18n.i18n.changeLanguage(localStorage.getItem('language'));
+        //this.setState({ language: i18n.i18n.language })
     }
 
     render() {
@@ -91,7 +98,7 @@ function mapStateToProps(state) {
     };
 }
 
-const connectedWidgets = connect(mapStateToProps)(Widgets);
-export default connectedWidgets;
+const ConnectedWidgets = connect(mapStateToProps)(Widgets);
+export default ConnectedWidgets;
 
 //export default Widgets;

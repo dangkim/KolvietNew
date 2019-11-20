@@ -280,7 +280,7 @@ class Influencers extends Component {
 
         const infItems = influencersLocal;
         //let imgSrc = defaultAvatar;
-        debugger;
+
         const colors = [
             "bg-mean-fruit",
             "bg-tempting-azure",

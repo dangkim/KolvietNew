@@ -37,6 +37,7 @@ class WidgetsChartBoxes extends React.Component {
         let brandLocal = null;
         let type = '';
         let userName = '';
+        debugger;
         if (this.props.location.state) {
             if (this.props.location.state.Brand) {
                 if (this.props.location.state.Brand[0]) {
@@ -193,7 +194,7 @@ class WidgetsChartBoxes extends React.Component {
 
     render() {
         const { cSelected, Influencer, Brand, modalVisible, type, userName, ComparedInfluencers } = this.state;
-        const { FilterInfluencers, SearchValue, ActiveTab } = this.props;
+        const { FilterInfluencers, SearchValue, ActiveTab, i18n } = this.props;
 
         const tabsContentUpdateCost = [
             {
@@ -207,16 +208,16 @@ class WidgetsChartBoxes extends React.Component {
                 content: <Influencers SearchValue={SearchValue} FilterInfluencers={FilterInfluencers} parentCallback={this.callbackFunction} />
             },
             {
-                title: 'Influencer details',
+                title: i18n.i18n.t('Influencer details'),
                 content: <InfluencerDetail Influencer={Influencer} />
             },
             {
-                title: 'Comparison Influencers',
+                title: i18n.i18n.t('Comparison Influencers'),
                 content: <CompareInfluencers ComparedInfluencers={ComparedInfluencers} />
             },
             {
-                title: 'Create Campaign',
-                content: <CreateCampaign Brand={Brand} Influencer={Influencer} />
+                title: i18n.i18n.t('Create Campaign'),
+                content: <CreateCampaign Brand={Brand} Influencer={Influencer} i18n={i18n} />
             },
         ]
 

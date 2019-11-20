@@ -39,8 +39,8 @@ class LandingPage extends Component {
     handleChangeLanguage(e) {
         const { i18n } = this.props;
         const { name, value } = e.target;
-        debugger;
         i18n.i18n.changeLanguage(name.toLowerCase());
+        localStorage.setItem('language', name.toLowerCase());
         this.setState({ currentLanguage: value });
     }
 

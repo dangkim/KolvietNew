@@ -66,7 +66,7 @@ function getContentType(token) {
 // }
 
 function logout() {
-    debugger;
+    //debugger;
     // remove user from local storage to log user out
     localStorage.removeItem('user');
     localStorage.removeItem('token');
@@ -80,6 +80,7 @@ function logout() {
     localStorage.removeItem('infName');
     localStorage.removeItem('brandFullName');
     localStorage.removeItem('brandName');
+    //localStorage.removeItem('language');
     history.index = -1;
     history.replace({ pathname: '/pages/loginpage' });
 }

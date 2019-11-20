@@ -23,7 +23,7 @@ import originalMoment from "moment";
 import { extendMoment } from "moment-range";
 import NumberFormat from 'react-number-format';
 
-import { campaignActions, infActions} from '../../../../_actions';
+import { campaignActions, infActions } from '../../../../_actions';
 import { createLocations, createInterestings, createJobs, createGender } from '../../../../_models/CommonModels';
 import { history } from '../../../../_helpers';
 import { Trans } from 'react-i18next';
@@ -265,17 +265,7 @@ class CreateCampaign extends Component {
         this.setState({ selectedInfluencers: selectedInfluencersLocal })
     };
 
-    componentDidMount() {
-        // const { dispatch } = this.props;
-        // const { first } = this.state;
-        // const campaign = localStorage.getItem('campaign');
-        // this.setState({campaign: campaign})
-    }
-
     onDatesChange = (dateValue) => {
-        //
-        const { campaign } = this.state;
-
         if (dateValue) {
             this.setState({ isOpen: false, dateValue: dateValue });
         }
@@ -319,7 +309,7 @@ class CreateCampaign extends Component {
             selectedOptionJobCategory,
             isOpen,
             dateValue } = this.state;
-        const { Brand, Influencer } = this.props;
+        const { Brand, Influencer, i18n } = this.props;
 
         // Check Brand and back to Login again
         if (!Brand) {
@@ -327,9 +317,6 @@ class CreateCampaign extends Component {
             history.replace({ pathname: '/pages/loginpage' });
             //history.push('/pages/loginpage');
         }
-
-        let imgSrc = defaultAvatar;
-
         const genders = createGender();
         const locations = createLocations();
         const interestings = createInterestings();
@@ -366,7 +353,7 @@ class CreateCampaign extends Component {
                                     <FormGroup>
                                         <Label for="campaignName">
                                             <span className="text-danger">*</span> <Trans>Campaign Name</Trans>
-                                                </Label>
+                                        </Label>
                                         <Input disabled={Influencer === null} type="text" name="campaignName" id="campaignName" value={campaign.campaignName} onChange={this.handleCampaignChange} />
                                         {
                                             submitted && !campaign.campaignName &&
@@ -378,7 +365,7 @@ class CreateCampaign extends Component {
                                             <FormGroup>
                                                 <Label for="pass">
                                                     <span className="text-danger">*</span> <Trans>Campaign Target</Trans>
-                                                        </Label>
+                                                </Label>
                                                 <Input disabled={Influencer === null} type="text" name="campaignTarget" id="campaignTarget" value={campaign.campaignTarget} onChange={this.handleCampaignChange} />
                                                 {
                                                     submitted && !campaign.campaignTarget &&
@@ -390,7 +377,7 @@ class CreateCampaign extends Component {
                                             <FormGroup>
                                                 <Label for="name">
                                                     <span className="text-danger">*</span> <Trans>Product Info</Trans>
-                                                        </Label>
+                                                </Label>
                                                 <Input disabled={Influencer === null} type="text" name="productInfo" id="productInfo" value={campaign.productInfo} onChange={this.handleCampaignChange} />
                                                 {
                                                     submitted && !campaign.productInfo &&
@@ -424,7 +411,7 @@ class CreateCampaign extends Component {
                                             <FormGroup>
                                                 <Label for="fromAge" className="">
                                                     <span className="text-danger">*</span> <Trans>From Age</Trans>
-                                                        </Label>
+                                                </Label>
                                                 <Input disabled={Influencer === null} type="number" name="fromAge" id="fromAge" value={campaign.fromAge} onChange={this.handleCampaignChange} />
                                                 {
                                                     submitted && !campaign.fromAge &&
@@ -436,7 +423,7 @@ class CreateCampaign extends Component {
                                             <FormGroup>
                                                 <Label for="toAge" className="">
                                                     <span className="text-danger">*</span> <Trans>To Age</Trans>
-                                                        </Label>
+                                                </Label>
                                                 <Input disabled={Influencer === null} type="number" name="toAge" id="toAge" value={campaign.toAge} onChange={this.handleCampaignChange} />
                                                 {
                                                     submitted && !campaign.toAge &&
@@ -485,7 +472,7 @@ class CreateCampaign extends Component {
                                             <FormGroup>
                                                 <Label for="budget">
                                                     <span className="text-danger">*</span> <Trans>Budget</Trans></Label>
-                                                <NumberFormat disabled={Influencer === null} className="form-control" name="budget" id="budget" thousandSeparator={true} suffix={'đ'} value={campaign.budget} placeholder={<Trans>Price</Trans>} onValueChange={(values) => {
+                                                <NumberFormat disabled={Influencer === null} className="form-control" name="budget" id="budget" thousandSeparator={true} suffix={'đ'} value={campaign.budget} placeholder={i18n.i18n.t('Price') + '...'} onValueChange={(values) => {
                                                     const { value } = values;
                                                     const { campaign } = this.state;
                                                     const campaignLocal = campaign;
@@ -513,7 +500,7 @@ class CreateCampaign extends Component {
                                                 <Label htmlFor="jobName" className="">
                                                     <span className="text-danger">*</span> <Trans>Job Name</Trans>
                                                 </Label>
-                                                <Input disabled={Influencer === null} type="text" name="jobName" id="jobName" placeholder={<Trans>Name of your job</Trans>} value={job.jobName} onChange={this.handleJobChange} />
+                                                <Input disabled={Influencer === null} type="text" name="jobName" id="jobName" placeholder={i18n.i18n.t('Name of your job')} onChange={this.handleJobChange} />
                                                 {
                                                     submitted && !job.jobName &&
                                                     <div className="help-block text-danger"><Trans>Job Name is required</Trans></div>
@@ -524,7 +511,7 @@ class CreateCampaign extends Component {
                                             <FormGroup>
                                                 <Label htmlFor="name" className="">
                                                     <span className="text-danger">*</span> <Trans>Job Description</Trans></Label>
-                                                <Input disabled={Influencer === null} type="text" className="form-control" name="jobDescription" id="jobDescription" placeholder={<Trans>Description of your job</Trans>} value={job.jobDescription} onChange={this.handleJobChange} />
+                                                <Input disabled={Influencer === null} type="text" className="form-control" name="jobDescription" id="jobDescription" placeholder={i18n.i18n.t('Description of your job')} value={job.jobDescription} onChange={this.handleJobChange} />
                                                 {
                                                     submitted && !job.jobDescription &&
                                                     <div className="help-block text-danger"><Trans>Job Description is required</Trans></div>
@@ -562,7 +549,7 @@ class CreateCampaign extends Component {
                                     <FormGroup>
                                         <Label for="jobLink" className="">
                                             <span></span> <Trans>Job Link</Trans></Label>
-                                        <Input disabled={Influencer === null} type="text" name="jobLink" id="jobLink" placeholder={<Trans>Link of your page</Trans>} value={job.jobLink} onChange={this.handleJobChange} />
+                                        <Input disabled={Influencer === null} type="text" name="jobLink" id="jobLink" placeholder={i18n.i18n.t('Link of your page')} value={job.jobLink} onChange={this.handleJobChange} />
                                     </FormGroup>
                                     <Button onClick={this.handleSubmitJobs} disabled={Influencer === null} color="primary" className="mt-2"><Trans>Submit</Trans></Button>
                                 </Form>

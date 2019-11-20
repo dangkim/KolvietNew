@@ -73,7 +73,18 @@ const resources = {
       "Job Keyword":"Job Keyword",
       "Job Link":"Job Link",
       "Link of your page":"Link of your page",
-      "Submit":"Submit"
+      "Submit":"Submit",
+      "Influencer details": "Influencer details",
+      "Comparison Influencers": "Comparison Influencers",
+      "Create Campaign": "Create Campaign",
+      "CampaignNameTable":"Name",
+      "BudgetTable":"Budget",
+      "TargetTable":"Target",
+      "StatusTable":"Status",
+      "From Date":"From Date",
+      "To Date":"To Date",
+      "ToAgeTable":"To Age",
+      "All Campaigns":"All Campaigns"
     }
   },
   vn: {
@@ -144,7 +155,18 @@ const resources = {
       "Job Keyword":"Từ khóa cho chiến dịch",
       "Job Link":"Link",
       "Link of your page":"Link của bạn cần chia sẻ",
-      "Submit":"Duyệt"
+      "Submit":"Duyệt",
+      "Influencer details": "Chi Tiết Influencer",
+      "Comparison Influencers": "So Sánh Influencer",
+      "Create Campaign": "Tạo Chiến Dịch",
+      "CampaignNameTable":"Tên",
+      "BudgetTable":"Ngân Sách",
+      "TargetTable":"Mục Tiêu",
+      "StatusTable":"TT",
+      "From Date":"Từ Ngày",
+      "To Date":"Đến",
+      "ToAgeTable":"Đến",
+      "All Campaigns":"Danh Sách Tất Cả Các Chiến Dịch"
     }
   }
 };

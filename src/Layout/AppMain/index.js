@@ -5,12 +5,15 @@ import {
     ToastContainer,
 } from 'react-toastify';
 import Loader from 'react-loader-spinner'
+import ConnectedWidgets from '../../DemoPages/Widgets';
+import Pages from '../../DemoPages/Pages';
 const Dashboards = lazy(() => import('../../DemoPages/Dashboards'));
 
-const connectedWidgets = lazy(() => import('../../DemoPages/Widgets'));
+
+//const ConnectedWidgets = lazy(() => import('../../DemoPages/Widgets'));
 //const Elements = lazy(() => import('../../DemoPages/Elements'));
 //const Components = lazy(() => import('../../DemoPages/Components'));
-const Pages = lazy(() => import('../../DemoPages/Pages'));
+//const Pages = lazy(() => import('../../DemoPages/Pages'));
 //const RegisterBrandPage = lazy(() => import('../../DemoPages/RegisterBrandPage'));
 //const RegisterInfluencerPage = lazy(() => import('../../DemoPages/RegisterInfluencerPage'));
 //const Charts = lazy(() => import('../../DemoPages/Charts'));
@@ -151,7 +154,7 @@ const AppMain = (i18n) => {
                     </div>
                 </div>
             }>
-                <Route path="/widgets" component={connectedWidgets} />
+                <Route path="/widgets" render={props => <ConnectedWidgets i18n={i18n} {...props} />} />
             </Suspense>
 
             {/* Dashboards */}
