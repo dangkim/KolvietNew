@@ -40,6 +40,7 @@ class LandingPage extends Component {
         const { i18n } = this.props;
         const { name, value } = e.target;
         i18n.i18n.changeLanguage(name.toLowerCase());
+        localStorage.removeItem('language', name.toLowerCase());
         localStorage.setItem('language', name.toLowerCase());
         this.setState({ currentLanguage: value });
     }

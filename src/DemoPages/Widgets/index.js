@@ -48,8 +48,9 @@ class Widgets extends React.Component {
 
     componentDidMount() {
         const { i18n } = this.props;
-        i18n.i18n.changeLanguage(localStorage.getItem('language'));
-        //this.setState({ language: i18n.i18n.language })
+        const language = localStorage.getItem('language');
+        i18n.i18n.changeLanguage(language);
+        this.setState({ language: language })
     }
 
     render() {

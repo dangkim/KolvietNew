@@ -30,23 +30,6 @@ export default class CampaignsTable extends React.Component {
 
         this.state = {
             compaignList: [],
-            columns: [
-                { name: "campaignName", title: this.props.i18n.i18n.t('CampaignNameTable') },
-                { name: "budget", title: this.props.i18n.i18n.t('BudgetTable') },
-                { name: "campaignTarget", title: this.props.i18n.i18n.t('TargetTable') },
-                { name: "description", title: this.props.i18n.i18n.t('Description') },
-                { name: "fromAge", title: this.props.i18n.i18n.t('From Age') },
-                { name: "toAge", title: this.props.i18n.i18n.t('ToAgeTable') },
-                { name: "fromDate", title: this.props.i18n.i18n.t('From Date') },
-                { name: "toDate", title: this.props.i18n.i18n.t('To Date') },
-                // { name: "hashTag", title: "HashTag" },
-                //{ name: "gender", title: "Gender" },
-                //{ name: "jobName", title: "JobName" },
-                // { name: "keyword", title: "Keyword" },
-                // { name: "link", title: "Link" },
-                { name: "influencerFullName", title: "Influencer" },
-                { name: "statusOfCampaign", title: this.props.i18n.i18n.t('StatusTable') },
-            ],
             statusColumns: ['statusOfCampaign']
         };
 
@@ -88,10 +71,28 @@ export default class CampaignsTable extends React.Component {
     );
 
     render() {
-        const { columns, statusColumns } = this.state;
+        const { statusColumns } = this.state;
         const { campaign, i18n } = this.props;
         debugger;
         var rows = []
+        const columns = [
+            { name: "campaignName", title: this.props.i18n.i18n.t('CampaignNameTable') },
+            { name: "budget", title: this.props.i18n.i18n.t('BudgetTable') },
+            { name: "campaignTarget", title: this.props.i18n.i18n.t('TargetTable') },
+            { name: "description", title: this.props.i18n.i18n.t('Description') },
+            { name: "fromAge", title: this.props.i18n.i18n.t('From Age') },
+            { name: "toAge", title: this.props.i18n.i18n.t('ToAgeTable') },
+            { name: "fromDate", title: this.props.i18n.i18n.t('From Date') },
+            { name: "toDate", title: this.props.i18n.i18n.t('To Date') },
+            // { name: "hashTag", title: "HashTag" },
+            //{ name: "gender", title: "Gender" },
+            //{ name: "jobName", title: "JobName" },
+            // { name: "keyword", title: "Keyword" },
+            // { name: "link", title: "Link" },
+            { name: "influencerFullName", title: "Influencer" },
+            { name: "statusOfCampaign", title: this.props.i18n.i18n.t('StatusTable') },
+        ];
+
         const tableColumnExtensions = [
             { columnName: "campaignName", align: 'left', wordWrapEnabled: true },
             { columnName: "budget", align: 'left', width: 90, wordWrapEnabled: true },
