@@ -279,7 +279,6 @@ class Influencers extends Component {
         const influencersLocal = (FilterInfluencers && FilterInfluencers.length > 0) ? FilterInfluencers : influencerItems;
 
         const infItems = influencersLocal;
-        //let imgSrc = defaultAvatar;
 
         const colors = [
             "bg-mean-fruit",
@@ -293,14 +292,14 @@ class Influencers extends Component {
             "bg-amy-crisp",
         ];
 
-        const elements = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12];
+        const elements = (influencers && influencers.loading) ? [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12] : [];
         return (
             <Fragment>
                 <TransitionGroup component="div">
                     <CSSTransition timeout={1500} unmountOnExit appear classNames="TabsAnimation">
                         <div>
                             {
-                                infItems && infItems.length > 0 ?
+                                influencers && influencers.loading === false ?
                                     <Row>
                                         {
                                             infItems.map((value, index) => {
@@ -311,7 +310,7 @@ class Influencers extends Component {
                                                 const numberOfComment = strOfComment.charAt(strOfComment.length - 1) === 'k' ? Number((strOfComment.substring(0, strOfComment.length - 1))) * 1000 : Number(strOfComment);
                                                 const numberOfShare = strOfShare.charAt(strOfShare.length - 1) === 'k' ? Number((strOfShare.substring(0, strOfShare.length - 1))) * 1000 : Number(strOfShare);
                                                 const engagement = numberOfReaction + (numberOfComment * 2) + (numberOfShare * 3)
-                                                
+
                                                 return (
                                                     <Col key={index} md="4">
                                                         <div className="card mb-3 widget-chart">

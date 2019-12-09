@@ -195,6 +195,37 @@ class WidgetsChartBoxes extends React.Component {
     render() {
         const { cSelected, Influencer, Brand, modalVisible, type, userName, ComparedInfluencers } = this.state;
         const { FilterInfluencers, SearchValue, ActiveTab, i18n } = this.props;
+        
+        let tabsContent = [];
+
+        if (FilterInfluencers.length > 0) {
+            tabsContent = [
+                {
+                    title: 'Influencers',
+                    content: <Influencers SearchValue={SearchValue} FilterInfluencers={FilterInfluencers} parentCallback={this.callbackFunction} />
+                },
+                {
+                    title: i18n.i18n.t('Influencer details'),
+                    content: <InfluencerDetail Influencer={Influencer} />
+                },
+                {
+                    title: i18n.i18n.t('Comparison Influencers'),
+                    content: <CompareInfluencers ComparedInfluencers={ComparedInfluencers} />
+                },
+                {
+                    title: i18n.i18n.t('Create Campaign'),
+                    content: <CreateCampaign Brand={Brand} Influencer={Influencer} i18n={i18n} />
+                },
+            ]
+        }
+        else{
+            tabsContent = [
+                {
+                    title: 'Influencers',
+                    content: <Influencers SearchValue={SearchValue} FilterInfluencers={FilterInfluencers} parentCallback={this.callbackFunction} />
+                }
+            ]
+        }
 
         const tabsContentUpdateCost = [
             {
@@ -202,24 +233,8 @@ class WidgetsChartBoxes extends React.Component {
                 content: <InfluencerUpdateCost userName={userName} />
             }
         ]
-        const tabsContent = [
-            {
-                title: 'Influencers',
-                content: <Influencers SearchValue={SearchValue} FilterInfluencers={FilterInfluencers} parentCallback={this.callbackFunction} />
-            },
-            {
-                title: i18n.i18n.t('Influencer details'),
-                content: <InfluencerDetail Influencer={Influencer} />
-            },
-            {
-                title: i18n.i18n.t('Comparison Influencers'),
-                content: <CompareInfluencers ComparedInfluencers={ComparedInfluencers} />
-            },
-            {
-                title: i18n.i18n.t('Create Campaign'),
-                content: <CreateCampaign Brand={Brand} Influencer={Influencer} i18n={i18n} />
-            },
-        ]
+
+        
 
         const clickedStyle = {
             color: '#B1BBC4',

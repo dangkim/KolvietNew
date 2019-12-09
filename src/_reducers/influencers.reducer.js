@@ -74,6 +74,7 @@ export function influencers(state = {}, action) {
       };
     case infConstants.JOB_REGISTER_SUCCESS:
       return {
+        loading: false,
         jobs: action.jobs
       };
     case infConstants.JOB_REGISTER_FAILURE:
