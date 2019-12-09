@@ -90,8 +90,8 @@ class LandingPage extends Component {
                             </div>
                         </div>
                     </div>
-                    <div className="section section-presentation" style={{ backgroundImage: `url(${m41})`, minHeight: '466px' }}>
-                        <div className="container">
+                    <div className="section section-presentation">
+                        <div className="container" style={{ backgroundImage: `url(${m41})`, minHeight: '466px', minWidth: '1482px' }}>
                             <div className="row">
                                 <div className="col-md-12">
                                     <div className="description">
@@ -100,6 +100,8 @@ class LandingPage extends Component {
                                 </div>
                             </div>
                             <div className="row">
+                                <div className="col-md-1">
+                                </div>
                                 <div className="col-md-9">
                                     <div className="description">
                                         <p>
@@ -107,7 +109,7 @@ class LandingPage extends Component {
                                         </p>
                                     </div>
                                 </div>
-                                <div className="col-md-3">
+                                <div className="col-md-2">
                                 </div>
                             </div>
                         </div>

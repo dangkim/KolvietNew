@@ -25,16 +25,10 @@ function getToken(userName, password, pathname) {
                             brandService.getBrandByName(userName)
                                 .then(
                                     brand => {
-
-                                        //dispatch(success(brand));
-                                        // history.push({
-                                        //     pathname: '/widgets/dashboard-boxes',
-                                        //     state: { Brand: brand.brand, type: type }
-                                        // })
-
                                         localStorage.setItem("type", "brand");
                                         localStorage.setItem("brandFullName", brand.brand[0].fullName);
                                         localStorage.setItem("brandName", brand.brand[0].brandName);
+                                        localStorage.setItem('brandObj', JSON.stringify(brand.brand));
                                         history.replace({ pathname: '/widgets/dashboard-boxes', state: { Brand: brand.brand, type: type } });
                                     },
                                     error => {

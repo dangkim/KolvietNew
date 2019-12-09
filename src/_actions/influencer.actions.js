@@ -32,7 +32,6 @@ function register(infType, userType) {
                                 //     pathname: '/widgets/dashboard-boxes',
                                 //     state: { userName: userType.UserName }
                                 // })
-                                debugger;
                                 localStorage.setItem("infName", userType.UserName);
                                 localStorage.setItem("type", "influencer");
                                 history.replace({ pathname: '/widgets/dashboard-boxes', state: { userName: userType.UserName } });
@@ -165,7 +164,7 @@ function searchScrollLoader(previousValues, first, skip, searchValue) {
 function getInfluencersByName(first, skip, userName) {
     return dispatch => {
         dispatch(request());
-        debugger;
+
         influencerService.getInfluencersByName(first, skip, userName)
             .then(
                 influencers => dispatch(success(influencers.influencer)),
@@ -189,7 +188,12 @@ function getInfluencersByCategory(previousValues, first, skip, categories) {
         dispatch(request(previousValues));
         influencerService.getInfluencersByCategory(first, skip, categories)
             .then(
-                influencers => dispatch(success(influencers.influencer)),
+                influencers => {
+                    dispatch(success(influencers.influencer));
+                    const brandObj = JSON.parse(localStorage.getItem('brandObj'));
+                    const type = localStorage.getItem("type");
+                    history.replace({ pathname: '/widgets/dashboard-boxes', state: { Brand: brandObj, type: type } });
+                },
                 error => {
                     //dispatch(failure(error.toString()));
                     //dispatch(alertActions.error(error.toString()));

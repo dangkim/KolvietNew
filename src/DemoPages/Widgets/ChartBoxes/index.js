@@ -37,7 +37,7 @@ class WidgetsChartBoxes extends React.Component {
         let brandLocal = null;
         let type = '';
         let userName = '';
-        debugger;
+
         if (this.props.location.state) {
             if (this.props.location.state.Brand) {
                 if (this.props.location.state.Brand[0]) {
@@ -250,7 +250,7 @@ class WidgetsChartBoxes extends React.Component {
 
         return (
             <Fragment>
-                <Prompt when={!type || type !== "Influencer"} message={this.handleBlockedNavigation} />
+                {/* <Prompt when={!type || type !== "Influencer"} message={this.handleBlockedNavigation} /> */}
                 <Modal isOpen={modalVisible}>
                     <ModalHeader></ModalHeader>
                     <ModalBody>

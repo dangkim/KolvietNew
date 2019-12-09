@@ -73,7 +73,7 @@ export default class CampaignsTable extends React.Component {
     render() {
         const { statusColumns } = this.state;
         const { campaign, i18n } = this.props;
-        debugger;
+
         var rows = []
         const columns = [
             { name: "campaignName", title: this.props.i18n.i18n.t('CampaignNameTable') },
