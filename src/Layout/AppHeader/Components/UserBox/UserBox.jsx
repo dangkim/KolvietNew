@@ -2,10 +2,10 @@ import React, { Fragment } from 'react';
 import { connect } from 'react-redux';
 import {
     DropdownToggle, DropdownMenu,
-    Nav, Button, NavItem, NavLink,
-    UncontrolledTooltip, UncontrolledButtonDropdown
+    Nav, NavItem, NavLink,
+    UncontrolledButtonDropdown
 } from 'reactstrap';
-import { userActions } from '../../../../_actions';
+import { userActions, brandActions } from '../../../../_actions';
 import {
     toast,
     Bounce
@@ -13,7 +13,6 @@ import {
 
 
 import {
-    faCalendarAlt,
     faAngleDown
 
 } from '@fortawesome/free-solid-svg-icons';
@@ -27,6 +26,7 @@ class UserBox extends React.Component {
         super(props);
         this.state = {
             active: false,
+            brand: this.props.Brand
         };
 
         this.logout = this.logout.bind(this);
@@ -44,7 +44,15 @@ class UserBox extends React.Component {
         this.props.dispatch(userActions.logout());
     };
 
+    manage = () => {
+        const { brand } = this.state;
+        this.props.dispatch(brandActions.getBrandByName(brand.brandName));
+    };
+
     render() {
+
+        const { FullName } = this.props;
+
         return (
             <Fragment>
                 <div className="header-btn-lg pr-0">
@@ -61,13 +69,12 @@ class UserBox extends React.Component {
                                             <NavItem className="nav-item-header">
                                                 My Account
                                             </NavItem>
-                                            {/* <NavItem>
-                                                <NavLink href="javascript:void(0);">
-                                                    Settings
-                                                    <div className="ml-auto badge badge-success">New</div>
+                                            <NavItem>
+                                                <NavLink onClick={this.manage}>
+                                                    Manage
                                                 </NavLink>
                                             </NavItem>
-                                            <NavItem>
+                                            {/* <NavItem>
                                                 <NavLink href="javascript:void(0);">
                                                     Messages
                                                     <div className="ml-auto badge badge-warning">512</div>
@@ -84,7 +91,7 @@ class UserBox extends React.Component {
                             </div>
                             <div className="widget-content-left  ml-3 header-user-info">
                                 <div className="widget-heading">
-                                    {this.props.FullName}
+                                    {FullName}
                                 </div>
                                 {/* <div className="widget-subheading">
                                     VP People Manager
@@ -109,7 +116,6 @@ class UserBox extends React.Component {
 }
 
 function mapStateToProps(state) {
-    //
     const { campaigns, influencers, locations, interestings, jobCategories, jobs, brands } = state;
     return {
         brands,

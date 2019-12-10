@@ -3,11 +3,13 @@ import { brandService, userService } from '../_services';
 import { alertActions } from '.';
 import { history } from '../_helpers';
 import { toast } from "react-toastify";
-
+import { updateBrandModel } from '../_models/BrandType';
 export const brandActions = {
     register,
     getAll,
-    getBrandByName
+    updateBrand,
+    getBrandByName,
+    getBrandByNameToManage
 };
 
 function register(brandType, userType) {
@@ -21,7 +23,7 @@ function register(brandType, userType) {
                         brandService.register(brandType)
                             .then(brand => {
                                 dispatch(success(brand));
-                                
+
                                 // history.push({
                                 //     pathname: '/widgets/dashboard-boxes',
                                 //     state: { Brand: brand.Brand, type: "Brand" }
@@ -57,6 +59,37 @@ function register(brandType, userType) {
     function failure(error) { return { type: brandConstants.BRAND_REGISTER_FAILURE, error } }
 }
 
+function updateBrand(brandType) {
+    return dispatch => {
+        dispatch(request(brandType));
+        const localBrandType = updateBrandModel(brandType);
+        brandService.updateBrand(localBrandType)
+            .then(
+                infType => {
+                    //dispatch(success(infType));
+                    //get influencer by graplql again
+                    brandService.getBrandByName(localBrandType.BrandName)
+                        .then(
+                            brand => {
+                                dispatch(success(brand))
+                            },
+                            error => dispatch(failure(error.toString()))
+                        )
+
+                    toast.success("Update successful");
+                },
+                error => {
+                    dispatch(failure(error.toString()));
+                    dispatch(alertActions.error(error.toString()));
+                }
+            );
+    };
+
+    function request(brand) { return { type: brandConstants.BRAND_UPDATE_REQUEST, brand } }
+    function success(brand) { return { type: brandConstants.BRAND_UPDATE_SUCCESS, brand } }
+    function failure(error) { return { type: brandConstants.BRAND_UPDATE_FAILURE, error } }
+}
+
 function getAll() {
     return dispatch => {
         dispatch(request());
@@ -76,15 +109,44 @@ function getAll() {
 function getBrandByName(userName) {
     return dispatch => {
         dispatch(request());
-        if (userName) {            
+        if (userName) {
             brandService.getBrandByName(userName)
-            .then(
-                brand => dispatch(success(brand)),
-                error => {
-                    toast.warn(error.toString() + " Please login again");
-                    history.replace({ pathname: '/pages/loginpage' });
-                }
-            )
+                .then(
+                    brand => dispatch(success(brand)),
+                    error => {
+                        toast.warn(error.toString() + " Please login again");
+                        history.replace({ pathname: '/pages/loginpage' });
+                    }
+                )
+            //dispatch(success(brand));
+        }
+        else {
+            const error = "cannot get from brand";
+            dispatch(failure(error.toString()));
+            //dispatch(alertActions.error(error.toString()));
+        }
+    };
+
+    function request() { return { type: brandConstants.GET_BRANDBYNAME_REQUEST } }
+    function success(brand) { return { type: brandConstants.GET_BRANDBYNAME_SUCCESS, brand } }
+    function failure(error) { return { type: brandConstants.GET_BRANDBYNAME_FAILURE, error } }
+}
+
+function getBrandByNameToManage(userName) {
+    return dispatch => {
+        dispatch(request());
+        if (userName) {
+            brandService.getBrandByName(userName)
+                .then(
+                    brand => {
+                        dispatch(success(brand));
+                        
+                    },
+                    error => {
+                        toast.warn(error.toString() + " Please login again");
+                        history.replace({ pathname: '/pages/loginpage' });
+                    }
+                )
             //dispatch(success(brand));
         }
         else {

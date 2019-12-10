@@ -4,6 +4,7 @@ import { authHeader } from '../_helpers';
 export const brandService = {
     register,
     getAll,
+    updateBrand,
     getBrandByName
 };
 
@@ -77,6 +78,20 @@ function register(brandType) {
     return fetch(`${configOrchardCore.apiUrl}content/Post?draft=true`, requestOptions).then(handleContentResponse);
 }
 
+function updateBrand(brandType) {
+    const token = localStorage.getItem('token');
+  
+    const requestOptions = {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': token
+      },
+      body: JSON.stringify(brandType)
+    };
+  
+    return fetch(`${configOrchardCore.apiUrl}content/UpdateBrand`, requestOptions).then(handleContentResponse);
+  }
 function handleGraphResponse(response) {
     if (!response.ok) {
         if (response.status === 401) {

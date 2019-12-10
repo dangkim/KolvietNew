@@ -55,12 +55,15 @@ class AppHeader extends React.Component {
             enableMobileMenuSmall,
             enableHeaderShadow
         } = this.props;
+
+        const brandObj = JSON.parse(localStorage.getItem('brandObj'));
+
         var fullName = ""
         if (localStorage.getItem("type") === "brand") {
+            
             fullName = localStorage.getItem("brandFullName");
         }
         else {
-            debugger;
             fullName = localStorage.getItem("infName");
         }
         return (
@@ -76,7 +79,7 @@ class AppHeader extends React.Component {
                                 <SearchBox handlerSearchFromParent={this.sendData} />
                             </div>
                             <div className="app-header-right">
-                                <UserBox FullName={fullName} />
+                                <UserBox FullName={fullName} Brand={brandObj}/>
                             </div>
                         </div>
                     </div>
