@@ -9,6 +9,8 @@ import {
     TransitionGroup,
 } from 'react-transition-group';
 
+import Loader from 'react-loader-spinner'
+
 import { Trans } from 'react-i18next';
 
 import {
@@ -66,7 +68,7 @@ export default class ManageBrand extends React.Component {
         for (i = 0; i < selectedOptionLocation.length; i++) {
             locationString += selectedOptionLocation[i].value + ',';
         }
-        
+
         brandToUpdate.location = locationString.substring(0, locationString.length - 1);;
 
         dispatch(brandActions.updateBrand(brandToUpdate));
@@ -128,74 +130,82 @@ export default class ManageBrand extends React.Component {
         const isDisabled = JSON.stringify(brandInfo) === "{}";
 
         return (
-            brands.brand !== undefined && <Fragment>
-                <TransitionGroup component="div">
-                    <CSSTransition timeout={1500} unmountOnExit appear classNames="TabsAnimation">
-                        <Card className="main-card mb-3">
-                            <CardBody>
-                                <CardTitle>
-                                    {
-                                        <span><Trans>Manage your account</Trans></span>
-                                    }
-                                </CardTitle>
-                                <Form id="register-form">
-                                    <Row form>
-                                        <Col md={6}>
-                                            <FormGroup>
-                                                <Label for="campaignName">
-                                                    <Trans>Change Brand Name</Trans>
-                                                </Label>
-                                                <Input type="text" name="brandName" id="brandName" value={brands.brand.brandName} onChange={this.handleBrandNameChange} />
-                                            </FormGroup>
-                                        </Col>
-                                        <Col md={6}>
-                                            <FormGroup>
-                                                <Label for="fullName">
-                                                    <Trans>Change Full Name</Trans>
-                                                </Label>
-                                                <Input type="text" name="fullName" id="fullName" value={brands.brand.fullName} onChange={this.handleFullNameChange} />
-                                            </FormGroup>
-                                        </Col>
-                                    </Row>
-                                    <Row form>
-                                        <Col md={4}>
-                                            <FormGroup>
-                                                <Label for="businessAreas">
-                                                    <Trans>Change Business Areas</Trans>
-                                                </Label>
-                                                <Input type="text" name="businessAreas" id="businessAreas" value={brands.brand.businessAreas} onChange={this.handleBusinessAreasChange} />
-                                            </FormGroup>
-                                        </Col>
-                                        <Col md={4}>
-                                            <FormGroup>
-                                                <Label for="phone">
-                                                    <Trans>Change Phone</Trans>
-                                                </Label>
-                                                <NumberFormat className="form-control" name="phone" id="phone" format="+84 (####) ###-###" mask="_" value={brands.brand.phone} onChange={this.handlePhoneChange} />
-                                            </FormGroup>
-                                        </Col>
-                                        <Col md={4}>
-                                            <FormGroup>
-                                                <Label for="location" className=""> <Trans>Location</Trans></Label>
-                                                <Select value={selectedOptionLocation}
-                                                    onChange={this.handleOptionLocationChange}
-                                                    isMulti
-                                                    options={locations}
-                                                />
-                                            </FormGroup>
-                                        </Col>
-                                    </Row>
-                                    <Button onClick={this.handleSubmit} disabled={isDisabled} color="primary" className="mt-2"><Trans>Submit</Trans></Button>
-                                    {
-                                        brands.loading &&
-                                        <img src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA==" />
-                                    }
-                                </Form>
-                            </CardBody>
-                        </Card>
-                    </CSSTransition>
-                </TransitionGroup>
-            </Fragment>
+            brands.loading ?
+                <div className="loader-container" style={{width:'85%', height:'85%'}}>
+                    <div className="loader-container-inner">
+                        <Loader
+                            type="CradleLoader"
+                            color="#00BFFF"
+                            height={100}
+                            width={100}
+                        />
+                    </div>
+                </div>
+                :
+                brands.brand !== undefined && <Fragment>
+                    <TransitionGroup component="div">
+                        <CSSTransition timeout={1500} unmountOnExit appear classNames="TabsAnimation">
+                            <Card className="main-card mb-3">
+                                <CardBody>
+                                    <CardTitle>
+                                        {
+                                            <span><Trans>Manage your account</Trans></span>
+                                        }
+                                    </CardTitle>
+                                    <Form id="register-form">
+                                        <Row form>
+                                            <Col md={6}>
+                                                <FormGroup>
+                                                    <Label for="campaignName">
+                                                        <Trans>Change Brand Name</Trans>
+                                                    </Label>
+                                                    <Input type="text" name="brandName" id="brandName" value={brands.brand.brandName} onChange={this.handleBrandNameChange} />
+                                                </FormGroup>
+                                            </Col>
+                                            <Col md={6}>
+                                                <FormGroup>
+                                                    <Label for="fullName">
+                                                        <Trans>Change Full Name</Trans>
+                                                    </Label>
+                                                    <Input type="text" name="fullName" id="fullName" value={brands.brand.fullName} onChange={this.handleFullNameChange} />
+                                                </FormGroup>
+                                            </Col>
+                                        </Row>
+                                        <Row form>
+                                            <Col md={4}>
+                                                <FormGroup>
+                                                    <Label for="businessAreas">
+                                                        <Trans>Change Business Areas</Trans>
+                                                    </Label>
+                                                    <Input type="text" name="businessAreas" id="businessAreas" value={brands.brand.businessAreas} onChange={this.handleBusinessAreasChange} />
+                                                </FormGroup>
+                                            </Col>
+                                            <Col md={4}>
+                                                <FormGroup>
+                                                    <Label for="phone">
+                                                        <Trans>Change Phone</Trans>
+                                                    </Label>
+                                                    <NumberFormat className="form-control" name="phone" id="phone" format="+84 (####) ###-###" mask="_" value={brands.brand.phone} onChange={this.handlePhoneChange} />
+                                                </FormGroup>
+                                            </Col>
+                                            <Col md={4}>
+                                                <FormGroup>
+                                                    <Label for="location" className=""> <Trans>Location</Trans></Label>
+                                                    <Select value={selectedOptionLocation}
+                                                        onChange={this.handleOptionLocationChange}
+                                                        isMulti
+                                                        options={locations}
+                                                    />
+                                                </FormGroup>
+                                            </Col>
+                                        </Row>
+                                        <Button onClick={this.handleSubmit} disabled={isDisabled} color="primary" className="mt-2"><Trans>Submit</Trans></Button>
+                                    </Form>
+                                </CardBody>
+                            </Card>
+                        </CSSTransition>
+                    </TransitionGroup>
+                </Fragment>
         );
     }
 }
