@@ -1,5 +1,6 @@
 import React, { Fragment } from 'react';
 import { connect } from 'react-redux';
+import { history } from '../../../../_helpers';
 import {
     DropdownToggle, DropdownMenu,
     Nav, NavItem, NavLink,
@@ -45,8 +46,9 @@ class UserBox extends React.Component {
     };
 
     manage = () => {
-        const { brand } = this.state;
-        this.props.dispatch(brandActions.getBrandByName(brand.brandName));
+        //const { brand } = this.state;
+        //this.props.dispatch(brandActions.getBrandByNameToManage(brand.brandName));
+        history.replace({ pathname: '/widgets/manage-brand' });
     };
 
     render() {

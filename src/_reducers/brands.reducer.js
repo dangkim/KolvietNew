@@ -11,7 +11,7 @@ export function brands(state = {}, action) {
         brand: action.brand
       };
     case brandConstants.BRAND_REGISTER_FAILURE:
-      return { 
+      return {
         error: action.error
       };
     case brandConstants.BRANDS_GETALL_REQUEST:
@@ -23,31 +23,45 @@ export function brands(state = {}, action) {
         items: action.brands
       };
     case brandConstants.BRANDS_GETALL_FAILURE:
-      return { 
+      return {
         error: action.error
       };
-      case brandConstants.GET_BRANDBYNAME_REQUEST:
+    case brandConstants.GET_BRANDBYNAME_REQUEST:
       return {
         loading: true
       };
     case brandConstants.GET_BRANDBYNAME_SUCCESS:
       return {
+        loading: false,
         brand: action.brand.brand[0]
       };
     case brandConstants.GET_BRANDBYNAME_FAILURE:
-      return { 
+      return {
         error: action.error
       };
     case brandConstants.FROM_BRAND_REQUEST:
-      return { 
+      return {
         loading: true
       };
     case brandConstants.FROM_BRAND_SUCCESS:
-      return { 
+      return {
         brand: action.brand
       };
     case brandConstants.FROM_BRAND_FAILURE:
-      return { 
+      return {
+        error: action.error
+      };
+    case brandConstants.BRAND_UPDATE_REQUEST:
+      return {
+        loading: true
+      };
+    case brandConstants.BRAND_UPDATE_SUCCESS:
+      return {
+        loading: false,
+        brand: action.brand
+      };
+    case brandConstants.BRAND_UPDATE_FAILURE:
+      return {
         error: action.error
       };
     default:

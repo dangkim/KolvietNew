@@ -49,6 +49,10 @@ class AppHeader extends React.Component {
         this.props.parentSearchCallback(searchValue);
     }
 
+    sendManageBrandData = (brand) => {
+        this.props.parentBrandManageCallback(brand);
+    }
+
     render() {
         let {
             headerBackgroundColor,

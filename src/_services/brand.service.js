@@ -5,7 +5,8 @@ export const brandService = {
     register,
     getAll,
     updateBrand,
-    getBrandByName
+    getBrandByName,
+    getManageBrandByName
 };
 
 function getBrandByName(userName) {
@@ -18,6 +19,34 @@ function getBrandByName(userName) {
           businessAreas
           fullName
           location
+          createdUtc
+          published
+        }
+      }
+    `;
+    const token = localStorage.getItem('token');
+    const requestOptions = {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/graphql',
+            'Authorization': token
+        },
+        body: GET_BRANDBYNAME
+    };
+
+    return fetch(`${configOrchardCore.apiUrl}graphql`, requestOptions).then(handleGraphResponse);
+}
+
+function getManageBrandByName(userName) {
+    const GET_BRANDBYNAME = `
+    {
+        brand(where: {displayText_contains: "` + userName + `"}, status: LATEST) {
+          contentItemId
+          brandName
+          businessAreas
+          fullName
+          location
+          phone
           createdUtc
           published
         }

@@ -212,12 +212,12 @@ class CreateCampaign extends Component {
     handleBackStep(event) {
         event.preventDefault();
         const { isInfluencerStep, isJobStep } = this.state;
-        if (isInfluencerStep == true) {
+        if (isInfluencerStep === true) {
             this.setState({ isFormStep: true, isInfluencerStep: false, isJobStep: false });
             return;
         }
 
-        if (isJobStep == true) {
+        if (isJobStep === true) {
             this.setState({ isFormStep: false, isInfluencerStep: true, isJobStep: false });
             return;
         }

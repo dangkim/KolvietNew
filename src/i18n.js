@@ -85,7 +85,8 @@ const resources = {
       "To Date": "To Date",
       "ToAgeTable": "To Age",
       "All Campaigns": "All Campaigns",
-      "Manage Brand": "Manage Brand"
+      "Manage Brand": "Manage Brand",
+      "Manage your account": "Manage your account"
     }
   },
   vn: {
@@ -168,7 +169,8 @@ const resources = {
       "To Date": "Đến",
       "ToAgeTable": "Đến",
       "All Campaigns": "Danh Sách Tất Cả Các Chiến Dịch",
-      "Manage Brand": "Quản lý tài khoản"
+      "Manage Brand": "Quản lý tài khoản",
+      "Manage your account": "Quản lý tài khoản của bạn"
     }
   }
 };

@@ -10,6 +10,7 @@ import { AppHeader } from '../../Layout/AppHeader';
 import AppSidebar from '../../Layout/AppSidebar/';
 import AppFooter from '../../Layout/AppFooter/';
 import { CampaignsTable } from './Campaigns';
+import ManageBrand from './Brand';
 
 class Widgets extends React.Component {
     constructor(props) {
@@ -19,11 +20,13 @@ class Widgets extends React.Component {
             searchValue: '',
             first: 9,
             selectedTabKey: 0,
-            language: 'vn'
+            language: 'vn',
+            brand: null
         };
 
         this.sendData = this.sendData.bind(this);
         this.sendTabData = this.sendTabData.bind(this);
+        this.sendBrandManageData = this.sendBrandManageData.bind(this);
     }
 
     sendData = (childData) => {
@@ -46,6 +49,10 @@ class Widgets extends React.Component {
         this.setState({ selectedTabKey: activeTab })
     }
 
+    sendBrandManageData = (brand) => {
+        this.setState({ brand: brand })
+    }
+
     componentDidMount() {
         const { i18n } = this.props;
         const language = localStorage.getItem('language');
@@ -54,7 +61,7 @@ class Widgets extends React.Component {
     }
 
     render() {
-        const { searchValue, selectedTabKey } = this.state;
+        const { searchValue, selectedTabKey, brand } = this.state;
         const { influencers } = this.props;
         const influencerItems = (influencers && influencers.items) ? influencers.items : [];
 
@@ -74,6 +81,10 @@ class Widgets extends React.Component {
                         <Route path={`${this.props.match.url}/campaigns-table`}
                             render={(routeProps) => (
                                 <CampaignsTable {...this.props} />
+                            )} />
+                        <Route path={`${this.props.match.url}/manage-brand`}
+                            render={(routeProps) => (
+                                <ManageBrand {...this.props}/>
                             )} />
                     </div>
                 </div>

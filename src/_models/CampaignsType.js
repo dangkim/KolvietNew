@@ -108,19 +108,19 @@ export function createCampaign(campaign,
   // Check Cost of each job
   var i;
   for (i = 0; i < selectedOptionJobCategory.length; i++) {
-    if (selectedOptionJobCategory[i].value == "Share Link") {
+    if (selectedOptionJobCategory[i].value === "Share Link") {
       isShareLink = true;
     }
-    if (selectedOptionJobCategory[i].value == "Post Image") {
+    if (selectedOptionJobCategory[i].value === "Post Image") {
       isPostImage = true;
     }
-    if (selectedOptionJobCategory[i].value == "Live Stream") {
+    if (selectedOptionJobCategory[i].value === "Live Stream") {
       isLiveStream = true;
     }
-    if (selectedOptionJobCategory[i].value == "Check In") {
+    if (selectedOptionJobCategory[i].value === "Check In") {
       isCheckIn = true;
     }
-    if (selectedOptionJobCategory[i].value == "Video") {
+    if (selectedOptionJobCategory[i].value === "Video") {
       isVideo = true;
     }
   }

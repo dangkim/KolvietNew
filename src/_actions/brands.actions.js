@@ -112,7 +112,10 @@ function getBrandByName(userName) {
         if (userName) {
             brandService.getBrandByName(userName)
                 .then(
-                    brand => dispatch(success(brand)),
+                    brand => {
+                        dispatch(success(brand));
+
+                    },
                     error => {
                         toast.warn(error.toString() + " Please login again");
                         history.replace({ pathname: '/pages/loginpage' });
@@ -136,11 +139,11 @@ function getBrandByNameToManage(userName) {
     return dispatch => {
         dispatch(request());
         if (userName) {
-            brandService.getBrandByName(userName)
+            brandService.getManageBrandByName(userName)
                 .then(
                     brand => {
                         dispatch(success(brand));
-                        
+                        //history.replace({ pathname: '/widgets/manage-brand' });
                     },
                     error => {
                         toast.warn(error.toString() + " Please login again");
