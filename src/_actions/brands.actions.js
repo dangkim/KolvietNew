@@ -71,7 +71,7 @@ function updateBrand(brandType) {
                     brandService.getBrandByName(localBrandType.BrandName)
                         .then(
                             brand => {
-                                dispatch(success(brand))
+                                dispatch(success(localBrandType))
                             },
                             error => dispatch(failure(error.toString()))
                         )

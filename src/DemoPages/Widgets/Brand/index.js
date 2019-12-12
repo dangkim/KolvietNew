@@ -33,7 +33,8 @@ export default class ManageBrand extends React.Component {
             compaignList: [],
             statusColumns: ['statusOfCampaign'],
             selectedOptionLocation: locationStorage,
-            brandInfo: this.props.brands
+            brandInfo: this.props.brands,
+            isDirty: false
         };
 
 
@@ -46,7 +47,6 @@ export default class ManageBrand extends React.Component {
     }
 
     componentDidMount() {
-
         const { dispatch } = this.props;
         const brandObj = JSON.parse(localStorage.getItem('brandObj'));
         dispatch(brandActions.getBrandByNameToManage(brandObj[0].email));
@@ -56,13 +56,13 @@ export default class ManageBrand extends React.Component {
 
         event.preventDefault();
 
-        this.setState({ submitted: true });
+        this.setState({ submitted: true, isDirty: false });
 
         const { dispatch, brands } = this.props;
         const { brandInfo, selectedOptionLocation } = this.state;
 
         const brandToUpdate = brandInfo;
-        debugger;
+
         let locationString = '';
         var i;
         for (i = 0; i < selectedOptionLocation.length; i++) {
@@ -75,17 +75,14 @@ export default class ManageBrand extends React.Component {
 
     }
 
-    handleOptionLocationChange = selectedOptionLocation => {
-        this.setState({ selectedOptionLocation });
-    };
-
     handleBusinessAreasChange(event) {
         const { name, value } = event.target;
         const { brands } = this.props;
         const localBrand = brands.brand;
         localBrand[name] = value
         this.setState({
-            brandInfo: localBrand
+            brandInfo: localBrand,
+            isDirty: true
         });
     }
 
@@ -95,7 +92,8 @@ export default class ManageBrand extends React.Component {
         const localBrand = brands.brand;
         localBrand[name] = value
         this.setState({
-            brandInfo: localBrand
+            brandInfo: localBrand,
+            isDirty: true
         });
     }
 
@@ -105,7 +103,8 @@ export default class ManageBrand extends React.Component {
         const localBrand = brands.brand;
         localBrand[name] = value
         this.setState({
-            brandInfo: localBrand
+            brandInfo: localBrand,
+            isDirty: true
         });
     }
 
@@ -115,23 +114,28 @@ export default class ManageBrand extends React.Component {
         const localBrand = brands.brand;
         localBrand[name] = value;
         this.setState({
-            brandInfo: localBrand
+            brandInfo: localBrand,
+            isDirty: true
         });
     }
 
     handleOptionLocationChange = selectedOptionLocation => {
-        this.setState({ selectedOptionLocation });
+        this.setState({
+            selectedOptionLocation,
+            isDirty: true
+        });
     };
 
     render() {
         const { brands } = this.props;
-        const { selectedOptionLocation, brandInfo, submitted } = this.state;
+        const { selectedOptionLocation, brandInfo, isDirty, submitted } = this.state;
         const locations = createLocations();
-        const isDisabled = JSON.stringify(brandInfo) === "{}";
-
+        //const isDisabled = JSON.stringify(brandInfo) === "{}";
+        //const localBrand = brands.brand;
+        debugger;
         return (
             brands.loading ?
-                <div className="loader-container" style={{width:'85%', height:'85%'}}>
+                <div className="loader-container" style={{ width: '85%', height: '85%' }}>
                     <div className="loader-container-inner">
                         <Loader
                             type="CradleLoader"
@@ -199,7 +203,7 @@ export default class ManageBrand extends React.Component {
                                                 </FormGroup>
                                             </Col>
                                         </Row>
-                                        <Button onClick={this.handleSubmit} disabled={isDisabled} color="primary" className="mt-2"><Trans>Submit</Trans></Button>
+                                        <Button onClick={this.handleSubmit} disabled={!isDirty} color="primary" className="mt-2"><Trans>Submit</Trans></Button>
                                     </Form>
                                 </CardBody>
                             </Card>
