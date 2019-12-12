@@ -21,7 +21,8 @@ class Widgets extends React.Component {
             first: 9,
             selectedTabKey: 0,
             language: 'vn',
-            brand: null
+            brand: null,
+            isClear: false
         };
 
         this.sendData = this.sendData.bind(this);
@@ -31,14 +32,12 @@ class Widgets extends React.Component {
 
     sendData = (childData) => {
         const { dispatch } = this.props;
-        this.setState({ selectedTabKey: 0, searchValue: childData })
+        this.setState({ selectedTabKey: 0, searchValue: childData, isClear: true })
 
         if (childData && childData !== '') {
             let items = [];
-
             items.push(childData);
-
-            dispatch(infActions.getInfluencersByCategory([], this.state.first, 0, items));
+            dispatch(infActions.getInfluencersByCategory([], this.state.first, 0, items, true));
         }
         else {
             this.props.dispatch(infActions.getInfluencersByName(this.state.first, 0, ""));
@@ -61,7 +60,7 @@ class Widgets extends React.Component {
     }
 
     render() {
-        const { searchValue, selectedTabKey, brand } = this.state;
+        const { searchValue, selectedTabKey, isClear, brand } = this.state;
         const { influencers } = this.props;
         const influencerItems = (influencers && influencers.items) ? influencers.items : [];
 
@@ -84,7 +83,7 @@ class Widgets extends React.Component {
                             )} />
                         <Route path={`${this.props.match.url}/manage-brand`}
                             render={(routeProps) => (
-                                <ManageBrand {...this.props}/>
+                                <ManageBrand {...this.props} />
                             )} />
                     </div>
                 </div>

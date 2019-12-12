@@ -101,11 +101,13 @@ export function influencers(state = {}, action) {
     case infConstants.INFS_GETBYCATEGORY_SUCCESS:
       return {
         loading: false,
+        isClearList: action.isClearList,
         items: action.influencers
       };
     case infConstants.INFS_GETBYCATEGORY_REQUEST:
       return {
         loading: true,
+        isClearList: action.isClearList,
         items: action.previousValues
       };
     default:

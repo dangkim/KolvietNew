@@ -183,7 +183,7 @@ function getInfluencersByName(first, skip, userName) {
     function failure(error) { return { type: infConstants.INFS_GETBYNAME_FAILURE, error } }
 }
 
-function getInfluencersByCategory(previousValues, first, skip, categories) {
+function getInfluencersByCategory(previousValues, first, skip, categories, isClearList) {
     return dispatch => {
         dispatch(request(previousValues));
         influencerService.getInfluencersByCategory(first, skip, categories)
@@ -204,8 +204,8 @@ function getInfluencersByCategory(previousValues, first, skip, categories) {
             );
     };
 
-    function request(previousValues) { return { type: infConstants.INFS_GETBYCATEGORY_REQUEST, previousValues } }
-    function success(influencers) { return { type: infConstants.INFS_GETBYCATEGORY_SUCCESS, influencers } }
+    function request(previousValues) { return { type: infConstants.INFS_GETBYCATEGORY_REQUEST, previousValues, isClearList } }
+    function success(influencers) { return { type: infConstants.INFS_GETBYCATEGORY_SUCCESS, influencers, isClearList } }
     function failure(error) { return { type: infConstants.INFS_GETBYCATEGORY_FAILURE, error } }
 }
 

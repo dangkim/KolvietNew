@@ -189,13 +189,13 @@ class WidgetsChartBoxes extends React.Component {
             items.push(SearchValue);
         }
 
-        dispatch(infActions.getInfluencersByCategory([], first, 0, items));
+        dispatch(infActions.getInfluencersByCategory([], first, 0, items, false));
     }
 
     render() {
         const { cSelected, Influencer, Brand, modalVisible, type, userName, ComparedInfluencers } = this.state;
-        const { FilterInfluencers, SearchValue, ActiveTab, i18n } = this.props;
-        
+        const { FilterInfluencers, SearchValue, ActiveTab, i18n, isClear, influencers } = this.props;
+        const cSelectedLocal = influencers.isClearList ? [] : cSelected;
         let tabsContent = [];
 
         if (FilterInfluencers.length > 0) {
@@ -218,7 +218,7 @@ class WidgetsChartBoxes extends React.Component {
                 },
             ]
         }
-        else{
+        else {
             tabsContent = [
                 {
                     title: 'Influencers',
@@ -233,8 +233,6 @@ class WidgetsChartBoxes extends React.Component {
                 content: <InfluencerUpdateCost userName={userName} />
             }
         ]
-
-        
 
         const clickedStyle = {
             color: '#B1BBC4',
@@ -266,7 +264,7 @@ class WidgetsChartBoxes extends React.Component {
         return (
             <Fragment>
                 {/* <Prompt when={!type || type !== "Influencer"} message={this.handleBlockedNavigation} /> */}
-                <Modal isOpen={modalVisible}>
+                {/* <Modal isOpen={modalVisible}>
                     <ModalHeader></ModalHeader>
                     <ModalBody>
                         Are you sure you want to leave?
@@ -275,7 +273,7 @@ class WidgetsChartBoxes extends React.Component {
                         <Button color="link" onClick={() => this.closeModal(() => { })}>Cancel</Button>
                         <Button color="primary" onClick={this.handleConfirmNavigationClick}>Yes</Button>{' '}
                     </ModalFooter>
-                </Modal>
+                </Modal> */}
                 {/* <PageTitleCategory
                     heading="Chart Boxes"
                     subheading="These boxes can be used to show numbers and data in a breautiful user friendly way."
@@ -288,55 +286,55 @@ class WidgetsChartBoxes extends React.Component {
                                 <Row>
                                     <Col md="2">
                                         <div onClick={() => this.onCheckboxBtnClick('Food', '')}>
-                                            <img src={food} style={{ width: '100%', borderStyle: !cSelected.includes('Food') ? 'none' : 'solid', borderColor: '#764ba2', borderWidth: 'thick' }}></img>
+                                            <img src={food} style={{ width: '100%', borderStyle: !cSelectedLocal.includes('Food') ? 'none' : 'solid', borderColor: '#764ba2', borderWidth: 'thick' }}></img>
                                             <p className="text-center"><Trans>Food</Trans></p>
                                         </div>
                                     </Col>
                                     <Col md="2">
                                         <div onClick={() => this.onCheckboxBtnClick('Cosmetics', '')}>
-                                            <img src={cosmetics} style={{ width: '100%', borderStyle: !cSelected.includes('Cosmetics') ? 'none' : 'solid', borderColor: '#764ba2', borderWidth: 'thick' }}></img>
+                                            <img src={cosmetics} style={{ width: '100%', borderStyle: !cSelectedLocal.includes('Cosmetics') ? 'none' : 'solid', borderColor: '#764ba2', borderWidth: 'thick' }}></img>
                                             <p className="text-center"><Trans>Cosmetics</Trans></p>
                                         </div>
                                     </Col>
                                     <Col md="2">
                                         <div onClick={() => this.onCheckboxBtnClick('Fashion', '')}>
-                                            <img src={fashion} style={{ width: '100%', borderStyle: !cSelected.includes('Fashion') ? 'none' : 'solid', borderColor: '#764ba2', borderWidth: 'thick' }}></img>
+                                            <img src={fashion} style={{ width: '100%', borderStyle: !cSelectedLocal.includes('Fashion') ? 'none' : 'solid', borderColor: '#764ba2', borderWidth: 'thick' }}></img>
                                             <p className="text-center"><Trans>Fashion</Trans></p>
                                         </div>
                                     </Col>
                                     <Col md="2">
                                         <div onClick={() => this.onCheckboxBtnClick('Sport', '')}>
-                                            <img src={sport} style={{ width: '100%', borderStyle: !cSelected.includes('Sport') ? 'none' : 'solid', borderColor: '#764ba2', borderWidth: 'thick' }}></img>
+                                            <img src={sport} style={{ width: '100%', borderStyle: !cSelectedLocal.includes('Sport') ? 'none' : 'solid', borderColor: '#764ba2', borderWidth: 'thick' }}></img>
                                             <p className="text-center"><Trans>Sport</Trans></p>
                                         </div>
                                     </Col>
                                     <Col md="2">
                                         <div onClick={() => this.onCheckboxBtnClick('Travel', '')}>
-                                            <img src={travel} style={{ width: '100%', borderStyle: !cSelected.includes('Travel') ? 'none' : 'solid', borderColor: '#764ba2', borderWidth: 'thick' }}></img>
+                                            <img src={travel} style={{ width: '100%', borderStyle: !cSelectedLocal.includes('Travel') ? 'none' : 'solid', borderColor: '#764ba2', borderWidth: 'thick' }}></img>
                                             <p className="text-center"><Trans>Travel</Trans></p>
                                         </div>
                                     </Col>
                                     <Col md="2">
                                         <div onClick={() => this.onCheckboxBtnClick('Event', 'Entertaining')}>
-                                            <img src={event} style={{ width: '100%', borderStyle: !cSelected.includes('Event') ? 'none' : 'solid', borderColor: '#764ba2', borderWidth: 'thick' }}></img>
+                                            <img src={event} style={{ width: '100%', borderStyle: !cSelectedLocal.includes('Event') ? 'none' : 'solid', borderColor: '#764ba2', borderWidth: 'thick' }}></img>
                                             <p className="text-center"><Trans>Events-Entertaining</Trans></p>
                                         </div>
                                     </Col>
                                     <Col md="2">
                                         <div onClick={() => this.onCheckboxBtnClick('HouseWife', '')}>
-                                            <img src={housewife} style={{ width: '100%', borderStyle: !cSelected.includes('HouseWife') ? 'none' : 'solid', borderColor: '#764ba2', borderWidth: 'thick' }}></img>
+                                            <img src={housewife} style={{ width: '100%', borderStyle: !cSelectedLocal.includes('HouseWife') ? 'none' : 'solid', borderColor: '#764ba2', borderWidth: 'thick' }}></img>
                                             <p className="text-center"><Trans>HouseWife</Trans></p>
                                         </div>
                                     </Col>
                                     <Col md="2">
                                         <div onClick={() => this.onCheckboxBtnClick('Technology', '')}>
-                                            <img src={tech} style={{ width: '100%', borderStyle: !cSelected.includes('Technology') ? 'none' : 'solid', borderColor: '#764ba2', borderWidth: 'thick' }}></img>
+                                            <img src={tech} style={{ width: '100%', borderStyle: !cSelectedLocal.includes('Technology') ? 'none' : 'solid', borderColor: '#764ba2', borderWidth: 'thick' }}></img>
                                             <p className="text-center"><Trans>Technology</Trans></p>
                                         </div>
                                     </Col>
                                     <Col md="2">
                                         <div onClick={() => this.onCheckboxBtnClick('Appliances', '')}>
-                                            <img src={appliance} style={{ width: '100%', borderStyle: !cSelected.includes('Appliances') ? 'none' : 'solid', borderColor: '#764ba2', borderWidth: 'thick' }}></img>
+                                            <img src={appliance} style={{ width: '100%', borderStyle: !cSelectedLocal.includes('Appliances') ? 'none' : 'solid', borderColor: '#764ba2', borderWidth: 'thick' }}></img>
                                             <p className="text-center"><Trans>Appliances</Trans></p>
                                         </div>
                                     </Col>
@@ -347,19 +345,19 @@ class WidgetsChartBoxes extends React.Component {
                                             <p>Real Estate</p>
                                         </div> */}
                                         <div onClick={() => this.onCheckboxBtnClick('RealEstate', '')}>
-                                            <img src={realestate} style={{ width: '100%', borderStyle: !cSelected.includes('RealEstate') ? 'none' : 'solid', borderColor: '#764ba2', borderWidth: 'thick' }}></img>
+                                            <img src={realestate} style={{ width: '100%', borderStyle: !cSelectedLocal.includes('RealEstate') ? 'none' : 'solid', borderColor: '#764ba2', borderWidth: 'thick' }}></img>
                                             <p className="text-center"><Trans>Real Estate</Trans></p>
                                         </div>
                                     </Col>
                                     <Col md="2">
                                         <div onClick={() => this.onCheckboxBtnClick('Furniture', '')}>
-                                            <img src={fur} style={{ width: '100%', borderStyle: !cSelected.includes('Furniture') ? 'none' : 'solid', borderColor: '#764ba2', borderWidth: 'thick' }}></img>
+                                            <img src={fur} style={{ width: '100%', borderStyle: !cSelectedLocal.includes('Furniture') ? 'none' : 'solid', borderColor: '#764ba2', borderWidth: 'thick' }}></img>
                                             <p className="text-center"><Trans>Furniture</Trans></p>
                                         </div>
                                     </Col>
                                     <Col md="2">
                                         <div onClick={() => this.onCheckboxBtnClick('Auto', 'Game')}>
-                                            <img src={game} style={{ width: '100%', borderStyle: !cSelected.includes('Game') ? 'none' : 'solid', borderColor: '#764ba2', borderWidth: 'thick' }}></img>
+                                            <img src={game} style={{ width: '100%', borderStyle: !cSelectedLocal.includes('Game') ? 'none' : 'solid', borderColor: '#764ba2', borderWidth: 'thick' }}></img>
                                             <p className="text-center"><Trans>Auto-Games</Trans></p>
                                         </div>
                                     </Col>
@@ -377,17 +375,12 @@ class WidgetsChartBoxes extends React.Component {
 }
 
 function mapStateToProps(state) {
-
-    const { campaigns, influencers, locations, interestings, jobCategories, jobs, brands } = state;
-    //const { brand } = influencers;
+    const { influencers, locations, jobs, brands } = state;
     return {
         //loggingIn,
         brands,
         jobs,
-        jobCategories,
-        interestings,
         locations,
-        campaigns,
         influencers
     };
 }
