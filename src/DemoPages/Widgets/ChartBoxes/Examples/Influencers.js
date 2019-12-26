@@ -71,9 +71,7 @@ class Influencers extends Component {
         if (!hasMore) return;
 
         // Checks that the page has scrolled to the bottom
-        if (window.innerHeight + document.documentElement.scrollTop
-            === document.documentElement.offsetHeight
-        ) {
+        if (window.innerHeight + document.documentElement.scrollTop === document.documentElement.offsetHeight) {
             loadInfinity();
         }
     };
@@ -125,7 +123,6 @@ class Influencers extends Component {
         }
     }
 
-
     sendData = (tabIndex, object, index) => {
         // Back to first tab
         this.props.parentCallback(tabIndex, object, index);
@@ -135,6 +132,7 @@ class Influencers extends Component {
 
         const { influencers } = this.props;
         const influencer = influencers.items ? influencers.items[selected] : null;
+        window.scroll(0, 450);
         if (influencer) {
             this.sendData(1, influencers.items, selected);
         }

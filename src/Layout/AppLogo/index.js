@@ -4,7 +4,7 @@ import { themeActions } from '../../_actions';
 import Hamburger from 'react-hamburgers';
 
 import AppMobileMenu from '../AppMobileMenu';
-import big_logo from '../../assets/utils/images/big_logo.jpg';
+//import big_logo from '../../assets/utils/images/big_logo.png';
 
 class HeaderLogo extends React.Component {
     constructor(props) {
@@ -38,9 +38,10 @@ class HeaderLogo extends React.Component {
         return (
             <Fragment>
                 <div className="app-header__logo">
-                    <div>
+                    <div className="logo-src"></div>
+                    {/* <div>
                         <img src={big_logo} alt="Kols Viet" style={{ border: 'none', width: '90px', borderRadius: 'unset' }} />
-                    </div>
+                    </div> */}
                     <div className="header__pane ml-auto">
                         <div onClick={this.toggleEnableClosedSidebar}>
                             <Hamburger

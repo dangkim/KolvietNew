@@ -13,7 +13,12 @@ import {
     Modal, ModalHeader, ModalBody, ModalFooter, Button, Row, Col, Card, CardBody
 } from 'reactstrap';
 import ScrollUpButton from "react-scroll-up-button";
-import { Prompt } from 'react-router'
+import {
+    CSSTransition,
+    TransitionGroup,
+} from 'react-transition-group';
+import Sticky from "@wicked_query/react-sticky";
+//import { Prompt } from 'react-router'
 import { infActions } from '../../../_actions';
 import realestate from '../../../assets/utils/images/originals/realestate.jpg'
 import cosmetics from '../../../assets/utils/images/originals/cosmetics.jpg'
@@ -27,6 +32,10 @@ import sport from '../../../assets/utils/images/originals/sport.jpg'
 import tech from '../../../assets/utils/images/originals/tech.jpg'
 import travel from '../../../assets/utils/images/originals/travel.jpg'
 import appliance from '../../../assets/utils/images/originals/appliance.jpg'
+import avatar1 from '../../../assets/utils/images/avatars/1.jpg';
+import avatar2 from '../../../assets/utils/images/avatars/2.jpg';
+import avatar3 from '../../../assets/utils/images/avatars/3.jpg';
+import avatar4 from '../../../assets/utils/images/avatars/4.jpg';
 import { Trans } from 'react-i18next';
 
 class WidgetsChartBoxes extends React.Component {
@@ -279,94 +288,237 @@ class WidgetsChartBoxes extends React.Component {
                     subheading="These boxes can be used to show numbers and data in a breautiful user friendly way."
                     icon="pe-7s-star icon-gradient bg-ripe-malin"
                 /> */}
-                <Row>
-                    <Col md="12">
-                        <Card className="main-card mb-3">
-                            <CardBody>
-                                <Row>
-                                    <Col md="2">
-                                        <div onClick={() => this.onCheckboxBtnClick('Food', '')}>
-                                            <img src={food} style={{ width: '100%', borderStyle: !cSelectedLocal.includes('Food') ? 'none' : 'solid', borderColor: '#764ba2', borderWidth: 'thick' }}></img>
-                                            <p className="text-center"><Trans>Food</Trans></p>
-                                        </div>
-                                    </Col>
-                                    <Col md="2">
-                                        <div onClick={() => this.onCheckboxBtnClick('Cosmetics', '')}>
-                                            <img src={cosmetics} style={{ width: '100%', borderStyle: !cSelectedLocal.includes('Cosmetics') ? 'none' : 'solid', borderColor: '#764ba2', borderWidth: 'thick' }}></img>
-                                            <p className="text-center"><Trans>Cosmetics</Trans></p>
-                                        </div>
-                                    </Col>
-                                    <Col md="2">
-                                        <div onClick={() => this.onCheckboxBtnClick('Fashion', '')}>
-                                            <img src={fashion} style={{ width: '100%', borderStyle: !cSelectedLocal.includes('Fashion') ? 'none' : 'solid', borderColor: '#764ba2', borderWidth: 'thick' }}></img>
-                                            <p className="text-center"><Trans>Fashion</Trans></p>
-                                        </div>
-                                    </Col>
-                                    <Col md="2">
-                                        <div onClick={() => this.onCheckboxBtnClick('Sport', '')}>
-                                            <img src={sport} style={{ width: '100%', borderStyle: !cSelectedLocal.includes('Sport') ? 'none' : 'solid', borderColor: '#764ba2', borderWidth: 'thick' }}></img>
-                                            <p className="text-center"><Trans>Sport</Trans></p>
-                                        </div>
-                                    </Col>
-                                    <Col md="2">
-                                        <div onClick={() => this.onCheckboxBtnClick('Travel', '')}>
-                                            <img src={travel} style={{ width: '100%', borderStyle: !cSelectedLocal.includes('Travel') ? 'none' : 'solid', borderColor: '#764ba2', borderWidth: 'thick' }}></img>
-                                            <p className="text-center"><Trans>Travel</Trans></p>
-                                        </div>
-                                    </Col>
-                                    <Col md="2">
-                                        <div onClick={() => this.onCheckboxBtnClick('Event', 'Entertaining')}>
-                                            <img src={event} style={{ width: '100%', borderStyle: !cSelectedLocal.includes('Event') ? 'none' : 'solid', borderColor: '#764ba2', borderWidth: 'thick' }}></img>
-                                            <p className="text-center"><Trans>Events-Entertaining</Trans></p>
-                                        </div>
-                                    </Col>
-                                    <Col md="2">
-                                        <div onClick={() => this.onCheckboxBtnClick('HouseWife', '')}>
-                                            <img src={housewife} style={{ width: '100%', borderStyle: !cSelectedLocal.includes('HouseWife') ? 'none' : 'solid', borderColor: '#764ba2', borderWidth: 'thick' }}></img>
-                                            <p className="text-center"><Trans>HouseWife</Trans></p>
-                                        </div>
-                                    </Col>
-                                    <Col md="2">
-                                        <div onClick={() => this.onCheckboxBtnClick('Technology', '')}>
-                                            <img src={tech} style={{ width: '100%', borderStyle: !cSelectedLocal.includes('Technology') ? 'none' : 'solid', borderColor: '#764ba2', borderWidth: 'thick' }}></img>
-                                            <p className="text-center"><Trans>Technology</Trans></p>
-                                        </div>
-                                    </Col>
-                                    <Col md="2">
-                                        <div onClick={() => this.onCheckboxBtnClick('Appliances', '')}>
-                                            <img src={appliance} style={{ width: '100%', borderStyle: !cSelectedLocal.includes('Appliances') ? 'none' : 'solid', borderColor: '#764ba2', borderWidth: 'thick' }}></img>
-                                            <p className="text-center"><Trans>Appliances</Trans></p>
-                                        </div>
-                                    </Col>
-                                    <Col md="2">
-                                        {/* <div onClick={() => this.onCheckboxBtnClick('RealEstate', '')}
+                <TransitionGroup component="div">
+                    <CSSTransition timeout={1500} unmountOnExit appear classNames="TabsAnimation">
+                        <div>
+                            <Row>
+                                <Col md="12">
+                                    <Row>
+                                        <Col md="12">
+                                            <Card className="main-card mb-3">
+                                                <div className="card-header">Active Users</div>
+                                                <div className="table-responsive">
+                                                    <table className="align-middle mb-0 table table-borderless table-striped table-hover">
+                                                        <thead>
+                                                            <tr>
+                                                                <th className="text-center">#</th>
+                                                                <th>Name</th>
+                                                                <th className="text-center">Engagement</th>
+                                                                <th className="text-center">Avg</th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            <tr>
+                                                                <td className="text-center text-muted">#1</td>
+                                                                <td>
+                                                                    <div className="widget-content p-0">
+                                                                        <div className="widget-content-wrapper">
+                                                                            <div className="widget-content-left mr-3">
+                                                                                <div className="widget-content-left">
+                                                                                    <img width={40} className="rounded-circle" src={avatar4} alt="Avatar" />
+                                                                                </div>
+                                                                            </div>
+                                                                            <div className="widget-content-left flex2">
+                                                                                <div className="widget-heading">John Doe</div>
+                                                                                <div className="widget-subheading opacity-7">200000</div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </td>
+                                                                <td className="text-center">183635</td>
+                                                                <td className="text-center">
+                                                                    <div className="badge badge-warning">88</div>
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td className="text-center text-muted">#2</td>
+                                                                <td>
+                                                                    <div className="widget-content p-0">
+                                                                        <div className="widget-content-wrapper">
+                                                                            <div className="widget-content-left mr-3">
+                                                                                <div className="widget-content-left">
+                                                                                    <img width={40} className="rounded-circle" src={avatar3} alt="Avatar" />
+                                                                                </div>
+                                                                            </div>
+                                                                            <div className="widget-content-left flex2">
+                                                                                <div className="widget-heading">Ruben Tillman</div>
+                                                                                <div className="widget-subheading opacity-7">2000000</div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </td>
+                                                                <td className="text-center">183635</td>
+                                                                <td className="text-center">
+                                                                    <div className="badge badge-success">87</div>
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td className="text-center text-muted">#3</td>
+                                                                <td>
+                                                                    <div className="widget-content p-0">
+                                                                        <div className="widget-content-wrapper">
+                                                                            <div className="widget-content-left mr-3">
+                                                                                <div className="widget-content-left">
+                                                                                    <img width={40} className="rounded-circle" src={avatar2} alt="Avatar" />
+                                                                                </div>
+                                                                            </div>
+                                                                            <div className="widget-content-left flex2">
+                                                                                <div className="widget-heading">Elliot Huber</div>
+                                                                                <div className="widget-subheading opacity-7">990000</div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </td>
+                                                                <td className="text-center">183637</td>
+                                                                <td className="text-center">
+                                                                    <div className="badge badge-danger">86</div>
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td className="text-center text-muted">#4</td>
+                                                                <td>
+                                                                    <div className="widget-content p-0">
+                                                                        <div className="widget-content-wrapper">
+                                                                            <div className="widget-content-left mr-3">
+                                                                                <div className="widget-content-left">
+                                                                                    <img width={40} className="rounded-circle" src={avatar1} alt="Avatar" /></div>
+                                                                            </div>
+                                                                            <div className="widget-content-left flex2">
+                                                                                <div className="widget-heading">Vinnie Wagstaff</div>
+                                                                                <div className="widget-subheading opacity-7">20000</div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </td>
+                                                                <td className="text-center">183639</td>
+                                                                <td className="text-center">
+                                                                    <div className="badge badge-info">85</div>
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td className="text-center text-muted">#5</td>
+                                                                <td>
+                                                                    <div className="widget-content p-0">
+                                                                        <div className="widget-content-wrapper">
+                                                                            <div className="widget-content-left mr-3">
+                                                                                <div className="widget-content-left">
+                                                                                    <img width={40} className="rounded-circle" src={avatar1} alt="Avatar" /></div>
+                                                                            </div>
+                                                                            <div className="widget-content-left flex2">
+                                                                                <div className="widget-heading">Vinnie Wagstaff</div>
+                                                                                <div className="widget-subheading opacity-7">20000</div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </td>
+                                                                <td className="text-center">183640</td>
+                                                                <td className="text-center">
+                                                                    <div className="badge badge-info">84</div>
+                                                                </td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+                                            </Card>
+                                        </Col>
+                                    </Row>
+                                </Col>
+                            </Row>
+                            <Row>
+                                <Col md="12">
+                                    <Card className="main-card mb-3">
+                                        <CardBody>
+                                            <Row>
+                                                <Col md="12">
+                                                    <Row>
+                                                        <Col md="2">
+
+                                                            <div onClick={() => this.onCheckboxBtnClick('Food', '')}>
+                                                                <img src={food} style={{ width: '100%', borderStyle: !cSelectedLocal.includes('Food') ? 'none' : 'solid', borderColor: '#764ba2', borderWidth: 'thick' }}></img>
+                                                                <p className="text-center"><Trans>Food</Trans></p>
+                                                            </div>
+                                                        </Col>
+                                                        <Col md="2">
+                                                            <div onClick={() => this.onCheckboxBtnClick('Cosmetics', '')}>
+                                                                <img src={cosmetics} style={{ width: '100%', borderStyle: !cSelectedLocal.includes('Cosmetics') ? 'none' : 'solid', borderColor: '#764ba2', borderWidth: 'thick' }}></img>
+                                                                <p className="text-center"><Trans>Cosmetics</Trans></p>
+                                                            </div>
+                                                        </Col>
+                                                        <Col md="2">
+                                                            <div onClick={() => this.onCheckboxBtnClick('Fashion', '')}>
+                                                                <img src={fashion} style={{ width: '100%', borderStyle: !cSelectedLocal.includes('Fashion') ? 'none' : 'solid', borderColor: '#764ba2', borderWidth: 'thick' }}></img>
+                                                                <p className="text-center"><Trans>Fashion</Trans></p>
+                                                            </div>
+                                                        </Col>
+                                                        <Col md="2">
+                                                            <div onClick={() => this.onCheckboxBtnClick('Sport', '')}>
+                                                                <img src={sport} style={{ width: '100%', borderStyle: !cSelectedLocal.includes('Sport') ? 'none' : 'solid', borderColor: '#764ba2', borderWidth: 'thick' }}></img>
+                                                                <p className="text-center"><Trans>Sport</Trans></p>
+                                                            </div>
+                                                        </Col>
+                                                        <Col md="2">
+                                                            <div onClick={() => this.onCheckboxBtnClick('Travel', '')}>
+                                                                <img src={travel} style={{ width: '100%', borderStyle: !cSelectedLocal.includes('Travel') ? 'none' : 'solid', borderColor: '#764ba2', borderWidth: 'thick' }}></img>
+                                                                <p className="text-center"><Trans>Travel</Trans></p>
+                                                            </div>
+                                                        </Col>
+                                                        <Col md="2">
+                                                            <div onClick={() => this.onCheckboxBtnClick('Event', 'Entertaining')}>
+                                                                <img src={event} style={{ width: '100%', borderStyle: !cSelectedLocal.includes('Event') ? 'none' : 'solid', borderColor: '#764ba2', borderWidth: 'thick' }}></img>
+                                                                <p className="text-center"><Trans>Events-Entertaining</Trans></p>
+                                                            </div>
+                                                        </Col>
+                                                        <Col md="2">
+                                                            <div onClick={() => this.onCheckboxBtnClick('HouseWife', '')}>
+                                                                <img src={housewife} style={{ width: '100%', borderStyle: !cSelectedLocal.includes('HouseWife') ? 'none' : 'solid', borderColor: '#764ba2', borderWidth: 'thick' }}></img>
+                                                                <p className="text-center"><Trans>HouseWife</Trans></p>
+                                                            </div>
+                                                        </Col>
+                                                        <Col md="2">
+                                                            <div onClick={() => this.onCheckboxBtnClick('Technology', '')}>
+                                                                <img src={tech} style={{ width: '100%', borderStyle: !cSelectedLocal.includes('Technology') ? 'none' : 'solid', borderColor: '#764ba2', borderWidth: 'thick' }}></img>
+                                                                <p className="text-center"><Trans>Technology</Trans></p>
+                                                            </div>
+                                                        </Col>
+                                                        <Col md="2">
+                                                            <div onClick={() => this.onCheckboxBtnClick('Appliances', '')}>
+                                                                <img src={appliance} style={{ width: '100%', borderStyle: !cSelectedLocal.includes('Appliances') ? 'none' : 'solid', borderColor: '#764ba2', borderWidth: 'thick' }}></img>
+                                                                <p className="text-center"><Trans>Appliances</Trans></p>
+                                                            </div>
+                                                        </Col>
+                                                        <Col md="2">
+                                                            {/* <div onClick={() => this.onCheckboxBtnClick('RealEstate', '')}
                                             className={"font-icon-wrapper" + (!cSelected.includes('RealEstate') ? " text-primary" : '')}>
                                             <FontAwesomeIcon icon={faLandmark} size="4x" />
                                             <p>Real Estate</p>
                                         </div> */}
-                                        <div onClick={() => this.onCheckboxBtnClick('RealEstate', '')}>
-                                            <img src={realestate} style={{ width: '100%', borderStyle: !cSelectedLocal.includes('RealEstate') ? 'none' : 'solid', borderColor: '#764ba2', borderWidth: 'thick' }}></img>
-                                            <p className="text-center"><Trans>Real Estate</Trans></p>
-                                        </div>
-                                    </Col>
-                                    <Col md="2">
-                                        <div onClick={() => this.onCheckboxBtnClick('Furniture', '')}>
-                                            <img src={fur} style={{ width: '100%', borderStyle: !cSelectedLocal.includes('Furniture') ? 'none' : 'solid', borderColor: '#764ba2', borderWidth: 'thick' }}></img>
-                                            <p className="text-center"><Trans>Furniture</Trans></p>
-                                        </div>
-                                    </Col>
-                                    <Col md="2">
-                                        <div onClick={() => this.onCheckboxBtnClick('Auto', 'Game')}>
-                                            <img src={game} style={{ width: '100%', borderStyle: !cSelectedLocal.includes('Game') ? 'none' : 'solid', borderColor: '#764ba2', borderWidth: 'thick' }}></img>
-                                            <p className="text-center"><Trans>Auto-Games</Trans></p>
-                                        </div>
-                                    </Col>
-                                </Row>
-                            </CardBody>
-                        </Card>
-
-                    </Col>
-                </Row>
+                                                            <div onClick={() => this.onCheckboxBtnClick('RealEstate', '')}>
+                                                                <img src={realestate} style={{ width: '100%', borderStyle: !cSelectedLocal.includes('RealEstate') ? 'none' : 'solid', borderColor: '#764ba2', borderWidth: 'thick' }}></img>
+                                                                <p className="text-center"><Trans>Real Estate</Trans></p>
+                                                            </div>
+                                                        </Col>
+                                                        <Col md="2">
+                                                            <div onClick={() => this.onCheckboxBtnClick('Furniture', '')}>
+                                                                <img src={fur} style={{ width: '100%', borderStyle: !cSelectedLocal.includes('Furniture') ? 'none' : 'solid', borderColor: '#764ba2', borderWidth: 'thick' }}></img>
+                                                                <p className="text-center"><Trans>Furniture</Trans></p>
+                                                            </div>
+                                                        </Col>
+                                                        <Col md="2">
+                                                            <div onClick={() => this.onCheckboxBtnClick('Auto', 'Game')}>
+                                                                <img src={game} style={{ width: '100%', borderStyle: !cSelectedLocal.includes('Game') ? 'none' : 'solid', borderColor: '#764ba2', borderWidth: 'thick' }}></img>
+                                                                <p className="text-center"><Trans>Auto-Games</Trans></p>
+                                                            </div>
+                                                        </Col>
+                                                    </Row>
+                                                </Col>
+                                            </Row>
+                                        </CardBody>
+                                    </Card>
+                                </Col>
+                            </Row>
+                        </div>
+                    </CSSTransition>
+                </TransitionGroup>
                 <Tabs onChange={this.onChangeTab} selectedTabKey={ActiveTab} tabsWrapperClass="body-tabs body-tabs-layout" transform={false} showInkBar={true} items={getTabs()} />
                 <ScrollUpButton />
             </Fragment>
