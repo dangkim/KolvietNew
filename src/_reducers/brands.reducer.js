@@ -64,6 +64,19 @@ export function brands(state = {}, action) {
       return {
         error: action.error
       };
+    case brandConstants.BRANDS_UPLOAD_AVATAR_REQUEST:
+      return {
+        loading: true
+      };
+    case brandConstants.BRANDS_UPLOAD_AVATAR_SUCCESS:
+      return {
+        loading: false,
+        status: action.status
+      };
+    case brandConstants.BRANDS_UPLOAD_AVATAR_FAILURE:
+      return {
+        error: action.error
+      };
     default:
       return state
   }

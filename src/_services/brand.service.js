@@ -1,4 +1,5 @@
 import configOrchardCore from 'configOrchardCore';
+import configContent from 'configContent';
 import { authHeader } from '../_helpers';
 
 export const brandService = {
@@ -6,7 +7,8 @@ export const brandService = {
     getAll,
     updateBrand,
     getBrandByName,
-    getManageBrandByName
+    getManageBrandByName,
+    uploadAvatar
 };
 
 function getBrandByName(userName) {
@@ -109,30 +111,50 @@ function register(brandType) {
 
 function updateBrand(brandType) {
     const token = localStorage.getItem('token');
-  
+
     const requestOptions = {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        'Authorization': token
-      },
-      body: JSON.stringify(brandType)
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+            'Authorization': token
+        },
+        body: JSON.stringify(brandType)
     };
-  
+
     return fetch(`${configOrchardCore.apiUrl}content/UpdateBrand`, requestOptions).then(handleContentResponse);
-  }
+}
+
+function uploadAvatar(file) {
+    const token = localStorage.getItem('token');
+    const formData = new FormData();
+    const path = "team";
+
+    formData.append('Path', path);
+    formData.append('Files', file);
+
+    const requestOptions = {
+        method: 'POST',
+        headers: {
+            'Authorization': token
+        },
+        body: formData
+    };
+
+    return fetch(`${configOrchardCore.apiUrl}content/UploadAvatar`, requestOptions).then(handleContentUploadResponse);
+}
+
 function handleGraphResponse(response) {
     if (!response.ok) {
         if (response.status === 401) {
             // auto logout if 401 response returned from api
             logout();
             //location.reload(true);
-            const error = response.statusText;            
+            const error = response.statusText;
             return Promise.reject(error);
         }
     }
 
-    return response.json().then(text => {        
+    return response.json().then(text => {
         const data = text.data;
         return data;
     });
@@ -173,7 +195,22 @@ function handleContentResponse(response) {
     });
 }
 
-function logout() {    
+function handleContentUploadResponse(response) {
+    if (!response.ok) {
+        if (response.status === 401) {
+            // auto logout if 401 response returned from api
+            logout();
+            //location.reload(true);
+        }
+
+        const error = response.statusText;
+        return Promise.reject(error);
+    } else {
+        return response.ok;
+    }
+}
+
+function logout() {
     debugger;
     // remove user from local storage to log user out
     localStorage.removeItem('user');

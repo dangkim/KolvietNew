@@ -12,7 +12,6 @@ import {
     Bounce
 } from 'react-toastify';
 
-
 import {
     faAngleDown
 
@@ -33,13 +32,18 @@ class UserBox extends React.Component {
         this.logout = this.logout.bind(this);
     }
 
-    notify2 = () => this.toastId = toast("You don't have any new items in your calendar for today! Go out and play!", {
-        transition: Bounce,
-        closeButton: true,
-        autoClose: 5000,
-        position: 'bottom-center',
-        type: 'success'
-    });
+    componentDidMount() {
+        const { dispatch } = this.props;
+        dispatch(brandActions.uploadAvatar(brandObj[0].email));
+    }
+
+    // notify2 = () => this.toastId = toast("You don't have any new items in your calendar for today! Go out and play!", {
+    //     transition: Bounce,
+    //     closeButton: true,
+    //     autoClose: 5000,
+    //     position: 'bottom-center',
+    //     type: 'success'
+    // });
 
     logout = () => {
         this.props.dispatch(userActions.logout());

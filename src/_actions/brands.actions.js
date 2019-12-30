@@ -9,7 +9,9 @@ export const brandActions = {
     getAll,
     updateBrand,
     getBrandByName,
-    getBrandByNameToManage
+    getBrandByNameToManage,
+    uploadAvatar,
+    getAvatar
 };
 
 function register(brandType, userType) {
@@ -162,4 +164,32 @@ function getBrandByNameToManage(userName) {
     function request() { return { type: brandConstants.GET_BRANDBYNAME_REQUEST } }
     function success(brand) { return { type: brandConstants.GET_BRANDBYNAME_SUCCESS, brand } }
     function failure(error) { return { type: brandConstants.GET_BRANDBYNAME_FAILURE, error } }
+}
+
+function uploadAvatar(file) {
+    return dispatch => {
+        dispatch(request());
+        if (file) {
+            brandService.uploadAvatar(file)
+                .then(
+                    status => {
+                        dispatch(success(status));
+                        //history.replace({ pathname: '/widgets/manage-brand' });
+                    },
+                    error => {
+                        toast.warn(error.toString() + " Please try again");
+                    }
+                )
+            //dispatch(success(brand));
+        }
+        else {
+            const error = "cannot upload file";
+            dispatch(failure(error.toString()));
+            //dispatch(alertActions.error(error.toString()));
+        }
+    };
+
+    function request() { return { type: brandConstants.BRANDS_UPLOAD_AVATAR_REQUEST } }
+    function success(status) { return { type: brandConstants.BRANDS_UPLOAD_AVATAR_SUCCESS, status } }
+    function failure(error) { return { type: brandConstants.BRANDS_UPLOAD_AVATAR_FAILURE, error } }
 }

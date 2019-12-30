@@ -34,7 +34,8 @@ export default class ManageBrand extends React.Component {
             statusColumns: ['statusOfCampaign'],
             selectedOptionLocation: locationStorage,
             brandInfo: this.props.brands,
-            isDirty: false
+            isDirty: false,
+            file: null,
         };
 
 
@@ -59,7 +60,7 @@ export default class ManageBrand extends React.Component {
         this.setState({ submitted: true, isDirty: false });
 
         const { dispatch, brands } = this.props;
-        const { brandInfo, selectedOptionLocation } = this.state;
+        const { brandInfo, selectedOptionLocation, file } = this.state;
 
         const brandToUpdate = brandInfo;
 
@@ -69,10 +70,10 @@ export default class ManageBrand extends React.Component {
             locationString += selectedOptionLocation[i].value + ',';
         }
 
-        brandToUpdate.location = locationString.substring(0, locationString.length - 1);;
+        brandToUpdate.location = locationString.substring(0, locationString.length - 1);
 
         dispatch(brandActions.updateBrand(brandToUpdate));
-
+        dispatch(brandActions.uploadAvatar(file));
     }
 
     handleBusinessAreasChange(event) {
@@ -126,13 +127,21 @@ export default class ManageBrand extends React.Component {
         });
     };
 
+    setFile(e) {
+        //debugger;
+        this.setState({
+            file: e.target.files[0],
+            isDirty: true
+        });
+    }
+
     render() {
         const { brands } = this.props;
         const { selectedOptionLocation, brandInfo, isDirty, submitted } = this.state;
         const locations = createLocations();
         //const isDisabled = JSON.stringify(brandInfo) === "{}";
         //const localBrand = brands.brand;
-        debugger;
+        //debugger;
         return (
             brands.loading ?
                 <div className="loader-container" style={{ width: '85%', height: '85%' }}>
@@ -176,7 +185,7 @@ export default class ManageBrand extends React.Component {
                                             </Col>
                                         </Row>
                                         <Row form>
-                                            <Col md={4}>
+                                            <Col md={3}>
                                                 <FormGroup>
                                                     <Label for="businessAreas">
                                                         <Trans>Change Business Areas</Trans>
@@ -184,7 +193,7 @@ export default class ManageBrand extends React.Component {
                                                     <Input type="text" name="businessAreas" id="businessAreas" value={brands.brand.businessAreas} onChange={this.handleBusinessAreasChange} />
                                                 </FormGroup>
                                             </Col>
-                                            <Col md={4}>
+                                            <Col md={2}>
                                                 <FormGroup>
                                                     <Label for="phone">
                                                         <Trans>Change Phone</Trans>
@@ -200,6 +209,12 @@ export default class ManageBrand extends React.Component {
                                                         isMulti
                                                         options={locations}
                                                     />
+                                                </FormGroup>
+                                            </Col>
+                                            <Col md={3}>
+                                                <FormGroup>
+                                                    <Label for="avatar" className=""> <Trans>Avatar</Trans></Label>
+                                                    <Input type="file" name="file" id="avatar" className="form-control" onChange={e => this.setFile(e)} />
                                                 </FormGroup>
                                             </Col>
                                         </Row>
