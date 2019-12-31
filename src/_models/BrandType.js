@@ -9,7 +9,6 @@ export function updateBrandModel(brand) {
       phone: brand.phone,
       location: brand.location,
     }
-    var myJSON = JSON.stringify(brandType);
 
     return brandType;
   }

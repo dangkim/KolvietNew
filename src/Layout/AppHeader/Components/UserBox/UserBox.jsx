@@ -60,7 +60,6 @@ class UserBox extends React.Component {
 
     render() {
         const { FullName, brand } = this.props;
-        debugger;
         return (
             <Fragment>
                 <div className="header-btn-lg pr-0">

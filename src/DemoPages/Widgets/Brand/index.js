@@ -35,6 +35,7 @@ export default class ManageBrand extends React.Component {
             selectedOptionLocation: locationStorage,
             brandInfo: this.props.brands,
             isDirty: false,
+            isDirtyUpload: false,
             file: null,
         };
 
@@ -45,6 +46,7 @@ export default class ManageBrand extends React.Component {
         this.handleOptionLocationChange = this.handleOptionLocationChange.bind(this);
         this.handleFullNameChange = this.handleFullNameChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
+        this.handleUploadAvatar = this.handleUploadAvatar.bind(this);
     }
 
     componentDidMount() {
@@ -73,7 +75,15 @@ export default class ManageBrand extends React.Component {
         brandToUpdate.location = locationString.substring(0, locationString.length - 1);
 
         dispatch(brandActions.updateBrand(brandToUpdate));
-        dispatch(brandActions.uploadAvatar(file));
+    }
+
+
+    handleUploadAvatar(event) {
+        event.preventDefault();
+        this.setState({ isDirtyUpload: false });
+        const { dispatch, brands } = this.props;
+        const { file } = this.state;
+        dispatch(brandActions.uploadAvatar(file, brands));
     }
 
     handleBusinessAreasChange(event) {
@@ -131,13 +141,13 @@ export default class ManageBrand extends React.Component {
         //debugger;
         this.setState({
             file: e.target.files[0],
-            isDirty: true
+            isDirtyUpload: true
         });
     }
 
     render() {
         const { brands } = this.props;
-        const { selectedOptionLocation, brandInfo, isDirty, submitted } = this.state;
+        const { selectedOptionLocation, isDirtyUpload, isDirty, submitted } = this.state;
         const locations = createLocations();
         //const isDisabled = JSON.stringify(brandInfo) === "{}";
         //const localBrand = brands.brand;
@@ -158,70 +168,84 @@ export default class ManageBrand extends React.Component {
                 brands.brand !== undefined && <Fragment>
                     <TransitionGroup component="div">
                         <CSSTransition timeout={1500} unmountOnExit appear classNames="TabsAnimation">
-                            <Card className="main-card mb-3">
-                                <CardBody>
-                                    <CardTitle>
-                                        {
-                                            <span><Trans>Manage your account</Trans></span>
-                                        }
-                                    </CardTitle>
-                                    <Form id="register-form">
-                                        <Row form>
-                                            <Col md={6}>
-                                                <FormGroup>
-                                                    <Label for="campaignName">
-                                                        <Trans>Change Brand Name</Trans>
-                                                    </Label>
-                                                    <Input type="text" name="brandName" id="brandName" value={brands.brand.brandName} onChange={this.handleBrandNameChange} />
-                                                </FormGroup>
-                                            </Col>
-                                            <Col md={6}>
-                                                <FormGroup>
-                                                    <Label for="fullName">
-                                                        <Trans>Change Full Name</Trans>
-                                                    </Label>
-                                                    <Input type="text" name="fullName" id="fullName" value={brands.brand.fullName} onChange={this.handleFullNameChange} />
-                                                </FormGroup>
-                                            </Col>
-                                        </Row>
-                                        <Row form>
-                                            <Col md={3}>
-                                                <FormGroup>
-                                                    <Label for="businessAreas">
-                                                        <Trans>Change Business Areas</Trans>
-                                                    </Label>
-                                                    <Input type="text" name="businessAreas" id="businessAreas" value={brands.brand.businessAreas} onChange={this.handleBusinessAreasChange} />
-                                                </FormGroup>
-                                            </Col>
-                                            <Col md={2}>
-                                                <FormGroup>
-                                                    <Label for="phone">
-                                                        <Trans>Change Phone</Trans>
-                                                    </Label>
-                                                    <NumberFormat className="form-control" name="phone" id="phone" format="+84 (####) ###-###" mask="_" value={brands.brand.phone} onChange={this.handlePhoneChange} />
-                                                </FormGroup>
-                                            </Col>
-                                            <Col md={4}>
-                                                <FormGroup>
-                                                    <Label for="location" className=""> <Trans>Location</Trans></Label>
-                                                    <Select value={selectedOptionLocation}
-                                                        onChange={this.handleOptionLocationChange}
-                                                        isMulti
-                                                        options={locations}
-                                                    />
-                                                </FormGroup>
-                                            </Col>
-                                            <Col md={3}>
-                                                <FormGroup>
+                            <div>
+                                <Card className="main-card mb-3">
+                                    <CardBody>
+                                        <CardTitle>
+                                            {
+                                                <span><Trans>Manage your account</Trans></span>
+                                            }
+                                        </CardTitle>
+                                        <Form id="register-form">
+                                            <Row form>
+                                                <Col md={6}>
+                                                    <FormGroup>
+                                                        <Label for="campaignName">
+                                                            <Trans>Change Brand Name</Trans>
+                                                        </Label>
+                                                        <Input type="text" name="brandName" id="brandName" value={brands.brand.brandName} onChange={this.handleBrandNameChange} />
+                                                    </FormGroup>
+                                                </Col>
+                                                <Col md={6}>
+                                                    <FormGroup>
+                                                        <Label for="fullName">
+                                                            <Trans>Change Full Name</Trans>
+                                                        </Label>
+                                                        <Input type="text" name="fullName" id="fullName" value={brands.brand.fullName} onChange={this.handleFullNameChange} />
+                                                    </FormGroup>
+                                                </Col>
+                                            </Row>
+                                            <Row form>
+                                                <Col md={4}>
+                                                    <FormGroup>
+                                                        <Label for="businessAreas">
+                                                            <Trans>Change Business Areas</Trans>
+                                                        </Label>
+                                                        <Input type="text" name="businessAreas" id="businessAreas" value={brands.brand.businessAreas} onChange={this.handleBusinessAreasChange} />
+                                                    </FormGroup>
+                                                </Col>
+                                                <Col md={4}>
+                                                    <FormGroup>
+                                                        <Label for="phone">
+                                                            <Trans>Change Phone</Trans>
+                                                        </Label>
+                                                        <NumberFormat className="form-control" name="phone" id="phone" format="+84 (####) ###-###" mask="_" value={brands.brand.phone} onChange={this.handlePhoneChange} />
+                                                    </FormGroup>
+                                                </Col>
+                                                <Col md={4}>
+                                                    <FormGroup>
+                                                        <Label for="location" className=""> <Trans>Location</Trans></Label>
+                                                        <Select value={selectedOptionLocation}
+                                                            onChange={this.handleOptionLocationChange}
+                                                            isMulti
+                                                            options={locations}
+                                                        />
+                                                    </FormGroup>
+                                                </Col>
+                                            </Row>
+                                            <Button onClick={this.handleSubmit} disabled={!isDirty} color="primary" className="mt-2"><Trans>Submit</Trans></Button>
+                                        </Form>
+                                    </CardBody>
+                                </Card>
+                                <Card className="main-card mb-3">
+                                    <CardBody>
+                                        <CardTitle>
+                                            {
+                                                <span><Trans>Manage your avatar</Trans></span>
+                                            }
+                                        </CardTitle>
+                                        <Form id="register-form">
+                                            <Row>
+                                                <Col md={12}>
                                                     <Label for="avatar" className=""> <Trans>Avatar</Trans></Label>
                                                     <Input type="file" name="file" id="avatar" className="form-control" onChange={e => this.setFile(e)} />
-                                                </FormGroup>
-                                            </Col>
-                                        </Row>
-                                        <Button onClick={this.handleSubmit} disabled={!isDirty} color="primary" className="mt-2"><Trans>Submit</Trans></Button>
-                                    </Form>
-                                </CardBody>
-                            </Card>
+                                                </Col>
+                                            </Row>
+                                            <Button onClick={this.handleUploadAvatar} disabled={!isDirtyUpload} color="primary" className="mt-2"><Trans>Upload</Trans></Button>
+                                        </Form>
+                                    </CardBody>
+                                </Card>
+                            </div>
                         </CSSTransition>
                     </TransitionGroup>
                 </Fragment>

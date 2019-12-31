@@ -67,7 +67,7 @@ function updateBrand(brandType) {
         const localBrandType = updateBrandModel(brandType);
         brandService.updateBrand(localBrandType)
             .then(
-                infType => {
+                brandType => {
                     //dispatch(success(infType));
                     //get influencer by graplql again
                     brandService.getBrandByName(localBrandType.BrandName)
@@ -166,20 +166,21 @@ function getBrandByNameToManage(userName) {
     function failure(error) { return { type: brandConstants.GET_BRANDBYNAME_FAILURE, error } }
 }
 
-function uploadAvatar(file) {
+function uploadAvatar(file, brandType) {
     return dispatch => {
         dispatch(request());
+        //const localBrandType = updateBrandModel(brandType);
         if (file) {
             brandService.uploadAvatar(file)
                 .then(
                     status => {
-                        dispatch(success(status));
-                        //history.replace({ pathname: '/widgets/manage-brand' });
+                        dispatch(success(brandType.brand));
                     },
                     error => {
                         toast.warn(error.toString() + " Please try again");
                     }
                 )
+            toast.success("Upload successful");
             //dispatch(success(brand));
         }
         else {
@@ -190,7 +191,7 @@ function uploadAvatar(file) {
     };
 
     function request() { return { type: brandConstants.BRANDS_UPLOAD_AVATAR_REQUEST } }
-    function success(status) { return { type: brandConstants.BRANDS_UPLOAD_AVATAR_SUCCESS, status } }
+    function success(brand) { return { type: brandConstants.BRANDS_UPLOAD_AVATAR_SUCCESS, brand } }
     function failure(error) { return { type: brandConstants.BRANDS_UPLOAD_AVATAR_FAILURE, error } }
 }
 

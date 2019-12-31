@@ -71,7 +71,7 @@ export function brands(state = {}, action) {
     case brandConstants.BRANDS_UPLOAD_AVATAR_SUCCESS:
       return {
         loading: false,
-        status: action.status
+        brand: action.brand
       };
     case brandConstants.BRANDS_UPLOAD_AVATAR_FAILURE:
       return {
