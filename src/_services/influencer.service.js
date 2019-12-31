@@ -108,7 +108,7 @@ function getAll(first, skip) {
     body: GET_ALL_INFS
   };
 
-  return fetch(`${configOrchardCore.apiUrl}graphql`, requestOptions).then(handleGraphInfResponse);
+  return fetch(`${configOrchardCore.apiUrl}/graphql`, requestOptions).then(handleGraphInfResponse);
 
 }
 
@@ -207,7 +207,7 @@ function getInfluencersByName(first, skip, userName) {
     body: GET_ALL_INFS
   };
 
-  return fetch(`${configOrchardCore.apiUrl}graphql`, requestOptions).then(handleGraphInfResponse);
+  return fetch(`${configOrchardCore.apiUrl}/graphql`, requestOptions).then(handleGraphInfResponse);
 
 }
 
@@ -316,7 +316,7 @@ function getInfluencersByCategory(first, skip, categories) {
     body: GET_ALL_INFS
   };
 
-  return fetch(`${configOrchardCore.apiUrl}graphql`, requestOptions).then(handleGraphInfResponse);
+  return fetch(`${configOrchardCore.apiUrl}/graphql`, requestOptions).then(handleGraphInfResponse);
 
 }
 
@@ -430,7 +430,7 @@ function getCostByUserName(userName) {
     body: GET_COST_BY_USERNAME
   };
 
-  return fetch(`${configOrchardCore.apiUrl}graphql`, requestOptions).then(handleGraphRatesResponse);
+  return fetch(`${configOrchardCore.apiUrl}/graphql`, requestOptions).then(handleGraphRatesResponse);
 }
 
 function register(InfluencerType, token) {
@@ -443,7 +443,7 @@ function register(InfluencerType, token) {
     body: JSON.stringify(InfluencerType)
   };
 
-  return fetch(`${configOrchardCore.apiUrl}content/Post`, requestOptions).then(handleContentResponse);
+  return fetch(`${configOrchardCore.apiUrl}/content/Post`, requestOptions).then(handleContentResponse);
 }
 
 function updateInfluencers(InfluencerType) {
@@ -458,7 +458,7 @@ function updateInfluencers(InfluencerType) {
     body: JSON.stringify(InfluencerType)
   };
 
-  return fetch(`${configOrchardCore.apiUrl}content/post03`, requestOptions).then(handleContentResponse);
+  return fetch(`${configOrchardCore.apiUrl}/content/post03`, requestOptions).then(handleContentResponse);
 }
 
 function registerJobs(JobsType) {

@@ -34,7 +34,7 @@ function getToken(username, password) {
         })
     };
 
-    return fetch(`${configContent.apiUrl}connect/token`, requestOptions).then(handleTokenResponse);
+    return fetch(`${configContent.apiUrl}/connect/token`, requestOptions).then(handleTokenResponse);
 }
 
 function getContentType(token) {
@@ -46,7 +46,7 @@ function getContentType(token) {
         },
     };
 
-    return fetch(`${configOrchardCore.apiUrl}content/Post04`, requestOptions).then(handleContentTypeResponse);
+    return fetch(`${configOrchardCore.apiUrl}/content/Post04`, requestOptions).then(handleContentTypeResponse);
 }
 
 // function login(userName, password) {
@@ -110,7 +110,7 @@ function register(user) {
         body: JSON.stringify(user)
     };
 
-    return fetch(`${configOrchardCore.apiUrl}content/Post02`, requestOptions).then(handleResponseRegisterUser);
+    return fetch(`${configOrchardCore.apiUrl}/content/Post02`, requestOptions).then(handleResponseRegisterUser);
 }
 
 // function update(user) {

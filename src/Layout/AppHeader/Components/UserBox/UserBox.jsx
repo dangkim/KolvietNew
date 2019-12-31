@@ -1,6 +1,7 @@
 import React, { Fragment } from 'react';
 import { connect } from 'react-redux';
 import { history } from '../../../../_helpers';
+import configContent from 'configContent';
 import {
     DropdownToggle, DropdownMenu,
     Nav, NavItem, NavLink,
@@ -11,6 +12,7 @@ import {
     toast,
     Bounce
 } from 'react-toastify';
+
 
 import {
     faAngleDown
@@ -34,7 +36,8 @@ class UserBox extends React.Component {
 
     componentDidMount() {
         const { dispatch } = this.props;
-        dispatch(brandActions.uploadAvatar(brandObj[0].email));
+        const brandObj = JSON.parse(localStorage.getItem('brandObj'));
+        dispatch(brandActions.getBrandByName(brandObj[0].email));
     }
 
     // notify2 = () => this.toastId = toast("You don't have any new items in your calendar for today! Go out and play!", {
@@ -56,9 +59,8 @@ class UserBox extends React.Component {
     };
 
     render() {
-
-        const { FullName } = this.props;
-
+        const { FullName, brand } = this.props;
+        debugger;
         return (
             <Fragment>
                 <div className="header-btn-lg pr-0">
@@ -67,7 +69,7 @@ class UserBox extends React.Component {
                             <div className="widget-content-left">
                                 <UncontrolledButtonDropdown>
                                     <DropdownToggle color="link" className="p-0">
-                                        <img width={42} className="rounded-circle" src={default_user} alt="" />
+                                        <img width={42} className="rounded-circle" src={(brand && brand.avatar) ? configContent.apiUrl + brand.avatar.urls[0] : default_user} alt="" />
                                         <FontAwesomeIcon className="ml-2 opacity-8" icon={faAngleDown} />
                                     </DropdownToggle>
                                     <DropdownMenu right className="rm-pointers dropdown-menu-lg">
@@ -122,15 +124,10 @@ class UserBox extends React.Component {
 }
 
 function mapStateToProps(state) {
-    const { campaigns, influencers, locations, interestings, jobCategories, jobs, brands } = state;
+    const { brands } = state;
+    const brand = brands.brand;
     return {
-        brands,
-        jobs,
-        jobCategories,
-        interestings,
-        locations,
-        campaigns,
-        influencers
+        brand
     };
 }
 

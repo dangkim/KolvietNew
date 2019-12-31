@@ -20,7 +20,7 @@ function register(campaignType) {
         body: JSON.stringify(campaignType)
     };
 
-    return fetch(`${configOrchardCore.apiUrl}content/Post?draft=true`, requestOptions).then(handleContentResponse);
+    return fetch(`${configOrchardCore.apiUrl}/content/Post?draft=true`, requestOptions).then(handleContentResponse);
 }
 
 function getAll() {
@@ -65,7 +65,7 @@ function getAll() {
         body: GET_ALL_COMPAIGN
     };
 
-    return fetch(`${configOrchardCore.apiUrl}graphql`, requestOptions).then(handleGraphCampResponse);
+    return fetch(`${configOrchardCore.apiUrl}/graphql`, requestOptions).then(handleGraphCampResponse);
 }
 
 function getCampaignByBrand(brandName) {
@@ -111,7 +111,7 @@ function getCampaignByBrand(brandName) {
         body: GET_ALL_COMPAIGN
     };
 
-    return fetch(`${configOrchardCore.apiUrl}graphql`, requestOptions).then(handleGraphCampResponse);
+    return fetch(`${configOrchardCore.apiUrl}/graphql`, requestOptions).then(handleGraphCampResponse);
 }
 
 function getAllInteresting() {
@@ -139,7 +139,7 @@ function getAllInteresting() {
         body: GET_ALL_INTERESTING
     };
 
-    return fetch(`${configOrchardCore.apiUrl}graphql`, requestOptions).then(handleGraphInterestingResponse);
+    return fetch(`${configOrchardCore.apiUrl}/graphql`, requestOptions).then(handleGraphInterestingResponse);
 }
 
 function getAllLocation() {
@@ -171,7 +171,7 @@ function getAllLocation() {
         body: GET_ALL_LOCATION
     };
 
-    return fetch(`${configOrchardCore.apiUrl}graphql`, requestOptions).then(handleGraphLocationResponse);
+    return fetch(`${configOrchardCore.apiUrl}/graphql`, requestOptions).then(handleGraphLocationResponse);
 }
 
 function handleGraphLocationResponse(response) {

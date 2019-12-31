@@ -23,6 +23,10 @@ function getBrandByName(userName) {
           location
           createdUtc
           published
+          avatar {
+            urls
+            paths
+          }
         }
       }
     `;
@@ -36,7 +40,7 @@ function getBrandByName(userName) {
         body: GET_BRANDBYNAME
     };
 
-    return fetch(`${configOrchardCore.apiUrl}graphql`, requestOptions).then(handleGraphResponse);
+    return fetch(`${configOrchardCore.apiUrl}/graphql`, requestOptions).then(handleGraphResponse);
 }
 
 function getManageBrandByName(userName) {
@@ -51,6 +55,10 @@ function getManageBrandByName(userName) {
           phone
           createdUtc
           published
+          avatar {
+            urls
+            paths
+          }
         }
       }
     `;
@@ -64,7 +72,7 @@ function getManageBrandByName(userName) {
         body: GET_BRANDBYNAME
     };
 
-    return fetch(`${configOrchardCore.apiUrl}graphql`, requestOptions).then(handleGraphResponse);
+    return fetch(`${configOrchardCore.apiUrl}/graphql`, requestOptions).then(handleGraphResponse);
 }
 
 function getAll() {
@@ -79,6 +87,10 @@ function getAll() {
           location
           phone
           published
+          avatar {
+            urls
+            paths
+          }
         }
       }
     `;
@@ -93,7 +105,7 @@ function getAll() {
         body: GET_ALL_BRAND
     };
 
-    return fetch(`${configOrchardCore.apiUrl}graphql`, requestOptions).then(handleGraphResponse);
+    return fetch(`${configOrchardCore.apiUrl}/graphql`, requestOptions).then(handleGraphResponse);
 }
 
 function register(brandType) {
@@ -106,7 +118,7 @@ function register(brandType) {
         },
         body: JSON.stringify(brandType)
     };
-    return fetch(`${configOrchardCore.apiUrl}content/Post?draft=true`, requestOptions).then(handleContentResponse);
+    return fetch(`${configOrchardCore.apiUrl}/content/Post?draft=true`, requestOptions).then(handleContentResponse);
 }
 
 function updateBrand(brandType) {
@@ -121,15 +133,15 @@ function updateBrand(brandType) {
         body: JSON.stringify(brandType)
     };
 
-    return fetch(`${configOrchardCore.apiUrl}content/UpdateBrand`, requestOptions).then(handleContentResponse);
+    return fetch(`${configOrchardCore.apiUrl}/content/UpdateBrand`, requestOptions).then(handleContentResponse);
 }
 
 function uploadAvatar(file) {
     const token = localStorage.getItem('token');
     const formData = new FormData();
-    const path = "team";
+    const brandObj = JSON.parse(localStorage.getItem('brandObj'));
 
-    formData.append('Path', path);
+    formData.append('ContentItemId', brandObj[0].contentItemId);
     formData.append('Files', file);
 
     const requestOptions = {
@@ -140,7 +152,7 @@ function uploadAvatar(file) {
         body: formData
     };
 
-    return fetch(`${configOrchardCore.apiUrl}content/UploadAvatar`, requestOptions).then(handleContentUploadResponse);
+    return fetch(`${configOrchardCore.apiUrl}/content/UploadAvatar`, requestOptions).then(handleContentUploadResponse);
 }
 
 function handleGraphResponse(response) {
