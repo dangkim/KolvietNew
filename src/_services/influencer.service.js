@@ -10,7 +10,10 @@ export const influencerService = {
   updateInfluencers,
   registerJobs,
   getInfluencersByName,
-  getInfluencersByCategory
+  getInfluencersByCategory,
+  getTopByEngagement,
+  getTopByFollower,
+  getTopByTrend
 };
 
 function getAll(first, skip) {
@@ -75,9 +78,9 @@ function getAll(first, skip) {
               type
             }
             post4 {
+              link
               numberOfComment
               numberOfReaction
-              link
               numberOfShare
               status
               time
@@ -116,6 +119,303 @@ function getInfluencersByName(first, skip, userName) {
   const GET_ALL_INFS = `
     {
         influencer(first: `+ first + `, skip: ` + skip + `, where: {displayText_contains: "` + userName + `"}, status: LATEST, orderBy: {modifiedUtc: DESC}){
+            checkIn
+            fullName
+            email
+            description
+            genderDemorgraphic {
+              genderGraphicName
+              genderPercentage
+            }
+            geoDemorgraphic {
+              geoGraphicName
+              geoPercentage
+            }
+            videoLink {
+                paths
+              }
+            numberOfFollowers
+            numberOfPost
+            numberOfShare
+            numberOfReaction
+            numberOfComment
+            ageDemorgraphic {
+              ageGraphicsName
+              agePercentage
+            }
+            photo {
+              paths
+            }
+            post1 {
+                link
+                numberOfComment
+                numberOfReaction
+                numberOfShare
+                status
+                time
+                title
+                type
+              }
+              post2 {
+                link
+                numberOfComment
+                numberOfReaction
+                numberOfShare
+                status
+                time
+                title
+                type
+              }
+              post3 {
+                link
+                numberOfComment
+                numberOfReaction
+                numberOfShare
+                status
+                time
+                title
+                type
+              }
+              post4 {
+                numberOfComment
+                numberOfReaction
+                link
+                numberOfShare
+                status
+                time
+                title
+                type
+              }
+              post5 {
+                link
+                numberOfComment
+                numberOfReaction
+                numberOfShare
+                status
+                time
+                title
+                type
+              }
+        }
+    }
+    `;
+
+  const token = localStorage.getItem('token');
+  const requestOptions = {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/graphql',
+      'Authorization': token
+    },
+    body: GET_ALL_INFS
+  };
+
+  return fetch(`${configOrchardCore.apiUrl}/graphql`, requestOptions).then(handleGraphInfResponse);
+
+}
+
+function getTopByEngagement(first, skip) {
+  const GET_ALL_INFS = `
+    {
+        influencer(first: `+ first + `, skip: ` + skip + `, status: LATEST, orderBy: {modifiedUtc: DESC}){
+            checkIn
+            fullName
+            email
+            description
+            genderDemorgraphic {
+              genderGraphicName
+              genderPercentage
+            }
+            geoDemorgraphic {
+              geoGraphicName
+              geoPercentage
+            }
+            videoLink {
+                paths
+              }
+            numberOfFollowers
+            numberOfPost
+            numberOfShare
+            numberOfReaction
+            numberOfComment
+            ageDemorgraphic {
+              ageGraphicsName
+              agePercentage
+            }
+            photo {
+              paths
+            }
+            post1 {
+                link
+                numberOfComment
+                numberOfReaction
+                numberOfShare
+                status
+                time
+                title
+                type
+              }
+              post2 {
+                link
+                numberOfComment
+                numberOfReaction
+                numberOfShare
+                status
+                time
+                title
+                type
+              }
+              post3 {
+                link
+                numberOfComment
+                numberOfReaction
+                numberOfShare
+                status
+                time
+                title
+                type
+              }
+              post4 {
+                link
+                numberOfComment
+                numberOfReaction
+                numberOfShare
+                status
+                time
+                title
+                type
+              }
+              post5 {
+                link
+                numberOfComment
+                numberOfReaction
+                numberOfShare
+                status
+                time
+                title
+                type
+              }
+        }
+    }
+    `;
+
+  const token = localStorage.getItem('token');
+  const requestOptions = {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/graphql',
+      'Authorization': token
+    },
+    body: GET_ALL_INFS
+  };
+
+  return fetch(`${configOrchardCore.apiUrl}/graphql`, requestOptions).then(handleGraphInfResponse);
+
+}
+
+function getTopByFollower(first, skip) {
+  const GET_ALL_INFS = `
+    {
+        influencer(first: `+ first + `, skip: ` + skip + `, status: LATEST, orderBy: {modifiedUtc: DESC}){
+            checkIn
+            fullName
+            email
+            description
+            genderDemorgraphic {
+              genderGraphicName
+              genderPercentage
+            }
+            geoDemorgraphic {
+              geoGraphicName
+              geoPercentage
+            }
+            videoLink {
+                paths
+              }
+            numberOfFollowers
+            numberOfPost
+            numberOfShare
+            numberOfReaction
+            numberOfComment
+            ageDemorgraphic {
+              ageGraphicsName
+              agePercentage
+            }
+            photo {
+              paths
+            }
+            post1 {
+                link
+                numberOfComment
+                numberOfReaction
+                numberOfShare
+                status
+                time
+                title
+                type
+              }
+              post2 {
+                link
+                numberOfComment
+                numberOfReaction
+                numberOfShare
+                status
+                time
+                title
+                type
+              }
+              post3 {
+                link
+                numberOfComment
+                numberOfReaction
+                numberOfShare
+                status
+                time
+                title
+                type
+              }
+              post4 {
+                numberOfComment
+                numberOfReaction
+                link
+                numberOfShare
+                status
+                time
+                title
+                type
+              }
+              post5 {
+                link
+                numberOfComment
+                numberOfReaction
+                numberOfShare
+                status
+                time
+                title
+                type
+              }
+        }
+    }
+    `;
+
+  const token = localStorage.getItem('token');
+  const requestOptions = {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/graphql',
+      'Authorization': token
+    },
+    body: GET_ALL_INFS
+  };
+
+  return fetch(`${configOrchardCore.apiUrl}/graphql`, requestOptions).then(handleGraphInfResponse);
+
+}
+
+function getTopByTrend(first, skip) {
+  const GET_ALL_INFS = `
+    {
+        influencer(first: `+ first + `, skip: ` + skip + `, status: LATEST, orderBy: {modifiedUtc: DESC}){
             checkIn
             fullName
             email

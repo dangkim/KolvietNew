@@ -206,7 +206,8 @@ class WidgetsChartBoxes extends React.Component {
         const { FilterInfluencers, SearchValue, ActiveTab, i18n, isClear, influencers } = this.props;
         const cSelectedLocal = influencers.isClearList ? [] : cSelected;
         let tabsContent = [];
-
+        const topFiveFilterInfluencers = FilterInfluencers;
+        debugger;
         if (FilterInfluencers.length > 0) {
             tabsContent = [
                 {
@@ -272,29 +273,13 @@ class WidgetsChartBoxes extends React.Component {
 
         return (
             <Fragment>
-                {/* <Prompt when={!type || type !== "Influencer"} message={this.handleBlockedNavigation} /> */}
-                {/* <Modal isOpen={modalVisible}>
-                    <ModalHeader></ModalHeader>
-                    <ModalBody>
-                        Are you sure you want to leave?
-                    </ModalBody>
-                    <ModalFooter>
-                        <Button color="link" onClick={() => this.closeModal(() => { })}>Cancel</Button>
-                        <Button color="primary" onClick={this.handleConfirmNavigationClick}>Yes</Button>{' '}
-                    </ModalFooter>
-                </Modal> */}
-                {/* <PageTitleCategory
-                    heading="Chart Boxes"
-                    subheading="These boxes can be used to show numbers and data in a breautiful user friendly way."
-                    icon="pe-7s-star icon-gradient bg-ripe-malin"
-                /> */}
                 <TransitionGroup component="div">
                     <CSSTransition timeout={1500} unmountOnExit appear classNames="TabsAnimation">
                         <div>
                             <Row>
                                 <Col md="12">
                                     <Row>
-                                        <Col md="12">
+                                        <Col md="4">
                                             <Card className="main-card mb-3">
                                                 <div className="card-header">Active Users</div>
                                                 <div className="table-responsive">
@@ -308,119 +293,134 @@ class WidgetsChartBoxes extends React.Component {
                                                             </tr>
                                                         </thead>
                                                         <tbody>
-                                                            <tr>
-                                                                <td className="text-center text-muted">#1</td>
-                                                                <td>
-                                                                    <div className="widget-content p-0">
-                                                                        <div className="widget-content-wrapper">
-                                                                            <div className="widget-content-left mr-3">
-                                                                                <div className="widget-content-left">
-                                                                                    <img width={40} className="rounded-circle" src={avatar4} alt="Avatar" />
+                                                            {
+                                                                FilterInfluencers.map((value, index) => {
+                                                                    return (
+                                                                        <tr>
+                                                                            <td className="text-center text-muted">#1</td>
+                                                                            <td>
+                                                                                <div className="widget-content p-0">
+                                                                                    <div className="widget-content-wrapper">
+                                                                                        <div className="widget-content-left mr-3">
+                                                                                            <div className="widget-content-left">
+                                                                                                <img width={40} className="rounded-circle" src={avatar4} alt="Avatar" />
+                                                                                            </div>
+                                                                                        </div>
+                                                                                        <div className="widget-content-left flex2">
+                                                                                            <div className="widget-heading">John Doe</div>
+                                                                                            <div className="widget-subheading opacity-7">200000</div>
+                                                                                        </div>
+                                                                                    </div>
                                                                                 </div>
-                                                                            </div>
-                                                                            <div className="widget-content-left flex2">
-                                                                                <div className="widget-heading">John Doe</div>
-                                                                                <div className="widget-subheading opacity-7">200000</div>
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
-                                                                </td>
-                                                                <td className="text-center">183635</td>
-                                                                <td className="text-center">
-                                                                    <div className="badge badge-warning">88</div>
-                                                                </td>
-                                                            </tr>
-                                                            <tr>
-                                                                <td className="text-center text-muted">#2</td>
-                                                                <td>
-                                                                    <div className="widget-content p-0">
-                                                                        <div className="widget-content-wrapper">
-                                                                            <div className="widget-content-left mr-3">
-                                                                                <div className="widget-content-left">
-                                                                                    <img width={40} className="rounded-circle" src={avatar3} alt="Avatar" />
-                                                                                </div>
-                                                                            </div>
-                                                                            <div className="widget-content-left flex2">
-                                                                                <div className="widget-heading">Ruben Tillman</div>
-                                                                                <div className="widget-subheading opacity-7">2000000</div>
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
-                                                                </td>
-                                                                <td className="text-center">183635</td>
-                                                                <td className="text-center">
-                                                                    <div className="badge badge-success">87</div>
-                                                                </td>
-                                                            </tr>
-                                                            <tr>
-                                                                <td className="text-center text-muted">#3</td>
-                                                                <td>
-                                                                    <div className="widget-content p-0">
-                                                                        <div className="widget-content-wrapper">
-                                                                            <div className="widget-content-left mr-3">
-                                                                                <div className="widget-content-left">
-                                                                                    <img width={40} className="rounded-circle" src={avatar2} alt="Avatar" />
-                                                                                </div>
-                                                                            </div>
-                                                                            <div className="widget-content-left flex2">
-                                                                                <div className="widget-heading">Elliot Huber</div>
-                                                                                <div className="widget-subheading opacity-7">990000</div>
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
-                                                                </td>
-                                                                <td className="text-center">183637</td>
-                                                                <td className="text-center">
-                                                                    <div className="badge badge-danger">86</div>
-                                                                </td>
-                                                            </tr>
-                                                            <tr>
-                                                                <td className="text-center text-muted">#4</td>
-                                                                <td>
-                                                                    <div className="widget-content p-0">
-                                                                        <div className="widget-content-wrapper">
-                                                                            <div className="widget-content-left mr-3">
-                                                                                <div className="widget-content-left">
-                                                                                    <img width={40} className="rounded-circle" src={avatar1} alt="Avatar" /></div>
-                                                                            </div>
-                                                                            <div className="widget-content-left flex2">
-                                                                                <div className="widget-heading">Vinnie Wagstaff</div>
-                                                                                <div className="widget-subheading opacity-7">20000</div>
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
-                                                                </td>
-                                                                <td className="text-center">183639</td>
-                                                                <td className="text-center">
-                                                                    <div className="badge badge-info">85</div>
-                                                                </td>
-                                                            </tr>
-                                                            <tr>
-                                                                <td className="text-center text-muted">#5</td>
-                                                                <td>
-                                                                    <div className="widget-content p-0">
-                                                                        <div className="widget-content-wrapper">
-                                                                            <div className="widget-content-left mr-3">
-                                                                                <div className="widget-content-left">
-                                                                                    <img width={40} className="rounded-circle" src={avatar1} alt="Avatar" /></div>
-                                                                            </div>
-                                                                            <div className="widget-content-left flex2">
-                                                                                <div className="widget-heading">Vinnie Wagstaff</div>
-                                                                                <div className="widget-subheading opacity-7">20000</div>
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
-                                                                </td>
-                                                                <td className="text-center">183640</td>
-                                                                <td className="text-center">
-                                                                    <div className="badge badge-info">84</div>
-                                                                </td>
-                                                            </tr>
+                                                                            </td>
+                                                                            <td className="text-center">183635</td>
+                                                                            <td className="text-center">
+                                                                                <div className="badge badge-warning">88</div>
+                                                                            </td>
+                                                                        </tr>
+                                                                    );
+                                                                })
+                                                            }
                                                         </tbody>
                                                     </table>
                                                 </div>
                                             </Card>
                                         </Col>
+                                        <Col md="4">
+                                            <Card className="main-card mb-3">
+                                                <div className="card-header">Active Users</div>
+                                                <div className="table-responsive">
+                                                    <table className="align-middle mb-0 table table-borderless table-striped table-hover">
+                                                        <thead>
+                                                            <tr>
+                                                                <th className="text-center">#</th>
+                                                                <th>Name</th>
+                                                                <th className="text-center">Engagement</th>
+                                                                <th className="text-center">Avg</th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            {
+                                                                FilterInfluencers.map((value, index) => {
+                                                                    return (
+                                                                        <tr>
+                                                                            <td className="text-center text-muted">#1</td>
+                                                                            <td>
+                                                                                <div className="widget-content p-0">
+                                                                                    <div className="widget-content-wrapper">
+                                                                                        <div className="widget-content-left mr-3">
+                                                                                            <div className="widget-content-left">
+                                                                                                <img width={40} className="rounded-circle" src={avatar4} alt="Avatar" />
+                                                                                            </div>
+                                                                                        </div>
+                                                                                        <div className="widget-content-left flex2">
+                                                                                            <div className="widget-heading">John Doe</div>
+                                                                                            <div className="widget-subheading opacity-7">200000</div>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </td>
+                                                                            <td className="text-center">183635</td>
+                                                                            <td className="text-center">
+                                                                                <div className="badge badge-warning">88</div>
+                                                                            </td>
+                                                                        </tr>
+                                                                    );
+                                                                })
+                                                            }
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+                                            </Card>
+                                        </Col>                                    
+                                        <Col md="4">
+                                            <Card className="main-card mb-3">
+                                                <div className="card-header">Active Users</div>
+                                                <div className="table-responsive">
+                                                    <table className="align-middle mb-0 table table-borderless table-striped table-hover">
+                                                        <thead>
+                                                            <tr>
+                                                                <th className="text-center">#</th>
+                                                                <th>Name</th>
+                                                                <th className="text-center">Engagement</th>
+                                                                <th className="text-center">Avg</th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            {
+                                                                FilterInfluencers.map((value, index) => {
+                                                                    return (
+                                                                        <tr>
+                                                                            <td className="text-center text-muted">#1</td>
+                                                                            <td>
+                                                                                <div className="widget-content p-0">
+                                                                                    <div className="widget-content-wrapper">
+                                                                                        <div className="widget-content-left mr-3">
+                                                                                            <div className="widget-content-left">
+                                                                                                <img width={40} className="rounded-circle" src={avatar4} alt="Avatar" />
+                                                                                            </div>
+                                                                                        </div>
+                                                                                        <div className="widget-content-left flex2">
+                                                                                            <div className="widget-heading">John Doe</div>
+                                                                                            <div className="widget-subheading opacity-7">200000</div>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </td>
+                                                                            <td className="text-center">183635</td>
+                                                                            <td className="text-center">
+                                                                                <div className="badge badge-warning">88</div>
+                                                                            </td>
+                                                                        </tr>
+                                                                    );
+                                                                })
+                                                            }
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+                                            </Card>
+                                        </Col>
+                                    
                                     </Row>
                                 </Col>
                             </Row>
@@ -487,11 +487,6 @@ class WidgetsChartBoxes extends React.Component {
                                                             </div>
                                                         </Col>
                                                         <Col md="2">
-                                                            {/* <div onClick={() => this.onCheckboxBtnClick('RealEstate', '')}
-                                            className={"font-icon-wrapper" + (!cSelected.includes('RealEstate') ? " text-primary" : '')}>
-                                            <FontAwesomeIcon icon={faLandmark} size="4x" />
-                                            <p>Real Estate</p>
-                                        </div> */}
                                                             <div onClick={() => this.onCheckboxBtnClick('RealEstate', '')}>
                                                                 <img src={realestate} style={{ width: '100%', borderStyle: !cSelectedLocal.includes('RealEstate') ? 'none' : 'solid', borderColor: '#764ba2', borderWidth: 'thick' }}></img>
                                                                 <p className="text-center"><Trans>Real Estate</Trans></p>

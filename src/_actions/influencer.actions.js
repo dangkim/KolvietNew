@@ -15,7 +15,10 @@ export const infActions = {
     getInfluencersByName,
     infiniteScrollLoader,
     searchScrollLoader,
-    getInfluencersByCategory
+    getInfluencersByCategory,
+    getTopByEngagement,
+    getTopByFollower,
+    getTopByTrend
 };
 
 function register(infType, userType) {
@@ -167,7 +170,9 @@ function getInfluencersByName(first, skip, userName) {
 
         influencerService.getInfluencersByName(first, skip, userName)
             .then(
-                influencers => dispatch(success(influencers.influencer)),
+                influencers => {                    
+                    dispatch(success(influencers.influencer))
+                },
                 error => {
                     //dispatch(failure(error.toString()));
                     //dispatch(alertActions.error(error.toString()));
@@ -182,6 +187,76 @@ function getInfluencersByName(first, skip, userName) {
     function success(influencers) { return { type: infConstants.INFS_GETBYNAME_SUCCESS, influencers } }
     function failure(error) { return { type: infConstants.INFS_GETBYNAME_FAILURE, error } }
 }
+
+function getTopByEngagement(first, skip, userName) {
+    return dispatch => {
+        dispatch(request());
+
+        influencerService.getInfluencersByName(first, skip, userName)
+            .then(
+                influencers => {      
+
+                    dispatch(success(influencers.influencer))
+                },
+                error => {
+                    toast.error("Please try again");
+                }
+            );
+    };
+
+    function request() { return { type: infConstants.INFS_GETBYNAME_REQUEST } }
+    function success(influencers) { return { type: infConstants.INFS_GETBYNAME_SUCCESS, influencers } }
+    function failure(error) { return { type: infConstants.INFS_GETBYNAME_FAILURE, error } }
+}
+
+function getTopByFollower(first, skip, userName) {
+    return dispatch => {
+        dispatch(request());
+
+        influencerService.getInfluencersByName(first, skip, userName)
+            .then(
+                influencers => {                    
+                    dispatch(success(influencers.influencer))
+                },
+                error => {
+                    //dispatch(failure(error.toString()));
+                    //dispatch(alertActions.error(error.toString()));
+                    toast.error("Please try again");
+                    //history.push('/pages/loginpage');
+                    //history.replace({ pathname: '/pages/loginpage' });
+                }
+            );
+    };
+
+    function request() { return { type: infConstants.INFS_GETBYNAME_REQUEST } }
+    function success(influencers) { return { type: infConstants.INFS_GETBYNAME_SUCCESS, influencers } }
+    function failure(error) { return { type: infConstants.INFS_GETBYNAME_FAILURE, error } }
+}
+
+function getTopByTrend(first, skip, userName) {
+    return dispatch => {
+        dispatch(request());
+
+        influencerService.getInfluencersByName(first, skip, userName)
+            .then(
+                influencers => {                    
+                    dispatch(success(influencers.influencer))
+                },
+                error => {
+                    //dispatch(failure(error.toString()));
+                    //dispatch(alertActions.error(error.toString()));
+                    toast.error("Please try again");
+                    //history.push('/pages/loginpage');
+                    //history.replace({ pathname: '/pages/loginpage' });
+                }
+            );
+    };
+
+    function request() { return { type: infConstants.INFS_GETBYNAME_REQUEST } }
+    function success(influencers) { return { type: infConstants.INFS_GETBYNAME_SUCCESS, influencers } }
+    function failure(error) { return { type: infConstants.INFS_GETBYNAME_FAILURE, error } }
+}
+
 
 function getInfluencersByCategory(previousValues, first, skip, categories, isClearList) {
     return dispatch => {
