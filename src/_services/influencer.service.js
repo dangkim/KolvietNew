@@ -100,7 +100,7 @@ function getAll(first, skip) {
         }
     }
     `;
-  debugger;
+
   const token = localStorage.getItem('token');
   const requestOptions = {
     method: 'POST',

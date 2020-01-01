@@ -61,9 +61,9 @@ class Widgets extends React.Component {
 
     render() {
         const { searchValue, selectedTabKey, isClear, brand } = this.state;
-        const { influencers } = this.props;
+        const { influencers, topEngagement } = this.props;
         const influencerItems = (influencers && influencers.items) ? influencers.items : [];
-        debugger;
+
         return (<Fragment>
             <AppHeader parentSearchCallback={this.sendData} />
             <div className="app-main">
@@ -94,16 +94,11 @@ class Widgets extends React.Component {
 }
 
 function mapStateToProps(state) {
-
-    const { campaigns, influencers, locations, interestings, jobCategories, jobs, brands } = state;
+    const { campaigns, influencers, brands } = state;
     //const { brand } = influencers;
     return {
         //loggingIn,
         brands,
-        jobs,
-        jobCategories,
-        interestings,
-        locations,
         campaigns,
         influencers
     };

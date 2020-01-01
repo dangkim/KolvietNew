@@ -90,7 +90,6 @@ class Influencers extends Component {
         if (infItems.length < 45) {
 
             const { influencers } = this.props;
-            debugger;
             if (influencers && influencers.items) {
                 if (this.state.cSelected.length > 1) {
                     let items = [];
@@ -195,7 +194,7 @@ class Influencers extends Component {
         const influencersLocal = (FilterInfluencers && FilterInfluencers.length > 0) ? FilterInfluencers : influencerItems;
 
         if (!influencers.items) {
-            dispatch(infActions.getInfluencersByName(first, 0, searchValue));
+            dispatch(infActions.getInfluencersByName(first, 0, searchValue));    
         }
 
     }
@@ -216,7 +215,6 @@ class Influencers extends Component {
     }
 
     showModal = location => {
-        debugger;
         this.setState({
             modalVisible: true,
             lastLocation: location
@@ -271,7 +269,7 @@ class Influencers extends Component {
             slidesToScroll: 1
         };
         const { modalVisible } = this.state;
-        const { influencers, SearchValue, FilterInfluencers } = this.props;
+        const { influencers, SearchValue, FilterInfluencers, TopEngagement } = this.props;
 
         const influencerItems = (influencers && influencers.items) ? influencers.items : [];
         const influencersLocal = (FilterInfluencers && FilterInfluencers.length > 0) ? FilterInfluencers : influencerItems;

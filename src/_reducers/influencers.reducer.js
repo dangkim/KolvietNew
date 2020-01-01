@@ -94,7 +94,7 @@ export function influencers(state = {}, action) {
       return {
         loading: true
       };
-      case infConstants.INFS_GETBYCATEGORY_FAILURE:
+    case infConstants.INFS_GETBYCATEGORY_FAILURE:
       return {
         error: action.error
       };
@@ -109,7 +109,7 @@ export function influencers(state = {}, action) {
         loading: true,
         isClearList: action.isClearList,
         items: action.previousValues
-      };
+      };    
     default:
       return state
   }

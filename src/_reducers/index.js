@@ -16,6 +16,7 @@ import { interestings } from './interestings.reducer';
 import { jobCategories } from './jobCategories.reducer';
 import { alert } from './alert.reducer';
 import { theme } from './theme.reducer';
+import { topInfluencers } from './topInfluencers.reducer';
 
 const rootReducer = combineReducers({
   authentication,
@@ -28,7 +29,8 @@ const rootReducer = combineReducers({
   interestings,
   jobCategories,
   alert,
-  theme
+  theme,
+  topInfluencers
 });
 
 export default rootReducer;
