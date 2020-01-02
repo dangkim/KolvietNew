@@ -1,6 +1,6 @@
 import { infConstants } from '../_constants';
 
-export function topInfluencers(state = {}, action) {
+export function topEngagementInf(state = {}, action) {
   switch (action.type) {    
     case infConstants.INFS_TOPENGAGEMENT_REQUEST:
       return {

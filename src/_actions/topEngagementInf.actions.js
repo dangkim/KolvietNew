@@ -2,10 +2,9 @@ import { infConstants } from '../_constants';
 import { influencerService } from '../_services';
 import { toast } from "react-toastify";
 
-export const topInfActions = {
+export const topEngagementInfActions = {
     getTopByEngagement,
-    getTopByFollower,
-    getTopByTrend
+    getTopByFollower
 };
 
 function getTopByEngagement(first, skip, userName) {
@@ -40,48 +39,28 @@ function getTopByFollower(first, skip, userName) {
     return dispatch => {
         dispatch(request());
 
-        influencerService.getInfluencersByName(first, skip, userName)
+        influencerService.getAll(first, 0)
             .then(
                 influencers => {
-                    dispatch(success(influencers.influencer))
+                    influencers.influencer.sort((a, b) => a.numberOfFollowers > b.numberOfFollowers ? -1 : 1)
+
+                    influencers.influencer.map((value, index) => {
+                        return Object.assign(value, {
+                            ...value,
+                            engagement: calEngagement(value.numberOfReaction, value.numberOfComment, value.numberOfShare)
+                        });
+                    });
+                    dispatch(success(influencers.influencer.slice(0, skip)))
                 },
                 error => {
-                    //dispatch(failure(error.toString()));
-                    //dispatch(alertActions.error(error.toString()));
                     toast.error("Please try again");
-                    //history.push('/pages/loginpage');
-                    //history.replace({ pathname: '/pages/loginpage' });
                 }
             );
     };
 
-    function request() { return { type: infConstants.INFS_GETBYNAME_REQUEST } }
-    function success(influencers) { return { type: infConstants.INFS_GETBYNAME_SUCCESS, influencers } }
-    function failure(error) { return { type: infConstants.INFS_GETBYNAME_FAILURE, error } }
-}
-
-function getTopByTrend(first, skip, userName) {
-    return dispatch => {
-        dispatch(request());
-
-        influencerService.getInfluencersByName(first, skip, userName)
-            .then(
-                influencers => {
-                    dispatch(success(influencers.influencer))
-                },
-                error => {
-                    //dispatch(failure(error.toString()));
-                    //dispatch(alertActions.error(error.toString()));
-                    toast.error("Please try again");
-                    //history.push('/pages/loginpage');
-                    //history.replace({ pathname: '/pages/loginpage' });
-                }
-            );
-    };
-
-    function request() { return { type: infConstants.INFS_GETBYNAME_REQUEST } }
-    function success(influencers) { return { type: infConstants.INFS_GETBYNAME_SUCCESS, influencers } }
-    function failure(error) { return { type: infConstants.INFS_GETBYNAME_FAILURE, error } }
+    function request() { return { type: infConstants.INFS_TOPFOLLOWER_REQUEST } }
+    function success(topFollowerInf) { return { type: infConstants.INFS_TOPFOLLOWER_SUCCESS, topFollowerInf } }
+    function failure(error) { return { type: infConstants.INFS_TOPFOLLOWER_FAILURE, error } }
 }
 
 function calEngagement(reaction, comment, share) {

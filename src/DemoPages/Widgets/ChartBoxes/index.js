@@ -33,7 +33,8 @@ import tech from '../../../assets/utils/images/originals/tech.jpg'
 import travel from '../../../assets/utils/images/originals/travel.jpg'
 import appliance from '../../../assets/utils/images/originals/appliance.jpg'
 import { Trans } from 'react-i18next';
-import { TopInfluencers } from './Examples/TopInfluencers';
+import { TopEngagementInfluencers } from './Examples/TopEngagementInfluencers';
+import { TopFollowersInfluencers } from './Examples/TopFollowersInfluencers';
 
 class WidgetsChartBoxes extends React.Component {
 
@@ -272,7 +273,18 @@ class WidgetsChartBoxes extends React.Component {
                 <TransitionGroup component="div">
                     <CSSTransition timeout={1500} unmountOnExit appear classNames="TabsAnimation">
                         <div>
-                            <TopInfluencers/>
+                            <Row>
+                                <Col md="12">
+                                    <Row>
+                                        <Col md="6">
+                                            <TopEngagementInfluencers />
+                                        </Col>
+                                        <Col md="6">
+                                            <TopFollowersInfluencers />
+                                        </Col>
+                                    </Row>
+                                </Col>
+                            </Row>
                             <Row>
                                 <Col md="12">
                                     <Card className="main-card mb-3">

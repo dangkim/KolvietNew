@@ -16,87 +16,19 @@ export const influencerService = {
   getTopByTrend
 };
 
-function getAll(first, skip) {
+async function getAll(first, skip) {
   const GET_ALL_INFS = `
     {
-        influencer(first: `+ first + `, skip: ` + skip + `){
-          checkIn
+        influencer(first: `+ first + `, skip: ` + skip + `, status: LATEST, orderBy: {modifiedUtc: DESC}){
           fullName
-          email
-          description
-          genderDemorgraphic {
-            genderGraphicName
-            genderPercentage
-          }
-          geoDemorgraphic {
-            geoGraphicName
-            geoPercentage
-          }
-          videoLink {
-              paths
-            }
           numberOfFollowers
           numberOfPost
           numberOfShare
           numberOfReaction
-          numberOfComment
-          ageDemorgraphic {
-            ageGraphicsName
-            agePercentage
-          }
+          numberOfComment          
           photo {
             paths
-          }
-          post1 {
-              link
-              numberOfComment
-              numberOfReaction
-              numberOfShare
-              status
-              time
-              title
-              type
-            }
-            post2 {
-              link
-              numberOfComment
-              numberOfReaction
-              numberOfShare
-              status
-              time
-              title
-              type
-            }
-            post3 {
-              link
-              numberOfComment
-              numberOfReaction
-              numberOfShare
-              status
-              time
-              title
-              type
-            }
-            post4 {
-              link
-              numberOfComment
-              numberOfReaction
-              numberOfShare
-              status
-              time
-              title
-              type
-            }
-            post5 {
-              link
-              numberOfComment
-              numberOfReaction
-              numberOfShare
-              status
-              time
-              title
-              type
-            }
+          }          
         }
     }
     `;
@@ -111,26 +43,18 @@ function getAll(first, skip) {
     body: GET_ALL_INFS
   };
 
-  return fetch(`${configOrchardCore.apiUrl}/graphql`, requestOptions).then(handleGraphInfResponse);
+  const response = await fetch(`${configOrchardCore.apiUrl}/graphql`, requestOptions);
+  return handleGraphInfResponse(response);
 
 }
 
-function getInfluencersByName(first, skip, userName) {
+async function getInfluencersByName(first, skip, userName) {
   const GET_ALL_INFS = `
     {
         influencer(first: `+ first + `, skip: ` + skip + `, where: {displayText_contains: "` + userName + `"}, status: LATEST, orderBy: {modifiedUtc: DESC}){
-            checkIn
             fullName
             email
-            description
-            genderDemorgraphic {
-              genderGraphicName
-              genderPercentage
-            }
-            geoDemorgraphic {
-              geoGraphicName
-              geoPercentage
-            }
+            description            
             videoLink {
                 paths
               }
@@ -138,11 +62,7 @@ function getInfluencersByName(first, skip, userName) {
             numberOfPost
             numberOfShare
             numberOfReaction
-            numberOfComment
-            ageDemorgraphic {
-              ageGraphicsName
-              agePercentage
-            }
+            numberOfComment            
             photo {
               paths
             }
@@ -210,11 +130,12 @@ function getInfluencersByName(first, skip, userName) {
     body: GET_ALL_INFS
   };
 
-  return fetch(`${configOrchardCore.apiUrl}/graphql`, requestOptions).then(handleGraphInfResponse);
+  const response = await fetch(`${configOrchardCore.apiUrl}/graphql`, requestOptions);
+  return handleGraphInfResponse(response);
 
 }
 
-function getTopByEngagement(first, skip) {
+async function getTopByEngagement(first, skip) {
   const GET_ALL_INFS = `
     {
         influencer(first: `+ first + `, skip: ` + skip + `, status: LATEST, orderBy: {modifiedUtc: DESC}){
@@ -309,11 +230,12 @@ function getTopByEngagement(first, skip) {
     body: GET_ALL_INFS
   };
 
-  return fetch(`${configOrchardCore.apiUrl}/graphql`, requestOptions).then(handleGraphInfResponse);
+  const response = await fetch(`${configOrchardCore.apiUrl}/graphql`, requestOptions);
+  return handleGraphInfResponse(response);
 
 }
 
-function getTopByFollower(first, skip) {
+async function getTopByFollower(first, skip) {
   const GET_ALL_INFS = `
     {
         influencer(first: `+ first + `, skip: ` + skip + `, status: LATEST, orderBy: {modifiedUtc: DESC}){
@@ -408,11 +330,12 @@ function getTopByFollower(first, skip) {
     body: GET_ALL_INFS
   };
 
-  return fetch(`${configOrchardCore.apiUrl}/graphql`, requestOptions).then(handleGraphInfResponse);
+  const response = await fetch(`${configOrchardCore.apiUrl}/graphql`, requestOptions);
+  return handleGraphInfResponse(response);
 
 }
 
-function getTopByTrend(first, skip) {
+async function getTopByTrend(first, skip) {
   const GET_ALL_INFS = `
     {
         influencer(first: `+ first + `, skip: ` + skip + `, status: LATEST, orderBy: {modifiedUtc: DESC}){
@@ -507,11 +430,12 @@ function getTopByTrend(first, skip) {
     body: GET_ALL_INFS
   };
 
-  return fetch(`${configOrchardCore.apiUrl}/graphql`, requestOptions).then(handleGraphInfResponse);
+  const response = await fetch(`${configOrchardCore.apiUrl}/graphql`, requestOptions);
+  return handleGraphInfResponse(response);
 
 }
 
-function getInfluencersByCategory(first, skip, categories) {
+async function getInfluencersByCategory(first, skip, categories) {
   let items = [];
 
   categories.forEach(element => {
@@ -616,11 +540,12 @@ function getInfluencersByCategory(first, skip, categories) {
     body: GET_ALL_INFS
   };
 
-  return fetch(`${configOrchardCore.apiUrl}/graphql`, requestOptions).then(handleGraphInfResponse);
+  const response = await fetch(`${configOrchardCore.apiUrl}/graphql`, requestOptions);
+  return handleGraphInfResponse(response);
 
 }
 
-function getAllJobCategories() {
+async function getAllJobCategories() {
   const GET_ALL_JOBCATEGORIES = `
     {
         jobCategory{
@@ -645,10 +570,11 @@ function getAllJobCategories() {
     body: GET_ALL_JOBCATEGORIES
   };
 
-  return fetch(`${configOrchardCore.apiUrl}/graphql`, requestOptions).then(handleGraphJobCategoryResponse);
+  const response = await fetch(`${configOrchardCore.apiUrl}/graphql`, requestOptions);
+  return handleGraphJobCategoryResponse(response);
 }
 
-function getCostByContentItemId(contentItemId) {
+async function getCostByContentItemId(contentItemId) {
   const GET_COST_BY_CONTENTID = `
     {
         influencer(where: {contentItemId: ` + contentItemId + `}) {
@@ -672,10 +598,11 @@ function getCostByContentItemId(contentItemId) {
     body: GET_COST_BY_CONTENTID
   };
 
-  return fetch(`${configOrchardCore.apiUrl}/graphql`, requestOptions).then(handleGraphRatesResponse);
+  const response = await fetch(`${configOrchardCore.apiUrl}/graphql`, requestOptions);
+  return handleGraphRatesResponse(response);
 }
 
-function getCostByUserName(userName) {
+async function getCostByUserName(userName) {
 
   const GET_COST_BY_USERNAME = `
     {
@@ -730,10 +657,11 @@ function getCostByUserName(userName) {
     body: GET_COST_BY_USERNAME
   };
 
-  return fetch(`${configOrchardCore.apiUrl}/graphql`, requestOptions).then(handleGraphRatesResponse);
+  const response = await fetch(`${configOrchardCore.apiUrl}/graphql`, requestOptions);
+  return handleGraphRatesResponse(response);
 }
 
-function register(InfluencerType, token) {
+async function register(InfluencerType, token) {
   const requestOptions = {
     method: 'POST',
     headers: {
@@ -743,10 +671,11 @@ function register(InfluencerType, token) {
     body: JSON.stringify(InfluencerType)
   };
 
-  return fetch(`${configOrchardCore.apiUrl}/content/Post`, requestOptions).then(handleContentResponse);
+  const response = await fetch(`${configOrchardCore.apiUrl}/content/Post`, requestOptions);
+  return handleContentResponse(response);
 }
 
-function updateInfluencers(InfluencerType) {
+async function updateInfluencers(InfluencerType) {
   const token = localStorage.getItem('token');
 
   const requestOptions = {
@@ -758,17 +687,19 @@ function updateInfluencers(InfluencerType) {
     body: JSON.stringify(InfluencerType)
   };
 
-  return fetch(`${configOrchardCore.apiUrl}/content/post03`, requestOptions).then(handleContentResponse);
+  const response = await fetch(`${configOrchardCore.apiUrl}/content/post03`, requestOptions);
+  return handleContentResponse(response);
 }
 
-function registerJobs(JobsType) {
+async function registerJobs(JobsType) {
   const requestOptions = {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify(JobsType)
   };
 
-  return fetch(`${configOrchardCore.apiUrl}/content`, requestOptions).then(handleContentJobsResponse);
+  const response = await fetch(`${configOrchardCore.apiUrl}/content`, requestOptions);
+  return handleContentJobsResponse(response);
 }
 
 function handleTokenContentResponse(response) {
