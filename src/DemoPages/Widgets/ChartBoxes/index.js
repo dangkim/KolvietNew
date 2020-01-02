@@ -165,7 +165,7 @@ class WidgetsChartBoxes extends React.Component {
     onCheckboxBtnClick(selected1, selected2) {
         const { cSelected, first, SearchValue } = this.state;
         const { dispatch } = this.props;
-
+        window.scroll(0, 410);
         this.props.parentTabCallback(0);
 
         let index = cSelected.indexOf(selected1);

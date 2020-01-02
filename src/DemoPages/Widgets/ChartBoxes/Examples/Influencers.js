@@ -140,6 +140,7 @@ class Influencers extends Component {
 
     onCheckboxBtnClick(selected) {
         const index = this.state.cSelected.indexOf(selected);
+        
         if (index < 0) {
             this.state.cSelected.push(selected);
         } else {
