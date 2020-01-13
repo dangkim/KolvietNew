@@ -103,14 +103,6 @@ class Influencers extends Component {
                     dispatch(infActions.infiniteScrollLoader(infItems, first, infItems.length));
                 }
             }
-
-            //dispatch(infActions.infiniteScrollLoader(infItems, first, infItems.length));
-            // if (searchValue && searchValue !== '') {
-            //     dispatch(infActions.getInfluencersByCategory(infItems, first, infItems.length, searchValue));
-            // }
-            // else {
-            //     dispatch(infActions.infiniteScrollLoader(infItems, first, infItems.length));
-            // }
         }
     }
 
@@ -230,16 +222,6 @@ class Influencers extends Component {
             callback
         );
 
-    // handleBlockedNavigation = nextLocation => {
-    //     const { confirmedNavigation } = this.state;
-    //     if (!confirmedNavigation) {
-    //         this.showModal(nextLocation);
-    //         return false;
-    //     }
-
-    //     return true;
-    // };
-
     handleConfirmNavigationClick = () =>
         this.closeModal(() => {
             const { lastLocation } = this.state;
@@ -276,18 +258,6 @@ class Influencers extends Component {
         const influencersLocal = (FilterInfluencers && FilterInfluencers.length > 0) ? FilterInfluencers : influencerItems;
 
         const infItems = influencersLocal;
-
-        const colors = [
-            "bg-mean-fruit",
-            "bg-tempting-azure",
-            "bg-amy-crisp",
-            "bg-arielle-smile",
-            "bg-happy-itmeo",
-            "bg-strong-bliss",
-            "bg-mean-fruit",
-            "bg-tempting-azure",
-            "bg-amy-crisp",
-        ];
 
         const elements = (influencers && influencers.loading) ? [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12] : [];
         return (

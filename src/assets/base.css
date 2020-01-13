@@ -13237,6 +13237,12 @@ a.badge-alternate:focus {
     min-width: 19px;
 }
 
+.badge-big {
+    font-weight: bold;
+    text-transform: uppercase;
+    min-width: 19px;
+}
+
 .badge-light {
     background: #fff;
 }

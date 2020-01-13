@@ -46,7 +46,6 @@ class CompareInfluencers extends React.Component {
 
     render() {
         const { ComparedInfluencers } = this.props;
-        debugger;
 
         const strOfReaction1 = ComparedInfluencers.length > 0 ? ComparedInfluencers[0].numberOfReaction : '';
         const strOfComment1 = ComparedInfluencers.length > 0 ? ComparedInfluencers[0].numberOfComment : '';
@@ -64,6 +63,14 @@ class CompareInfluencers extends React.Component {
         const numberOfShare2 = strOfShare2.charAt(strOfShare2.length - 1) == 'k' ? Number((strOfShare2.substring(0, strOfShare2.length - 1))) * 1000 : Number(strOfShare2);
         const engagement2 = numberOfReaction2 + (numberOfComment2 * 2) + (numberOfShare2 * 3)
 
+        const subReaction = numberOfReaction1 - numberOfReaction2;
+        const subComment = numberOfComment1 - numberOfComment2;
+        const subShare = numberOfShare1 - numberOfShare2;
+        const subEngagement = engagement1 - engagement2;
+        const subFollowers = ComparedInfluencers[0].numberOfFollowers - ComparedInfluencers[1].numberOfFollowers;
+        const subPost = ComparedInfluencers[0].numberOfPost - ComparedInfluencers[1].numberOfPost;
+
+        debugger;
         return (
             <Fragment>
                 <TransitionGroup component="div">
@@ -93,28 +100,28 @@ class CompareInfluencers extends React.Component {
                                                         <NavLink>
                                                             <i className="nav-link-icon pe-7s-like2"> </i>
                                                             <span>Reactions(Love|Like|Smile..)</span>
-                                                            <div className="ml-auto badge badge-pill badge-warning">{numberOfReaction1}</div>
+                                                            <div className={"ml-auto" + (subReaction > 0 ? " badge-big " : " badge ") + "badge-pill badge-warning"}>{numberOfReaction1}</div>
                                                         </NavLink>
                                                     </NavItem>
                                                     <NavItem>
                                                         <NavLink>
                                                             <i className="nav-link-icon pe-7s-chat"> </i>
                                                             <span>Comments</span>
-                                                            <div className="ml-auto badge badge-pill badge-info">{numberOfComment1}</div>
+                                                            <div className={"ml-auto" + (subComment > 0 ? " badge-big " : " badge ") + "badge-pill badge-info"}>{numberOfComment1}</div>
                                                         </NavLink>
                                                     </NavItem>
                                                     <NavItem>
                                                         <NavLink>
                                                             <i className="nav-link-icon pe-7s-share"> </i>
                                                             <span>Share</span>
-                                                            <div className="ml-auto badge badge-pill badge-alternate">{numberOfShare1}</div>
+                                                            <div className={"ml-auto" + (subShare > 0 ? " badge-big " : " badge ") + "badge-pill badge-alternate"}>{numberOfShare1}</div>
                                                         </NavLink>
                                                     </NavItem>
                                                     <NavItem>
                                                         <NavLink>
                                                             <i className="nav-link-icon pe-7s-graph"> </i>
                                                             <span>Engagement</span>
-                                                            <div className="ml-auto badge badge-pill badge-danger">{engagement1}</div>
+                                                            <div className={"ml-auto" + (subEngagement > 0 ? " badge-big " : " badge ") + "badge-pill badge-danger"}>{engagement1}</div>
                                                         </NavLink>
                                                     </NavItem>
                                                     <NavItem className="nav-item-header">
@@ -124,14 +131,14 @@ class CompareInfluencers extends React.Component {
                                                         <NavLink>
                                                             <i className="nav-link-icon pe-7s-users"> </i>
                                                             <span>Followers</span>
-                                                            <div className="ml-auto badge badge-success">{ComparedInfluencers.length > 0 ? ComparedInfluencers[0].numberOfFollowers : ''}</div>
+                                                            <div className={"ml-auto" + (subFollowers > 0 ? " badge-big " : " badge ") + "badge-pill badge-success"}>{ComparedInfluencers.length > 0 ? ComparedInfluencers[0].numberOfFollowers : ''}</div>
                                                         </NavLink>
                                                     </NavItem>
                                                     <NavItem>
                                                         <NavLink>
                                                             <i className="nav-link-icon pe-7s-note"> </i>
                                                             <span>Posts</span>
-                                                            <div className="ml-auto badge badge-secondary">{ComparedInfluencers.length > 0 ? ComparedInfluencers[0].numberOfPost : ''}</div>
+                                                            <div className={"ml-auto" + (subPost > 0 ? " badge-big " : " badge ") + "badge-pill badge-secondary"}>{ComparedInfluencers.length > 0 ? ComparedInfluencers[0].numberOfPost : ''}</div>
                                                         </NavLink>
                                                     </NavItem>
                                                     <NavItem className="nav-item-divider" />
@@ -146,28 +153,28 @@ class CompareInfluencers extends React.Component {
                                                         <NavLink>
                                                             <i className="nav-link-icon pe-7s-like2"> </i>
                                                             <span>Reactions(Love|Like|Smile..)</span>
-                                                            <div className="ml-auto badge badge-pill badge-warning">{numberOfReaction2}</div>
+                                                            <div className={"ml-auto" + (subReaction > 0 ? " badge " : " badge-big ") + "badge-pill badge-warning"}>{numberOfReaction2}</div>
                                                         </NavLink>
                                                     </NavItem>
                                                     <NavItem>
                                                         <NavLink>
                                                             <i className="nav-link-icon pe-7s-chat"> </i>
                                                             <span>Comments</span>
-                                                            <div className="ml-auto badge badge-pill badge-info">{numberOfComment2}</div>
+                                                            <div className={"ml-auto" + (subComment > 0 ? " badge " : " badge-big ") + "badge-pill badge-info"}>{numberOfComment2}</div>
                                                         </NavLink>
                                                     </NavItem>
                                                     <NavItem>
                                                         <NavLink>
                                                             <i className="nav-link-icon pe-7s-share"> </i>
                                                             <span>Share</span>
-                                                            <div className="ml-auto badge badge-pill badge-alternate">{numberOfShare2}</div>
+                                                            <div className={"ml-auto" + (subShare > 0 ? " badge " : " badge-big ") + "badge-pill badge-alternate"}>{numberOfShare2}</div>
                                                         </NavLink>
                                                     </NavItem>
                                                     <NavItem>
                                                         <NavLink>
                                                             <i className="nav-link-icon pe-7s-graph"> </i>
                                                             <span>Engagement</span>
-                                                            <div className="ml-auto badge badge-pill badge-danger">{engagement2}</div>
+                                                            <div className={"ml-auto" + (subEngagement > 0 ? " badge " : " badge-big ") + "badge-pill badge-danger"}>{engagement2}</div>
                                                         </NavLink>
                                                     </NavItem>
                                                     <NavItem className="nav-item-header">
@@ -177,14 +184,14 @@ class CompareInfluencers extends React.Component {
                                                         <NavLink>
                                                             <i className="nav-link-icon pe-7s-users"> </i>
                                                             <span>Followers</span>
-                                                            <div className="ml-auto badge badge-success">{ComparedInfluencers.length > 0 ? ComparedInfluencers[1].numberOfFollowers : ''}</div>
+                                                            <div className={"ml-auto" + (subFollowers > 0 ? " badge " : " badge-big ") + "badge-pill badge-success"}>{ComparedInfluencers.length > 0 ? ComparedInfluencers[1].numberOfFollowers : ''}</div>
                                                         </NavLink>
                                                     </NavItem>
                                                     <NavItem>
                                                         <NavLink>
                                                             <i className="nav-link-icon pe-7s-note"> </i>
                                                             <span>Posts</span>
-                                                            <div className="ml-auto badge badge-secondary">{ComparedInfluencers.length > 0 ? ComparedInfluencers[1].numberOfPost : ''}</div>
+                                                            <div className={"ml-auto" + (subPost > 0 ? " badge " : " badge-big ") + "badge-pill badge-secondary"}>{ComparedInfluencers.length > 0 ? ComparedInfluencers[1].numberOfPost : ''}</div>
                                                         </NavLink>
                                                     </NavItem>
                                                     <NavItem className="nav-item-divider" />
