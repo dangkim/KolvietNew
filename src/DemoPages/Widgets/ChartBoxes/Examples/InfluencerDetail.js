@@ -20,6 +20,7 @@ import {
 import defaultAvatar from '../../../../assets/utils/images/avatars/default.jpg'
 import originalMoment from "moment";
 import { extendMoment } from "moment-range";
+import default_user from '../../../../assets/utils/images/avatars/default_user.jpg';
 import 'react-daterange-picker/dist/css/react-calendar.css'
 import { Trans } from 'react-i18next';
 
@@ -133,6 +134,20 @@ class InfluencerDetail extends Component {
                     <CSSTransition timeout={1500} unmountOnExit appear classNames="TabsAnimation">
                         <div>
                             <Row>
+                                <Col md="12">
+                                    <Card className="main-card mb-3">
+                                        {/* <div className="card-header"><Trans>Description</Trans>
+                                        </div> */}
+                                        <div className="card-header" style={{ height: '125px'}}>
+                                            <img className="rounded-circle" style={{ maxHeight: '120px', maxWidth: '120px', margin:'auto' }} src={Influencer && Influencer.photo ? Influencer.photo.paths[1] : default_user} />
+                                        </div>
+                                        <div className="text-center" style={{ whiteSpace: 'pre-wrap' }}>
+                                            {Influencer ? Influencer.description.split('|').join('\n') : ''}
+                                        </div>
+                                    </Card>
+                                </Col>
+                            </Row>
+                            <Row>
                                 <Col md="12" lg="6">
                                     <Row>
                                         <Col lg="6">
@@ -242,20 +257,12 @@ class InfluencerDetail extends Component {
                                                             <div className="badge badge-alternate">{numberOfShare1}</div>
                                                         </td>
                                                         <td style={{ width: '8%' }} className="text-center">{engagement1}</td>
-                                                        {/* <td className="text-center">
-                                                            <button type="button" className="btn btn-primary btn-sm">Details</button>
-                                                        </td> */}
                                                     </tr>
                                                     <tr>
                                                         <td className="text-center text-muted">{Influencer ? Influencer.post2.time : ''}</td>
                                                         <td>
                                                             <div className="widget-content p-0">
                                                                 <div className="widget-content-wrapper">
-                                                                    {/* <div className="widget-content-left mr-3">
-                                                                        <div className="widget-content-left">
-                                                                            <img width={40} className="rounded-circle" src={avatar4} alt="Avatar" />
-                                                                        </div>
-                                                                    </div> */}
                                                                     <div className="widget-content-left flex2">
                                                                         <div className="widget-heading">{Influencer ? Influencer.post2.title : ''}</div>
                                                                         <div className="widget-subheading opacity-7">{Influencer ? Influencer.post2.status : ''}</div>
@@ -269,20 +276,12 @@ class InfluencerDetail extends Component {
                                                             <div className="badge badge-alternate">{numberOfShare2}</div>
                                                         </td>
                                                         <td className="text-center">{engagement2}</td>
-                                                        {/* <td className="text-center">
-                                                            <button type="button" className="btn btn-primary btn-sm">Details</button>
-                                                        </td> */}
                                                     </tr>
                                                     <tr>
                                                         <td className="text-center text-muted">{Influencer ? Influencer.post3.time : ''}</td>
                                                         <td>
                                                             <div className="widget-content p-0">
                                                                 <div className="widget-content-wrapper">
-                                                                    {/* <div className="widget-content-left mr-3">
-                                                                        <div className="widget-content-left">
-                                                                            <img width={40} className="rounded-circle" src={avatar4} alt="Avatar" />
-                                                                        </div>
-                                                                    </div> */}
                                                                     <div className="widget-content-left flex2">
                                                                         <div className="widget-heading">{Influencer ? Influencer.post3.title : ''}</div>
                                                                         <div className="widget-subheading opacity-7">{Influencer ? Influencer.post3.status : ''}</div>
@@ -296,20 +295,12 @@ class InfluencerDetail extends Component {
                                                             <div className="badge badge-alternate">{numberOfShare3}</div>
                                                         </td>
                                                         <td className="text-center">{engagement3}</td>
-                                                        {/* <td className="text-center">
-                                                            <button type="button" className="btn btn-primary btn-sm">Details</button>
-                                                        </td> */}
                                                     </tr>
                                                     <tr>
                                                         <td className="text-center text-muted">{Influencer ? Influencer.post4.time : ''}</td>
                                                         <td>
                                                             <div className="widget-content p-0">
                                                                 <div className="widget-content-wrapper">
-                                                                    {/* <div className="widget-content-left mr-3">
-                                                                        <div className="widget-content-left">
-                                                                            <img width={40} className="rounded-circle" src={avatar4} alt="Avatar" />
-                                                                        </div>
-                                                                    </div> */}
                                                                     <div className="widget-content-left flex2">
                                                                         <div className="widget-heading">{Influencer ? Influencer.post4.title : ''}</div>
                                                                         <div className="widget-subheading opacity-7">{Influencer ? Influencer.post4.status : ''}</div>
@@ -323,20 +314,12 @@ class InfluencerDetail extends Component {
                                                             <div className="badge badge-alternate">{numberOfShare4}</div>
                                                         </td>
                                                         <td className="text-center">{engagement4}</td>
-                                                        {/* <td className="text-center">
-                                                            <button type="button" className="btn btn-primary btn-sm">Details</button>
-                                                        </td> */}
                                                     </tr>
                                                     <tr>
                                                         <td className="text-center text-muted">{Influencer ? Influencer.post5.time : ''}</td>
                                                         <td>
                                                             <div className="widget-content p-0">
                                                                 <div className="widget-content-wrapper">
-                                                                    {/* <div className="widget-content-left mr-3">
-                                                                        <div className="widget-content-left">
-                                                                            <img width={40} className="rounded-circle" src={avatar4} alt="Avatar" />
-                                                                        </div>
-                                                                    </div> */}
                                                                     <div className="widget-content-left flex2">
                                                                         <div className="widget-heading">{Influencer ? Influencer.post5.title : ''}</div>
                                                                         <div className="widget-subheading opacity-7">{Influencer ? Influencer.post5.status : ''}</div>
@@ -350,25 +333,11 @@ class InfluencerDetail extends Component {
                                                             <div className="badge badge-alternate">{numberOfShare5}</div>
                                                         </td>
                                                         <td className="text-center">{engagement5}</td>
-                                                        {/* <td className="text-center">
-                                                            <button type="button" className="btn btn-primary btn-sm">Details</button>
-                                                        </td> */}
                                                     </tr>
                                                 </tbody>
                                             </table>
                                         </div>
                                         <div className="d-block text-center card-footer">
-                                        </div>
-                                    </Card>
-                                </Col>
-                            </Row>
-                            <Row>
-                                <Col md="12">
-                                    <Card className="main-card mb-3">
-                                        <div className="card-header"><Trans>Description</Trans>
-                                        </div>
-                                        <div className="text-center" style={{ whiteSpace: 'pre-wrap' }}>
-                                            {Influencer ? Influencer.description.split('|').join('\n') : ''}
                                         </div>
                                     </Card>
                                 </Col>
