@@ -29,11 +29,11 @@ class TopEngagementInfluencers extends React.Component {
         const { topEngagementInf } = this.props;
         const topEngagementLocal = topEngagementInf.topEngagement ? topEngagementInf.topEngagement : []
         const elements = (topEngagementInf && topEngagementInf.loading) ? [1, 2, 3, 4, 5] : [];
-        debugger;
+        //debugger;
         return (
             <Fragment>
                 <Card className="main-card mb-3">
-                    <div className="card-header">Active Users</div>
+                    <div className="card-header">TOP ENGAGEMENT</div>
                     <div className="table-responsive">
                         <table className="align-middle mb-0 table table-borderless table-striped table-hover">
                             <thead>
@@ -65,9 +65,9 @@ class TopEngagementInfluencers extends React.Component {
                                                             </div>
                                                         </div>
                                                     </td>
-                                                    <td className="text-center">{value.numberOfFollowers}</td>
+                                                    <td className="text-center">{value.valueForSortingOne}</td>
                                                     <td className="text-center">
-                                                        <div className="badge badge-warning">{value.engagement}</div>
+                                                        <div className="badge badge-warning">{value.valueForSortingTwo}</div>
                                                     </td>
                                                 </tr>
                                             );

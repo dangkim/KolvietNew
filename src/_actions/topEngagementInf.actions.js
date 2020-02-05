@@ -14,12 +14,12 @@ function getTopByEngagement(first) {
         influencerService.getTopEngagement(first)
             .then(
                 influencers => {
-                    influencers.influencer.sort((a, b) => (calEngagement(a.numberOfReaction, a.numberOfComment, a.numberOfShare) > calEngagement(b.numberOfReaction, b.numberOfComment, b.numberOfShare)) ? -1 : 1)
+                    //influencers.influencer.sort((a, b) => (calEngagement(a.numberOfReaction, a.numberOfComment, a.numberOfShare) > calEngagement(b.numberOfReaction, b.numberOfComment, b.numberOfShare)) ? -1 : 1)
 
                     influencers.influencer.map((value, index) => {
                         return Object.assign(value, {
                             ...value,
-                            engagement: calEngagement(value.numberOfReaction, value.numberOfComment, value.numberOfShare)
+                            //engagement: calEngagement(value.numberOfReaction, value.numberOfComment, value.numberOfShare)
                         });
                     });
                     dispatch(success(influencers.influencer))
@@ -42,12 +42,12 @@ function getTopByFollower(first) {
         influencerService.getTopFollowers(first)
             .then(
                 influencers => {
-                    influencers.influencer.sort((a, b) => a.numberOfFollowers > b.numberOfFollowers ? -1 : 1)
+                    //influencers.influencer.sort((a, b) => a.numberOfFollowers > b.numberOfFollowers ? -1 : 1)
 
                     influencers.influencer.map((value, index) => {
                         return Object.assign(value, {
                             ...value,
-                            engagement: calEngagement(value.numberOfReaction, value.numberOfComment, value.numberOfShare)
+                            //engagement: calEngagement(value.numberOfReaction, value.numberOfComment, value.numberOfShare)
                         });
                     });
                     dispatch(success(influencers.influencer))

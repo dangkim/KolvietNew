@@ -53,11 +53,8 @@ async function getTopFollowers(first) {
     {
         influencer(orderBy: {valueForSortingOne: DESC}, first: `+ first + `){
           fullName
-          numberOfFollowers
-          numberOfPost
-          numberOfShare
-          numberOfReaction
-          numberOfComment          
+          valueForSortingOne
+          valueForSortingTwo        
           photo {
             paths
           }          
@@ -85,11 +82,8 @@ async function getTopEngagement(first) {
     {
         influencer(orderBy: {valueForSortingTwo: DESC}, first: `+ first + `){
           fullName
-          numberOfFollowers
-          numberOfPost
-          numberOfShare
-          numberOfReaction
-          numberOfComment          
+          valueForSortingOne
+          valueForSortingTwo          
           photo {
             paths
           }          
@@ -127,206 +121,6 @@ async function getInfluencersByName(first, skip, userName) {
             numberOfShare
             numberOfReaction
             numberOfComment            
-            photo {
-              paths
-            }
-            post1 {
-                link
-                numberOfComment
-                numberOfReaction
-                numberOfShare
-                status
-                time
-                title
-                type
-              }
-              post2 {
-                link
-                numberOfComment
-                numberOfReaction
-                numberOfShare
-                status
-                time
-                title
-                type
-              }
-              post3 {
-                link
-                numberOfComment
-                numberOfReaction
-                numberOfShare
-                status
-                time
-                title
-                type
-              }
-              post4 {
-                numberOfComment
-                numberOfReaction
-                link
-                numberOfShare
-                status
-                time
-                title
-                type
-              }
-              post5 {
-                link
-                numberOfComment
-                numberOfReaction
-                numberOfShare
-                status
-                time
-                title
-                type
-              }
-        }
-    }
-    `;
-
-  const token = localStorage.getItem('token');
-  const requestOptions = {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/graphql',
-      'Authorization': token
-    },
-    body: GET_ALL_INFS
-  };
-
-  const response = await fetch(`${configOrchardCore.apiUrl}/graphql`, requestOptions);
-  return handleGraphInfResponse(response);
-
-}
-
-async function getTopByEngagement(first, skip) {
-  const GET_ALL_INFS = `
-    {
-        influencer(first: `+ first + `, skip: ` + skip + `, status: LATEST, orderBy: {modifiedUtc: DESC}){
-            checkIn
-            fullName
-            email
-            description
-            genderDemorgraphic {
-              genderGraphicName
-              genderPercentage
-            }
-            geoDemorgraphic {
-              geoGraphicName
-              geoPercentage
-            }
-            videoLink {
-                paths
-              }
-            numberOfFollowers
-            numberOfPost
-            numberOfShare
-            numberOfReaction
-            numberOfComment
-            ageDemorgraphic {
-              ageGraphicsName
-              agePercentage
-            }
-            photo {
-              paths
-            }
-            post1 {
-                link
-                numberOfComment
-                numberOfReaction
-                numberOfShare
-                status
-                time
-                title
-                type
-              }
-              post2 {
-                link
-                numberOfComment
-                numberOfReaction
-                numberOfShare
-                status
-                time
-                title
-                type
-              }
-              post3 {
-                link
-                numberOfComment
-                numberOfReaction
-                numberOfShare
-                status
-                time
-                title
-                type
-              }
-              post4 {
-                link
-                numberOfComment
-                numberOfReaction
-                numberOfShare
-                status
-                time
-                title
-                type
-              }
-              post5 {
-                link
-                numberOfComment
-                numberOfReaction
-                numberOfShare
-                status
-                time
-                title
-                type
-              }
-        }
-    }
-    `;
-
-  const token = localStorage.getItem('token');
-  const requestOptions = {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/graphql',
-      'Authorization': token
-    },
-    body: GET_ALL_INFS
-  };
-
-  const response = await fetch(`${configOrchardCore.apiUrl}/graphql`, requestOptions);
-  return handleGraphInfResponse(response);
-
-}
-
-async function getTopByFollower(first, skip) {
-  const GET_ALL_INFS = `
-    {
-        influencer(first: `+ first + `, skip: ` + skip + `, status: LATEST, orderBy: {modifiedUtc: DESC}){
-            checkIn
-            fullName
-            email
-            description
-            genderDemorgraphic {
-              genderGraphicName
-              genderPercentage
-            }
-            geoDemorgraphic {
-              geoGraphicName
-              geoPercentage
-            }
-            videoLink {
-                paths
-              }
-            numberOfFollowers
-            numberOfPost
-            numberOfShare
-            numberOfReaction
-            numberOfComment
-            ageDemorgraphic {
-              ageGraphicsName
-              agePercentage
-            }
             photo {
               paths
             }

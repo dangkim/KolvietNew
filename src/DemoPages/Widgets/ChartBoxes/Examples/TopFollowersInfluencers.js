@@ -32,15 +32,15 @@ class TopFollowersInfluencers extends React.Component {
         return (
             <Fragment>
                 <Card className="main-card mb-3">
-                    <div className="card-header">Active Users</div>
+                    <div className="card-header">TOP FOLLOWERS</div>
                     <div className="table-responsive">
                         <table className="align-middle mb-0 table table-borderless table-striped table-hover">
                             <thead>
                                 <tr>
                                     <th className="text-center">#</th>
                                     <th>Name</th>
-                                    <th className="text-center">Engagement</th>
                                     <th className="text-center">Followers</th>
+                                    <th className="text-center">Engagement</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -66,9 +66,11 @@ class TopFollowersInfluencers extends React.Component {
                                                             </div>
                                                         </div>
                                                     </td>
-                                                    <td className="text-center">{value.engagement}</td>
                                                     <td className="text-center">
-                                                        <div className="badge badge-warning">{value.numberOfFollowers}</div>
+                                                        <div className="badge badge-warning">{value.valueForSortingTwo}</div>
+                                                    </td>
+                                                    <td className="text-center">{value.valueForSortingOne}
+                                                        {/* <div className="badge badge-warning">{value.valueForSortingOne}</div> */}
                                                     </td>
                                                 </tr>
                                             );
