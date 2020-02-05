@@ -22,14 +22,14 @@ class TopEngagementInfluencers extends React.Component {
 
     componentDidMount() {
         const { dispatch } = this.props;
-        dispatch(topEngagementInfActions.getTopByEngagement(100, 5));
+        dispatch(topEngagementInfActions.getTopByEngagement(5));
     }
 
     render() {
         const { topEngagementInf } = this.props;
         const topEngagementLocal = topEngagementInf.topEngagement ? topEngagementInf.topEngagement : []
         const elements = (topEngagementInf && topEngagementInf.loading) ? [1, 2, 3, 4, 5] : [];
-
+        debugger;
         return (
             <Fragment>
                 <Card className="main-card mb-3">

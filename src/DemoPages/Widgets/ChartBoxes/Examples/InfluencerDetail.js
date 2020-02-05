@@ -88,41 +88,41 @@ class InfluencerDetail extends Component {
         const numberOfShare = strOfShare.charAt(strOfShare.length - 1) === 'k' ? Number((strOfShare.substring(0, strOfShare.length - 1))) * 1000 : Number(strOfShare);
         const engagement = numberOfReaction + (numberOfComment * 2) + (numberOfShare * 3)
 
-        const strOfReaction1 = Influencer ? Influencer.post1.numberOfReaction : '';
-        const strOfComment1 = Influencer ? Influencer.post1.numberOfComment : '';
-        const strOfShare1 = Influencer ? Influencer.post1.numberOfShare : '';
+        const strOfReaction1 = Influencer && Influencer.post1 ? Influencer.post1.numberOfReaction : '';
+        const strOfComment1 = Influencer && Influencer.post1 ? Influencer.post1.numberOfComment : '';
+        const strOfShare1 = Influencer && Influencer.post1 ? Influencer.post1.numberOfShare : '';
         const numberOfReaction1 = strOfReaction1.charAt(strOfReaction1.length - 1) === 'k' ? Number((strOfReaction1.substring(0, strOfReaction1.length - 1))) * 1000 : Number(strOfReaction1);
         const numberOfComment1 = strOfComment1.charAt(strOfComment1.length - 1) === 'k' ? Number((strOfComment1.substring(0, strOfComment1.length - 1))) * 1000 : Number(strOfComment1);
         const numberOfShare1 = strOfShare1.charAt(strOfShare1.length - 1) === 'k' ? Number((strOfShare1.substring(0, strOfShare1.length - 1))) * 1000 : Number(strOfShare1);
         const engagement1 = numberOfReaction1 + (numberOfComment1 * 2) + (numberOfShare1 * 3)
 
-        const strOfReaction2 = Influencer ? Influencer.post2.numberOfReaction : '';
-        const strOfComment2 = Influencer ? Influencer.post2.numberOfComment : '';
-        const strOfShare2 = Influencer ? Influencer.post2.numberOfShare : '';
+        const strOfReaction2 = Influencer && Influencer.post2 ? Influencer.post2.numberOfReaction : '';
+        const strOfComment2 = Influencer && Influencer.post2 ? Influencer.post2.numberOfComment : '';
+        const strOfShare2 = Influencer && Influencer.post2 ? Influencer.post2.numberOfShare : '';
         const numberOfReaction2 = strOfReaction2.charAt(strOfReaction2.length - 1) === 'k' ? Number((strOfReaction2.substring(0, strOfReaction2.length - 1))) * 1000 : Number(strOfReaction2);
         const numberOfComment2 = strOfComment2.charAt(strOfComment2.length - 1) === 'k' ? Number((strOfComment2.substring(0, strOfComment2.length - 1))) * 1000 : Number(strOfComment2);
         const numberOfShare2 = strOfShare2.charAt(strOfShare2.length - 1) === 'k' ? Number((strOfShare2.substring(0, strOfShare2.length - 1))) * 1000 : Number(strOfShare2);
         const engagement2 = numberOfReaction2 + (numberOfComment2 * 2) + (numberOfShare2 * 3)
 
-        const strOfReaction3 = Influencer ? Influencer.post3.numberOfReaction : '';
-        const strOfComment3 = Influencer ? Influencer.post3.numberOfComment : '';
-        const strOfShare3 = Influencer ? Influencer.post3.numberOfShare : '';
+        const strOfReaction3 = Influencer && Influencer.post3 ? Influencer.post3.numberOfReaction : '';
+        const strOfComment3 = Influencer && Influencer.post3 ? Influencer.post3.numberOfComment : '';
+        const strOfShare3 = Influencer && Influencer.post3 ? Influencer.post3.numberOfShare : '';
         const numberOfReaction3 = strOfReaction3.charAt(strOfReaction3.length - 1) === 'k' ? Number((strOfReaction3.substring(0, strOfReaction3.length - 1))) * 1000 : Number(strOfReaction3);
         const numberOfComment3 = strOfComment3.charAt(strOfComment3.length - 1) === 'k' ? Number((strOfComment3.substring(0, strOfComment3.length - 1))) * 1000 : Number(strOfComment3);
         const numberOfShare3 = strOfShare3.charAt(strOfShare3.length - 1) === 'k' ? Number((strOfShare3.substring(0, strOfShare3.length - 1))) * 1000 : Number(strOfShare3);
         const engagement3 = numberOfReaction3 + (numberOfComment3 * 2) + (numberOfShare3 * 3)
 
-        const strOfReaction4 = Influencer ? Influencer.post4.numberOfReaction : '';
-        const strOfComment4 = Influencer ? Influencer.post4.numberOfComment : '';
-        const strOfShare4 = Influencer ? Influencer.post4.numberOfShare : '';
+        const strOfReaction4 = Influencer && Influencer.post4 ? Influencer.post4.numberOfReaction : '';
+        const strOfComment4 = Influencer && Influencer.post4 ? Influencer.post4.numberOfComment : '';
+        const strOfShare4 = Influencer && Influencer.post4 ? Influencer.post4.numberOfShare : '';
         const numberOfReaction4 = strOfReaction4.charAt(strOfReaction4.length - 1) === 'k' ? Number((strOfReaction4.substring(0, strOfReaction4.length - 1))) * 1000 : Number(strOfReaction4);
         const numberOfComment4 = strOfComment4.charAt(strOfComment4.length - 1) === 'k' ? Number((strOfComment4.substring(0, strOfComment4.length - 1))) * 1000 : Number(strOfComment4);
         const numberOfShare4 = strOfShare4.charAt(strOfShare4.length - 1) === 'k' ? Number((strOfShare4.substring(0, strOfShare4.length - 1))) * 1000 : Number(strOfShare4);
         const engagement4 = numberOfReaction4 + (numberOfComment4 * 2) + (numberOfShare4 * 3)
 
-        const strOfReaction5 = Influencer ? Influencer.post5.numberOfReaction : '';
-        const strOfComment5 = Influencer ? Influencer.post5.numberOfComment : '';
-        const strOfShare5 = Influencer ? Influencer.post5.numberOfShare : '';
+        const strOfReaction5 = Influencer && Influencer.post5 ? Influencer.post5.numberOfReaction : '';
+        const strOfComment5 = Influencer && Influencer.post5 ? Influencer.post5.numberOfComment : '';
+        const strOfShare5 = Influencer && Influencer.post5 ? Influencer.post5.numberOfShare : '';
         const numberOfReaction5 = strOfReaction5.charAt(strOfReaction5.length - 1) === 'k' ? Number((strOfReaction5.substring(0, strOfReaction5.length - 1))) * 1000 : Number(strOfReaction5);
         const numberOfComment5 = strOfComment5.charAt(strOfComment5.length - 1) === 'k' ? Number((strOfComment5.substring(0, strOfComment5.length - 1))) * 1000 : Number(strOfComment5);
         const numberOfShare5 = strOfShare5.charAt(strOfShare5.length - 1) === 'k' ? Number((strOfShare5.substring(0, strOfShare5.length - 1))) * 1000 : Number(strOfShare5);
@@ -138,11 +138,11 @@ class InfluencerDetail extends Component {
                                     <Card className="main-card mb-3">
                                         {/* <div className="card-header"><Trans>Description</Trans>
                                         </div> */}
-                                        <div className="card-header" style={{ height: '125px'}}>
-                                            <img className="rounded-circle" style={{ maxHeight: '120px', maxWidth: '120px', margin:'auto' }} src={Influencer && Influencer.photo ? Influencer.photo.paths[1] : default_user} />
+                                        <div className="card-header" style={{ height: '125px' }}>
+                                            <img className="rounded-circle" style={{ maxHeight: '120px', maxWidth: '120px', margin: 'auto' }} src={Influencer && Influencer.photo ? Influencer.photo.paths[1] : default_user} />
                                         </div>
                                         <div className="text-center" style={{ whiteSpace: 'pre-wrap' }}>
-                                            {Influencer ? Influencer.description.split('|').join('\n') : ''}
+                                            {Influencer && Influencer.description ? Influencer.description.split('|').join('\n') : ''}
                                         </div>
                                     </Card>
                                 </Col>
@@ -235,7 +235,7 @@ class InfluencerDetail extends Component {
                                                 </thead>
                                                 <tbody>
                                                     <tr>
-                                                        <td style={{ width: '10%' }} className="text-center text-muted">{Influencer ? Influencer.post1.time : ''}</td>
+                                                        <td style={{ width: '10%' }} className="text-center text-muted">{Influencer && Influencer.post1 ? Influencer.post1.time : ''}</td>
                                                         <td style={{ width: '62%' }}>
                                                             <div className="widget-content p-0">
                                                                 <div className="widget-content-wrapper">
@@ -245,8 +245,8 @@ class InfluencerDetail extends Component {
                                                                         </div>
                                                                     </div> */}
                                                                     <div className="widget-content-left flex2">
-                                                                        <div className="widget-heading">{Influencer ? Influencer.post1.title : ''}</div>
-                                                                        <div className="widget-subheading opacity-7">{Influencer ? Influencer.post1.status : ''}</div>
+                                                                        <div className="widget-heading">{Influencer && Influencer.post1 ? Influencer.post1.title : ''}</div>
+                                                                        <div className="widget-subheading opacity-7">{Influencer && Influencer.post1 ? Influencer.post1.status : ''}</div>
                                                                     </div>
                                                                 </div>
                                                             </div>
@@ -259,13 +259,13 @@ class InfluencerDetail extends Component {
                                                         <td style={{ width: '8%' }} className="text-center">{engagement1}</td>
                                                     </tr>
                                                     <tr>
-                                                        <td className="text-center text-muted">{Influencer ? Influencer.post2.time : ''}</td>
+                                                        <td className="text-center text-muted">{Influencer && Influencer.post2 ? Influencer.post2.time : ''}</td>
                                                         <td>
                                                             <div className="widget-content p-0">
                                                                 <div className="widget-content-wrapper">
                                                                     <div className="widget-content-left flex2">
-                                                                        <div className="widget-heading">{Influencer ? Influencer.post2.title : ''}</div>
-                                                                        <div className="widget-subheading opacity-7">{Influencer ? Influencer.post2.status : ''}</div>
+                                                                        <div className="widget-heading">{Influencer && Influencer.post2 ? Influencer.post2.title : ''}</div>
+                                                                        <div className="widget-subheading opacity-7">{Influencer && Influencer.post2 ? Influencer.post2.status : ''}</div>
                                                                     </div>
                                                                 </div>
                                                             </div>
@@ -278,13 +278,13 @@ class InfluencerDetail extends Component {
                                                         <td className="text-center">{engagement2}</td>
                                                     </tr>
                                                     <tr>
-                                                        <td className="text-center text-muted">{Influencer ? Influencer.post3.time : ''}</td>
+                                                        <td className="text-center text-muted">{Influencer && Influencer.post3 ? Influencer.post3.time : ''}</td>
                                                         <td>
                                                             <div className="widget-content p-0">
                                                                 <div className="widget-content-wrapper">
                                                                     <div className="widget-content-left flex2">
-                                                                        <div className="widget-heading">{Influencer ? Influencer.post3.title : ''}</div>
-                                                                        <div className="widget-subheading opacity-7">{Influencer ? Influencer.post3.status : ''}</div>
+                                                                        <div className="widget-heading">{Influencer && Influencer.post3 ? Influencer.post3.title : ''}</div>
+                                                                        <div className="widget-subheading opacity-7">{Influencer && Influencer.post3 ? Influencer.post3.status : ''}</div>
                                                                     </div>
                                                                 </div>
                                                             </div>
@@ -297,13 +297,13 @@ class InfluencerDetail extends Component {
                                                         <td className="text-center">{engagement3}</td>
                                                     </tr>
                                                     <tr>
-                                                        <td className="text-center text-muted">{Influencer ? Influencer.post4.time : ''}</td>
+                                                        <td className="text-center text-muted">{Influencer && Influencer.post4 ? Influencer.post4.time : ''}</td>
                                                         <td>
                                                             <div className="widget-content p-0">
                                                                 <div className="widget-content-wrapper">
                                                                     <div className="widget-content-left flex2">
-                                                                        <div className="widget-heading">{Influencer ? Influencer.post4.title : ''}</div>
-                                                                        <div className="widget-subheading opacity-7">{Influencer ? Influencer.post4.status : ''}</div>
+                                                                        <div className="widget-heading">{Influencer && Influencer.post4 ? Influencer.post4.title : ''}</div>
+                                                                        <div className="widget-subheading opacity-7">{Influencer && Influencer.post4 ? Influencer.post4.status : ''}</div>
                                                                     </div>
                                                                 </div>
                                                             </div>
@@ -316,13 +316,13 @@ class InfluencerDetail extends Component {
                                                         <td className="text-center">{engagement4}</td>
                                                     </tr>
                                                     <tr>
-                                                        <td className="text-center text-muted">{Influencer ? Influencer.post5.time : ''}</td>
+                                                        <td className="text-center text-muted">{Influencer && Influencer.post5 ? Influencer.post5.time : ''}</td>
                                                         <td>
                                                             <div className="widget-content p-0">
                                                                 <div className="widget-content-wrapper">
                                                                     <div className="widget-content-left flex2">
-                                                                        <div className="widget-heading">{Influencer ? Influencer.post5.title : ''}</div>
-                                                                        <div className="widget-subheading opacity-7">{Influencer ? Influencer.post5.status : ''}</div>
+                                                                        <div className="widget-heading">{Influencer && Influencer.post5 ? Influencer.post5.title : ''}</div>
+                                                                        <div className="widget-subheading opacity-7">{Influencer && Influencer.post5 ? Influencer.post5.status : ''}</div>
                                                                     </div>
                                                                 </div>
                                                             </div>
@@ -373,12 +373,12 @@ class InfluencerDetail extends Component {
                                             <div className="btn-actions-pane-right">
                                                 <div role="group" className="btn-group-sm btn-group">
                                                     <Button onClick={this.nextVideo} value={-1} className="btn btn-info" disabled={currentVideoIndex === 0} >Back</Button>
-                                                    <Button onClick={this.nextVideo} value={1} className="btn btn-info" disabled={currentVideoIndex === (Influencer && (Influencer.videoLink.paths.length - 1))}>Next</Button>
+                                                    <Button onClick={this.nextVideo} value={1} className="btn btn-info" disabled={currentVideoIndex === (Influencer && Influencer.videoLink && (Influencer.videoLink.paths.length - 1))}>Next</Button>
                                                 </div>
                                             </div>
                                         </div>
                                         <ReactPlayer
-                                            url={Influencer ? Influencer.videoLink.paths[currentVideoIndex] : ''}
+                                            url={Influencer && Influencer.videoLink ? Influencer.videoLink.paths[currentVideoIndex] : ''}
                                             playing={false}
                                             width='100%'
                                             height='100%'

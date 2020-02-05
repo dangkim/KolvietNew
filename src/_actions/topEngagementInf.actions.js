@@ -7,11 +7,11 @@ export const topEngagementInfActions = {
     getTopByFollower
 };
 
-function getTopByEngagement(first, skip, userName) {
+function getTopByEngagement(first) {
     return dispatch => {
         dispatch(request());
 
-        influencerService.getAll(first, 0)
+        influencerService.getTopEngagement(first)
             .then(
                 influencers => {
                     influencers.influencer.sort((a, b) => (calEngagement(a.numberOfReaction, a.numberOfComment, a.numberOfShare) > calEngagement(b.numberOfReaction, b.numberOfComment, b.numberOfShare)) ? -1 : 1)
@@ -22,7 +22,7 @@ function getTopByEngagement(first, skip, userName) {
                             engagement: calEngagement(value.numberOfReaction, value.numberOfComment, value.numberOfShare)
                         });
                     });
-                    dispatch(success(influencers.influencer.slice(0, skip)))
+                    dispatch(success(influencers.influencer))
                 },
                 error => {
                     toast.error("Please try again");
@@ -35,11 +35,11 @@ function getTopByEngagement(first, skip, userName) {
     function failure(error) { return { type: infConstants.INFS_TOPENGAGEMENT_FAILURE, error } }
 }
 
-function getTopByFollower(first, skip, userName) {
+function getTopByFollower(first) {
     return dispatch => {
         dispatch(request());
 
-        influencerService.getAll(first, 0)
+        influencerService.getTopFollowers(first)
             .then(
                 influencers => {
                     influencers.influencer.sort((a, b) => a.numberOfFollowers > b.numberOfFollowers ? -1 : 1)
@@ -50,7 +50,7 @@ function getTopByFollower(first, skip, userName) {
                             engagement: calEngagement(value.numberOfReaction, value.numberOfComment, value.numberOfShare)
                         });
                     });
-                    dispatch(success(influencers.influencer.slice(0, skip)))
+                    dispatch(success(influencers.influencer))
                 },
                 error => {
                     toast.error("Please try again");

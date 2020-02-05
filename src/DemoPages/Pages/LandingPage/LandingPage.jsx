@@ -79,7 +79,7 @@ class LandingPage extends Component {
                                 <div className="col-md-6 col-md-offset-1">
                                     <div className="description">
                                         <div>
-                                            <img src={big_logo} alt="Kols Viet" style={{ border: 'none', width: '150px', borderRadius: 'unset' }} />
+                                            <img src={big_logo} alt="Kols Viet" style={{ border: 'none', width: '150px', marginLeft: '-2px' }} />
                                         </div>
                                         <h2>NỀN TẢNG THÔNG MINH</h2>
                                         <div className="">
@@ -100,16 +100,16 @@ class LandingPage extends Component {
                                 </div>
                             </div>
                             <div className="row">
-                                <div className="col-md-1">
+                                <div className="col-md-2">
                                 </div>
-                                <div className="col-md-9">
+                                <div className="col-md-7">
                                     <div className="description">
                                         <p>
                                             KOLV tự tin cung cấp giải pháp Influencer Marketing hiệu quả đối với các nhãn hàng và mang đến nguồn thu nhập thỏa đáng cùng cơ hội trải nghiệm sản phẩm chất lượng cho Influencer. Với đội ngũ nhân sự giàu kinh nghiệm trong lĩnh vực truyền thông cùng nền tảng công nghệ hiện đại được đầu tư và phát triển hơn 2 năm.
                                         </p>
                                     </div>
                                 </div>
-                                <div className="col-md-2">
+                                <div className="col-md-3">
                                 </div>
                             </div>
                         </div>

@@ -11,8 +11,8 @@ export const influencerService = {
   registerJobs,
   getInfluencersByName,
   getInfluencersByCategory,
-  getTopByEngagement,
-  getTopByFollower,
+  getTopEngagement,
+  getTopFollowers,
   getTopByTrend
 };
 
@@ -20,6 +20,70 @@ async function getAll(first, skip) {
   const GET_ALL_INFS = `
     {
         influencer(first: `+ first + `, skip: ` + skip + `, status: LATEST, orderBy: {modifiedUtc: DESC}){
+          fullName
+          numberOfFollowers
+          numberOfPost
+          numberOfShare
+          numberOfReaction
+          numberOfComment          
+          photo {
+            paths
+          }          
+        }
+    }
+    `;
+
+  const token = localStorage.getItem('token');
+  const requestOptions = {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/graphql',
+      'Authorization': token
+    },
+    body: GET_ALL_INFS
+  };
+
+  const response = await fetch(`${configOrchardCore.apiUrl}/graphql`, requestOptions);
+  return handleGraphInfResponse(response);
+
+}
+
+async function getTopFollowers(first) {
+  const GET_ALL_INFS = `
+    {
+        influencer(orderBy: {valueForSortingOne: DESC}, first: `+ first + `){
+          fullName
+          numberOfFollowers
+          numberOfPost
+          numberOfShare
+          numberOfReaction
+          numberOfComment          
+          photo {
+            paths
+          }          
+        }
+    }
+    `;
+
+  const token = localStorage.getItem('token');
+  const requestOptions = {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/graphql',
+      'Authorization': token
+    },
+    body: GET_ALL_INFS
+  };
+
+  const response = await fetch(`${configOrchardCore.apiUrl}/graphql`, requestOptions);
+  return handleGraphInfResponse(response);
+
+}
+
+async function getTopEngagement(first) {
+  const GET_ALL_INFS = `
+    {
+        influencer(orderBy: {valueForSortingTwo: DESC}, first: `+ first + `){
           fullName
           numberOfFollowers
           numberOfPost

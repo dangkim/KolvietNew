@@ -10,7 +10,7 @@ import { userActions } from '../../../_actions';
 import { history } from '../../../_helpers';
 import { Trans, i18next } from 'react-i18next';
 
-class LoginPage extends React.Component {
+class RecoverPassword extends React.Component {
     constructor(props) {
         super(props);
 
@@ -21,7 +21,6 @@ class LoginPage extends React.Component {
         this.state = {
             userName: '',
             email: '',
-            password: '',
             submitted: false,
             token: ''
         };
@@ -39,19 +38,17 @@ class LoginPage extends React.Component {
         e.preventDefault();
 
         this.setState({ submitted: true });
-        const { userName, email, password } = this.state;
+        const { userName } = this.state;
         const { dispatch } = this.props;
-        if (userName && password) {
-
-            const pathname = this.props.location.pathname;
-            dispatch(userActions.getToken(userName, password, pathname));
+        if (userName) {
+            dispatch(userActions.getToken(userName));
         }
     }
 
     render() {
 
         const { loggingIn, token, i18n } = this.props;
-        const { userName, password, submitted } = this.state;
+        const { userName, submitted } = this.state;
         const settings = {
             dots: true,
             infinite: true,
@@ -102,20 +99,7 @@ class LoginPage extends React.Component {
                                         <img src={new_logo} alt="Kols Viet" style={{ width: '95px' }} />
                                     </div>
                                     <h4 className="mb-0">
-                                        <span className="d-block"><Trans>Welcome Back</Trans></span>
-                                        <span><Trans>Please sign in to your account.</Trans></span></h4>
-                                    <div className="row">
-                                        <div className="col-md-6">
-                                            <h6 className="mt-3"><Trans>No account</Trans>?
-                                                <Link to="/pages/registerBrandPage"> <Trans>Sign up as Brand now</Trans></Link>
-                                            </h6>
-                                        </div>
-                                        <div className="col-md-6">
-                                            <h6 className="mt-3">
-                                                <Link to="/pages/registerInfluencerPage"><Trans>Sign up as Influencer now</Trans></Link>
-                                            </h6>
-                                        </div>
-                                    </div>
+                                        <span className="d-block"><Trans>Please check your email to reset your password</Trans></span></h4>
                                     <div className="divider row"></div>
                                     <div>
                                         <form className="" onSubmit={this.handleSubmit}>
@@ -125,16 +109,7 @@ class LoginPage extends React.Component {
                                                         <label htmlFor="userName" className="">Email</label>
                                                         <input type="userName" name="userName" id="userName" placeholder="" className="form-control" value={userName} onChange={this.handleChange} />
                                                         {submitted && !userName &&
-                                                            <div className="help-block text-danger">User name is required</div>
-                                                        }
-                                                    </div>
-                                                </div>
-                                                <div className="col-md-6">
-                                                    <div className="position-relative form-group">
-                                                        <label htmlFor="password" className="">Password</label>
-                                                        <input name="password" id="password" placeholder="" type="password" className="form-control" value={password} onChange={this.handleChange} />
-                                                        {submitted && !password &&
-                                                            <div className="help-block text-danger">Password is required</div>
+                                                            <div className="help-block text-danger">Email is required</div>
                                                         }
                                                     </div>
                                                 </div>
@@ -142,15 +117,13 @@ class LoginPage extends React.Component {
                                             {/* <div className="position-relative form-check"><input name="check" id="exampleCheck" type="checkbox" className="form-check-input" /><label htmlFor="exampleCheck" className="form-check-label">Keep me logged in</label></div> */}
                                             <div className="divider row"></div>
                                             <div className="d-flex align-items-center">
-                                                <div className="ml-auto"><a href="https://localhost:44300/ForgotPassword" className="btn-lg btn btn-link">Recover Password</a>
                                                     {/* <button type="submit" className="btn btn-primary btn-lg">Login to Dashboard</button> */}
-                                                    <input type="submit" name="signup" id="signup" className="btn-wide btn-pill btn-shadow btn-hover-shine btn btn-primary btn-lg" value="Login" />
+                                                    <input type="submit" name="signup" id="signup" className="btn-wide btn-pill btn-shadow btn-hover-shine btn btn-primary btn-lg" value="Submit" />
                                                     {
                                                         loggingIn &&
                                                         <img src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA==" />
                                                     }
                                                 </div>
-                                            </div>
                                         </form>
                                     </div>
                                 </div>
@@ -171,5 +144,5 @@ function mapStateToProps(state) {
     };
 }
 
-const connectedLoginPage = connect(mapStateToProps)(LoginPage);
-export { connectedLoginPage as LoginPage }; 
+const connectedRecoverPassword = connect(mapStateToProps)(RecoverPassword);
+export { connectedRecoverPassword as RecoverPassword }; 

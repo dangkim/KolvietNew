@@ -21,7 +21,7 @@ class TopFollowersInfluencers extends React.Component {
 
     componentDidMount() {
         const { dispatch } = this.props;
-        dispatch(topEngagementInfActions.getTopByFollower(100, 5));
+        dispatch(topEngagementInfActions.getTopByFollower(5));
     }
 
     render() {

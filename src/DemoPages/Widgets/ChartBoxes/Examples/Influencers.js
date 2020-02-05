@@ -270,9 +270,9 @@ class Influencers extends Component {
                                     <Row>
                                         {
                                             infItems.map((value, index) => {
-                                                const strOfReaction = value ? value.numberOfReaction : '';
-                                                const strOfComment = value ? value.numberOfComment : '';
-                                                const strOfShare = value ? value.numberOfShare : '';
+                                                const strOfReaction = value && value.numberOfReaction ? value.numberOfReaction : '';
+                                                const strOfComment = value && value.numberOfComment ? value.numberOfComment : '';
+                                                const strOfShare = value && value.numberOfShare ? value.numberOfShare : '';
                                                 const numberOfReaction = strOfReaction.charAt(strOfReaction.length - 1) === 'k' ? Number((strOfReaction.substring(0, strOfReaction.length - 1))) * 1000 : Number(strOfReaction);
                                                 const numberOfComment = strOfComment.charAt(strOfComment.length - 1) === 'k' ? Number((strOfComment.substring(0, strOfComment.length - 1))) * 1000 : Number(strOfComment);
                                                 const numberOfShare = strOfShare.charAt(strOfShare.length - 1) === 'k' ? Number((strOfShare.substring(0, strOfShare.length - 1))) * 1000 : Number(strOfShare);
