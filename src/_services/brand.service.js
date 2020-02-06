@@ -139,9 +139,13 @@ function updateBrand(brandType) {
 function uploadAvatar(file) {
     const token = localStorage.getItem('token');
     const formData = new FormData();
-    const brandObj = JSON.parse(localStorage.getItem('brandObj'));
 
-    formData.append('ContentItemId', brandObj[0].contentItemId);
+    let brandObj = JSON.parse(localStorage.getItem('brandObj'));
+    brandObj = brandObj[0] ? brandObj[0] : brandObj;
+    const contentItemId = brandObj.contentItemId ? brandObj.contentItemId : brandObj.ContentItemId
+    //const brandObj = JSON.parse(localStorage.getItem('brandObj'));
+
+    formData.append('ContentItemId', contentItemId);
     formData.append('Files', file);
 
     const requestOptions = {

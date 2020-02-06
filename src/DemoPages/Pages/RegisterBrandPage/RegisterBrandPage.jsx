@@ -115,14 +115,15 @@ class RegisterBrandPage extends React.Component {
                         Text: selectedOptionLocation.value
                     },
                     Avatar: {
-                        Paths: ["team/default.png"]
+                        Paths: ["team/default.png"],
+                        Urls: ["/media/team/default.png"]
                     }
                 },
                 TitlePart: {
                     Title: 'Brand ' + brand.brandName,
                 }
             }
-
+            
             dispatch(brandActions.register(brandType, userType));
         }
     }

@@ -80,6 +80,8 @@ function logout() {
     localStorage.removeItem('infName');
     localStorage.removeItem('brandFullName');
     localStorage.removeItem('brandName');
+    localStorage.removeItem('brandObj');
+    
     //localStorage.removeItem('language');
     history.index = -1;
     history.replace({ pathname: '/pages/loginpage' });

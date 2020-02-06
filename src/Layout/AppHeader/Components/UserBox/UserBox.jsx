@@ -36,8 +36,11 @@ class UserBox extends React.Component {
 
     componentDidMount() {
         const { dispatch } = this.props;
-        const brandObj = JSON.parse(localStorage.getItem('brandObj'));
-        dispatch(brandActions.getBrandByName(brandObj[0].email));
+        let brandObj = JSON.parse(localStorage.getItem('brandObj'));
+        brandObj = brandObj[0] ? brandObj[0] : brandObj;
+        const email = brandObj.email ? brandObj.email : brandObj.Email
+        //debugger;
+        dispatch(brandActions.getBrandByName(email));
     }
 
     // notify2 = () => this.toastId = toast("You don't have any new items in your calendar for today! Go out and play!", {
@@ -59,7 +62,15 @@ class UserBox extends React.Component {
     };
 
     render() {
-        const { FullName, brand } = this.props;
+        const { FullName, brand, Brand } = this.props;
+        const isNew = Brand ? true : false
+        const localBrand = brand ? brand : Brand;
+
+        //debugger;
+        const localFullName = localBrand.fullName ? localBrand.fullName : localBrand.FullName.Text;
+        const localAvatar = localBrand.avatar ? localBrand.avatar : localBrand.Avatar;
+        const urlIcon = (isNew === true) ? default_user : (localAvatar) ? configContent.apiUrl + (localAvatar.urls ? localAvatar.urls[0] : localAvatar.Urls[0]) : default_user
+
         return (
             <Fragment>
                 <div className="header-btn-lg pr-0">
@@ -68,7 +79,7 @@ class UserBox extends React.Component {
                             <div className="widget-content-left">
                                 <UncontrolledButtonDropdown>
                                     <DropdownToggle color="link" className="p-0">
-                                        <img width={42} className="rounded-circle" src={(brand && brand.avatar) ? configContent.apiUrl + brand.avatar.urls[0] : default_user} alt="" />
+                                        <img width={42} className="rounded-circle" src={urlIcon} alt="avatar" />
                                         <FontAwesomeIcon className="ml-2 opacity-8" icon={faAngleDown} />
                                     </DropdownToggle>
                                     <DropdownMenu right className="rm-pointers dropdown-menu-lg">
@@ -98,7 +109,7 @@ class UserBox extends React.Component {
                             </div>
                             <div className="widget-content-left  ml-3 header-user-info">
                                 <div className="widget-heading">
-                                    {FullName}
+                                    {localFullName}
                                 </div>
                                 {/* <div className="widget-subheading">
                                     VP People Manager

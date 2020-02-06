@@ -52,7 +52,7 @@ export default class ManageBrand extends React.Component {
     componentDidMount() {
         const { dispatch } = this.props;
         const brandObj = JSON.parse(localStorage.getItem('brandObj'));
-        dispatch(brandActions.getBrandByNameToManage(brandObj[0].email));
+        dispatch(brandActions.getBrandByNameToManage(brandObj.email));
     }
 
     handleSubmit(event) {
@@ -151,7 +151,7 @@ export default class ManageBrand extends React.Component {
         const locations = createLocations();
         //const isDisabled = JSON.stringify(brandInfo) === "{}";
         //const localBrand = brands.brand;
-        //debugger;
+        debugger;
         return (
             brands.loading ?
                 <div className="loader-container" style={{ width: '85%', height: '85%' }}>

@@ -26,10 +26,24 @@ function register(brandType, userType) {
                             .then(brand => {
                                 dispatch(success(brand));
 
-                                // history.push({
-                                //     pathname: '/widgets/dashboard-boxes',
-                                //     state: { Brand: brand.Brand, type: "Brand" }
-                                // })
+                                const brandObj = {
+                                    contentItemId: brand.ContentItemId
+                                    , brandName: brand.Brand.BrandName.Text
+                                    , email: brand.Brand.Email.Text
+                                    , businessAreas: brand.Brand.BusinessAreas.Text
+                                    , fullName: brand.Brand.FullName.Text
+                                    , location: brand.Brand.Location.Text
+                                    , createdUtc: brand.CreatedUtc
+                                    , published: brand.Published
+                                    , avatar: {
+                                        paths: brand.Brand.Avatar.Paths
+                                        , urls: brand.Brand.Avatar.Urls
+                                    }
+                                };
+
+                                debugger;
+
+                                localStorage.setItem('brandObj', JSON.stringify(brand.Brand));
                                 history.replace({ pathname: '/widgets/dashboard-boxes', state: { Brand: brand.Brand, type: "Brand" } });
                                 toast.success("Welcome " + userType.UserName + " Let create a Campaign");
                                 //dispatch(alertActions.success('Registration successful'));

@@ -13,7 +13,7 @@ export const userActions = {
     delete: _delete
 };
 
-function getToken(userName, password, pathname) {
+function getToken(userName, password, pathname) { 
     return dispatch => {
         dispatch(request({ userName }));
         userService.getToken(userName, password)
@@ -25,10 +25,11 @@ function getToken(userName, password, pathname) {
                             brandService.getBrandByName(userName)
                                 .then(
                                     brand => {
+                                        debugger;
                                         localStorage.setItem("type", "brand");
                                         localStorage.setItem("brandFullName", brand.brand[0].fullName);
                                         localStorage.setItem("brandName", brand.brand[0].brandName);
-                                        localStorage.setItem('brandObj', JSON.stringify(brand.brand));
+                                        localStorage.setItem('brandObj', JSON.stringify(brand.brand[0]));
                                         history.replace({ pathname: '/widgets/dashboard-boxes', state: { Brand: brand.brand, type: type } });
                                     },
                                     error => {
