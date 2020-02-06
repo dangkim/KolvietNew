@@ -113,6 +113,9 @@ class RegisterBrandPage extends React.Component {
                     },
                     Location: {
                         Text: selectedOptionLocation.value
+                    },
+                    Avatar: {
+                        Paths: ["team/default.png"]
                     }
                 },
                 TitlePart: {
@@ -176,7 +179,7 @@ class RegisterBrandPage extends React.Component {
                             <div className="h-100 d-md-flex d-sm-block bg-white justify-content-center align-items-center col-md-12 col-lg-8">
                                 <div className="mx-auto app-login-box col-sm-12 col-md-10 col-lg-9">
                                     <div>
-                                        <img src={new_logo} alt="Kols Viet" style={{  width: '95px' }}/>
+                                        <img src={new_logo} alt="Kols Viet" style={{ width: '95px' }} />
                                     </div>
                                     <h4>
                                         <div>Welcome,</div>

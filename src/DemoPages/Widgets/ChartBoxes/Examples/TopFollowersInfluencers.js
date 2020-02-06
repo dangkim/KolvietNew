@@ -67,9 +67,9 @@ class TopFollowersInfluencers extends React.Component {
                                                         </div>
                                                     </td>
                                                     <td className="text-center">
-                                                        <div className="badge badge-warning">{value.valueForSortingTwo}</div>
+                                                        <div className="badge badge-warning">{value.valueForSortingOne}</div>
                                                     </td>
-                                                    <td className="text-center">{value.valueForSortingOne}
+                                                    <td className="text-center">{value.valueForSortingTwo}
                                                         {/* <div className="badge badge-warning">{value.valueForSortingOne}</div> */}
                                                     </td>
                                                 </tr>
