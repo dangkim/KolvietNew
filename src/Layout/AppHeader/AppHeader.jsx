@@ -83,7 +83,7 @@ class AppHeader extends React.Component {
                                 <SearchBox handlerSearchFromParent={this.sendData} />
                             </div>
                             <div className="app-header-right">
-                                <UserBox FullName={fullName} Brand={brandObj}/>
+                                <UserBox FullName={fullName}/>
                             </div>
                         </div>
                     </div>

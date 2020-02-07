@@ -24,8 +24,6 @@ function register(brandType, userType) {
                     .then(token => {
                         brandService.register(brandType)
                             .then(brand => {
-                                dispatch(success(brand));
-
                                 const brandObj = {
                                     contentItemId: brand.ContentItemId
                                     , brandName: brand.Brand.BrandName.Text
@@ -41,9 +39,11 @@ function register(brandType, userType) {
                                     }
                                 };
 
+                                dispatch(success(brandObj));
+
                                 debugger;
 
-                                localStorage.setItem('brandObj', JSON.stringify(brand.Brand));
+                                localStorage.setItem('brandObj', JSON.stringify(brandObj));
                                 history.replace({ pathname: '/widgets/dashboard-boxes', state: { Brand: brand.Brand, type: "Brand" } });
                                 toast.success("Welcome " + userType.UserName + " Let create a Campaign");
                                 //dispatch(alertActions.success('Registration successful'));

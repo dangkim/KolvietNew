@@ -35,12 +35,12 @@ class UserBox extends React.Component {
     }
 
     componentDidMount() {
-        const { dispatch } = this.props;
-        let brandObj = JSON.parse(localStorage.getItem('brandObj'));
-        brandObj = brandObj[0] ? brandObj[0] : brandObj;
-        const email = brandObj.email ? brandObj.email : brandObj.Email
-        //debugger;
-        dispatch(brandActions.getBrandByName(email));
+        // const { dispatch } = this.props;
+        // let brandObj = JSON.parse(localStorage.getItem('brandObj'));
+        // brandObj = brandObj[0] ? brandObj[0] : brandObj;
+        // const email = brandObj.email ? brandObj.email : brandObj.Email
+        // //debugger;
+        // dispatch(brandActions.getBrandByName(email));
     }
 
     // notify2 = () => this.toastId = toast("You don't have any new items in your calendar for today! Go out and play!", {
@@ -62,14 +62,9 @@ class UserBox extends React.Component {
     };
 
     render() {
-        const { FullName, brand, Brand } = this.props;
-        const isNew = Brand ? true : false
-        const localBrand = brand ? brand : Brand;
-
+        const { brand } = this.props;
         //debugger;
-        const localFullName = localBrand.fullName ? localBrand.fullName : localBrand.FullName.Text;
-        const localAvatar = localBrand.avatar ? localBrand.avatar : localBrand.Avatar;
-        const urlIcon = (isNew === true) ? default_user : (localAvatar) ? configContent.apiUrl + (localAvatar.urls ? localAvatar.urls[0] : localAvatar.Urls[0]) : default_user
+        const urlIcon = (brand && brand.published === false) ? default_user : configContent.apiUrl + brand.urls[0]
 
         return (
             <Fragment>
@@ -92,12 +87,6 @@ class UserBox extends React.Component {
                                                     Manage
                                                 </NavLink>
                                             </NavItem>
-                                            {/* <NavItem>
-                                                <NavLink href="javascript:void(0);">
-                                                    Messages
-                                                    <div className="ml-auto badge badge-warning">512</div>
-                                                </NavLink>
-                                            </NavItem> */}
                                             <NavItem>
                                                 <NavLink onClick={this.logout}>
                                                     Logout
@@ -109,22 +98,9 @@ class UserBox extends React.Component {
                             </div>
                             <div className="widget-content-left  ml-3 header-user-info">
                                 <div className="widget-heading">
-                                    {localFullName}
+                                    {brand.fullName}
                                 </div>
-                                {/* <div className="widget-subheading">
-                                    VP People Manager
-                                </div> */}
                             </div>
-
-                            {/* <div className="widget-content-right header-user-info ml-3">
-                                <Button className="btn-shadow p-1" size="sm" onClick={this.notify2} color="info"
-                                    id="Tooltip-1">
-                                    <FontAwesomeIcon className="mr-2 ml-2" icon={faCalendarAlt} />
-                                </Button>
-                                <UncontrolledTooltip placement="bottom" target={'Tooltip-1'}>
-                                    Click for Toastify Notifications!
-                                </UncontrolledTooltip>
-                            </div> */}
                         </div>
                     </div>
                 </div>
