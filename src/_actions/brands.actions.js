@@ -24,6 +24,7 @@ function register(brandType, userType) {
                     .then(token => {
                         brandService.register(brandType)
                             .then(brand => {
+                                debugger;
                                 const brandObj = {
                                     contentItemId: brand.ContentItemId
                                     , brandName: brand.Brand.BrandName.Text

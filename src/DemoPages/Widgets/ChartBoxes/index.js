@@ -117,6 +117,13 @@ class WidgetsChartBoxes extends React.Component {
         }
     }
 
+    callbackFromTopInfluencers = (selectedTabKey, influencer) => {
+        if (influencer) {
+            this.props.parentTabCallback(selectedTabKey);
+            this.setState({ Influencer: influencer })
+        }        
+    }
+
     showModal = location => {
         this.setState({
             modalVisible: true,
@@ -277,10 +284,10 @@ class WidgetsChartBoxes extends React.Component {
                                 <Col md="12">
                                     <Row>
                                         <Col md="6">
-                                            <TopEngagementInfluencers />
+                                            <TopEngagementInfluencers parentCallback={this.callbackFromTopInfluencers}/>
                                         </Col>
                                         <Col md="6">
-                                            <TopFollowersInfluencers />
+                                            <TopFollowersInfluencers parentCallback={this.callbackFromTopInfluencers}/>
                                         </Col>
                                     </Row>
                                 </Col>

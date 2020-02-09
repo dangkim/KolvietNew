@@ -63,9 +63,11 @@ class UserBox extends React.Component {
 
     render() {
         const { brand } = this.props;
-        //debugger;
-        const urlIcon = (brand && brand.published === false) ? default_user : configContent.apiUrl + brand.urls[0]
-
+        const brandObj = JSON.parse(localStorage.getItem('brandObj'));
+        const localBrand = brandObj? brandObj: brand;
+        debugger;
+        const urlIcon = (localBrand && localBrand.published === false) ? default_user : configContent.apiUrl + localBrand.avatar.urls[0]
+        
         return (
             <Fragment>
                 <div className="header-btn-lg pr-0">
@@ -98,7 +100,7 @@ class UserBox extends React.Component {
                             </div>
                             <div className="widget-content-left  ml-3 header-user-info">
                                 <div className="widget-heading">
-                                    {brand.fullName}
+                                    {localBrand.fullName}
                                 </div>
                             </div>
                         </div>

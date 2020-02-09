@@ -24,6 +24,21 @@ class TopFollowersInfluencers extends React.Component {
         dispatch(topEngagementInfActions.getTopByFollower(5));
     }
 
+    sendData = (tabIndex, object) => {
+        // Go to detail tab
+        this.props.parentCallback(tabIndex, object);
+    }
+
+    gotoDetail(selected) {
+        //debugger;
+        const { topFollowerInf } = this.props;
+        const influencer = topFollowerInf ? topFollowerInf.topFollowers[selected] : null;
+        window.scroll(0, 450);
+        if (influencer) {
+            this.sendData(1, influencer);
+        }
+    }
+
     render() {
         const { topFollowerInf } = this.props;
         const topFollowersLocal = topFollowerInf.topFollowers ? topFollowerInf.topFollowers : []
@@ -49,7 +64,7 @@ class TopFollowersInfluencers extends React.Component {
                                         topFollowersLocal.map((value, index) => {
                                             const avg = (value.engagement + value.numberOfFollowers) / 2;
                                             return (
-                                                <tr key={index}>
+                                                <tr key={index} style={{cursor: 'pointer'}} onClick={() => this.gotoDetail(index)}>
                                                     <td className="text-center text-muted">{index}</td>
                                                     <td>
                                                         <div className="widget-content p-0">

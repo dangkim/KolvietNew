@@ -120,7 +120,6 @@ class Influencers extends Component {
     }
 
     gotoDetail(selected) {
-
         const { influencers } = this.props;
         const influencer = influencers.items ? influencers.items[selected] : null;
         window.scroll(0, 450);

@@ -53,6 +53,82 @@ async function getTopFollowers(first) {
     {
         influencer(orderBy: {valueForSortingOne: DESC}, first: `+ first + `){
           fullName
+          checkIn
+          email
+          description
+          genderDemorgraphic {
+            genderGraphicName
+            genderPercentage
+          }
+          geoDemorgraphic {
+            geoGraphicName
+            geoPercentage
+          }
+          videoLink {
+              paths
+            }
+          numberOfFollowers
+          numberOfPost
+          numberOfShare
+          numberOfReaction
+          numberOfComment
+          ageDemorgraphic {
+            ageGraphicsName
+            agePercentage
+          }
+          photo {
+            paths
+          }
+          post1 {
+              link
+              numberOfComment
+              numberOfReaction
+              numberOfShare
+              status
+              time
+              title
+              type
+            }
+            post2 {
+              link
+              numberOfComment
+              numberOfReaction
+              numberOfShare
+              status
+              time
+              title
+              type
+            }
+            post3 {
+              link
+              numberOfComment
+              numberOfReaction
+              numberOfShare
+              status
+              time
+              title
+              type
+            }
+            post4 {
+              numberOfComment
+              numberOfReaction
+              link
+              numberOfShare
+              status
+              time
+              title
+              type
+            }
+            post5 {
+              link
+              numberOfComment
+              numberOfReaction
+              numberOfShare
+              status
+              time
+              title
+              type
+            }
           valueForSortingOne
           valueForSortingTwo        
           photo {
@@ -81,7 +157,83 @@ async function getTopEngagement(first) {
   const GET_ALL_INFS = `
     {
         influencer(orderBy: {valueForSortingTwo: DESC}, first: `+ first + `){
+          checkIn
           fullName
+          email
+          description
+          genderDemorgraphic {
+            genderGraphicName
+            genderPercentage
+          }
+          geoDemorgraphic {
+            geoGraphicName
+            geoPercentage
+          }
+          videoLink {
+              paths
+            }
+          numberOfFollowers
+          numberOfPost
+          numberOfShare
+          numberOfReaction
+          numberOfComment
+          ageDemorgraphic {
+            ageGraphicsName
+            agePercentage
+          }
+          photo {
+            paths
+          }
+          post1 {
+              link
+              numberOfComment
+              numberOfReaction
+              numberOfShare
+              status
+              time
+              title
+              type
+            }
+            post2 {
+              link
+              numberOfComment
+              numberOfReaction
+              numberOfShare
+              status
+              time
+              title
+              type
+            }
+            post3 {
+              link
+              numberOfComment
+              numberOfReaction
+              numberOfShare
+              status
+              time
+              title
+              type
+            }
+            post4 {
+              numberOfComment
+              numberOfReaction
+              link
+              numberOfShare
+              status
+              time
+              title
+              type
+            }
+            post5 {
+              link
+              numberOfComment
+              numberOfReaction
+              numberOfShare
+              status
+              time
+              title
+              type
+            }
           valueForSortingOne
           valueForSortingTwo          
           photo {

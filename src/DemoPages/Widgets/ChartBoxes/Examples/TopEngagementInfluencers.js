@@ -25,6 +25,21 @@ class TopEngagementInfluencers extends React.Component {
         dispatch(topEngagementInfActions.getTopByEngagement(5));
     }
 
+    sendData = (tabIndex, object) => {
+        // Go to detail tab
+        this.props.parentCallback(tabIndex, object);
+    }
+
+    gotoDetail(selected) {
+        const { topEngagementInf } = this.props;
+        debugger;
+        const influencer = topEngagementInf ? topEngagementInf.topEngagement[selected] : null;
+        window.scroll(0, 450);
+        if (influencer) {
+            this.sendData(1, influencer);
+        }
+    }
+
     render() {
         const { topEngagementInf } = this.props;
         const topEngagementLocal = topEngagementInf.topEngagement ? topEngagementInf.topEngagement : []
@@ -49,7 +64,7 @@ class TopEngagementInfluencers extends React.Component {
                                     topEngagementInf && topEngagementInf.loading === false ?
                                         topEngagementLocal.map((value, index) => {
                                             return (
-                                                <tr key={index}>
+                                                <tr key={index} style={{cursor: 'pointer'}} onClick={() => this.gotoDetail(index)}>
                                                     <td className="text-center text-muted">{index}</td>
                                                     <td>
                                                         <div className="widget-content p-0">
