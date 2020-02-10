@@ -1,7 +1,7 @@
 import React, { Fragment } from 'react';
 import { connect } from 'react-redux';
 import Select from 'react-select';
-import { createLocations } from '../../../../_models/CommonModels';
+import { createGenderSearching } from '../../../../_models/CommonModels';
 //import cx from 'classnames';
 //import Autocomplete from 'react-autocomplete'
 
@@ -12,19 +12,18 @@ class GenderSearchBox extends React.Component {
         this.state = {
             activeSearch: false,
             searchValue: '',
-            selectedOptionLocation: {},
+            selectedOptionGender: {},
             isClearable: true,
         };
 
-        this.handleOptionLocationChange = this.handleOptionLocationChange.bind(this);
+        this.handleOptionGenderChange = this.handleOptionGenderChange.bind(this);
         this.handleChange = this.handleChange.bind(this);
         this.keyPressed = this.keyPressed.bind(this);
     }
 
-    handleOptionLocationChange = selectedOptionLocation => {
-        debugger;
-        const searchValue = selectedOptionLocation ? selectedOptionLocation.value : ''
-        this.setState({ selectedOptionLocation });
+    handleOptionGenderChange = selectedOptionGender => {
+        const searchValue = selectedOptionGender ? selectedOptionGender.value : ''
+        this.setState({ selectedOptionGender });
         this.props.handlerSearchFromParent(searchValue)
     };
 
@@ -46,16 +45,16 @@ class GenderSearchBox extends React.Component {
     }
 
     render() {
-        const { selectedOptionLocation, isClearable } = this.state
-        const options = createLocations();
+        const { selectedOptionGender, isClearable } = this.state
+        const options = createGenderSearching();
         return (
             <Fragment>
                 <div style={{ minWidth: '120px', marginLeft: '12px' }}>
                     <Select
                         maxMenuHeight={200}
                         isClearable={isClearable}
-                        //value={selectedOptionLocation}
-                        onChange={this.handleOptionLocationChange}
+                        //value={selectedOptionGender}
+                        onChange={this.handleOptionGenderChange}
                         isMulti={false}
                         placeholder="Gender..."
                         options={options} />
@@ -67,7 +66,7 @@ class GenderSearchBox extends React.Component {
 }
 function mapStateToProps(state) {
     //
-    const { campaigns, influencers, locations, interestings, jobCategories, jobs, brands } = state;
+    const { campaigns, influencers, interestings, jobCategories, jobs, brands } = state;
     //const { brand } = influencers;
     return {
         //loggingIn,
@@ -75,12 +74,11 @@ function mapStateToProps(state) {
         jobs,
         jobCategories,
         interestings,
-        locations,
         campaigns,
         influencers
     };
 }
 
-const connectedLocationGenderSearchBox = connect(mapStateToProps)(GenderSearchBox);
-export { connectedLocationGenderSearchBox as GenderSearchBox };
+const connectedGenderGenderSearchBox = connect(mapStateToProps)(GenderSearchBox);
+export { connectedGenderGenderSearchBox as GenderSearchBox };
 //export default SearchBox;

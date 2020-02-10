@@ -45,6 +45,19 @@ class Widgets extends React.Component {
         }
     }
 
+    sendSearchLocationData = (Locations) => {
+        const { dispatch } = this.props;
+        debugger;
+        //this.setState({ selectedTabKey: 0, searchValue: '', isClear: true })
+
+        if (Locations && Locations.length > 0) {
+            dispatch(infActions.getInfluencersByCategory([], this.state.first, 0, Locations, true));
+        }
+        else {
+            this.props.dispatch(infActions.getInfluencersByName(this.state.first, 0, ""));
+        }
+    }
+
     sendTabData = (activeTab) => {
         this.setState({ selectedTabKey: activeTab })
     }
@@ -66,7 +79,7 @@ class Widgets extends React.Component {
         const influencerItems = (influencers && influencers.items) ? influencers.items : [];
 
         return (<Fragment>
-            <AppHeader parentSearchCallback={this.sendData} />
+            <AppHeader parentSearchCallback={this.sendData} parentSearchLocationCallback={this.sendSearchLocationData} />
             <div className="app-main">
                 <AppSidebar />
                 <div className="app-main__outer">

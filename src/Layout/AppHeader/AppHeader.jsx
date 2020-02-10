@@ -53,7 +53,7 @@ class AppHeader extends React.Component {
 
     sendLocationSearchData = (searchValue) => {
         debugger;
-        this.props.parentSearchCallback(searchValue);
+        this.props.parentSearchLocationCallback(searchValue);
     }
 
     sendManageBrandData = (brand) => {
