@@ -65,7 +65,7 @@ class UserBox extends React.Component {
         const { brand } = this.props;
         const brandObj = JSON.parse(localStorage.getItem('brandObj'));
         const localBrand = brandObj? brandObj: brand;
-        debugger;
+        //debugger;
         const urlIcon = (localBrand && localBrand.published === false) ? default_user : configContent.apiUrl + localBrand.avatar.urls[0]
         
         return (

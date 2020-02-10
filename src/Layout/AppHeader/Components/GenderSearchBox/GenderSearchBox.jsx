@@ -5,7 +5,7 @@ import { createLocations } from '../../../../_models/CommonModels';
 //import cx from 'classnames';
 //import Autocomplete from 'react-autocomplete'
 
-class LocationSearchBox extends React.Component {
+class GenderSearchBox extends React.Component {
     constructor(props) {
         super(props);
 
@@ -50,14 +50,14 @@ class LocationSearchBox extends React.Component {
         const options = createLocations();
         return (
             <Fragment>
-                <div style={{ minWidth: '180px' }}>
+                <div style={{ minWidth: '120px', marginLeft: '12px' }}>
                     <Select
                         maxMenuHeight={200}
                         isClearable={isClearable}
                         //value={selectedOptionLocation}
                         onChange={this.handleOptionLocationChange}
                         isMulti={false}
-                        placeholder="Location..."
+                        placeholder="Gender..."
                         options={options} />
                 </div>
 
@@ -81,6 +81,6 @@ function mapStateToProps(state) {
     };
 }
 
-const connectedLocationSearchBox = connect(mapStateToProps)(LocationSearchBox);
-export { connectedLocationSearchBox as LocationSearchBox };
+const connectedLocationGenderSearchBox = connect(mapStateToProps)(GenderSearchBox);
+export { connectedLocationGenderSearchBox as GenderSearchBox };
 //export default SearchBox;

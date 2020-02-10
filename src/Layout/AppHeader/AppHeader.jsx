@@ -15,6 +15,7 @@ import HeaderLogo from '../AppLogo';
 import { SearchBox } from './Components/SearchBox/SearchBox';
 import { UserBox } from './Components/UserBox/UserBox';
 import { LocationSearchBox } from './Components/LocationSearchBox';
+import { GenderSearchBox } from './Components/GenderSearchBox/GenderSearchBox';
 
 // transitionname="HeaderAnimation"
 //                     transitionAppearTimeout={1500}
@@ -90,6 +91,9 @@ class AppHeader extends React.Component {
                             </div>
                             <div className="">
                                 <LocationSearchBox handlerSearchFromParent={this.sendLocationSearchData} />
+                            </div>
+                            <div className="">
+                                <GenderSearchBox handlerSearchFromParent={this.sendLocationSearchData} />
                             </div>
                             <div className="app-header-right">
                                 <UserBox FullName={fullName} />
