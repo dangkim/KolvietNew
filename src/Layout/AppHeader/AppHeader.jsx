@@ -14,6 +14,7 @@ import HeaderLogo from '../AppLogo';
 
 import { SearchBox } from './Components/SearchBox/SearchBox';
 import { UserBox } from './Components/UserBox/UserBox';
+import { LocationSearchBox } from './Components/LocationSearchBox';
 
 // transitionname="HeaderAnimation"
 //                     transitionAppearTimeout={1500}
@@ -49,6 +50,11 @@ class AppHeader extends React.Component {
         this.props.parentSearchCallback(searchValue);
     }
 
+    sendLocationSearchData = (searchValue) => {
+        debugger;
+        this.props.parentSearchCallback(searchValue);
+    }
+
     sendManageBrandData = (brand) => {
         this.props.parentBrandManageCallback(brand);
     }
@@ -64,7 +70,7 @@ class AppHeader extends React.Component {
 
         var fullName = ""
         if (localStorage.getItem("type") === "brand") {
-            
+
             fullName = localStorage.getItem("brandFullName");
         }
         else {
@@ -82,8 +88,11 @@ class AppHeader extends React.Component {
                             <div className="app-header-left">
                                 <SearchBox handlerSearchFromParent={this.sendData} />
                             </div>
+                            <div className="">
+                                <LocationSearchBox handlerSearchFromParent={this.sendLocationSearchData} />
+                            </div>
                             <div className="app-header-right">
-                                <UserBox FullName={fullName}/>
+                                <UserBox FullName={fullName} />
                             </div>
                         </div>
                     </div>

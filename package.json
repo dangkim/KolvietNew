@@ -78,6 +78,7 @@
     "react-addons-shallow-compare": "^15.6.0",
     "react-animated-css": "^1.0.4",
     "react-anime": "^2.2.0",
+    "react-autocomplete": "^1.8.1",
     "react-chartjs-2": "^2.8.0",
     "react-daterange-picker": "^2.0.1",
     "react-dev-utils": "^9.1.0",

@@ -67,10 +67,9 @@ class CompareInfluencers extends React.Component {
         const subComment = numberOfComment1 - numberOfComment2;
         const subShare = numberOfShare1 - numberOfShare2;
         const subEngagement = engagement1 - engagement2;
-        const subFollowers = ComparedInfluencers[0].numberOfFollowers - ComparedInfluencers[1].numberOfFollowers;
-        const subPost = ComparedInfluencers[0].numberOfPost - ComparedInfluencers[1].numberOfPost;
+        const subFollowers = ComparedInfluencers[0] && ComparedInfluencers[1] && ComparedInfluencers[0].numberOfFollowers && ComparedInfluencers[1].numberOfFollowers ? ComparedInfluencers[0].numberOfFollowers - ComparedInfluencers[1].numberOfFollowers : 0;
+        const subPost = ComparedInfluencers[0] && ComparedInfluencers[1] && ComparedInfluencers[0].numberOfPost && ComparedInfluencers[1].numberOfPost ? ComparedInfluencers[0].numberOfPost - ComparedInfluencers[1].numberOfPost : 0;
 
-        debugger;
         return (
             <Fragment>
                 <TransitionGroup component="div">

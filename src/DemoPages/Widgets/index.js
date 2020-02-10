@@ -32,6 +32,7 @@ class Widgets extends React.Component {
 
     sendData = (childData) => {
         const { dispatch } = this.props;
+        debugger;
         this.setState({ selectedTabKey: 0, searchValue: childData, isClear: true })
 
         if (childData && childData !== '') {
