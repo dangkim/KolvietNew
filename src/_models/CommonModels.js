@@ -103,7 +103,7 @@ export function createGenderSearching() {
     const gender = [
         { value: "Male", label: 'Nam' },
         { value: "Nữ", label: 'Nữ' },
-        { value: "NA", label: 'Mọi Giới' },
+        { value: "AllGender", label: 'Mọi Giới' },
     ];
     return gender;
 }

@@ -19,7 +19,7 @@ export const influencerService = {
 async function getAll(first, skip) {
   const GET_ALL_INFS = `
     {
-        influencer(first: `+ first + `, skip: ` + skip + `, status: LATEST, orderBy: {modifiedUtc: DESC}){
+        influencer(first: `+ first + `, skip: ` + skip + `, status: LATEST, orderBy: {valueForSortingTwo: DESC}){
           fullName
           numberOfFollowers
           numberOfPost
@@ -261,7 +261,7 @@ async function getTopEngagement(first) {
 async function getInfluencersByName(first, skip, userName) {
   const GET_ALL_INFS = `
     {
-        influencer(first: `+ first + `, skip: ` + skip + `, where: {displayText_contains: "` + userName + `"}, status: LATEST, orderBy: {modifiedUtc: DESC}){
+        influencer(first: `+ first + `, skip: ` + skip + `, where: {displayText_contains: "` + userName + `"}, status: LATEST, orderBy: {valueForSortingTwo: DESC}){
             fullName
             email
             description            
@@ -348,7 +348,7 @@ async function getInfluencersByName(first, skip, userName) {
 async function getTopByTrend(first, skip) {
   const GET_ALL_INFS = `
     {
-        influencer(first: `+ first + `, skip: ` + skip + `, status: LATEST, orderBy: {modifiedUtc: DESC}){
+        influencer(first: `+ first + `, skip: ` + skip + `, status: LATEST, orderBy: {valueForSortingTwo: DESC}){
             checkIn
             fullName
             email
@@ -458,7 +458,7 @@ async function getInfluencersByCategory(first, skip, categories) {
 
   const GET_ALL_INFS = `
     {
-        influencer(first: `+ first + `, skip: ` + skip + `, where: {AND: {displayText_contains: "` + items[0] + `", AND: {displayText_contains: "` + items[1] + `", AND: {displayText_contains: "` + items[2] + `", AND: {displayText_contains: "` + items[3] + `", AND: {displayText_contains: "` + items[4] + `", AND: {displayText_contains: "` + items[5] + `", AND: {displayText_contains: "` + items[6] + `", AND: {displayText_contains: "` + items[7] + `", AND: {displayText_contains: "` + items[8] + `", AND: {displayText_contains: "` + items[9] + `", AND: {displayText_contains: "` + items[10] + `", AND: {displayText_contains: "` + items[11] + `", AND: {displayText_contains: "` + items[12] + `"}}}}}}}}}}}}}}, status: LATEST, orderBy: {modifiedUtc: DESC}) {
+        influencer(first: `+ first + `, skip: ` + skip + `, where: {AND: {displayText_contains: "` + items[0] + `", AND: {displayText_contains: "` + items[1] + `", AND: {displayText_contains: "` + items[2] + `", AND: {displayText_contains: "` + items[3] + `", AND: {displayText_contains: "` + items[4] + `", AND: {displayText_contains: "` + items[5] + `", AND: {displayText_contains: "` + items[6] + `", AND: {displayText_contains: "` + items[7] + `", AND: {displayText_contains: "` + items[8] + `", AND: {displayText_contains: "` + items[9] + `", AND: {displayText_contains: "` + items[10] + `", AND: {displayText_contains: "` + items[11] + `", AND: {displayText_contains: "` + items[12] + `"}}}}}}}}}}}}}}, status: LATEST, orderBy: {valueForSortingTwo: DESC}) {
           checkIn
           fullName
           email

@@ -18,14 +18,15 @@ class LocationSearchBox extends React.Component {
 
         this.handleOptionLocationChange = this.handleOptionLocationChange.bind(this);
         this.handleChange = this.handleChange.bind(this);
-        this.keyPressed = this.keyPressed.bind(this);
+        
     }
 
     handleOptionLocationChange = selectedOptionLocation => {
         debugger;
+        window.scroll(0, 450);
+        let items = [];
         const searchValue = selectedOptionLocation ? selectedOptionLocation.label : ''
-        if (searchValue !== '') {
-            let items = [];
+        if (searchValue !== '') {            
             if (searchValue === 'TPHCM') {
                 items.push('Ho Chi Minh');
             }
@@ -483,10 +484,9 @@ class LocationSearchBox extends React.Component {
                 items.push('Tram Tau');
                 //'Yên Bái' },// Mu Cang Chai, Tram Tau
             }
-            items.push();
         }
         this.setState({ selectedOptionLocation });
-        this.props.handlerSearchFromParent(searchValue)
+        this.props.handlerSearchFromParent(items)
     };
 
     handleChange(event) {
@@ -496,15 +496,15 @@ class LocationSearchBox extends React.Component {
         });
     }
 
-    keyPressed(event) {
-        debugger;
-        const searchValue = event.value;
-        //const { activeSearch, searchValue } = this.state
-        if (searchValue) {
-            this.props.handlerSearchFromParent(searchValue)
-            this.setState({ selectedValue: searchValue });
-        }
-    }
+    // keyPressed(event) {
+    //     debugger;
+    //     const searchValue = event.value;
+    //     //const { activeSearch, searchValue } = this.state
+    //     if (searchValue) {
+    //         this.props.handlerSearchFromParent(searchValue)
+    //         this.setState({ selectedValue: searchValue });
+    //     }
+    // }
 
     render() {
         const { selectedOptionLocation, isClearable } = this.state
