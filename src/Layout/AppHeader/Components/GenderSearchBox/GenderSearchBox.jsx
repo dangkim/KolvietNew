@@ -18,7 +18,7 @@ class GenderSearchBox extends React.Component {
 
         this.handleOptionGenderChange = this.handleOptionGenderChange.bind(this);
         this.handleChange = this.handleChange.bind(this);
-        this.keyPressed = this.keyPressed.bind(this);
+        //this.keyPressed = this.keyPressed.bind(this);
     }
 
     handleOptionGenderChange = selectedOptionGender => {
@@ -34,15 +34,15 @@ class GenderSearchBox extends React.Component {
         });
     }
 
-    keyPressed(event) {
-        debugger;
-        const searchValue = event.value;
-        //const { activeSearch, searchValue } = this.state
-        if (searchValue) {
-            this.props.handlerSearchFromParent(searchValue)
-            this.setState({ selectedValue: searchValue });
-        }
-    }
+    // keyPressed(event) {
+    //     debugger;
+    //     const searchValue = event.value;
+    //     //const { activeSearch, searchValue } = this.state
+    //     if (searchValue) {
+    //         this.props.handlerSearchFromParent(searchValue)
+    //         this.setState({ selectedValue: searchValue });
+    //     }
+    // }
 
     render() {
         const { selectedOptionGender, isClearable } = this.state

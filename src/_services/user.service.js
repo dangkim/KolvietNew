@@ -81,6 +81,7 @@ function logout() {
     localStorage.removeItem('brandFullName');
     localStorage.removeItem('brandName');
     localStorage.removeItem('brandObj');
+    localStorage.removeItem('searchItems');
     
     //localStorage.removeItem('language');
     history.index = -1;

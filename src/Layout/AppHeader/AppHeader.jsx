@@ -56,6 +56,11 @@ class AppHeader extends React.Component {
         this.props.parentSearchLocationCallback(searchValue);
     }
 
+    sendGenderSearchData = (searchValue) => {
+        debugger;
+        this.props.parentSearchGenderCallback(searchValue);
+    }
+
     sendManageBrandData = (brand) => {
         this.props.parentBrandManageCallback(brand);
     }
@@ -93,7 +98,7 @@ class AppHeader extends React.Component {
                                 <LocationSearchBox handlerSearchFromParent={this.sendLocationSearchData} />
                             </div>
                             <div className="">
-                                <GenderSearchBox handlerSearchFromParent={this.sendLocationSearchData} />
+                                <GenderSearchBox handlerSearchFromParent={this.sendGenderSearchData} />
                             </div>
                             <div className="app-header-right">
                                 <UserBox FullName={fullName} />

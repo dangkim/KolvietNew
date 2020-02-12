@@ -65,7 +65,7 @@ class TopEngagementInfluencers extends React.Component {
                                         topEngagementLocal.map((value, index) => {
                                             return (
                                                 <tr key={index} style={{cursor: 'pointer'}} onClick={() => this.gotoDetail(index)}>
-                                                    <td className="text-center text-muted">{index}</td>
+                                                    <td className="text-center text-muted">{index + 1}</td>
                                                     <td>
                                                         <div className="widget-content p-0">
                                                             <div className="widget-content-wrapper">

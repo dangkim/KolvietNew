@@ -37,7 +37,16 @@ class Widgets extends React.Component {
 
         if (childData && childData !== '') {
             let items = [];
+
+            const searchItems = JSON.parse(localStorage.getItem('searchItems'));
+
+            if (searchItems && searchItems.length > 0) {
+                items = searchItems;
+            }
+
             items.push(childData);
+
+            localStorage.setItem('searchItems', JSON.stringify(items));
             dispatch(infActions.getInfluencersByCategory([], this.state.first, 0, items, true));
         }
         else {
@@ -50,8 +59,67 @@ class Widgets extends React.Component {
         debugger;
         //this.setState({ selectedTabKey: 0, searchValue: '', isClear: true })
 
+        const searchItems = JSON.parse(localStorage.getItem('searchItems'));
+
+        if (searchItems && searchItems.length > 0) {
+            // remove duplicated value from localstorage of SearchItems
+            for (let i = 0; i < Locations.length; i++) {
+
+                const element = Locations[i];
+                const index = searchItems.indexOf(element);
+
+                if (index > -1) {
+                    searchItems.splice(index, 1);
+                }
+            }
+
+            const locations = Locations;
+            Array.prototype.push.apply(locations, searchItems);
+            Locations = locations;
+        }
+
         if (Locations && Locations.length > 0) {
+            localStorage.setItem('searchItems', JSON.stringify(Locations));
             dispatch(infActions.getInfluencersByCategory([], this.state.first, 0, Locations, true));
+        }
+        else {
+            this.props.dispatch(infActions.getInfluencersByName(this.state.first, 0, ""));
+        }
+    }
+
+    sendSearchGenderData = (Gender) => {
+        const { dispatch } = this.props;
+        debugger;
+        const gender = ["Male", 'Nữ', "AllGender"];
+        //this.setState({ selectedTabKey: 0, searchValue: '', isClear: true })
+        let items = [];
+
+        const searchItems = JSON.parse(localStorage.getItem('searchItems'));
+
+        if (searchItems && searchItems.length > 0) {
+
+            // Clear all value of gender before search
+            for (let i = 0; i < gender.length; i++) {
+
+                const element = gender[i];
+                const index = searchItems.indexOf(element);
+
+                if (index > -1) {
+                    searchItems.splice(index, 1);
+                }
+            }
+
+            items = searchItems;
+        }
+
+        if (Gender && Gender !== '') {
+            items.push(Gender);
+        }
+
+        if (items.length > 0) {
+
+            localStorage.setItem('searchItems', JSON.stringify(items));
+            dispatch(infActions.getInfluencersByCategory([], this.state.first, 0, items, true));
         }
         else {
             this.props.dispatch(infActions.getInfluencersByName(this.state.first, 0, ""));
@@ -79,7 +147,7 @@ class Widgets extends React.Component {
         const influencerItems = (influencers && influencers.items) ? influencers.items : [];
 
         return (<Fragment>
-            <AppHeader parentSearchCallback={this.sendData} parentSearchLocationCallback={this.sendSearchLocationData} />
+            <AppHeader parentSearchCallback={this.sendData} parentSearchLocationCallback={this.sendSearchLocationData} parentSearchGenderCallback={this.sendSearchGenderData} />
             <div className="app-main">
                 <AppSidebar />
                 <div className="app-main__outer">

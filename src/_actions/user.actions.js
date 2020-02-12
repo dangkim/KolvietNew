@@ -25,7 +25,7 @@ function getToken(userName, password, pathname) {
                             brandService.getBrandByName(userName)
                                 .then(
                                     brand => {
-                                        debugger;
+                                        //debugger;
                                         localStorage.setItem("type", "brand");
                                         localStorage.setItem("brandFullName", brand.brand[0].fullName);
                                         localStorage.setItem("brandName", brand.brand[0].brandName);

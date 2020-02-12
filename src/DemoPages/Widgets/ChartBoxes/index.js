@@ -121,7 +121,7 @@ class WidgetsChartBoxes extends React.Component {
         if (influencer) {
             this.props.parentTabCallback(selectedTabKey);
             this.setState({ Influencer: influencer })
-        }        
+        }
     }
 
     showModal = location => {
@@ -192,7 +192,14 @@ class WidgetsChartBoxes extends React.Component {
         }
 
         this.setState({ cSelected: [...cSelected] });
+
         let items = [];
+        const searchItems = JSON.parse(localStorage.getItem('searchItems'));
+
+        if (searchItems && searchItems.length > 0) {
+            items = searchItems;
+        }
+
         if (cSelected.length > 0) {
             cSelected.map((item, key) => {
                 items.push(item);
@@ -202,6 +209,8 @@ class WidgetsChartBoxes extends React.Component {
         if (SearchValue !== '') {
             items.push(SearchValue);
         }
+
+        localStorage.setItem('searchItems', JSON.stringify(items));
 
         dispatch(infActions.getInfluencersByCategory([], first, 0, items, false));
     }
@@ -284,10 +293,10 @@ class WidgetsChartBoxes extends React.Component {
                                 <Col md="12">
                                     <Row>
                                         <Col md="6">
-                                            <TopEngagementInfluencers parentCallback={this.callbackFromTopInfluencers}/>
+                                            <TopEngagementInfluencers parentCallback={this.callbackFromTopInfluencers} />
                                         </Col>
                                         <Col md="6">
-                                            <TopFollowersInfluencers parentCallback={this.callbackFromTopInfluencers}/>
+                                            <TopFollowersInfluencers parentCallback={this.callbackFromTopInfluencers} />
                                         </Col>
                                     </Row>
                                 </Col>
