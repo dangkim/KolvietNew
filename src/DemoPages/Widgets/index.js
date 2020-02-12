@@ -11,6 +11,7 @@ import AppSidebar from '../../Layout/AppSidebar/';
 import AppFooter from '../../Layout/AppFooter/';
 import { CampaignsTable } from './Campaigns';
 import ManageBrand from './Brand';
+import { createLocations } from '../../_models/CommonModels';
 
 class Widgets extends React.Component {
     constructor(props) {
@@ -56,9 +57,11 @@ class Widgets extends React.Component {
 
     sendSearchLocationData = (Locations) => {
         const { dispatch } = this.props;
-        debugger;
-        //this.setState({ selectedTabKey: 0, searchValue: '', isClear: true })
 
+        //this.setState({ selectedTabKey: 0, searchValue: '', isClear: true })
+        const selectedLocations = JSON.parse(localStorage.getItem('SelectedLocations'));
+        //const options = createLocations();
+        const allValueOfSearch = Locations;
         const searchItems = JSON.parse(localStorage.getItem('searchItems'));
 
         if (searchItems && searchItems.length > 0) {
@@ -73,14 +76,30 @@ class Widgets extends React.Component {
                 }
             }
 
+            if (selectedLocations && selectedLocations.length > 0) {
+
+                for (let j = 0; j < selectedLocations.length; j++) {
+
+                    const element = selectedLocations[j];
+                    const index = searchItems.indexOf(element);
+
+                    if (index > -1) {
+                        searchItems.splice(index, 1);
+                    }
+                }
+            }
+
             const locations = Locations;
-            Array.prototype.push.apply(locations, searchItems);
-            Locations = locations;
+            localStorage.setItem('SelectedLocations', JSON.stringify(locations));
+
+            Array.prototype.push.apply(allValueOfSearch, searchItems);
+            //Locations = locations;
         }
 
         if (Locations && Locations.length > 0) {
-            localStorage.setItem('searchItems', JSON.stringify(Locations));
-            dispatch(infActions.getInfluencersByCategory([], this.state.first, 0, Locations, true));
+            localStorage.setItem('searchItems', JSON.stringify(allValueOfSearch));
+
+            dispatch(infActions.getInfluencersByCategory([], this.state.first, 0, allValueOfSearch, true));
         }
         else {
             this.props.dispatch(infActions.getInfluencersByName(this.state.first, 0, ""));

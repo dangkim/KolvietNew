@@ -22,8 +22,8 @@ class LocationSearchBox extends React.Component {
     }
 
     handleOptionLocationChange = selectedOptionLocation => {
-        debugger;
-        window.scroll(0, 450);
+        //debugger;
+        window.scroll(0, 100);
         let items = [];
         const searchValue = selectedOptionLocation ? selectedOptionLocation.label : ''
         if (searchValue !== '') {            
