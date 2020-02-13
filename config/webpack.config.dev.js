@@ -282,12 +282,12 @@ module.exports = {
   externals: {
     // global app config object
     configContent: JSON.stringify({
-      //apiUrl: 'http://bdo8.com/'
-      apiUrl: 'https://localhost:44300'
+      apiUrl: 'http://bdo8.com'
+      //apiUrl: 'https://localhost:44300'
     }),
     configOrchardCore: JSON.stringify({
-      //apiUrl: 'http://bdo8.com/api/'
-      apiUrl: 'https://localhost:44300/api'
+      apiUrl: 'http://bdo8.com/api'
+      //apiUrl: 'https://localhost:44300/api'
     })
   },
   // Turn off performance hints during development because we don't do any

@@ -49,7 +49,8 @@ export function influencers(state = {}, action) {
     case infConstants.INFS_INFINITE_SUCCESS:
       return {
         loading: false,
-        items: action.influencers
+        items: action.influencers,
+        hasData: action.hasData
       };
     case infConstants.INFS_INFINITE_FAILURE:
       return {
@@ -102,6 +103,7 @@ export function influencers(state = {}, action) {
       return {
         loading: false,
         isClearList: action.isClearList,
+        hasData: true,
         items: action.influencers
       };
     case infConstants.INFS_GETBYCATEGORY_REQUEST:

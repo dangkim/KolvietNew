@@ -22,6 +22,7 @@ class GenderSearchBox extends React.Component {
     }
 
     handleOptionGenderChange = selectedOptionGender => {
+        window.scroll(0, 90);
         const searchValue = selectedOptionGender ? selectedOptionGender.value : ''
         this.setState({ selectedOptionGender });
         this.props.handlerSearchFromParent(searchValue)

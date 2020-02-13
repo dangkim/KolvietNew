@@ -113,14 +113,20 @@ function getAll(first, skip) {
     function failure(error) { return { type: infConstants.INFS_GETALL_FAILURE, error } }
 }
 
-function infiniteScrollLoader(previousValues, first, skip) {
+function infiniteScrollLoader(previousValues, first, skip, categories) {
     return dispatch => {
         dispatch(request(previousValues));
-        influencerService.getAll(first, skip)
+        influencerService.getInfluencersByCategory(first, skip, categories)
             .then(
                 influencers => {
-                    previousValues.push(...influencers.influencer);
-                    dispatch(success(previousValues))
+                    debugger;
+                    if (influencers.influencer.length > 0) {
+                        previousValues.push(...influencers.influencer);
+                        dispatch(success(previousValues, true))
+                    } else {
+                        dispatch(success(previousValues, false))
+                    }
+
                 },
                 error => {
                     dispatch(failure(error.toString()));
@@ -133,7 +139,7 @@ function infiniteScrollLoader(previousValues, first, skip) {
     };
 
     function request(previousValues) { return { type: infConstants.INFS_INFINITE_REQUEST, previousValues } }
-    function success(influencers) { return { type: infConstants.INFS_INFINITE_SUCCESS, influencers } }
+    function success(influencers, hasData) { return { type: infConstants.INFS_INFINITE_SUCCESS, influencers, hasData } }
     function failure(error) { return { type: infConstants.INFS_INFINITE_FAILURE, error } }
 }
 

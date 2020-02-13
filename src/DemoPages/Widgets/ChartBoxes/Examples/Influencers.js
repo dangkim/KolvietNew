@@ -79,15 +79,16 @@ class Influencers extends Component {
     loadInfinity() {
         const { dispatch, influencers, FilterInfluencers } = this.props;
         //const influencersLocal = (FilterInfluencers && FilterInfluencers.length > 0) ? FilterInfluencers : influencers;
-        //debugger;
-        const { first, hasMore, searchValue } = this.state;
+        debugger;
+        const { first } = this.state;
         const influencerItems = (influencers && influencers.items) ? influencers.items : [];
+        const hasData = (influencers && (typeof influencers.hasData !== 'undefined')) ? influencers.hasData : true;
         const influencersLocal = (FilterInfluencers && FilterInfluencers.length > 0) ? FilterInfluencers : influencerItems;
 
         const infItems = influencersLocal;
         //const infItems = influencersLocal.items ? influencersLocal.items : [];
 
-        if (infItems.length < 45) {
+        if (infItems.length < 45 && hasData === true) {
 
             const { influencers } = this.props;
             if (influencers && influencers.items) {
@@ -100,7 +101,9 @@ class Influencers extends Component {
                     this.sendData(2, items, null);
                 }
                 else {
-                    dispatch(infActions.infiniteScrollLoader(infItems, first, infItems.length));
+                    const searchItems = JSON.parse(localStorage.getItem('searchItems'));
+                    const localSearch = searchItems ? searchItems : []
+                    dispatch(infActions.infiniteScrollLoader(infItems, first, infItems.length, localSearch));
                 }
             }
         }
@@ -131,7 +134,7 @@ class Influencers extends Component {
 
     onCheckboxBtnClick(selected) {
         const index = this.state.cSelected.indexOf(selected);
-        
+
         if (index < 0) {
             this.state.cSelected.push(selected);
         } else {
@@ -186,7 +189,7 @@ class Influencers extends Component {
         const influencersLocal = (FilterInfluencers && FilterInfluencers.length > 0) ? FilterInfluencers : influencerItems;
 
         if (!influencers.items) {
-            dispatch(infActions.getInfluencersByName(first, 0, searchValue));    
+            dispatch(infActions.getInfluencersByName(first, 0, searchValue));
         }
 
     }
@@ -241,17 +244,8 @@ class Influencers extends Component {
 
     render() {
 
-        const settings = {
-            dots: true,
-            infinite: true,
-            fade: true,
-            speed: 800,
-            slidesToShow: 1,
-            autoplay: true,
-            slidesToScroll: 1
-        };
-        const { modalVisible } = this.state;
-        const { influencers, SearchValue, FilterInfluencers, TopEngagement } = this.props;
+        const { currentItemCount } = this.state;
+        const { influencers, FilterInfluencers } = this.props;
 
         const influencerItems = (influencers && influencers.items) ? influencers.items : [];
         const influencersLocal = (FilterInfluencers && FilterInfluencers.length > 0) ? FilterInfluencers : influencerItems;

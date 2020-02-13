@@ -35,32 +35,50 @@ class Widgets extends React.Component {
         const { dispatch } = this.props;
         debugger;
         this.setState({ selectedTabKey: 0, searchValue: childData, isClear: true })
+        const selectedName = JSON.parse(localStorage.getItem('selectedName'));
+        const searchItems = JSON.parse(localStorage.getItem('searchItems'));
+        let items = [];
 
-        if (childData && childData !== '') {
-            let items = [];
+        if (selectedName && searchItems) {
+            const index = searchItems.indexOf(selectedName);
 
-            const searchItems = JSON.parse(localStorage.getItem('searchItems'));
+            if (index > -1) {
+                searchItems.splice(index, 1);
+            }
+        }
+
+        if (childData && childData !== '') {            
 
             if (searchItems && searchItems.length > 0) {
+
+                const index = searchItems.indexOf(childData);
+
+                if (index > -1) {
+                    searchItems.splice(index, 1);
+                }
+
                 items = searchItems;
             }
 
             items.push(childData);
 
+            localStorage.setItem('selectedName', JSON.stringify(childData));
             localStorage.setItem('searchItems', JSON.stringify(items));
+
             dispatch(infActions.getInfluencersByCategory([], this.state.first, 0, items, true));
         }
         else {
-            this.props.dispatch(infActions.getInfluencersByName(this.state.first, 0, ""));
+            localStorage.setItem('selectedName', JSON.stringify(null));
+            localStorage.setItem('searchItems', JSON.stringify(items));
+            dispatch(infActions.getInfluencersByCategory([], this.state.first, 0, searchItems, true));
+            //this.props.dispatch(infActions.getInfluencersByName(this.state.first, 0, ""));
         }
     }
 
     sendSearchLocationData = (Locations) => {
         const { dispatch } = this.props;
 
-        //this.setState({ selectedTabKey: 0, searchValue: '', isClear: true })
-        const selectedLocations = JSON.parse(localStorage.getItem('SelectedLocations'));
-        //const options = createLocations();
+        const selectedLocations = JSON.parse(localStorage.getItem('selectedLocations'));
         const allValueOfSearch = Locations;
         const searchItems = JSON.parse(localStorage.getItem('searchItems'));
 
@@ -90,27 +108,19 @@ class Widgets extends React.Component {
             }
 
             const locations = Locations;
-            localStorage.setItem('SelectedLocations', JSON.stringify(locations));
+            localStorage.setItem('selectedLocations', JSON.stringify(locations));
 
             Array.prototype.push.apply(allValueOfSearch, searchItems);
-            //Locations = locations;
         }
 
-        if (Locations && Locations.length > 0) {
-            localStorage.setItem('searchItems', JSON.stringify(allValueOfSearch));
-
-            dispatch(infActions.getInfluencersByCategory([], this.state.first, 0, allValueOfSearch, true));
-        }
-        else {
-            this.props.dispatch(infActions.getInfluencersByName(this.state.first, 0, ""));
-        }
+        dispatch(infActions.getInfluencersByCategory([], this.state.first, 0, allValueOfSearch, true));
     }
 
     sendSearchGenderData = (Gender) => {
         const { dispatch } = this.props;
         debugger;
         const gender = ["Male", 'Nữ', "AllGender"];
-        //this.setState({ selectedTabKey: 0, searchValue: '', isClear: true })
+
         let items = [];
 
         const searchItems = JSON.parse(localStorage.getItem('searchItems'));
@@ -135,14 +145,8 @@ class Widgets extends React.Component {
             items.push(Gender);
         }
 
-        if (items.length > 0) {
-
-            localStorage.setItem('searchItems', JSON.stringify(items));
-            dispatch(infActions.getInfluencersByCategory([], this.state.first, 0, items, true));
-        }
-        else {
-            this.props.dispatch(infActions.getInfluencersByName(this.state.first, 0, ""));
-        }
+        localStorage.setItem('searchItems', JSON.stringify(items));
+        dispatch(infActions.getInfluencersByCategory([], this.state.first, 0, items, true));
     }
 
     sendTabData = (activeTab) => {

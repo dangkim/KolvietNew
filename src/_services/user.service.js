@@ -82,6 +82,9 @@ function logout() {
     localStorage.removeItem('brandName');
     localStorage.removeItem('brandObj');
     localStorage.removeItem('searchItems');
+    localStorage.removeItem('selectedLocations');
+    localStorage.removeItem('cSelected');
+    localStorage.removeItem('selectedName');
     
     //localStorage.removeItem('language');
     history.index = -1;

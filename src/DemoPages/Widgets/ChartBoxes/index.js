@@ -194,23 +194,37 @@ class WidgetsChartBoxes extends React.Component {
         this.setState({ cSelected: [...cSelected] });
 
         let items = [];
+        //debugger;
         const searchItems = JSON.parse(localStorage.getItem('searchItems'));
+        const allCategories = ['food', 'cosmetics', 'fashion', 'sport', 'travel', 'event', 'entertaining', 'housewife', 'technology', 'realestate', 'furniture', 'appliances', 'auto', 'game', 'app', 'technology', 'software']
 
         if (searchItems && searchItems.length > 0) {
+            for (let i = 0; i < allCategories.length; i++) {
+
+                const element = allCategories[i];
+                const index = searchItems.indexOf(element.toLowerCase());
+
+                if (index > -1) {
+                    searchItems.splice(index, 1);
+                }
+            }
+
             items = searchItems;
         }
 
+
         if (cSelected.length > 0) {
             cSelected.map((item, key) => {
-                items.push(item);
+                items.push(item.toLowerCase());
             })
         }
 
-        if (SearchValue !== '') {
-            items.push(SearchValue);
-        }
+        // if (SearchValue !== '') {
+        //     items.push(SearchValue);
+        // }
 
         localStorage.setItem('searchItems', JSON.stringify(items));
+        localStorage.setItem('cSelected', JSON.stringify(cSelected));
 
         dispatch(infActions.getInfluencersByCategory([], first, 0, items, false));
     }
@@ -218,9 +232,10 @@ class WidgetsChartBoxes extends React.Component {
     render() {
         const { cSelected, Influencer, Brand, modalVisible, type, userName, ComparedInfluencers } = this.state;
         const { FilterInfluencers, SearchValue, ActiveTab, i18n, isClear, influencers } = this.props;
-        const cSelectedLocal = influencers.isClearList ? [] : cSelected;
+        const cSelectedObj = JSON.parse(localStorage.getItem('cSelected')) ? JSON.parse(localStorage.getItem('cSelected')) : cSelected;
+        const cSelectedLocal = cSelectedObj;//influencers.isClearList ? [] : cSelectedObj;//cSelected;
         let tabsContent = [];
-
+        debugger;
         if (FilterInfluencers.length > 0) {
             tabsContent = [
                 {
