@@ -136,11 +136,27 @@ class InfluencerDetail extends Component {
                             <Row>
                                 <Col md="12">
                                     <Card className="main-card mb-3">
-                                        {/* <div className="card-header"><Trans>Description</Trans>
-                                        </div> */}
                                         <div className="card-header" style={{ height: '125px' }}>
                                             <img className="rounded-circle" style={{ maxHeight: '120px', maxWidth: '120px', margin: 'auto' }} src={Influencer && Influencer.photo ? Influencer.photo.paths[1] : default_user} />
                                         </div>
+                                    </Card>
+                                </Col>
+                            </Row>
+                            {/* <Row>
+                                <Col md="12">
+                                    <Card className="main-card mb-3">
+                                        <div className="card-header" style={{ height: '125px' }}>
+                                            <img className="rounded-circle" style={{ maxHeight: '120px', maxWidth: '120px', margin: 'auto' }} src={Influencer && Influencer.photo ? Influencer.photo.paths[1] : default_user} />
+                                        </div>
+                                        <div className="text-center" style={{ whiteSpace: 'pre-wrap' }}>
+                                            {Influencer && Influencer.description ? Influencer.description.split('|').join('\n') : ''}
+                                        </div>
+                                    </Card>
+                                </Col>
+                            </Row> */}
+                            <Row>
+                                <Col md="12">
+                                    <Card className="main-card mb-3">
                                         <div className="text-center" style={{ whiteSpace: 'pre-wrap' }}>
                                             {Influencer && Influencer.description ? Influencer.description.split('|').join('\n') : ''}
                                         </div>
