@@ -51,6 +51,7 @@ class LoginPage extends React.Component {
     render() {
 
         const { loggingIn, token, i18n } = this.props;
+        //debugger;
         const { userName, password, submitted } = this.state;
         const settings = {
             dots: true,

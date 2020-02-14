@@ -20,7 +20,7 @@ function getToken(userName, password, pathname) {
             .then(token => {
                 userService.getContentType(token)
                     .then(type => {
-                        if (type === "Brand") {
+                        if (type === "Brand") {                            
                             // get Brand
                             brandService.getBrandByName(userName)
                                 .then(
@@ -63,6 +63,7 @@ function getToken(userName, password, pathname) {
 
                             history.replace({ pathname: '/widgets/dashboard-boxes', state: { Brand: brand, type: type } });
                         }
+                        dispatch(success({}));
                         toast.success("Welcome " + userName);
                     },
                         error => {

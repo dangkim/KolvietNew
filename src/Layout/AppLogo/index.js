@@ -4,6 +4,7 @@ import { themeActions } from '../../_actions';
 import Hamburger from 'react-hamburgers';
 
 import AppMobileMenu from '../AppMobileMenu';
+import { history } from '../../_helpers';
 //import big_logo from '../../assets/utils/images/big_logo.png';
 
 class HeaderLogo extends React.Component {
@@ -15,6 +16,7 @@ class HeaderLogo extends React.Component {
             activeSecondaryMenuMobile: false
         };
 
+        this.handleBackToHomePage = this.handleBackToHomePage.bind(this);
     }
 
     toggleEnableClosedSidebar = () => {
@@ -31,6 +33,27 @@ class HeaderLogo extends React.Component {
         noTouchClose: false,
     };
 
+    handleBackToHomePage() {
+        localStorage.removeItem('user');
+        localStorage.removeItem('token');
+        localStorage.removeItem('campaign');
+        localStorage.removeItem('job');
+        localStorage.removeItem('dateValue');
+        localStorage.removeItem('selectedOptionLocation');
+        localStorage.removeItem('selectedOptionInteresting');
+        localStorage.removeItem('selectedOptionJobCategory');
+        localStorage.removeItem('type');
+        localStorage.removeItem('infName');
+        localStorage.removeItem('brandFullName');
+        localStorage.removeItem('brandName');
+        localStorage.removeItem('brandObj');
+        localStorage.removeItem('searchItems');
+        localStorage.removeItem('selectedLocations');
+        localStorage.removeItem('cSelected');
+        localStorage.removeItem('selectedName');
+        history.replace({ pathname: '/pages/landingpage' })
+    }
+
     render() {
         let {
             enableClosedSidebar,
@@ -38,7 +61,7 @@ class HeaderLogo extends React.Component {
         return (
             <Fragment>
                 <div className="app-header__logo">
-                    <div className="logo-src"></div>
+                    <div className="logo-src" style={{ cursor: 'pointer' }} onClick={this.handleBackToHomePage}></div>
                     {/* <div>
                         <img src={big_logo} alt="Kols Viet" style={{ border: 'none', width: '90px', borderRadius: 'unset' }} />
                     </div> */}
