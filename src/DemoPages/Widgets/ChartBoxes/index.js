@@ -106,7 +106,7 @@ class WidgetsChartBoxes extends React.Component {
     }
 
     callbackFunction = (selectedTabKey, childData, index) => {
-
+        debugger;
         if (index !== null) {
             this.props.parentTabCallback(selectedTabKey);
             this.setState({ Influencer: childData[index] })
@@ -118,7 +118,7 @@ class WidgetsChartBoxes extends React.Component {
     }
 
     callbackFromTopInfluencers = (selectedTabKey, influencer) => {
-        if (influencer) {
+        if (influencer) {            
             this.props.parentTabCallback(selectedTabKey);
             this.setState({ Influencer: influencer })
         }
@@ -235,7 +235,7 @@ class WidgetsChartBoxes extends React.Component {
         const cSelectedObj = JSON.parse(localStorage.getItem('cSelected')) ? JSON.parse(localStorage.getItem('cSelected')) : cSelected;
         const cSelectedLocal = cSelectedObj;//influencers.isClearList ? [] : cSelectedObj;//cSelected;
         let tabsContent = [];
-        debugger;
+    
         if (FilterInfluencers.length > 0) {
             tabsContent = [
                 {
@@ -248,7 +248,7 @@ class WidgetsChartBoxes extends React.Component {
                 },
                 {
                     title: i18n.i18n.t('Comparison Influencers'),
-                    content: <CompareInfluencers ComparedInfluencers={ComparedInfluencers} />
+                    content: <CompareInfluencers ComparedInfluencers={ComparedInfluencers} parentCallback={this.callbackFunction}/>
                 },
                 {
                     title: i18n.i18n.t('Create Campaign'),

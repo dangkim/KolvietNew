@@ -114,7 +114,7 @@
     "redux-thunk": "^2.2.0",
     "resolve-url-loader": "^2.1.0",
     "style-loader": "0.18.2",
-    "styled-components": "^4.4.0",
+    "styled-components": "^4.4.1",
     "sugarss": "^2.0.0",
     "superagent": "^5.1.0",
     "sw-precache-webpack-plugin": "0.11.5",

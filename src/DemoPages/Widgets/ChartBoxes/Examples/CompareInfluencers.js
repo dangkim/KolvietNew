@@ -6,7 +6,7 @@ import {
     TransitionGroup,
 } from 'react-transition-group';
 import {
-    Button, UncontrolledButtonDropdown,
+    Button, ButtonGroup,
     DropdownToggle, Dropdown, DropdownMenu,
     DropdownItem,
 } from 'reactstrap';
@@ -26,8 +26,37 @@ class CompareInfluencers extends React.Component {
         this.onMouseEnter = this.onMouseEnter.bind(this);
         this.onMouseLeave = this.onMouseLeave.bind(this);
         this.state = {
-            dropdownOpen: false
+            dropdownOpen: false,
+            hoverInf01: false,
+            hoverInf02: false
         };
+
+        this.gotoDetail = this.gotoDetail.bind(this);
+        this.toggleHoverInf01 = this.toggleHoverInf01.bind(this);
+        this.toggleHoverInf02 = this.toggleHoverInf02.bind(this);
+    }
+
+    toggleHoverInf01() {
+        this.setState({ hoverInf01: !this.state.hoverInf01 })
+    }
+
+    toggleHoverInf02() {
+        this.setState({ hoverInf02: !this.state.hoverInf02 })
+    }
+
+    sendData = (tabIndex, object, index) => {
+        // Go to detail tab
+        this.props.parentCallback(tabIndex, object, index);
+    }
+
+    gotoDetail(index) {
+        const { ComparedInfluencers } = this.props;
+        const influencer = ComparedInfluencers ? ComparedInfluencers[index] : null;
+        debugger;
+        //window.scroll(0, 450);
+        if (influencer) {
+            this.sendData(1, ComparedInfluencers, index);
+        }
     }
 
     toggle() {
@@ -70,6 +99,21 @@ class CompareInfluencers extends React.Component {
         const subFollowers = ComparedInfluencers[0] && ComparedInfluencers[1] && ComparedInfluencers[0].numberOfFollowers && ComparedInfluencers[1].numberOfFollowers ? ComparedInfluencers[0].numberOfFollowers - ComparedInfluencers[1].numberOfFollowers : 0;
         const subPost = ComparedInfluencers[0] && ComparedInfluencers[1] && ComparedInfluencers[0].numberOfPost && ComparedInfluencers[1].numberOfPost ? ComparedInfluencers[0].numberOfPost - ComparedInfluencers[1].numberOfPost : 0;
 
+        var linkStyleInf01;
+        var linkStyleInf02;
+
+        if (this.state.hoverInf01) {
+            linkStyleInf01 = { color: '#764ba2', cursor: 'pointer' }
+        } else {
+            linkStyleInf01 = { color: '#000' }
+        }
+
+        if (this.state.hoverInf02) {
+            linkStyleInf02 = { color: '#764ba2', cursor: 'pointer' }
+        } else {
+            linkStyleInf02 = { color: '#000' }
+        }
+
         return (
             <Fragment>
                 <TransitionGroup component="div">
@@ -81,10 +125,10 @@ class CompareInfluencers extends React.Component {
                                         <CardTitle>
                                             <Row>
                                                 <Col md="6">
-                                                    {ComparedInfluencers.length > 0 ? ComparedInfluencers[0].fullName : ''}
+                                                    <p style={linkStyleInf01} onClick={() => this.gotoDetail(0)} onMouseEnter={this.toggleHoverInf01} onMouseLeave={this.toggleHoverInf01}>{ComparedInfluencers.length > 0 ? ComparedInfluencers[0].fullName : ''}</p>
                                                 </Col>
                                                 <Col md="6">
-                                                    {ComparedInfluencers.length > 0 ? ComparedInfluencers[1].fullName : ''}
+                                                    <p style={linkStyleInf02} onClick={() => this.gotoDetail(1)} onMouseEnter={this.toggleHoverInf02} onMouseLeave={this.toggleHoverInf02}>{ComparedInfluencers.length > 0 ? ComparedInfluencers[1].fullName : ''}</p>
                                                 </Col>
                                             </Row>
 
