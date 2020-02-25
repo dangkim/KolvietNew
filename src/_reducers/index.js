@@ -18,6 +18,7 @@ import { alert } from './alert.reducer';
 import { theme } from './theme.reducer';
 import { topEngagementInf } from './topEngagementInf.reducer';
 import { topFollowerInf } from './topFollowerInf.reducer';
+import { relativeInfluencer } from './relativeInfluencer.reducer';
 
 const rootReducer = combineReducers({
   authentication,
@@ -32,7 +33,8 @@ const rootReducer = combineReducers({
   alert,
   theme,
   topEngagementInf,
-  topFollowerInf
+  topFollowerInf,
+  relativeInfluencer
 });
 
 export default rootReducer;

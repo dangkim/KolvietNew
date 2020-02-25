@@ -16,6 +16,7 @@ export const infActions = {
     infiniteScrollLoader,
     searchScrollLoader,
     getInfluencersByCategory,
+    getRelativeInfluencers
 };
 
 function register(infType, userType) {
@@ -215,6 +216,25 @@ function getInfluencersByCategory(previousValues, first, skip, categories, isCle
     function request(previousValues) { return { type: infConstants.INFS_GETBYCATEGORY_REQUEST, previousValues, isClearList } }
     function success(influencers) { return { type: infConstants.INFS_GETBYCATEGORY_SUCCESS, influencers, isClearList } }
     function failure(error) { return { type: infConstants.INFS_GETBYCATEGORY_FAILURE, error } }
+}
+
+function getRelativeInfluencers(previousValues, first, skip, categories, isClearList) {
+    return dispatch => {
+        dispatch(request(previousValues));
+        influencerService.getInfluencersByCategory(first, skip, categories)
+            .then(
+                influencers => {
+                    dispatch(success(influencers.influencer));
+                },
+                error => {
+                    toast.error("Please try again");
+                }
+            );
+    };
+
+    function request(previousValues) { return { type: infConstants.INFS_RELATIVE_REQUEST, previousValues, isClearList } }
+    function success(influencers) { return { type: infConstants.INFS_RELATIVE_SUCCESS, influencers, isClearList } }
+    function failure(error) { return { type: infConstants.INFS_RELATIVE_FAILURE, error } }
 }
 
 function getAllJobCategories() {
