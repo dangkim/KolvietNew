@@ -47,7 +47,7 @@ class Widgets extends React.Component {
             }
         }
 
-        if (childData && childData !== '') {            
+        if (childData && childData !== '') {
 
             if (searchItems && searchItems.length > 0) {
 
@@ -141,7 +141,7 @@ class Widgets extends React.Component {
             items = searchItems;
         }
 
-        if (Gender && Gender !== '') {
+        if (Gender && Gender !== '' && Gender !== 'AllGender') {
             items.push(Gender);
         }
 
