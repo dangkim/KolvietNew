@@ -165,8 +165,8 @@ class Widgets extends React.Component {
     }
 
     render() {
-        const { searchValue, selectedTabKey, isClear, brand } = this.state;
-        const { influencers, topEngagement } = this.props;
+        const { searchValue, selectedTabKey} = this.state;
+        const { influencers } = this.props;
         const influencerItems = (influencers && influencers.items) ? influencers.items : [];
 
         return (<Fragment>

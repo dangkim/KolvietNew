@@ -19,10 +19,10 @@ class RelativeInfluencers extends React.Component {
         };
     }
 
-    componentDidMount() {
-        const { dispatch } = this.props;
-        dispatch(topEngagementInfActions.getTopByFollower(5));
-    }
+    // componentDidMount() {
+    //     const { dispatch } = this.props;
+    //     dispatch(topEngagementInfActions.getRelativeInfluencers(5));
+    // }
 
     sendData = (tabIndex, object) => {
         // Go to detail tab

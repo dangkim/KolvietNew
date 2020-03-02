@@ -4,7 +4,8 @@ import { toast } from "react-toastify";
 
 export const topEngagementInfActions = {
     getTopByEngagement,
-    getTopByFollower
+    getTopByFollower,
+    getRelativeInfluencers
 };
 
 function getTopByEngagement(first) {
@@ -40,6 +41,34 @@ function getTopByFollower(first) {
         dispatch(request());
 
         influencerService.getTopFollowers(first)
+            .then(
+                influencers => {
+                    //influencers.influencer.sort((a, b) => a.numberOfFollowers > b.numberOfFollowers ? -1 : 1)
+
+                    influencers.influencer.map((value, index) => {
+                        return Object.assign(value, {
+                            ...value,
+                            //engagement: calEngagement(value.numberOfReaction, value.numberOfComment, value.numberOfShare)
+                        });
+                    });
+                    dispatch(success(influencers.influencer))
+                },
+                error => {
+                    toast.error("Please try again");
+                }
+            );
+    };
+
+    function request() { return { type: infConstants.INFS_TOPFOLLOWER_REQUEST } }
+    function success(topFollowerInf) { return { type: infConstants.INFS_TOPFOLLOWER_SUCCESS, topFollowerInf } }
+    function failure(error) { return { type: infConstants.INFS_TOPFOLLOWER_FAILURE, error } }
+}
+
+function getRelativeInfluencers(first) {
+    return dispatch => {
+        dispatch(request());
+
+        influencerService.getRelativeInfluencers(first)
             .then(
                 influencers => {
                     //influencers.influencer.sort((a, b) => a.numberOfFollowers > b.numberOfFollowers ? -1 : 1)

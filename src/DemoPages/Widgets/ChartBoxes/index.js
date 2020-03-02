@@ -106,15 +106,17 @@ class WidgetsChartBoxes extends React.Component {
     }
 
     callbackFunction = (selectedTabKey, childData, index) => {
-        debugger;
+        const { dispatch } = this.props;
         if (index !== null) {
-            this.props.parentTabCallback(selectedTabKey);
+            this.props.parentTabCallback(selectedTabKey);            
             this.setState({ Influencer: childData[index] })
         }
         else {
             this.props.parentTabCallback(selectedTabKey);
             this.setState({ ComparedInfluencers: childData })
         }
+
+        //dispatch(infActions.getInfluencersByCategory([], first, 0, items, false));
     }
 
     callbackFromTopInfluencers = (selectedTabKey, influencer) => {
@@ -170,7 +172,7 @@ class WidgetsChartBoxes extends React.Component {
         });
 
     onCheckboxBtnClick(selected1, selected2) {
-        const { cSelected, first, SearchValue } = this.state;
+        const { cSelected, first } = this.state;
         const { dispatch } = this.props;
         window.scroll(0, 410);
         this.props.parentTabCallback(0);
@@ -230,8 +232,8 @@ class WidgetsChartBoxes extends React.Component {
     }
 
     render() {
-        const { cSelected, Influencer, Brand, modalVisible, type, userName, ComparedInfluencers } = this.state;
-        const { FilterInfluencers, SearchValue, ActiveTab, i18n, isClear, influencers } = this.props;
+        const { cSelected, Influencer, Brand, type, userName, ComparedInfluencers } = this.state;
+        const { FilterInfluencers, SearchValue, ActiveTab, i18n } = this.props;
         const cSelectedObj = JSON.parse(localStorage.getItem('cSelected')) ? JSON.parse(localStorage.getItem('cSelected')) : cSelected;
         const cSelectedLocal = cSelectedObj;//influencers.isClearList ? [] : cSelectedObj;//cSelected;
         let tabsContent = [];
