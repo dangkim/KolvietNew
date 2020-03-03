@@ -107,22 +107,45 @@ class WidgetsChartBoxes extends React.Component {
 
     callbackFunction = (selectedTabKey, childData, index) => {
         const { dispatch } = this.props;
+        const { first } = this.state;
+        let items = [];
+
         if (index !== null) {
-            this.props.parentTabCallback(selectedTabKey);            
-            this.setState({ Influencer: childData[index] })
+            this.props.parentTabCallback(selectedTabKey);
+            this.setState({ Influencer: childData[index] })            
+            const categories = childData[index].displayText.split(';')
+            const fullName = childData[index].fullName;
+            categories.forEach(element => {
+                if (element !== '' && element !== fullName && element !== "Nữ" && element !== "Male" && element.toLowerCase() !== "allgender") {
+                    items.push(element)
+                }
+            });
+
+            dispatch(infActions.getRelativeInfluencers([], 5, 0, items, false));
         }
         else {
             this.props.parentTabCallback(selectedTabKey);
             this.setState({ ComparedInfluencers: childData })
         }
-
-        //dispatch(infActions.getInfluencersByCategory([], first, 0, items, false));
     }
 
     callbackFromTopInfluencers = (selectedTabKey, influencer) => {
-        if (influencer) {            
+        let items = [];
+        const { dispatch } = this.props;
+        const { first } = this.state;
+        if (influencer) {
             this.props.parentTabCallback(selectedTabKey);
             this.setState({ Influencer: influencer })
+
+            const categories = influencer.displayText.split(';')
+            const fullName = influencer.fullName;
+            categories.forEach(element => {
+                if (element !== '' && element !== fullName && element !== "Nữ" && element !== "Male" && element.toLowerCase() !== "allgender") {
+                    items.push(element)
+                }
+            });
+
+            dispatch(infActions.getRelativeInfluencers([], 5, 0, items, false));
         }
     }
 
@@ -237,7 +260,7 @@ class WidgetsChartBoxes extends React.Component {
         const cSelectedObj = JSON.parse(localStorage.getItem('cSelected')) ? JSON.parse(localStorage.getItem('cSelected')) : cSelected;
         const cSelectedLocal = cSelectedObj;//influencers.isClearList ? [] : cSelectedObj;//cSelected;
         let tabsContent = [];
-    
+
         if (FilterInfluencers.length > 0) {
             tabsContent = [
                 {
@@ -250,7 +273,7 @@ class WidgetsChartBoxes extends React.Component {
                 },
                 {
                     title: i18n.i18n.t('Comparison Influencers'),
-                    content: <CompareInfluencers ComparedInfluencers={ComparedInfluencers} parentCallback={this.callbackFunction}/>
+                    content: <CompareInfluencers ComparedInfluencers={ComparedInfluencers} parentCallback={this.callbackFunction} />
                 },
                 {
                     title: i18n.i18n.t('Create Campaign'),

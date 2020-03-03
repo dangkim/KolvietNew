@@ -67,7 +67,7 @@ class InfluencerDetail extends Component {
         const { influencers, Influencer } = this.props;
         //const infItems = influencers.items ? influencers.items.influencer : [];
         let imgSrc = defaultAvatar;
-        debugger;
+        //debugger;
         const colors = [
             "bg-mean-fruit",
             "bg-tempting-azure",

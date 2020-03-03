@@ -53,18 +53,10 @@ async function getTopFollowers(first) {
   const GET_ALL_INFS = `
     {
         influencer(orderBy: {valueForSortingOne: DESC}, first: `+ first + `){
+          displayText
           fullName
-          checkIn
           email
           description
-          genderDemorgraphic {
-            genderGraphicName
-            genderPercentage
-          }
-          geoDemorgraphic {
-            geoGraphicName
-            geoPercentage
-          }
           videoLink {
               paths
             }
@@ -73,10 +65,6 @@ async function getTopFollowers(first) {
           numberOfShare
           numberOfReaction
           numberOfComment
-          ageDemorgraphic {
-            ageGraphicsName
-            agePercentage
-          }
           photo {
             paths
           }
@@ -158,18 +146,10 @@ async function getTopEngagement(first) {
   const GET_ALL_INFS = `
     {
         influencer(orderBy: {valueForSortingTwo: DESC}, first: `+ first + `){
-          checkIn
+          displayText
           fullName
           email
           description
-          genderDemorgraphic {
-            genderGraphicName
-            genderPercentage
-          }
-          geoDemorgraphic {
-            geoGraphicName
-            geoPercentage
-          }
           videoLink {
               paths
             }
@@ -178,10 +158,6 @@ async function getTopEngagement(first) {
           numberOfShare
           numberOfReaction
           numberOfComment
-          ageDemorgraphic {
-            ageGraphicsName
-            agePercentage
-          }
           photo {
             paths
           }
@@ -263,7 +239,8 @@ async function getInfluencersByName(first, skip, userName) {
   const GET_ALL_INFS = `
     {
         influencer(first: `+ first + `, skip: ` + skip + `, where: {displayText_contains: "` + userName + `"}, status: LATEST, orderBy: {valueForSortingTwo: DESC}){
-            fullName
+          displayText  
+          fullName
             email
             description            
             videoLink {
@@ -479,10 +456,6 @@ async function getInfluencersByCategory(first, skip, categories) {
           numberOfShare
           numberOfReaction
           numberOfComment
-          ageDemorgraphic {
-            ageGraphicsName
-            agePercentage
-          }
           photo {
             paths
           }
@@ -575,19 +548,12 @@ async function getRelativeInfluencers(first, skip, categories) {
 
   const GET_ALL_INFS = `
     {
-        influencer(first: `+ first + `, skip: ` + skip + `, where:{OR: {displayText_contains: "` + allGender + `", OR: {displayText_contains: "` + gender + `"}}, AND: {displayText_contains: "` + items[0] + `", AND: {displayText_contains: "` + items[1] + `", AND: {displayText_contains: "` + items[2] + `", AND: {displayText_contains: "` + items[3] + `", AND: {displayText_contains: "` + items[4] + `", AND: {displayText_contains: "` + items[5] + `", AND: {displayText_contains: "` + items[6] + `", AND: {displayText_contains: "` + items[7] + `", AND: {displayText_contains: "` + items[8] + `", AND: {displayText_contains: "` + items[9] + `", AND: {displayText_contains: "` + items[10] + `", AND: {displayText_contains: "` + items[11] + `", AND: {displayText_contains: "` + items[12] + `", AND: {displayText_contains: "` + items[13] + `", AND: {displayText_contains: "` + items[14] + `", AND: {displayText_contains: "` + items[15] + `", AND: {displayText_contains: "` + items[16] + `", AND: {displayText_contains: "` + items[17] + `", AND: {displayText_contains: "` + items[18] + `", AND: {displayText_contains: "` + items[19] + `", AND: {displayText_contains: "` + items[20] + `"}}}}}}}}}}}}}}}}}}}}}}, status: LATEST, orderBy: {valueForSortingTwo: DESC}) {
+        influencer(first: `+ first + `, skip: ` + skip + `, where:{ OR: {displayText_contains: "` + allGender + `", OR: {displayText_contains: "` + gender + `"}}, AND: {displayText_contains: "` + items[0] + `", OR: {displayText_contains: "` + items[1] + `", OR: {displayText_contains: "` + items[2] + `", OR: {displayText_contains: "` + items[3] + `", OR: {displayText_contains: "` + items[4] + `", OR: {displayText_contains: "` + items[5] + `", OR: {displayText_contains: "` + items[6] + `", OR: {displayText_contains: "` + items[7] + `", OR: {displayText_contains: "` + items[8] + `", OR: {displayText_contains: "` + items[9] + `", OR: {displayText_contains: "` + items[10] + `", OR: {displayText_contains: "` + items[11] + `", OR: {displayText_contains: "` + items[12] + `", OR: {displayText_contains: "` + items[13] + `", OR: {displayText_contains: "` + items[14] + `", OR: {displayText_contains: "` + items[15] + `", OR: {displayText_contains: "` + items[16] + `", OR: {displayText_contains: "` + items[17] + `", OR: {displayText_contains: "` + items[18] + `", OR: {displayText_contains: "` + items[19] + `", OR: {displayText_contains: "` + items[20] + `"}}}}}}}}}}}}}}}}}}}}}}, status: LATEST, orderBy: {valueForSortingTwo: DESC}) {
+          displayText
           checkIn
           fullName
           email
-          description
-          genderDemorgraphic {
-            genderGraphicName
-            genderPercentage
-          }
-          geoDemorgraphic {
-            geoGraphicName
-            geoPercentage
-          }
+          description          
           videoLink {
               paths
             }
@@ -596,10 +562,6 @@ async function getRelativeInfluencers(first, skip, categories) {
           numberOfShare
           numberOfReaction
           numberOfComment
-          ageDemorgraphic {
-            ageGraphicsName
-            agePercentage
-          }
           photo {
             paths
           }

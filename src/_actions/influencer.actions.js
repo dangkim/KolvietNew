@@ -221,7 +221,7 @@ function getInfluencersByCategory(previousValues, first, skip, categories, isCle
 function getRelativeInfluencers(previousValues, first, skip, categories, isClearList) {
     return dispatch => {
         dispatch(request(previousValues));
-        influencerService.getInfluencersByCategory(first, skip, categories)
+        influencerService.getRelativeInfluencers(first, skip, categories)
             .then(
                 influencers => {
                     dispatch(success(influencers.influencer));
