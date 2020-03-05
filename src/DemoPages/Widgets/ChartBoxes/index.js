@@ -112,16 +112,26 @@ class WidgetsChartBoxes extends React.Component {
 
         if (index !== null) {
             this.props.parentTabCallback(selectedTabKey);
-            this.setState({ Influencer: childData[index] })            
+            this.setState({ Influencer: childData[index] })
             const categories = childData[index].displayText.split(';')
             const fullName = childData[index].fullName;
+            const femaleIndex = categories.indexOf("Nữ");
+            const maleIndex = categories.indexOf("Male");
+            let genderIndex = -1;
+            if (femaleIndex > -1) {
+                genderIndex = femaleIndex
+            }
+            else if (maleIndex > -1) {
+                genderIndex = maleIndex
+            }
+
+            const userName = genderIndex > -1 ? categories[genderIndex + 1] : '';
             categories.forEach(element => {
-                if (element !== '' && element !== fullName && element !== "Nữ" && element !== "Male" && element.toLowerCase() !== "allgender") {
+                if (element !== '' && element !== fullName && element.toLowerCase() !== "allgender" && element !== userName) {
                     items.push(element)
                 }
             });
-
-            dispatch(infActions.getRelativeInfluencers([], 5, 0, items, false));
+            dispatch(infActions.getRelativeInfluencers([], 5, 0, items, fullName));
         }
         else {
             this.props.parentTabCallback(selectedTabKey);
@@ -139,13 +149,24 @@ class WidgetsChartBoxes extends React.Component {
 
             const categories = influencer.displayText.split(';')
             const fullName = influencer.fullName;
+            const femaleIndex = categories.indexOf("Nữ");
+            const maleIndex = categories.indexOf("Male");
+            let genderIndex = -1;
+            if (femaleIndex > -1) {
+                genderIndex = femaleIndex
+            }
+            else if (maleIndex > -1) {
+                genderIndex = maleIndex
+            }
+
+            const userName = genderIndex > -1 ? categories[genderIndex + 1] : '';
             categories.forEach(element => {
-                if (element !== '' && element !== fullName && element !== "Nữ" && element !== "Male" && element.toLowerCase() !== "allgender") {
+                //&& element !== "Nữ" && element !== "Male"
+                if (element !== '' && element !== fullName && element.toLowerCase() !== "allgender" && element !== userName) {
                     items.push(element)
                 }
             });
-
-            dispatch(infActions.getRelativeInfluencers([], 5, 0, items, false));
+            dispatch(infActions.getRelativeInfluencers([], 5, 0, items, fullName));
         }
     }
 
@@ -260,7 +281,6 @@ class WidgetsChartBoxes extends React.Component {
         const cSelectedObj = JSON.parse(localStorage.getItem('cSelected')) ? JSON.parse(localStorage.getItem('cSelected')) : cSelected;
         const cSelectedLocal = cSelectedObj;//influencers.isClearList ? [] : cSelectedObj;//cSelected;
         let tabsContent = [];
-
         if (FilterInfluencers.length > 0) {
             tabsContent = [
                 {

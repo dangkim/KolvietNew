@@ -218,13 +218,22 @@ function getInfluencersByCategory(previousValues, first, skip, categories, isCle
     function failure(error) { return { type: infConstants.INFS_GETBYCATEGORY_FAILURE, error } }
 }
 
-function getRelativeInfluencers(previousValues, first, skip, categories, isClearList) {
+function getRelativeInfluencers(previousValues, first, skip, categories, fullName) {
+    let items = [];
+    let isSameInf = false;
     return dispatch => {
         dispatch(request(previousValues));
         influencerService.getRelativeInfluencers(first, skip, categories)
             .then(
                 influencers => {
-                    dispatch(success(influencers.influencer));
+
+                    for (let element of influencers.influencer) {
+                        if (element.fullName !== fullName) {
+                            items.push(element);
+                        }
+                    }
+
+                    dispatch(success(items));
                 },
                 error => {
                     toast.error("Please try again");
@@ -232,8 +241,8 @@ function getRelativeInfluencers(previousValues, first, skip, categories, isClear
             );
     };
 
-    function request(previousValues) { return { type: infConstants.INFS_RELATIVE_REQUEST, previousValues, isClearList } }
-    function success(influencers) { return { type: infConstants.INFS_RELATIVE_SUCCESS, influencers, isClearList } }
+    function request(previousValues) { return { type: infConstants.INFS_RELATIVE_REQUEST, previousValues } }
+    function success(relativeInfluencer) { return { type: infConstants.INFS_RELATIVE_SUCCESS, relativeInfluencer } }
     function failure(error) { return { type: infConstants.INFS_RELATIVE_FAILURE, error } }
 }
 

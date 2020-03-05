@@ -549,8 +549,7 @@ async function getRelativeInfluencers(first, skip, categories) {
   const GET_ALL_INFS = `
     {
         influencer(first: `+ first + `, skip: ` + skip + `, where:{ OR: {displayText_contains: "` + allGender + `", OR: {displayText_contains: "` + gender + `"}}, AND: {displayText_contains: "` + items[0] + `", OR: {displayText_contains: "` + items[1] + `", OR: {displayText_contains: "` + items[2] + `", OR: {displayText_contains: "` + items[3] + `", OR: {displayText_contains: "` + items[4] + `", OR: {displayText_contains: "` + items[5] + `", OR: {displayText_contains: "` + items[6] + `", OR: {displayText_contains: "` + items[7] + `", OR: {displayText_contains: "` + items[8] + `", OR: {displayText_contains: "` + items[9] + `", OR: {displayText_contains: "` + items[10] + `", OR: {displayText_contains: "` + items[11] + `", OR: {displayText_contains: "` + items[12] + `", OR: {displayText_contains: "` + items[13] + `", OR: {displayText_contains: "` + items[14] + `", OR: {displayText_contains: "` + items[15] + `", OR: {displayText_contains: "` + items[16] + `", OR: {displayText_contains: "` + items[17] + `", OR: {displayText_contains: "` + items[18] + `", OR: {displayText_contains: "` + items[19] + `", OR: {displayText_contains: "` + items[20] + `"}}}}}}}}}}}}}}}}}}}}}}, status: LATEST, orderBy: {valueForSortingTwo: DESC}) {
-          displayText
-          checkIn
+          displayText          
           fullName
           email
           description          
