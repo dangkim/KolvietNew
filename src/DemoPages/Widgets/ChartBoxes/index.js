@@ -290,7 +290,7 @@ class WidgetsChartBoxes extends React.Component {
                 },
                 {
                     title: i18n.i18n.t('Influencer details'),
-                    content: <InfluencerDetail Influencer={Influencer} RelativeInfluencers={FiterRelativeInfluencer}/>
+                    content: <InfluencerDetail Influencer={Influencer} RelativeInfluencers={FiterRelativeInfluencer} parentCallback={this.callbackFromTopInfluencers}/>
                 },
                 {
                     title: i18n.i18n.t('Comparison Influencers'),

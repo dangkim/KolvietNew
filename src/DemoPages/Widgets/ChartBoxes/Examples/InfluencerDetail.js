@@ -6,7 +6,7 @@ import {
 } from 'react-transition-group';
 
 import Slider from "react-slick";
-
+import HoverCard from 'react-png-hovercard';
 import ReactPlayer from 'react-player';
 
 import {
@@ -47,6 +47,20 @@ class InfluencerDetail extends Component {
         this.setState({ currentVideoIndex: nextVideoIndex });
     }
 
+    sendData = (tabIndex, object) => {
+        // Go to detail tab
+        this.props.parentCallback(tabIndex, object);
+    }
+
+    gotoDetail(selected) {
+        const { RelativeInfluencers } = this.props;
+        debugger;
+        const influencer = RelativeInfluencers && RelativeInfluencers.relativeInfluencer ? RelativeInfluencers.relativeInfluencer[selected] : null;
+        window.scroll(0, 450);
+        if (influencer) {
+            this.sendData(1, influencer);
+        }
+    }
     //componentDidMount() {
     //const { dispatch } = this.props;
     //const { first } = this.state;
@@ -129,6 +143,10 @@ class InfluencerDetail extends Component {
         const numberOfShare5 = strOfShare5.charAt(strOfShare5.length - 1) === 'k' ? Number((strOfShare5.substring(0, strOfShare5.length - 1))) * 1000 : Number(strOfShare5);
         const engagement5 = numberOfReaction5 + (numberOfComment5 * 2) + (numberOfShare5 * 3)
 
+        var hoverStyle = {
+            margin: "0px 0px 30px 0px !important"
+        };
+
         return (
             <Fragment>
                 <TransitionGroup component="div">
@@ -146,14 +164,24 @@ class InfluencerDetail extends Component {
                             <Row>
                                 {
                                     RelativeInfluencers.relativeInfluencer && RelativeInfluencers.relativeInfluencer.map((item, index) => {
-                                        debugger;
                                         return (
-                                            <Col md="3" key={index}>
-                                                <Card className="main-card mb-3">
+                                            <Col md="3" key={index} style={{ cursor: 'pointer' }} onClick={() => this.gotoDetail(index)}>
+                                                {/* <Card className="main-card mb-3">
                                                     <div className="card-header" style={{ height: '125px' }}>
                                                         <img className="rounded-circle" style={{ maxHeight: '120px', maxWidth: '120px', margin: 'auto' }} src={item && item.photo && item.photo.paths.length > 0 ? item.photo.paths[0] : default_user} />
                                                     </div>
-                                                </Card>
+                                                </Card> */}
+                                                <HoverCard
+                                                    maxWidth={400}
+                                                    animationSpeed={500}
+                                                    height={120}
+                                                    front={
+                                                        <img alt='' className="rounded-circle" style={{ maxHeight: '120px', maxWidth: '120px', margin: 'auto' }} src={item && item.photo && item.photo.paths.length > 0 ? item.photo.paths[0] : default_user} />
+                                                    }
+                                                    back={
+                                                        <img alt='' className="rounded-circle" style={{ maxHeight: '120px', maxWidth: '120px', margin: 'auto' }} src={item && item.photo && item.photo.paths.length > 0 ? item.photo.paths[1] : default_user} />
+                                                    }                                                    
+                                                />
                                             </Col>
                                         )
                                     })
@@ -161,7 +189,7 @@ class InfluencerDetail extends Component {
                             </Row>
                             <Row>
                                 <Col md="12">
-                                    <Card className="main-card mb-3">
+                                    <Card className="main-card mb-3" style={{ marginTop: '30px !important' }}>
                                         <div className="text-center" style={{ whiteSpace: 'pre-wrap' }}>
                                             {Influencer && Influencer.description ? Influencer.description.split('|').join('\n') : ''}
                                         </div>
