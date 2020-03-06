@@ -277,10 +277,11 @@ class WidgetsChartBoxes extends React.Component {
 
     render() {
         const { cSelected, Influencer, Brand, type, userName, ComparedInfluencers } = this.state;
-        const { FilterInfluencers, SearchValue, ActiveTab, i18n } = this.props;
+        const { FilterInfluencers, FiterRelativeInfluencer,  SearchValue, ActiveTab, i18n } = this.props;
         const cSelectedObj = JSON.parse(localStorage.getItem('cSelected')) ? JSON.parse(localStorage.getItem('cSelected')) : cSelected;
         const cSelectedLocal = cSelectedObj;//influencers.isClearList ? [] : cSelectedObj;//cSelected;
         let tabsContent = [];
+        debugger;
         if (FilterInfluencers.length > 0) {
             tabsContent = [
                 {
@@ -289,7 +290,7 @@ class WidgetsChartBoxes extends React.Component {
                 },
                 {
                     title: i18n.i18n.t('Influencer details'),
-                    content: <InfluencerDetail Influencer={Influencer} />
+                    content: <InfluencerDetail Influencer={Influencer} RelativeInfluencers={FiterRelativeInfluencer}/>
                 },
                 {
                     title: i18n.i18n.t('Comparison Influencers'),

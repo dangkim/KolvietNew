@@ -64,7 +64,8 @@ class InfluencerDetail extends Component {
             slidesToScroll: 1
         };
         const { currentVideoIndex } = this.state;
-        const { influencers, Influencer } = this.props;
+        const { RelativeInfluencers, Influencer } = this.props;
+        debugger;
         //const infItems = influencers.items ? influencers.items.influencer : [];
         let imgSrc = defaultAvatar;
         //debugger;
@@ -137,23 +138,27 @@ class InfluencerDetail extends Component {
                                 <Col md="12">
                                     <Card className="main-card mb-3">
                                         <div className="card-header" style={{ height: '125px' }}>
-                                            <img className="rounded-circle" style={{ maxHeight: '120px', maxWidth: '120px', margin: 'auto' }} src={Influencer && Influencer.photo ? Influencer.photo.paths[1] : default_user} />
+                                            <img className="rounded-circle" style={{ maxHeight: '120px', maxWidth: '120px', margin: 'auto' }} src={Influencer && Influencer.photo && Influencer.photo.paths.length > 0 ? Influencer.photo.paths[0] : default_user} />
                                         </div>
                                     </Card>
                                 </Col>
                             </Row>
-                            {/* <Row>
-                                <Col md="12">
-                                    <Card className="main-card mb-3">
-                                        <div className="card-header" style={{ height: '125px' }}>
-                                            <img className="rounded-circle" style={{ maxHeight: '120px', maxWidth: '120px', margin: 'auto' }} src={Influencer && Influencer.photo ? Influencer.photo.paths[1] : default_user} />
-                                        </div>
-                                        <div className="text-center" style={{ whiteSpace: 'pre-wrap' }}>
-                                            {Influencer && Influencer.description ? Influencer.description.split('|').join('\n') : ''}
-                                        </div>
-                                    </Card>
-                                </Col>
-                            </Row> */}
+                            <Row>
+                                {
+                                    RelativeInfluencers.relativeInfluencer && RelativeInfluencers.relativeInfluencer.map((item, index) => {
+                                        debugger;
+                                        return (
+                                            <Col md="3" key={index}>
+                                                <Card className="main-card mb-3">
+                                                    <div className="card-header" style={{ height: '125px' }}>
+                                                        <img className="rounded-circle" style={{ maxHeight: '120px', maxWidth: '120px', margin: 'auto' }} src={item && item.photo && item.photo.paths.length > 0 ? item.photo.paths[0] : default_user} />
+                                                    </div>
+                                                </Card>
+                                            </Col>
+                                        )
+                                    })
+                                }
+                            </Row>
                             <Row>
                                 <Col md="12">
                                     <Card className="main-card mb-3">
