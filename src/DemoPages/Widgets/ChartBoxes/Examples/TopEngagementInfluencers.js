@@ -9,7 +9,7 @@ import {
     CardTitle
 
 } from 'reactstrap';
-
+import Img from 'react-image';
 import Skeleton, { SkeletonTheme } from 'react-loading-skeleton';
 
 class TopEngagementInfluencers extends React.Component {
@@ -64,14 +64,15 @@ class TopEngagementInfluencers extends React.Component {
                                     topEngagementInf && topEngagementInf.loading === false ?
                                         topEngagementLocal.map((value, index) => {
                                             return (
-                                                <tr key={index} style={{cursor: 'pointer'}} onClick={() => this.gotoDetail(index)}>
+                                                <tr key={index} style={{ cursor: 'pointer' }} onClick={() => this.gotoDetail(index)}>
                                                     <td className="text-center text-muted">{index + 1}</td>
                                                     <td>
                                                         <div className="widget-content p-0">
                                                             <div className="widget-content-wrapper">
                                                                 <div className="widget-content-left mr-3">
                                                                     <div className="widget-content-left">
-                                                                        <img width={40} className="rounded-circle" src={value ? value.photo.paths[1] : default_user} alt="Avatar" />
+                                                                        <Img className="rounded-circle" width={40} src={value.photo.paths} alt="Avatar" />
+                                                                        {/* <img width={40} className="rounded-circle" src={value ? value.photo.paths[1] : default_user} alt="Avatar" /> */}
                                                                     </div>
                                                                 </div>
                                                                 <div className="widget-content-left flex2">

@@ -12,7 +12,7 @@ import {
 
 import { infActions } from '../../../../_actions';
 import default_user from '../../../../assets/utils/images/avatars/default_user.jpg';
-
+import Img from 'react-image';
 import originalMoment from "moment";
 import { extendMoment } from "moment-range";
 import 'react-daterange-picker/dist/css/react-calendar.css'
@@ -275,7 +275,8 @@ class Influencers extends Component {
                                                     <Col key={index} md="4">
                                                         <div className="card mb-3 widget-chart">
                                                             <div className="">
-                                                                <img className="rounded-circle" style={{ maxHeight: '120px', maxWidth: '120px' }} src={value ? value.photo.paths[1] : default_user} />
+                                                            <Img className="rounded-circle" style={{ maxHeight: '120px', maxWidth: '120px' }} src={value.photo.paths} alt="Avatar" />
+                                                                {/* <img className="rounded-circle" style={{ maxHeight: '120px', maxWidth: '120px' }} src={value ? value.photo.paths[1] : default_user} /> */}
                                                             </div>
                                                             <div className="widget-numbers-sm">
                                                                 {value.fullName}

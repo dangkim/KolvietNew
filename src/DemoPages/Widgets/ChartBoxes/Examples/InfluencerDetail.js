@@ -8,7 +8,7 @@ import {
 import Slider from "react-slick";
 import HoverCard from 'react-png-hovercard';
 import ReactPlayer from 'react-player';
-
+import Img from 'react-image';
 import {
     Row, Col, ButtonGroup,
     Button,
@@ -35,7 +35,8 @@ class InfluencerDetail extends Component {
             searchValue: '',
             cSelected: [],
             currentVideoIndex: 0,
-            dateValue: moment.range(today.clone(), today.clone().add(7, "days"))
+            dateValue: moment.range(today.clone(), today.clone().add(7, "days")),
+            imageUrl: defaultAvatar
         };
 
         this.nextVideo = this.nextVideo.bind(this);
@@ -66,6 +67,16 @@ class InfluencerDetail extends Component {
     //const { first } = this.state;
     //dispatch(infActions.getAll(first, 0));
     //}
+
+    onError(ev, photoUrl) {
+        debugger;
+        if (photoUrl) {
+            // this.setState({
+            //     imageUrl: photoUrl
+            // })
+            ev.target.src = photoUrl;
+        }
+    }
 
     render() {
         const settings = {
@@ -155,9 +166,10 @@ class InfluencerDetail extends Component {
                             <Row>
                                 <Col md="12">
                                     <Card className="main-card mb-3">
-                                        <div className="card-header" style={{ height: '125px' }}>
-                                            <img className="rounded-circle" style={{ maxHeight: '120px', maxWidth: '120px', margin: 'auto' }} src={Influencer && Influencer.photo && Influencer.photo.paths.length > 0 ? Influencer.photo.paths[0] : default_user} />
+                                        <div className="card-header" >
+                                            <span>{Influencer ? Influencer.fullName : ''}</span>
                                         </div>
+                                        <img className="rounded-circle" style={{ maxHeight: '180px', maxWidth: '180px', margin: 'auto' }} src={Influencer && Influencer.photo && Influencer.photo.paths.length > 0 ? Influencer.photo.paths[0] : default_user} />
                                     </Card>
                                 </Col>
                             </Row>
@@ -166,21 +178,33 @@ class InfluencerDetail extends Component {
                                     RelativeInfluencers.relativeInfluencer && RelativeInfluencers.relativeInfluencer.map((item, index) => {
                                         return (
                                             <Col md="3" key={index} style={{ cursor: 'pointer' }} onClick={() => this.gotoDetail(index)}>
-                                                {/* <Card className="main-card mb-3">
-                                                    <div className="card-header" style={{ height: '125px' }}>
-                                                        <img className="rounded-circle" style={{ maxHeight: '120px', maxWidth: '120px', margin: 'auto' }} src={item && item.photo && item.photo.paths.length > 0 ? item.photo.paths[0] : default_user} />
-                                                    </div>
-                                                </Card> */}
                                                 <HoverCard
                                                     maxWidth={400}
                                                     animationSpeed={500}
-                                                    height={120}
+                                                    height={150}
                                                     front={
-                                                        <img alt='' className="rounded-circle" style={{ maxHeight: '120px', maxWidth: '120px', margin: 'auto' }} src={item && item.photo && item.photo.paths.length > 0 ? item.photo.paths[0] : default_user} />
+                                                        <div style={{ maxHeight: '200px', maxWidth: '200px', margin: 'auto' }}>
+                                                            {/* <img alt='' className="rounded-circle" style={{ maxHeight: '120px', maxWidth: '170px', margin: 'auto' }} src={item && item.photo && item.photo.paths.length > 0 ? item.photo.paths[0] : default_user} /> */}
+                                                            <Img className="rounded-circle" style={{ maxHeight: '120px', maxWidth: '170px', margin: 'auto' }} src={item.photo.paths} />
+                                                            <div style={{ textAlign: 'center' }}>
+                                                                <span>{item ? item.fullName : ''}</span>
+                                                            </div>
+                                                        </div>
                                                     }
                                                     back={
-                                                        <img alt='' className="rounded-circle" style={{ maxHeight: '120px', maxWidth: '120px', margin: 'auto' }} src={item && item.photo && item.photo.paths.length > 0 ? item.photo.paths[1] : default_user} />
-                                                    }                                                    
+                                                        <div style={{ maxHeight: '200px', maxWidth: '200px', margin: 'auto' }}>
+                                                            {/* <img
+                                                                onError={this.onError(item.photo.paths[2])}
+                                                                alt='' className="rounded-circle"
+                                                                style={{ maxHeight: '120px', maxWidth: '170px', margin: 'auto' }}
+                                                                src={item && item.photo && item.photo.paths.length > 0 ? item.photo.paths[1] : default_user} />
+                                                             */}
+                                                             <Img className="rounded-circle" style={{ maxHeight: '120px', maxWidth: '170px', margin: 'auto' }} src={item.photo.paths.slice(1, item.photo.paths.length)} />
+                                                            <div style={{ textAlign: 'center' }}>
+                                                                <span>{item ? item.fullName : ''}</span>
+                                                            </div>
+                                                        </div>
+                                                    }
                                                 />
                                             </Col>
                                         )

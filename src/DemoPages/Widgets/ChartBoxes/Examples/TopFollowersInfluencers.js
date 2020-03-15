@@ -8,7 +8,7 @@ import {
     CardTitle
 
 } from 'reactstrap';
-
+import Img from 'react-image';
 import Skeleton, { SkeletonTheme } from 'react-loading-skeleton';
 
 class TopFollowersInfluencers extends React.Component {
@@ -71,7 +71,8 @@ class TopFollowersInfluencers extends React.Component {
                                                             <div className="widget-content-wrapper">
                                                                 <div className="widget-content-left mr-3">
                                                                     <div className="widget-content-left">
-                                                                        <img width={40} className="rounded-circle" src={value ? value.photo.paths[1] : default_user} alt="Avatar" />
+                                                                    <Img className="rounded-circle" width={40} src={value.photo.paths} alt="Avatar" />
+                                                                        {/* <img width={40} className="rounded-circle" src={value ? value.photo.paths[1] : default_user} alt="Avatar" /> */}
                                                                     </div>
                                                                 </div>
                                                                 <div className="widget-content-left flex2">
