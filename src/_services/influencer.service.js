@@ -423,12 +423,20 @@ async function getTopByTrend(first, skip) {
 
 }
 
-async function getInfluencersByCategory(first, skip, categories) {
+async function getInfluencersByCategory(first, skip, categories, locations) {
   let items = [];
+  let itemsLocation = [];
   let allGender = '';
   let gender = '';
+  let filteredItems = categories;
 
-  categories.forEach(element => {
+  locations.forEach(element => {
+    itemsLocation.push(element);
+    debugger;
+    filteredItems = filteredItems.filter(x=> x !== element);
+  });
+
+  filteredItems.forEach(element => {
     if (element === 'Male' || element === 'Nữ') {
       gender = element;
       allGender = 'AllGender';
@@ -437,13 +445,17 @@ async function getInfluencersByCategory(first, skip, categories) {
     items.push(element);
   });
 
-  for (let index = categories.length; index < 21; index++) {
+  for (let i = filteredItems.length; i < 21; i++) {
     items.push('');
+  }
+
+  for (let j = locations.length; j < 10; j++) {
+    itemsLocation.push('');
   }
 
   const GET_ALL_INFS = `
     {
-        influencer(first: `+ first + `, skip: ` + skip + `, where:{OR: {displayText_contains: "` + allGender + `", OR: {displayText_contains: "` + gender + `"}}, AND: {displayText_contains: "` + items[0] + `", AND: {displayText_contains: "` + items[1] + `", AND: {displayText_contains: "` + items[2] + `", AND: {displayText_contains: "` + items[3] + `", AND: {displayText_contains: "` + items[4] + `", AND: {displayText_contains: "` + items[5] + `", AND: {displayText_contains: "` + items[6] + `", AND: {displayText_contains: "` + items[7] + `", AND: {displayText_contains: "` + items[8] + `", AND: {displayText_contains: "` + items[9] + `", AND: {displayText_contains: "` + items[10] + `", AND: {displayText_contains: "` + items[11] + `", AND: {displayText_contains: "` + items[12] + `", AND: {displayText_contains: "` + items[13] + `", AND: {displayText_contains: "` + items[14] + `", AND: {displayText_contains: "` + items[15] + `", AND: {displayText_contains: "` + items[16] + `", AND: {displayText_contains: "` + items[17] + `", AND: {displayText_contains: "` + items[18] + `", AND: {displayText_contains: "` + items[19] + `", AND: {displayText_contains: "` + items[20] + `"}}}}}}}}}}}}}}}}}}}}}}, status: LATEST, orderBy: {valueForSortingTwo: DESC}) {
+      influencer(first: `+ first + `, skip: ` + skip + `, where:{OR: {displayText_contains: "` + allGender + `", OR: {displayText_contains: "` + gender + `"}} AND: {OR: {OR: {displayText_contains: "` + itemsLocation[0] + `", OR: {displayText_contains: "` + itemsLocation[1] + `", OR: {displayText_contains: "` + itemsLocation[2] + `", OR: {displayText_contains: "` + itemsLocation[3] + `", OR: {displayText_contains: "` + itemsLocation[4] + `", OR: {displayText_contains: "` + itemsLocation[5] + `", OR: {displayText_contains: "` + itemsLocation[6] + `", OR: {displayText_contains: "` + itemsLocation[7] + `", OR: {displayText_contains: "` + itemsLocation[8] + `", OR: {displayText_contains: "` + itemsLocation[9] + `"}}}}}}}}}}} , AND: {displayText_contains: "` + items[0] + `", AND: {displayText_contains: "` + items[1] + `", AND: {displayText_contains: "` + items[2] + `", AND: {displayText_contains: "` + items[3] + `", AND: {displayText_contains: "` + items[4] + `", AND: {displayText_contains: "` + items[5] + `", AND: {displayText_contains: "` + items[6] + `", AND: {displayText_contains: "` + items[7] + `", AND: {displayText_contains: "` + items[8] + `", AND: {displayText_contains: "` + items[9] + `", AND: {displayText_contains: "` + items[10] + `", AND: {displayText_contains: "` + items[11] + `", AND: {displayText_contains: "` + items[12] + `", AND: {displayText_contains: "` + items[13] + `", AND: {displayText_contains: "` + items[14] + `", AND: {displayText_contains: "` + items[15] + `", AND: {displayText_contains: "` + items[16] + `", AND: {displayText_contains: "` + items[17] + `", AND: {displayText_contains: "` + items[18] + `", AND: {displayText_contains: "` + items[19] + `", AND: {displayText_contains: "` + items[20] + `"}}}}}}}}}}}}}}}}}}}}}}}, status: LATEST, orderBy: {valueForSortingTwo: DESC}) {
           displayText
     			checkIn
           fullName

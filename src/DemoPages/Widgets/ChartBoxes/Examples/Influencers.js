@@ -79,7 +79,7 @@ class Influencers extends Component {
     loadInfinity() {
         const { dispatch, influencers, FilterInfluencers } = this.props;
         //const influencersLocal = (FilterInfluencers && FilterInfluencers.length > 0) ? FilterInfluencers : influencers;
-        debugger;
+        
         const { first } = this.state;
         const influencerItems = (influencers && influencers.items) ? influencers.items : [];
         const hasData = (influencers && (typeof influencers.hasData !== 'undefined')) ? influencers.hasData : true;
@@ -101,9 +101,11 @@ class Influencers extends Component {
                     this.sendData(2, items, null);
                 }
                 else {
+                    debugger;
                     const searchItems = JSON.parse(localStorage.getItem('searchItems'));
+                    const selectedLocations = JSON.parse(localStorage.getItem('selectedLocations'));
                     const localSearch = searchItems ? searchItems : []
-                    dispatch(infActions.infiniteScrollLoader(infItems, first, infItems.length, localSearch));
+                    dispatch(infActions.infiniteScrollLoader(infItems, first, infItems.length, localSearch, selectedLocations));
                 }
             }
         }

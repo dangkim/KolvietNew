@@ -242,6 +242,7 @@ class WidgetsChartBoxes extends React.Component {
         let items = [];
         //debugger;
         const searchItems = JSON.parse(localStorage.getItem('searchItems'));
+        const selectedLocations = JSON.parse(localStorage.getItem('selectedLocations'));
         const allCategories = ['food', 'cosmetics', 'fashion', 'sport', 'travel', 'event', 'entertaining', 'housewife', 'technology', 'realestate', 'furniture', 'appliances', 'auto', 'game', 'app', 'technology', 'software']
 
         if (searchItems && searchItems.length > 0) {
@@ -272,7 +273,7 @@ class WidgetsChartBoxes extends React.Component {
         localStorage.setItem('searchItems', JSON.stringify(items));
         localStorage.setItem('cSelected', JSON.stringify(cSelected));
 
-        dispatch(infActions.getInfluencersByCategory([], first, 0, items, false));
+        dispatch(infActions.getInfluencersByCategory([], first, 0, items, selectedLocations));
     }
 
     render() {
@@ -281,7 +282,7 @@ class WidgetsChartBoxes extends React.Component {
         const cSelectedObj = JSON.parse(localStorage.getItem('cSelected')) ? JSON.parse(localStorage.getItem('cSelected')) : cSelected;
         const cSelectedLocal = cSelectedObj;//influencers.isClearList ? [] : cSelectedObj;//cSelected;
         let tabsContent = [];
-        debugger;
+
         if (FilterInfluencers.length > 0) {
             tabsContent = [
                 {

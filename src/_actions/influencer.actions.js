@@ -114,13 +114,12 @@ function getAll(first, skip) {
     function failure(error) { return { type: infConstants.INFS_GETALL_FAILURE, error } }
 }
 
-function infiniteScrollLoader(previousValues, first, skip, categories) {
+function infiniteScrollLoader(previousValues, first, skip, categories, locations) {
     return dispatch => {
         dispatch(request(previousValues));
-        influencerService.getInfluencersByCategory(first, skip, categories)
+        influencerService.getInfluencersByCategory(first, skip, categories, locations)
             .then(
                 influencers => {
-                    debugger;
                     if (influencers.influencer.length > 0) {
                         previousValues.push(...influencers.influencer);
                         dispatch(success(previousValues, true))
@@ -192,10 +191,11 @@ function getInfluencersByName(first, skip, userName) {
     function failure(error) { return { type: infConstants.INFS_GETBYNAME_FAILURE, error } }
 }
 
-function getInfluencersByCategory(previousValues, first, skip, categories, isClearList) {
+function getInfluencersByCategory(previousValues, first, skip, categories, locations) {
     return dispatch => {
         dispatch(request(previousValues));
-        influencerService.getInfluencersByCategory(first, skip, categories)
+        debugger;
+        influencerService.getInfluencersByCategory(first, skip, categories, locations)
             .then(
                 influencers => {
                     dispatch(success(influencers.influencer));
@@ -213,8 +213,8 @@ function getInfluencersByCategory(previousValues, first, skip, categories, isCle
             );
     };
 
-    function request(previousValues) { return { type: infConstants.INFS_GETBYCATEGORY_REQUEST, previousValues, isClearList } }
-    function success(influencers) { return { type: infConstants.INFS_GETBYCATEGORY_SUCCESS, influencers, isClearList } }
+    function request(previousValues) { return { type: infConstants.INFS_GETBYCATEGORY_REQUEST, previousValues } }
+    function success(influencers) { return { type: infConstants.INFS_GETBYCATEGORY_SUCCESS, influencers } }
     function failure(error) { return { type: infConstants.INFS_GETBYCATEGORY_FAILURE, error } }
 }
 

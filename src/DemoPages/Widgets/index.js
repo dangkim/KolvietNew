@@ -64,13 +64,14 @@ class Widgets extends React.Component {
 
             localStorage.setItem('selectedName', JSON.stringify(childData));
             localStorage.setItem('searchItems', JSON.stringify(items));
-
-            dispatch(infActions.getInfluencersByCategory([], this.state.first, 0, items, true));
+            const selectedLocations = JSON.parse(localStorage.getItem('selectedLocations'));
+            dispatch(infActions.getInfluencersByCategory([], this.state.first, 0, items, selectedLocations));
         }
         else {
             localStorage.setItem('selectedName', JSON.stringify(null));
             localStorage.setItem('searchItems', JSON.stringify(items));
-            dispatch(infActions.getInfluencersByCategory([], this.state.first, 0, searchItems, true));
+            const selectedLocations = JSON.parse(localStorage.getItem('selectedLocations'));
+            dispatch(infActions.getInfluencersByCategory([], this.state.first, 0, searchItems, selectedLocations));
             //this.props.dispatch(infActions.getInfluencersByName(this.state.first, 0, ""));
         }
     }
@@ -81,7 +82,7 @@ class Widgets extends React.Component {
         const selectedLocations = JSON.parse(localStorage.getItem('selectedLocations'));
         const allValueOfSearch = Locations;
         const searchItems = JSON.parse(localStorage.getItem('searchItems'));
-
+        localStorage.setItem('selectedLocations', JSON.stringify(allValueOfSearch));
         if (searchItems && searchItems.length > 0) {
             // remove duplicated value from localstorage of SearchItems
             for (let i = 0; i < Locations.length; i++) {
@@ -107,13 +108,13 @@ class Widgets extends React.Component {
                 }
             }
 
-            const locations = Locations;
-            localStorage.setItem('selectedLocations', JSON.stringify(locations));
-
             Array.prototype.push.apply(allValueOfSearch, searchItems);
         }
 
-        dispatch(infActions.getInfluencersByCategory([], this.state.first, 0, allValueOfSearch, true));
+        
+        localStorage.setItem('searchItems', JSON.stringify(allValueOfSearch));
+        debugger;
+        dispatch(infActions.getInfluencersByCategory([], this.state.first, 0, allValueOfSearch, Locations));
     }
 
     sendSearchGenderData = (Gender) => {
@@ -124,7 +125,7 @@ class Widgets extends React.Component {
         let items = [];
 
         const searchItems = JSON.parse(localStorage.getItem('searchItems'));
-
+        const selectedLocations = JSON.parse(localStorage.getItem('selectedLocations'));
         if (searchItems && searchItems.length > 0) {
 
             // Clear all value of gender before search
@@ -146,7 +147,7 @@ class Widgets extends React.Component {
         }
 
         localStorage.setItem('searchItems', JSON.stringify(items));
-        dispatch(infActions.getInfluencersByCategory([], this.state.first, 0, items, true));
+        dispatch(infActions.getInfluencersByCategory([], this.state.first, 0, items, selectedLocations));
     }
 
     sendTabData = (activeTab) => {
@@ -165,7 +166,7 @@ class Widgets extends React.Component {
     }
 
     render() {
-        const { searchValue, selectedTabKey} = this.state;
+        const { searchValue, selectedTabKey } = this.state;
         const { influencers, relativeInfluencer } = this.props;
         const influencerItems = (influencers && influencers.items) ? influencers.items : [];
 
