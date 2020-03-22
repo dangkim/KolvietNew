@@ -21,6 +21,8 @@ import {
     CardTitle,
     Input
 } from 'reactstrap';
+import default_user from '../../../assets/utils/images/avatars/default_user.jpg';
+import Avatar from 'react-avatar-edit'
 
 export default class ManageBrand extends React.Component {
 
@@ -37,9 +39,14 @@ export default class ManageBrand extends React.Component {
             isDirty: false,
             isDirtyUpload: false,
             file: null,
+            preview: default_user,
+            src: null,
+            fileName: ''
         };
 
-
+        this.onCrop = this.onCrop.bind(this);
+        this.onClose = this.onClose.bind(this);
+        this.onBeforeFileLoad = this.onBeforeFileLoad.bind(this);
         this.handleBrandNameChange = this.handleBrandNameChange.bind(this);
         this.handleBusinessAreasChange = this.handleBusinessAreasChange.bind(this);
         this.handlePhoneChange = this.handlePhoneChange.bind(this);
@@ -47,6 +54,7 @@ export default class ManageBrand extends React.Component {
         this.handleFullNameChange = this.handleFullNameChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
         this.handleUploadAvatar = this.handleUploadAvatar.bind(this);
+        this.base64ImageToBlob = this.base64ImageToBlob.bind(this)
     }
 
     componentDidMount() {
@@ -83,6 +91,7 @@ export default class ManageBrand extends React.Component {
         this.setState({ isDirtyUpload: false });
         const { dispatch, brands } = this.props;
         const { file } = this.state;
+        debugger;
         dispatch(brandActions.uploadAvatar(file, brands));
     }
 
@@ -140,18 +149,65 @@ export default class ManageBrand extends React.Component {
     setFile(e) {
         //debugger;
         this.setState({
-            file: e.target.files[0],
+            src: e.target.files[0],
             isDirtyUpload: true
         });
+    }
+
+    base64ImageToBlob(str, fileName) {
+        // extract content type and base64 payload from original string
+        var pos = str.indexOf(';base64,');
+        var type = str.substring(5, pos);
+        var b64 = str.substr(pos + 8);
+
+        // decode base64
+        var imageContent = atob(b64);
+
+        // create an ArrayBuffer and a view (as unsigned 8-bit)
+        var buffer = new ArrayBuffer(imageContent.length);
+        var view = new Uint8Array(buffer);
+
+        // fill the view, using the decoded base64
+        for (var n = 0; n < imageContent.length; n++) {
+            view[n] = imageContent.charCodeAt(n);
+        }
+
+        // convert ArrayBuffer to Blob
+        var blob = new Blob([buffer], { type: type });
+        const file = new File([blob], fileName, { type: blob.type })
+        return file;
+    }
+
+    onClose() {
+        this.setState({ preview: null })
+    }
+
+    onCrop(preview) {
+        const { fileName } = this.state;
+        this.setState({ preview })
+        const file = this.base64ImageToBlob(preview, fileName);
+        this.setState({ file: file })
+
+    }
+
+    onBeforeFileLoad(elem) {
+        if (elem.target.files[0].size > 100000) {
+            alert("File is too big!");
+            elem.target.value = "";
+        } else {
+            this.setState({
+                src: elem.target.files[0],
+                isDirtyUpload: true,
+                fileName: elem.target.files[0].name
+            });
+        };
     }
 
     render() {
         const { brands } = this.props;
         const { selectedOptionLocation, isDirtyUpload, isDirty, submitted } = this.state;
         const locations = createLocations();
-        //const isDisabled = JSON.stringify(brandInfo) === "{}";
-        //const localBrand = brands.brand;
-        debugger;
+
         return (
             brands.loading ?
                 <div className="loader-container" style={{ width: '85%', height: '85%' }}>
@@ -236,9 +292,18 @@ export default class ManageBrand extends React.Component {
                                         </CardTitle>
                                         <Form id="register-form">
                                             <Row>
-                                                <Col md={12}>
-                                                    <Label for="avatar" className=""> <Trans>Avatar</Trans></Label>
-                                                    <Input type="file" name="file" id="avatar" className="form-control" onChange={e => this.setFile(e)} />
+                                                <Col md={6}>
+                                                    <Avatar
+                                                        width={390}
+                                                        height={295}
+                                                        onCrop={this.onCrop}
+                                                        onClose={this.onClose}
+                                                        onBeforeFileLoad={this.onBeforeFileLoad}
+                                                        src={this.state.src}
+                                                    />
+                                                    </Col>
+                                                <Col md={3}>
+                                                    <img src={this.state.preview} alt="Preview" />
                                                 </Col>
                                             </Row>
                                             <Button onClick={this.handleUploadAvatar} disabled={!isDirtyUpload} color="primary" className="mt-2"><Trans>Upload</Trans></Button>
