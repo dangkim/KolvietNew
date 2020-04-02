@@ -329,13 +329,13 @@ module.exports = {
   externals: {
     // global app config object
     configContent: JSON.stringify({
-      // apiUrl: 'https://bdo8.com'
-      apiUrl: 'http://www.kolviet.somee.com'
+      apiUrl: 'https://bdo8.com'
+      //apiUrl: 'http://www.kolviet.somee.com'
       //apiUrl: 'https://localhost:44300/'
     }),
     configOrchardCore: JSON.stringify({
-      // apiUrl: 'https://bdo8.com/api'
-      apiUrl: 'http://www.kolviet.somee.com/api'
+      apiUrl: 'https://bdo8.com/api'
+      //apiUrl: 'http://www.kolviet.somee.com/api'
       //apiUrl: 'https://localhost:44300/api/'
     })
   }

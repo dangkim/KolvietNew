@@ -425,15 +425,17 @@ async function getTopByTrend(first, skip) {
 
 async function getInfluencersByCategory(first, skip, categories, locations) {
   let items = [];
+  let itemsInitialLocation = ['', '', '', '', '', '', '', '', '', ''];
   let itemsLocation = [];
   let allGender = '';
   let gender = '';
   let filteredItems = categories;
 
-  locations.forEach(element => {
+  const localLocations = locations ? locations : itemsInitialLocation;
+
+  localLocations.forEach(element => {
     itemsLocation.push(element);
-    debugger;
-    filteredItems = filteredItems.filter(x=> x !== element);
+    filteredItems = filteredItems.filter(x => x !== element);
   });
 
   filteredItems.forEach(element => {
@@ -449,7 +451,7 @@ async function getInfluencersByCategory(first, skip, categories, locations) {
     items.push('');
   }
 
-  for (let j = locations.length; j < 10; j++) {
+  for (let j = localLocations.length; j < 10; j++) {
     itemsLocation.push('');
   }
 

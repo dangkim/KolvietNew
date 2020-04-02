@@ -167,7 +167,7 @@ class InfluencerDetail extends Component {
                                 <Col md="12">
                                     <Card className="main-card mb-3">
                                         <div className="card-header" >
-                                            <span>{Influencer ? Influencer.fullName : ''}</span>
+                                            <span style={{width: '100%', textAlign: 'center', fontSize: '15px'}}>{Influencer ? Influencer.fullName : ''}</span>
                                         </div>
                                         <img className="rounded-circle" style={{ maxHeight: '180px', maxWidth: '180px', margin: 'auto' }} src={Influencer && Influencer.photo && Influencer.photo.paths.length > 0 ? Influencer.photo.paths[0] : default_user} />
                                     </Card>
@@ -186,7 +186,7 @@ class InfluencerDetail extends Component {
                                                         <div style={{ maxHeight: '200px', maxWidth: '200px', margin: 'auto' }}>
                                                             {/* <img alt='' className="rounded-circle" style={{ maxHeight: '120px', maxWidth: '170px', margin: 'auto' }} src={item && item.photo && item.photo.paths.length > 0 ? item.photo.paths[0] : default_user} /> */}
                                                             <Img className="rounded-circle" style={{ maxHeight: '120px', maxWidth: '170px', margin: 'auto' }} src={item.photo.paths} />
-                                                            <div style={{ textAlign: 'center' }}>
+                                                            <div style={{ textAlign: 'center', fontSize: '16px' }}>
                                                                 <span>{item ? item.fullName : ''}</span>
                                                             </div>
                                                         </div>
@@ -200,7 +200,7 @@ class InfluencerDetail extends Component {
                                                                 src={item && item.photo && item.photo.paths.length > 0 ? item.photo.paths[1] : default_user} />
                                                              */}
                                                              <Img className="rounded-circle" style={{ maxHeight: '120px', maxWidth: '170px', margin: 'auto' }} src={item.photo.paths.slice(1, item.photo.paths.length)} />
-                                                            <div style={{ textAlign: 'center' }}>
+                                                            <div style={{ textAlign: 'center', fontSize: '16px' }}>
                                                                 <span>{item ? item.fullName : ''}</span>
                                                             </div>
                                                         </div>
