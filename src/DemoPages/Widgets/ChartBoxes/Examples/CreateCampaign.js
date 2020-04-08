@@ -184,6 +184,25 @@ class CreateCampaign extends Component {
                 Brand.businessAreas,
                 Brand.location,
                 Influencer));
+
+            campaign.campaignName = '';
+            campaign.campaignTarget = '';
+            campaign.productInfo = '';
+            campaign.budget = '';
+            job.jobDescription = '';
+            job.jobName = '';
+
+            this.setState({
+                campaign: {
+                    ...campaign
+                }
+            });
+
+            this.setState({
+                job: {
+                    ...job
+                }
+            });
         }
     }
 
@@ -309,8 +328,8 @@ class CreateCampaign extends Component {
             selectedOptionJobCategory,
             isOpen,
             dateValue } = this.state;
-        const { Brand, Influencer, i18n } = this.props;
-
+        const { Brand, Influencer, i18n, loading } = this.props;
+        debugger;
         // Check Brand and back to Login again
         if (!Brand) {
             toast.warn("Please Login Again!");
@@ -551,7 +570,7 @@ class CreateCampaign extends Component {
                                             <span></span> <Trans>Job Link</Trans></Label>
                                         <Input disabled={Influencer === null} type="text" name="jobLink" id="jobLink" placeholder={i18n.i18n.t('Link of your page')} value={job.jobLink} onChange={this.handleJobChange} />
                                     </FormGroup>
-                                    <Button onClick={this.handleSubmitJobs} disabled={Influencer === null} color="primary" className="mt-2"><Trans>Submit</Trans></Button>
+                                    <Button onClick={this.handleSubmitJobs} disabled={loading} color="primary" className="mt-2"><Trans>Submit</Trans></Button>
                                 </Form>
                             </CardBody>
                         </Card>
@@ -564,7 +583,8 @@ class CreateCampaign extends Component {
 
 function mapStateToProps(state) {
 
-    const { campaigns, influencers, locations, interestings, jobCategories, jobs, brands } = state;
+    const { campaign, influencers, locations, interestings, jobCategories, jobs, brands } = state;
+    const loading = campaign.loading;
     //const { brand } = influencers;
     return {
         //loggingIn,
@@ -573,7 +593,7 @@ function mapStateToProps(state) {
         jobCategories,
         interestings,
         locations,
-        campaigns,
+        loading,
         influencers
     };
 }

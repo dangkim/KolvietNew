@@ -62,7 +62,7 @@ export function createCampaign(campaign,
   selectedOptionJobCategory,
   brandName,
   selectedInfluencer) {
-
+  
   let locationString = '';
   var i;
   for (i = 0; i < selectedOptionLocation.length; i++) {
@@ -217,7 +217,7 @@ export function createCampaign(campaign,
 
     campaignContentItems.push(influencerLocal);
   }
-
+  debugger;
   const compaignType = {
     ContentItemId: '',
     ContentItemVersionId: '',
@@ -262,7 +262,7 @@ export function createCampaign(campaign,
         Value: campaign.toAge
       },
       Gender: {
-        Value: selectedOptionGender[0].value
+        Value: selectedOptionGender.value
       },
       JobName: {
         Text: job.jobName
