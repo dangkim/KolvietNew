@@ -65,7 +65,7 @@ class TopEngagementInfluencers extends React.Component {
                                         topEngagementLocal.map((value, index) => {
                                             return (
                                                 <tr key={index} style={{ cursor: 'pointer' }} onClick={() => this.gotoDetail(index)}>
-                                                    <td className="text-center text-muted">{index + 1}</td>
+                                                    <td style={{verticalAlign:'middle'}} className="text-center text-muted">{index + 1}</td>
                                                     <td>
                                                         <div className="widget-content p-0">
                                                             <div className="widget-content-wrapper">
@@ -81,9 +81,9 @@ class TopEngagementInfluencers extends React.Component {
                                                             </div>
                                                         </div>
                                                     </td>
-                                                    <td className="text-center">{value.valueForSortingOne}</td>
-                                                    <td className="text-center">
-                                                        <div className="badge badge-warning">{value.valueForSortingTwo}</div>
+                                                    <td style={{verticalAlign:'middle'}} className="text-center">{value.valueForSortingOne}</td>
+                                                    <td style={{verticalAlign:'middle'}} className="text-center">
+                                                        <div className="badge-big badge-pill badge-warning">{value.valueForSortingTwo}</div>
                                                     </td>
                                                 </tr>
                                             );

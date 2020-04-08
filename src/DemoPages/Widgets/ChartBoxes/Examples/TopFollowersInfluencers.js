@@ -65,7 +65,7 @@ class TopFollowersInfluencers extends React.Component {
                                             const avg = (value.engagement + value.numberOfFollowers) / 2;
                                             return (
                                                 <tr key={index} style={{cursor: 'pointer'}} onClick={() => this.gotoDetail(index)}>
-                                                    <td className="text-center text-muted">{index + 1}</td>
+                                                    <td style={{verticalAlign:'middle'}} className="text-center text-muted">{index + 1}</td>
                                                     <td>
                                                         <div className="widget-content p-0">
                                                             <div className="widget-content-wrapper">
@@ -82,10 +82,10 @@ class TopFollowersInfluencers extends React.Component {
                                                             </div>
                                                         </div>
                                                     </td>
-                                                    <td className="text-center">
-                                                        <div className="badge badge-warning">{value.valueForSortingOne}</div>
+                                                    <td style={{verticalAlign:'middle'}} className="text-center">
+                                                        <div className="badge-big badge-pill badge-warning">{value.valueForSortingOne}</div>
                                                     </td>
-                                                    <td className="text-center">{value.valueForSortingTwo}
+                                                    <td style={{verticalAlign:'middle'}} className="text-center">{value.valueForSortingTwo}
                                                         {/* <div className="badge badge-warning">{value.valueForSortingOne}</div> */}
                                                     </td>
                                                 </tr>
