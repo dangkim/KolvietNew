@@ -9,9 +9,9 @@
     "url": "git+https://github.com/DashboardPack/architectui-react-theme-free"
   },
   "dependencies": {
-    "@devexpress/dx-react-core": "^2.2.0",
-    "@devexpress/dx-react-grid": "^2.2.0",
-    "@devexpress/dx-react-grid-material-ui": "^2.2.0",
+    "@devexpress/dx-react-core": "^2.6.0",
+    "@devexpress/dx-react-grid": "^2.6.0",
+    "@devexpress/dx-react-grid-material-ui": "^2.6.0",
     "@fortawesome/fontawesome-svg-core": "^1.2.25",
     "@fortawesome/free-brands-svg-icons": "^5.11.2",
     "@fortawesome/free-solid-svg-icons": "^5.11.2",
@@ -58,6 +58,7 @@
     "identicon.js": "^2.3.3",
     "jest": "23.6.0",
     "jw-react-pagination": "^1.0.7",
+    "lodash.debounce": "^4.0.8",
     "lorem-ipsum": "^1.0.6",
     "mini-css-extract-plugin": "^0.8.0",
     "moment": "^2.24.0",

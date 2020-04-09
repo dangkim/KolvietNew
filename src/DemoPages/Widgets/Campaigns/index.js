@@ -2,13 +2,15 @@ import React, { useState, Fragment } from 'react';
 import { Route } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { campaignActions } from '../../../_actions';
-import { DataTypeProvider } from '@devexpress/dx-react-grid';
-import "@devexpress/dx-react-grid";
+//import "@devexpress/dx-react-grid";
+import { EditingState, DataTypeProvider } from '@devexpress/dx-react-grid';
 import {
     Grid,
     Table,
-    TableHeaderRow
-} from "@devexpress/dx-react-grid-material-ui";
+    TableHeaderRow,
+    TableEditColumn,
+    TableEditRow,
+} from '@devexpress/dx-react-grid-material-ui';
 
 import {
     CSSTransition,
@@ -23,6 +25,8 @@ import {
     CardTitle,
 } from 'reactstrap';
 
+import debounce from 'lodash.debounce';
+
 export default class CampaignsTable extends React.Component {
 
     constructor(props) {
@@ -30,12 +34,13 @@ export default class CampaignsTable extends React.Component {
 
         this.state = {
             compaignList: [],
-            statusColumns: ['statusOfCampaign']
+            statusColumns: ['statusOfCampaign'],
+            errors: {}
         };
 
         this.statusTypeProvider = this.statusTypeProvider.bind(this);
         this.statusFormatter = this.statusFormatter.bind(this);
-
+        this.setErrors = this.setErrors.bind(this);
     }
 
     componentDidMount() {
@@ -48,6 +53,10 @@ export default class CampaignsTable extends React.Component {
             dispatch(campaignActions.getCampaignByBrand(brandName));
         }
     }
+
+    setErrors = (errors) => {
+        this.setState({ errors: errors });
+    };
 
     statusFormatter = ({ value }) => {
         var color = 'red';
@@ -70,16 +79,17 @@ export default class CampaignsTable extends React.Component {
         />
     );
 
+
     render() {
-        const { statusColumns } = this.state;
+        const { statusColumns, errors } = this.state;
         const { campaign, i18n } = this.props;
 
         var rows = []
         const columns = [
-            { name: "campaignName", title: this.props.i18n.i18n.t('CampaignNameTable') },
-            { name: "budget", title: this.props.i18n.i18n.t('BudgetTable') },
-            { name: "campaignTarget", title: this.props.i18n.i18n.t('TargetTable') },
-            { name: "description", title: this.props.i18n.i18n.t('Description') },
+            { name: "campaignName", title: this.props.i18n.i18n.t('CampaignNameTable'), required: true },
+            { name: "budget", title: this.props.i18n.i18n.t('BudgetTable'), required: true },
+            { name: "campaignTarget", title: this.props.i18n.i18n.t('TargetTable'), required: true },
+            { name: "description", title: this.props.i18n.i18n.t('Description'), required: true },
             { name: "fromAge", title: this.props.i18n.i18n.t('From Age') },
             { name: "toAge", title: this.props.i18n.i18n.t('ToAgeTable') },
             { name: "fromDate", title: this.props.i18n.i18n.t('From Date') },
@@ -100,14 +110,19 @@ export default class CampaignsTable extends React.Component {
             { columnName: "description", align: 'left', wordWrapEnabled: true },
             { columnName: "fromAge", align: 'left', width: 80, wordWrapEnabled: true },
             { columnName: "toAge", align: 'left', width: 70, wordWrapEnabled: true },
-            { columnName: "fromDate", align: 'left', width: 95, wordWrapEnabled: true },
-            { columnName: "toDate", align: 'left', width: 95, wordWrapEnabled: true },
+            { columnName: "fromDate", align: 'left', width: 100, wordWrapEnabled: true },
+            { columnName: "toDate", align: 'left', width: 100, wordWrapEnabled: true },
             // { columnName: "hashTag", align: 'left', wordWrapEnabled: true },            
             //{ columnName: "jobName", align: 'left', width: 90, wordWrapEnabled: true },
             // { columnName: "keyword", align: 'left', wordWrapEnabled: true },
             // { columnName: "link", align: 'left', wordWrapEnabled: true },
             { columnName: "influencerFullName", align: 'left', wordWrapEnabled: true },
             { columnName: "statusOfCampaign", align: 'left', width: 75, wordWrapEnabled: true }
+        ]
+
+        const editingStateColumnExtensions = [
+            { columnName: 'influencerFullName', editingEnabled: false },
+            { columnName: 'statusOfCampaign', editingEnabled: false },
         ]
 
         if (campaign) {
@@ -146,6 +161,39 @@ export default class CampaignsTable extends React.Component {
             })
         }
 
+        const EditCell = ({ errors, ...props }) => {
+            const { children } = props;
+            return (
+                <TableEditColumn.Cell {...props}>
+                    {React.Children.map(children, child =>
+                        child && child.props.id === "commit"
+                            ? React.cloneElement(child, {
+                                disabled: errors[props.tableRow.rowId]
+                            })
+                            : child
+                    )}
+                </TableEditColumn.Cell>
+            );
+        };
+
+        // Maps the rows to a single object in which each field are is a row IDs
+        // and the field's value is true if the cell value is invalid (a column is required
+        // but the cell value is empty)
+        const validate = (rows, columns) => Object.entries(rows).reduce(
+            (acc, [rowId, row]) => ({
+                ...acc,
+                [rowId]: columns.some(column => column.required && row[column.name] === ''),
+            }), {},
+        );
+
+        const commitChanges = ({ changed }) => {
+            const changedRows = rows.map(row => (changed[row.id] ? { ...row, ...changed[row.id] } : row));
+            debugger;
+            //setRows(changedRows);
+        };
+
+        const onEdited = debounce(edited => this.setErrors(validate(edited, columns)), 250);
+
         return (
             <Fragment>
                 <TransitionGroup component="div">
@@ -158,9 +206,20 @@ export default class CampaignsTable extends React.Component {
                                             {i18n.i18n.t('All Campaigns')}
                                         </CardTitle>
                                         <Grid rows={rows} columns={columns}>
+                                            <EditingState
+                                                onRowChangesChange={onEdited}
+                                                onCommitChanges={commitChanges}
+                                                columnExtensions={editingStateColumnExtensions}
+                                            />
                                             <this.statusTypeProvider for={statusColumns} />
                                             <Table columnExtensions={tableColumnExtensions} />
                                             <TableHeaderRow />
+                                            <TableEditColumn
+                                                showEditCommand={true}
+                                                showDeleteCommand={true}
+                                                cellComponent={props => <EditCell {...props} errors={errors} />}
+                                            />
+                                            <TableEditRow />
                                         </Grid>
                                     </CardBody>
                                 </Card>
