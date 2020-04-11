@@ -6,7 +6,8 @@ export const campaignService = {
     getAll,
     getCampaignByBrand,
     getAllInteresting,
-    getAllLocation
+    getAllLocation,
+    updateCampaign
 };
 
 function register(campaignType) {
@@ -21,6 +22,21 @@ function register(campaignType) {
     };
 
     return fetch(`${configOrchardCore.apiUrl}/content/Post?draft=true`, requestOptions).then(handleContentResponse);
+}
+
+function updateCampaign(CampaignType) {
+    const token = localStorage.getItem('token');
+
+    const requestOptions = {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+            'Authorization': token
+        },
+        body: JSON.stringify(CampaignType)
+    };
+    debugger;
+    return fetch(`${configOrchardCore.apiUrl}/content/UpdateCampaign`, requestOptions).then(handleContentResponse);
 }
 
 function getAll() {

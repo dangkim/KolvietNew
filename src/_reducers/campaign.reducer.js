@@ -44,6 +44,20 @@ export function campaign(state = {}, action) {
         loading: false,
         error: action.error
       };
+    case campaignConstants.CAMS_UPDATE_REQUEST:
+      return {
+        loading: true
+      };
+    case campaignConstants.CAMS_UPDATE_SUCCESS:
+      return {
+        loading: false,
+        campaign: action.campaign.campaign
+      };
+    case campaignConstants.CAM_UPDATE_FAILURE:
+      return {
+        loading: false,
+        error: action.error
+      };
     default:
       return state
   }

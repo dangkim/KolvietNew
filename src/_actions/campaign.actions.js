@@ -10,8 +10,40 @@ export const campaignActions = {
     getAll,
     getCampaignByBrand,
     getAllLocation,
-    getAllInteresting
+    getAllInteresting,
+    updateCampaign
 };
+
+function updateCampaign(CampaignType, brandName) {
+    return dispatch => {
+        dispatch(request());
+
+        campaignService.updateCampaign(CampaignType)
+            .then(
+                campaign => {
+                    campaignService.getCampaignByBrand(brandName)
+                    .then(campaignsType => {
+                        dispatch(success(campaignsType));
+                        localStorage.removeItem('campaign');
+                        localStorage.removeItem('job');
+                        //history.push('/widgets/dashboard-boxes');
+                        //dispatch(alertActions.success('Registration Campaigns Successful'));
+                        toast.success("Registration Campaigns Successful");
+                    }),
+                    error => {
+                        dispatch(failure(error.toString()));
+                        dispatch(alertActions.error(error.toString()));
+                    }
+                    //dispatch(success(CampaignType))
+                },
+                error => dispatch(failure(error.toString()))
+            );
+    };
+
+    function request() { return { type: campaignConstants.CAMS_UPDATE_REQUEST } }
+    function success(campaign) { return { type: campaignConstants.CAMS_UPDATE_SUCCESS, campaign } }
+    function failure(error) { return { type: campaignConstants.CAMS_UPDATE_FAILURE, error } }
+}
 
 function register(campaign,
     fromDate,

@@ -2,8 +2,8 @@ import React, { useState, Fragment } from 'react';
 import { Route } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { campaignActions } from '../../../_actions';
-//import "@devexpress/dx-react-grid";
 import { EditingState, DataTypeProvider } from '@devexpress/dx-react-grid';
+import Loader from 'react-loader-spinner'
 import {
     Grid,
     Table,
@@ -18,8 +18,6 @@ import {
 } from 'react-transition-group';
 
 import {
-    Button, Form,
-    FormGroup, Label,
     Row, Col,
     Card, CardBody,
     CardTitle,
@@ -41,6 +39,26 @@ export default class CampaignsTable extends React.Component {
         this.statusTypeProvider = this.statusTypeProvider.bind(this);
         this.statusFormatter = this.statusFormatter.bind(this);
         this.setErrors = this.setErrors.bind(this);
+        this.handleSubmitJobs = this.handleSubmitJobs.bind(this);
+    }
+
+    handleSubmitJobs(campaign) {
+        const { dispatch } = this.props;
+        const campaignLocal = {
+            budget: campaign.budget,
+            campaignName: campaign.campaignName,
+            campaignTarget: campaign.campaignTarget,
+            contentItemId: campaign.contentItemId,
+            description: campaign.description,
+            fromAge: campaign.fromAge,
+            toAge: campaign.toAge,
+            fromDate: campaign.fromDate,
+            toDate: campaign.toDate
+        };
+
+        const brandName = localStorage.getItem("brandName");
+
+        dispatch(campaignActions.updateCampaign(campaignLocal, brandName));
     }
 
     componentDidMount() {
@@ -82,8 +100,8 @@ export default class CampaignsTable extends React.Component {
 
     render() {
         const { statusColumns, errors } = this.state;
-        const { campaign, i18n } = this.props;
-
+        const { campaign, i18n, loading } = this.props;
+        debugger;
         var rows = []
         const columns = [
             { name: "campaignName", title: this.props.i18n.i18n.t('CampaignNameTable'), required: true },
@@ -142,6 +160,7 @@ export default class CampaignsTable extends React.Component {
                 }
 
                 return Object.assign(item, {
+                    id: index,
                     campaignName: item.campaignName,
                     budget: item.budget,
                     campaignTarget: item.campaignTarget,
@@ -186,9 +205,23 @@ export default class CampaignsTable extends React.Component {
             }), {},
         );
 
-        const commitChanges = ({ changed }) => {
-            const changedRows = rows.map(row => (changed[row.id] ? { ...row, ...changed[row.id] } : row));
-            debugger;
+        const commitChanges = ({ changed, deleted }) => {
+            let changedRow;
+
+            if (changed) {
+                //const changedSet = new Set(changed);
+                //changedRow = rows.map(row => (changed[row.id] ? { ...row, ...changed[row.id] } : row));
+                const changedRows = rows.map(row => (changed[row.id] ? { ...row, ...changed[row.id] } : row));
+                changedRow = changedRows.filter(row => !row.id);
+            }
+
+            if (deleted) {
+                const deletedSet = new Set(deleted);
+                changedRow = rows.filter(row => deletedSet.has(row.id));
+            }
+
+            this.handleSubmitJobs(changedRow[0]);
+
             //setRows(changedRows);
         };
 
@@ -221,6 +254,18 @@ export default class CampaignsTable extends React.Component {
                                             />
                                             <TableEditRow />
                                         </Grid>
+                                        {
+                                            loading &&
+                                            <div className="loader-container" style={{ width: '85%', height: '85%' }}>
+                                                <div className="loader-container-inner">
+                                                    <Loader
+                                                        type="CradleLoader"
+                                                        color="#00BFFF"
+                                                    />
+                                                </div>
+                                            </div>
+                                        }
+
                                     </CardBody>
                                 </Card>
                             </Col>
@@ -233,11 +278,11 @@ export default class CampaignsTable extends React.Component {
 }
 
 function mapStateToProps(state) {
-
-    const { campaign } = state.campaign;
-    //const { brand } = influencers;
+    const { campaign, loading } = state.campaign;
+    //const { loading } = campaign.loading;
     return {
         campaign,
+        loading
     };
 }
 
