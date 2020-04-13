@@ -40,10 +40,13 @@ export default class CampaignsTable extends React.Component {
         this.statusFormatter = this.statusFormatter.bind(this);
         this.setErrors = this.setErrors.bind(this);
         this.handleSubmitJobs = this.handleSubmitJobs.bind(this);
+        this.handleDelete = this.handleDelete.bind(this);
     }
 
     handleSubmitJobs(campaign) {
+        debugger;
         const { dispatch } = this.props;
+        const brandName = localStorage.getItem("brandName");
         const campaignLocal = {
             budget: campaign.budget,
             campaignName: campaign.campaignName,
@@ -53,12 +56,19 @@ export default class CampaignsTable extends React.Component {
             fromAge: campaign.fromAge,
             toAge: campaign.toAge,
             fromDate: campaign.fromDate,
-            toDate: campaign.toDate
-        };
+            toDate: campaign.toDate,
+            brandName: brandName,
+            influencerFullName: campaign.influencerFullName
+        };      
 
+        dispatch(campaignActions.updateCampaign(campaignLocal));
+    }
+
+    handleDelete(campaign) {
+        const { dispatch } = this.props;
         const brandName = localStorage.getItem("brandName");
-
-        dispatch(campaignActions.updateCampaign(campaignLocal, brandName));
+        
+        dispatch(campaignActions.deleteCampaign(campaign.contentItemId, brandName));
     }
 
     componentDidMount() {
@@ -73,6 +83,7 @@ export default class CampaignsTable extends React.Component {
     }
 
     setErrors = (errors) => {
+        debugger;
         this.setState({ errors: errors });
     };
 
@@ -101,7 +112,7 @@ export default class CampaignsTable extends React.Component {
     render() {
         const { statusColumns, errors } = this.state;
         const { campaign, i18n, loading } = this.props;
-        debugger;
+
         var rows = []
         const columns = [
             { name: "campaignName", title: this.props.i18n.i18n.t('CampaignNameTable'), required: true },
@@ -141,6 +152,8 @@ export default class CampaignsTable extends React.Component {
         const editingStateColumnExtensions = [
             { columnName: 'influencerFullName', editingEnabled: false },
             { columnName: 'statusOfCampaign', editingEnabled: false },
+            { columnName: 'fromDate', editingEnabled: false },
+            { columnName: 'toDate', editingEnabled: false },
         ]
 
         if (campaign) {
@@ -198,12 +211,15 @@ export default class CampaignsTable extends React.Component {
         // Maps the rows to a single object in which each field are is a row IDs
         // and the field's value is true if the cell value is invalid (a column is required
         // but the cell value is empty)
-        const validate = (rows, columns) => Object.entries(rows).reduce(
-            (acc, [rowId, row]) => ({
-                ...acc,
-                [rowId]: columns.some(column => column.required && row[column.name] === ''),
-            }), {},
-        );
+        const validate = ((rows, columns) => {
+            return (
+                Object.entries(rows).reduce(
+                    (acc, [rowId, row]) => ({
+                        ...acc,
+                        [rowId]: columns.some(column => column.required && row[column.name] === ''),
+                    }), {},
+                ))
+        });
 
         const commitChanges = ({ changed, deleted }) => {
             let changedRow;
@@ -213,14 +229,22 @@ export default class CampaignsTable extends React.Component {
                 //changedRow = rows.map(row => (changed[row.id] ? { ...row, ...changed[row.id] } : row));
                 const changedRows = rows.map(row => (changed[row.id] ? { ...row, ...changed[row.id] } : row));
                 changedRow = changedRows.filter(row => !row.id);
+                if (changedRow && changedRow.length > 0) {
+                    this.handleSubmitJobs(changedRow[0]);
+                }
+
             }
 
             if (deleted) {
                 const deletedSet = new Set(deleted);
                 changedRow = rows.filter(row => deletedSet.has(row.id));
+
+                if (changedRow && changedRow.length > 0) {
+                    this.handleDelete(changedRow[0]);
+                }
             }
 
-            this.handleSubmitJobs(changedRow[0]);
+
 
             //setRows(changedRows);
         };

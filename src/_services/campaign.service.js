@@ -7,7 +7,8 @@ export const campaignService = {
     getCampaignByBrand,
     getAllInteresting,
     getAllLocation,
-    updateCampaign
+    updateCampaign,
+    deleteCampaign
 };
 
 function register(campaignType) {
@@ -22,6 +23,21 @@ function register(campaignType) {
     };
 
     return fetch(`${configOrchardCore.apiUrl}/content/Post?draft=true`, requestOptions).then(handleContentResponse);
+}
+
+function deleteCampaign(contentItemId) {
+    const token = localStorage.getItem('token');
+
+    const requestOptions = {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+            'Authorization': token
+        },
+        body: JSON.stringify({ "ContentItemId": contentItemId })
+    };
+    debugger;
+    return fetch(`${configOrchardCore.apiUrl}/content/DeleteCampaign`, requestOptions).then(handleContentResponse);
 }
 
 function updateCampaign(CampaignType) {
@@ -87,7 +103,7 @@ function getAll() {
 function getCampaignByBrand(brandName) {
     const GET_ALL_COMPAIGN = `
     {
-        campaign(status: ALL, where: {displayText_contains: "` + brandName + `"}) {
+        campaign(status: LATEST, where: {displayText_contains: "` + brandName + `"}) {
           budget
           campaignName
           campaignTarget
