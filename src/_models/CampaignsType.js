@@ -62,7 +62,7 @@ export function createCampaign(campaign,
   selectedOptionJobCategory,
   brandName,
   selectedInfluencer) {
-  
+
   let locationString = '';
   var i;
   for (i = 0; i < selectedOptionLocation.length; i++) {
@@ -222,7 +222,7 @@ export function createCampaign(campaign,
     ContentItemId: '',
     ContentItemVersionId: '',
     ContentType: 'Campaign',
-    DisplayText: campaign.campaignName + ';' + brandName,
+    DisplayText: campaign.campaignName + ';' + selectedInfluencer.fullName + ';' + brandName,
     Latest: true,
     Published: false,
     ModifiedUtc: '',
