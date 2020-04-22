@@ -141,6 +141,7 @@ function register(user) {
 
 function handleResponseRegisterUser(response) {
     return response.text().then(text => {
+        debugger;
         const data = text;
         if (!response.ok) {
             if (response.status === 401) {
@@ -148,6 +149,12 @@ function handleResponseRegisterUser(response) {
                 logout();
                 //location.reload(true);
             }
+
+            if (response.status === 400) {
+                //const error = data;
+                return Promise.reject(data);
+            }
+
             const error = (data && data.message) || response.statusText;
             return Promise.reject(error);
         }

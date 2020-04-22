@@ -69,7 +69,10 @@ class RegisterBrandPage extends React.Component {
             && brand.phone
             && selectedOptionLocation
             && brand.password
-            && brand.repeatPassword) {
+            && brand.repeatPassword
+            && this.handlePassword(brand.password)
+            && this.handlePassword(brand.repeatPassword)
+            && this.handleRepeatPassword(brand.repeatPassword)) {
 
             const userType = {
                 UserName: brand.email,
@@ -147,13 +150,13 @@ class RegisterBrandPage extends React.Component {
         // Create a schema
         var schema = new PasswordValidator();
         schema
-            .is().min(8)
-            .is().max(20)
-            .has().uppercase()
-            .has().lowercase()
-            .has().digits()
-            .has().not().spaces()
-            .has().symbols()
+            .is().min(6)
+            // .is().max(20)
+            // .has().uppercase()
+            // .has().lowercase()
+            // .has().digits()
+            // .has().not().spaces()
+            // .has().symbols()
 
         const valid = schema.validate(password)
         return valid;
@@ -275,7 +278,7 @@ class RegisterBrandPage extends React.Component {
                                                         }
                                                         {
                                                             submitted && !this.handlePassword(brand.password) &&
-                                                            <div className="help-block text-danger">Password minimum length 8, must have uppercase, lowercase, digits, special letters and not have space</div>
+                                                            <div className="help-block text-danger">Password minimum length 6</div>
                                                         }
                                                     </div>
                                                 </div>

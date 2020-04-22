@@ -82,7 +82,7 @@ class InfluencerUpdateCost extends Component {
                             <CardBody>
                                 <CardTitle>
                                     {
-                                        <span>Update your value <span className="text-success">Modification is very easy to do using KolViet Framework</span></span>
+                                        <span>Update your value </span>
                                     }
                                 </CardTitle>
                                 <Form id="updateCost">

@@ -282,7 +282,7 @@ class WidgetsChartBoxes extends React.Component {
         const cSelectedObj = JSON.parse(localStorage.getItem('cSelected')) ? JSON.parse(localStorage.getItem('cSelected')) : cSelected;
         const cSelectedLocal = cSelectedObj;//influencers.isClearList ? [] : cSelectedObj;//cSelected;
         let tabsContent = [];
-
+        debugger;
         if (FilterInfluencers.length > 0) {
             tabsContent = [
                 {
@@ -314,7 +314,7 @@ class WidgetsChartBoxes extends React.Component {
 
         const tabsContentUpdateCost = [
             {
-                title: 'Vertical Menus',
+                title: 'Influencer',
                 content: <InfluencerUpdateCost userName={userName} />
             }
         ]
@@ -329,7 +329,7 @@ class WidgetsChartBoxes extends React.Component {
         };
 
         const getTabs = () => {
-
+            debugger;
             if (type === "Influencer") {
                 return (tabsContentUpdateCost.map((tab, index) => ({
                     title: tab.title,

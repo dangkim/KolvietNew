@@ -62,12 +62,24 @@ class UserBox extends React.Component {
     };
 
     render() {
-        const { brand } = this.props;
+        const { brand, FullName } = this.props;
+        debugger;
+        let urlIcon = '';
+        let fullName = '';
         const brandObj = JSON.parse(localStorage.getItem('brandObj'));
-        const localBrand = brandObj? brandObj: brand;
-        //debugger;
-        const urlIcon = (localBrand && localBrand.published === false) ? default_user : configContent.apiUrl + localBrand.avatar.urls[0]
-        
+        const contentInfType = localStorage.getItem('type');
+
+        const localBrand = brandObj ? brandObj : brand;
+
+        if (contentInfType === 'influencer') {
+            urlIcon = default_user;
+            fullName = FullName;
+        }
+        else {
+            fullName = localBrand.fullName
+            urlIcon = (localBrand && localBrand.published === false) ? default_user : configContent.apiUrl + localBrand.avatar.urls[0]
+        }
+
         return (
             <Fragment>
                 <div className="header-btn-lg pr-0">
@@ -85,9 +97,12 @@ class UserBox extends React.Component {
                                                 My Account
                                             </NavItem>
                                             <NavItem>
-                                                <NavLink onClick={this.manage}>
-                                                    Manage
-                                                </NavLink>
+                                                {
+                                                    localBrand &&
+                                                    <NavLink onClick={this.manage}>
+                                                        Manage
+                                                    </NavLink>
+                                                }
                                             </NavItem>
                                             <NavItem>
                                                 <NavLink onClick={this.logout}>
@@ -100,7 +115,7 @@ class UserBox extends React.Component {
                             </div>
                             <div className="widget-content-left  ml-3 header-user-info">
                                 <div className="widget-heading">
-                                    {localBrand.fullName}
+                                    {fullName}
                                 </div>
                             </div>
                         </div>

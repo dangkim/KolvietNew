@@ -66,7 +66,7 @@ function register(brandType, userType) {
                 error => {
                     dispatch(failure(error.toString()));
                     //dispatch(alertActions.error(error.toString()));
-                    toast.warn(userType.UserName + " is existed please use other emails");
+                    toast.warn(error.toString());
                 }
             );
     };
