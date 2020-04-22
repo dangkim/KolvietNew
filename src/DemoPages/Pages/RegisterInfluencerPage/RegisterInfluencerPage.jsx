@@ -272,7 +272,7 @@ class RegisterInfluencerPage extends React.Component {
                                                         }
                                                         {
                                                             submitted && !this.handlePassword(influencer.password) &&
-                                                            <div className="help-block text-danger">Password minimum length 8, must have uppercase, lowercase, digits, special letters and not have space</div>
+                                                            <div className="help-block text-danger">Password minimum length 6</div>
                                                         }
                                                     </div>
                                                 </div>

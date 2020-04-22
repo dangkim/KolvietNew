@@ -144,6 +144,11 @@ class WidgetsChartBoxes extends React.Component {
         const { dispatch } = this.props;
         const { first } = this.state;
         if (influencer) {
+            if (condition) {
+                
+            } else {
+                
+            }
             this.props.parentTabCallback(selectedTabKey);
             this.setState({ Influencer: influencer })
 
@@ -328,9 +333,10 @@ class WidgetsChartBoxes extends React.Component {
             cursor: 'pointer',
         };
 
-        const getTabs = () => {
-            debugger;
-            if (type === "Influencer") {
+        const getTabs = () => {  
+            const contentType = localStorage.getItem('type');  
+                  
+            if (contentType === "influencer") {
                 return (tabsContentUpdateCost.map((tab, index) => ({
                     title: tab.title,
                     getContent: () => tab.content,
