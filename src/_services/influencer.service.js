@@ -430,8 +430,9 @@ async function getInfluencersByCategory(first, skip, categories, locations) {
   let allGender = '';
   let gender = '';
   let filteredItems = categories;
-
-  const localLocations = locations ? locations : itemsInitialLocation;
+  debugger;
+  const localLocations = locations && locations.length > 0 ? locations : itemsInitialLocation;
+  const firstLocation = localLocations[0];
 
   localLocations.forEach(element => {
     itemsLocation.push(element);
@@ -452,7 +453,7 @@ async function getInfluencersByCategory(first, skip, categories, locations) {
   }
 
   for (let j = localLocations.length; j < 10; j++) {
-    itemsLocation.push('');
+    itemsLocation.push(firstLocation);
   }
 
   const GET_ALL_INFS = `

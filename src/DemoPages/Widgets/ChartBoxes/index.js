@@ -143,35 +143,35 @@ class WidgetsChartBoxes extends React.Component {
         let items = [];
         const { dispatch } = this.props;
         const { first } = this.state;
+        const contentType = localStorage.getItem('type');
         if (influencer) {
-            if (condition) {
-                
+            if (contentType === 'influencer') {
+                this.props.parentTabCallback(0);
             } else {
-                
-            }
-            this.props.parentTabCallback(selectedTabKey);
-            this.setState({ Influencer: influencer })
+                this.props.parentTabCallback(selectedTabKey);
+                this.setState({ Influencer: influencer })
 
-            const categories = influencer.displayText.split(';')
-            const fullName = influencer.fullName;
-            const femaleIndex = categories.indexOf("Nữ");
-            const maleIndex = categories.indexOf("Male");
-            let genderIndex = -1;
-            if (femaleIndex > -1) {
-                genderIndex = femaleIndex
-            }
-            else if (maleIndex > -1) {
-                genderIndex = maleIndex
-            }
-
-            const userName = genderIndex > -1 ? categories[genderIndex + 1] : '';
-            categories.forEach(element => {
-                //&& element !== "Nữ" && element !== "Male"
-                if (element !== '' && element !== fullName && element.toLowerCase() !== "allgender" && element !== userName) {
-                    items.push(element)
+                const categories = influencer.displayText.split(';')
+                const fullName = influencer.fullName;
+                const femaleIndex = categories.indexOf("Nữ");
+                const maleIndex = categories.indexOf("Male");
+                let genderIndex = -1;
+                if (femaleIndex > -1) {
+                    genderIndex = femaleIndex
                 }
-            });
-            dispatch(infActions.getRelativeInfluencers([], 5, 0, items, fullName));
+                else if (maleIndex > -1) {
+                    genderIndex = maleIndex
+                }
+
+                const userName = genderIndex > -1 ? categories[genderIndex + 1] : '';
+                categories.forEach(element => {
+                    //&& element !== "Nữ" && element !== "Male"
+                    if (element !== '' && element !== fullName && element.toLowerCase() !== "allgender" && element !== userName) {
+                        items.push(element)
+                    }
+                });
+                dispatch(infActions.getRelativeInfluencers([], 5, 0, items, fullName));
+            }
         }
     }
 
@@ -225,65 +225,64 @@ class WidgetsChartBoxes extends React.Component {
         const { dispatch } = this.props;
         window.scroll(0, 410);
         this.props.parentTabCallback(0);
+        const contentType = localStorage.getItem('type');
 
-        let index = cSelected.indexOf(selected1);
-        if (index < 0) {
-            cSelected.push(selected1);
-        } else {
-            cSelected.splice(index, 1);
-        }
-
-        if (selected2 !== '') {
-            index = cSelected.indexOf(selected2);
+        if (contentType !== 'influencer') {
+            let index = cSelected.indexOf(selected1);
             if (index < 0) {
-                cSelected.push(selected2);
+                cSelected.push(selected1);
             } else {
                 cSelected.splice(index, 1);
             }
-        }
 
-        this.setState({ cSelected: [...cSelected] });
-
-        let items = [];
-        //debugger;
-        const searchItems = JSON.parse(localStorage.getItem('searchItems'));
-        const selectedLocations = JSON.parse(localStorage.getItem('selectedLocations'));
-        const allCategories = ['food', 'cosmetics', 'fashion', 'sport', 'travel', 'event', 'entertaining', 'housewife', 'technology', 'realestate', 'furniture', 'appliances', 'auto', 'game', 'app', 'technology', 'software']
-
-        if (searchItems && searchItems.length > 0) {
-            for (let i = 0; i < allCategories.length; i++) {
-
-                const element = allCategories[i];
-                const index = searchItems.indexOf(element.toLowerCase());
-
-                if (index > -1) {
-                    searchItems.splice(index, 1);
+            if (selected2 !== '') {
+                index = cSelected.indexOf(selected2);
+                if (index < 0) {
+                    cSelected.push(selected2);
+                } else {
+                    cSelected.splice(index, 1);
                 }
             }
 
-            items = searchItems;
+            this.setState({ cSelected: [...cSelected] });
+
+            let items = [];
+            //debugger;
+            const searchItems = JSON.parse(localStorage.getItem('searchItems'));
+            const selectedLocations = JSON.parse(localStorage.getItem('selectedLocations'));
+            const allCategories = ['food', 'cosmetics', 'fashion', 'sport', 'travel', 'event', 'entertaining', 'housewife', 'technology', 'realestate', 'furniture', 'appliances', 'auto', 'game', 'app', 'technology', 'software']
+
+            if (searchItems && searchItems.length > 0) {
+                for (let i = 0; i < allCategories.length; i++) {
+
+                    const element = allCategories[i];
+                    const index = searchItems.indexOf(element.toLowerCase());
+
+                    if (index > -1) {
+                        searchItems.splice(index, 1);
+                    }
+                }
+
+                items = searchItems;
+            }
+
+
+            if (cSelected.length > 0) {
+                cSelected.map((item, key) => {
+                    items.push(item.toLowerCase());
+                })
+            }
+
+            localStorage.setItem('searchItems', JSON.stringify(items));
+            localStorage.setItem('cSelected', JSON.stringify(cSelected));
+
+            dispatch(infActions.getInfluencersByCategory([], first, 0, items, selectedLocations));
         }
-
-
-        if (cSelected.length > 0) {
-            cSelected.map((item, key) => {
-                items.push(item.toLowerCase());
-            })
-        }
-
-        // if (SearchValue !== '') {
-        //     items.push(SearchValue);
-        // }
-
-        localStorage.setItem('searchItems', JSON.stringify(items));
-        localStorage.setItem('cSelected', JSON.stringify(cSelected));
-
-        dispatch(infActions.getInfluencersByCategory([], first, 0, items, selectedLocations));
     }
 
     render() {
         const { cSelected, Influencer, Brand, type, userName, ComparedInfluencers } = this.state;
-        const { FilterInfluencers, FiterRelativeInfluencer,  SearchValue, ActiveTab, i18n } = this.props;
+        const { FilterInfluencers, FiterRelativeInfluencer, SearchValue, ActiveTab, i18n } = this.props;
         const cSelectedObj = JSON.parse(localStorage.getItem('cSelected')) ? JSON.parse(localStorage.getItem('cSelected')) : cSelected;
         const cSelectedLocal = cSelectedObj;//influencers.isClearList ? [] : cSelectedObj;//cSelected;
         let tabsContent = [];
@@ -296,7 +295,7 @@ class WidgetsChartBoxes extends React.Component {
                 },
                 {
                     title: i18n.i18n.t('Influencer details'),
-                    content: <InfluencerDetail Influencer={Influencer} RelativeInfluencers={FiterRelativeInfluencer} parentCallback={this.callbackFromTopInfluencers}/>
+                    content: <InfluencerDetail Influencer={Influencer} RelativeInfluencers={FiterRelativeInfluencer} parentCallback={this.callbackFromTopInfluencers} />
                 },
                 {
                     title: i18n.i18n.t('Comparison Influencers'),
@@ -333,9 +332,9 @@ class WidgetsChartBoxes extends React.Component {
             cursor: 'pointer',
         };
 
-        const getTabs = () => {  
-            const contentType = localStorage.getItem('type');  
-                  
+        const getTabs = () => {
+            const contentType = localStorage.getItem('type');
+
             if (contentType === "influencer") {
                 return (tabsContentUpdateCost.map((tab, index) => ({
                     title: tab.title,

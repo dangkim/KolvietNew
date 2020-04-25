@@ -252,7 +252,7 @@ class RegisterInfluencerPage extends React.Component {
                                                 <div className="col-md-6">
                                                     <div className="position-relative form-group">
                                                         <label htmlFor="name" className="">
-                                                            <span className="text-danger">*</span> Fanpage
+                                                            <span className="text-danger">*</span> Fanpage / Profile
                                                         </label>
                                                         <input type="text" name="fanpage" id="fanpage" placeholder="Your Fanpage" value={influencer.fanpage} onChange={this.handleChange} className="form-control" />
                                                         {

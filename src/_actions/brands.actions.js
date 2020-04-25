@@ -188,14 +188,14 @@ function uploadAvatar(file, brandType) {
         if (file) {
             brandService.uploadAvatar(file)
                 .then(
-                    status => {
-                        dispatch(success(brandType.brand));
+                    status => {                        
+                        dispatch(success());
+                        toast.success("Upload successful");
                     },
                     error => {
                         toast.warn(error.toString() + " Please try again");
                     }
-                )
-            toast.success("Upload successful");
+                )            
             //dispatch(success(brand));
         }
         else {
