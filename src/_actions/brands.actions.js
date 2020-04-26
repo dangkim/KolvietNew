@@ -189,7 +189,7 @@ function uploadAvatar(file, brandType) {
             brandService.uploadAvatar(file)
                 .then(
                     status => {                        
-                        dispatch(success());
+                        dispatch(success(brandType.brand));
                         toast.success("Upload successful");
                     },
                     error => {

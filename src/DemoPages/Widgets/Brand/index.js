@@ -191,7 +191,7 @@ export default class ManageBrand extends React.Component {
     }
 
     onBeforeFileLoad(elem) {
-        if (elem.target.files[0].size > 100000) {
+        if (elem.target.files[0].size > 300000) {
             alert("File is too big!");
             elem.target.value = "";
         } else {
