@@ -21,7 +21,7 @@ import Skeleton, { SkeletonTheme } from 'react-loading-skeleton';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { history } from '../../../../_helpers';
 import { Trans } from 'react-i18next';
-
+import NumberFormat from 'react-number-format';
 class Influencers extends Component {
     constructor(props) {
         super(props);
@@ -79,7 +79,7 @@ class Influencers extends Component {
     loadInfinity() {
         const { dispatch, influencers, FilterInfluencers } = this.props;
         //const influencersLocal = (FilterInfluencers && FilterInfluencers.length > 0) ? FilterInfluencers : influencers;
-        
+
         const { first } = this.state;
         const influencerItems = (influencers && influencers.items) ? influencers.items : [];
         const hasData = (influencers && (typeof influencers.hasData !== 'undefined')) ? influencers.hasData : true;
@@ -277,14 +277,14 @@ class Influencers extends Component {
                                                     <Col key={index} md="4">
                                                         <div className="card mb-3 widget-chart">
                                                             <div className="">
-                                                            <Img className="rounded-circle" style={{ maxHeight: '120px', maxWidth: '120px' }} src={value.photo.paths} alt="Avatar" />
+                                                                <Img className="rounded-circle" style={{ maxHeight: '120px', maxWidth: '120px' }} src={value.photo.paths} alt="Avatar" />
                                                                 {/* <img className="rounded-circle" style={{ maxHeight: '120px', maxWidth: '120px' }} src={value ? value.photo.paths[1] : default_user} /> */}
                                                             </div>
                                                             <div className="widget-numbers-sm">
                                                                 {value.fullName}
                                                             </div>
                                                             <div className="widget-numbers">
-                                                                {engagement}
+                                                                <NumberFormat value={engagement} displayType={'text'} thousandSeparator={true} />
                                                             </div>
                                                             <div className="widget-subheading">
                                                                 Engagement

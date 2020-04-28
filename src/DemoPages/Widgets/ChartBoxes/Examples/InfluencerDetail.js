@@ -23,6 +23,7 @@ import { extendMoment } from "moment-range";
 import default_user from '../../../../assets/utils/images/avatars/default_user.jpg';
 import 'react-daterange-picker/dist/css/react-calendar.css'
 import { Trans } from 'react-i18next';
+import NumberFormat from 'react-number-format';
 
 class InfluencerDetail extends Component {
     constructor(props) {
@@ -167,7 +168,7 @@ class InfluencerDetail extends Component {
                                 <Col md="12">
                                     <Card className="main-card mb-3">
                                         <div className="card-header" >
-                                            <span style={{width: '100%', textAlign: 'center', fontSize: '15px'}}>{Influencer ? Influencer.fullName : ''}</span>
+                                            <span style={{ width: '100%', textAlign: 'center', fontSize: '15px' }}>{Influencer ? Influencer.fullName : ''}</span>
                                         </div>
                                         <img className="rounded-circle" style={{ maxHeight: '180px', maxWidth: '180px', margin: 'auto' }} src={Influencer && Influencer.photo && Influencer.photo.paths.length > 0 ? Influencer.photo.paths[0] : default_user} />
                                     </Card>
@@ -193,13 +194,7 @@ class InfluencerDetail extends Component {
                                                     }
                                                     back={
                                                         <div style={{ maxHeight: '200px', maxWidth: '200px', margin: 'auto' }}>
-                                                            {/* <img
-                                                                onError={this.onError(item.photo.paths[2])}
-                                                                alt='' className="rounded-circle"
-                                                                style={{ maxHeight: '120px', maxWidth: '170px', margin: 'auto' }}
-                                                                src={item && item.photo && item.photo.paths.length > 0 ? item.photo.paths[1] : default_user} />
-                                                             */}
-                                                             <Img className="rounded-circle" style={{ maxHeight: '120px', maxWidth: '170px', margin: 'auto' }} src={item.photo.paths.slice(1, item.photo.paths.length)} />
+                                                            <Img className="rounded-circle" style={{ maxHeight: '120px', maxWidth: '170px', margin: 'auto' }} src={item.photo.paths.slice(1, item.photo.paths.length)} />
                                                             <div style={{ textAlign: 'center', fontSize: '16px' }}>
                                                                 <span>{item ? item.fullName : ''}</span>
                                                             </div>
@@ -231,7 +226,7 @@ class InfluencerDetail extends Component {
                                                         <i className="lnr-thumbs-up text-warning" />
                                                     </div>
                                                     <div className="widget-numbers">
-                                                        {Influencer ? Influencer.numberOfReaction : 0}
+                                                        <NumberFormat value={Influencer ? Influencer.numberOfReaction : 0} displayType={'text'} thousandSeparator={true} />
                                                     </div>
                                                     <div className="widget-subheading">
                                                         <Trans>Reactions</Trans>
@@ -247,7 +242,7 @@ class InfluencerDetail extends Component {
                                                         <i className="lnr-pencil text-info" />
                                                     </div>
                                                     <div className="widget-numbers">
-                                                        {Influencer ? Influencer.numberOfComment : 0}
+                                                        <NumberFormat value={Influencer ? Influencer.numberOfComment : 0} displayType={'text'} thousandSeparator={true} />
                                                     </div>
                                                     <div className="widget-subheading">
                                                         <Trans>Comments</Trans>
@@ -266,7 +261,7 @@ class InfluencerDetail extends Component {
                                                     <i className="lnr-link text-danger" />
                                                 </div>
                                                 <div className="widget-numbers">
-                                                    {Influencer ? Influencer.numberOfShare : 0}
+                                                    <NumberFormat value={Influencer ? Influencer.numberOfShare : 0} displayType={'text'} thousandSeparator={true} />
                                                 </div>
                                                 <div className="widget-subheading">
                                                     <Trans>Shares</Trans>
@@ -280,7 +275,7 @@ class InfluencerDetail extends Component {
                                                     <i className="lnr-license text-success" />
                                                 </div>
                                                 <div className="widget-numbers">
-                                                    {engagement}
+                                                    <NumberFormat value={engagement} displayType={'text'} thousandSeparator={true} />
                                                 </div>
                                                 <div className="widget-subheading">
                                                     <Trans>Engagements</Trans>
@@ -312,11 +307,6 @@ class InfluencerDetail extends Component {
                                                         <td style={{ width: '62%' }}>
                                                             <div className="widget-content p-0">
                                                                 <div className="widget-content-wrapper">
-                                                                    {/* <div className="widget-content-left mr-3">
-                                                                        <div className="widget-content-left">
-                                                                            <img width={40} className="rounded-circle" src={avatar4} alt="Avatar" />
-                                                                        </div>
-                                                                    </div> */}
                                                                     <div className="widget-content-left flex2">
                                                                         <div className="widget-heading">{Influencer && Influencer.post1 ? Influencer.post1.title : ''}</div>
                                                                         <div className="widget-subheading opacity-7">{Influencer && Influencer.post1 ? Influencer.post1.status : ''}</div>
@@ -325,9 +315,15 @@ class InfluencerDetail extends Component {
                                                             </div>
                                                         </td>
                                                         <td style={{ width: '20%' }} className="text-center">
-                                                            <div className="badge badge-primary">{numberOfReaction1}</div>
-                                                            <div className="badge badge-info">{numberOfComment1}</div>
-                                                            <div className="badge badge-alternate">{numberOfShare1}</div>
+                                                            <div className="badge badge-primary">
+                                                                <NumberFormat value={numberOfReaction1} displayType={'text'} thousandSeparator={true} />
+                                                            </div>
+                                                            <div className="badge badge-info">
+                                                                <NumberFormat value={numberOfComment1} displayType={'text'} thousandSeparator={true} />
+                                                            </div>
+                                                            <div className="badge badge-alternate">
+                                                                <NumberFormat value={numberOfShare1} displayType={'text'} thousandSeparator={true} />
+                                                            </div>
                                                         </td>
                                                         <td style={{ width: '8%' }} className="text-center">{engagement1}</td>
                                                     </tr>
@@ -344,11 +340,19 @@ class InfluencerDetail extends Component {
                                                             </div>
                                                         </td>
                                                         <td className="text-center">
-                                                            <div className="badge badge-primary">{numberOfReaction2}</div>
-                                                            <div className="badge badge-info">{numberOfComment2}</div>
-                                                            <div className="badge badge-alternate">{numberOfShare2}</div>
+                                                            <div className="badge badge-primary">
+                                                                <NumberFormat value={numberOfReaction2} displayType={'text'} thousandSeparator={true} />
+                                                            </div>
+                                                            <div className="badge badge-info">
+                                                                <NumberFormat value={numberOfComment2} displayType={'text'} thousandSeparator={true} />
+                                                            </div>
+                                                            <div className="badge badge-alternate">
+                                                                <NumberFormat value={numberOfShare2} displayType={'text'} thousandSeparator={true} />
+                                                            </div>
                                                         </td>
-                                                        <td className="text-center">{engagement2}</td>
+                                                        <td className="text-center">
+                                                            <NumberFormat value={engagement2} displayType={'text'} thousandSeparator={true} />
+                                                        </td>
                                                     </tr>
                                                     <tr>
                                                         <td className="text-center text-muted">{Influencer && Influencer.post3 ? Influencer.post3.time : ''}</td>
@@ -363,11 +367,19 @@ class InfluencerDetail extends Component {
                                                             </div>
                                                         </td>
                                                         <td className="text-center">
-                                                            <div className="badge badge-primary">{numberOfReaction3}</div>
-                                                            <div className="badge badge-info">{numberOfComment3}</div>
-                                                            <div className="badge badge-alternate">{numberOfShare3}</div>
+                                                            <div className="badge badge-primary">
+                                                                <NumberFormat value={numberOfReaction3} displayType={'text'} thousandSeparator={true} />
+                                                            </div>
+                                                            <div className="badge badge-info">
+                                                                <NumberFormat value={numberOfComment3} displayType={'text'} thousandSeparator={true} />
+                                                            </div>
+                                                            <div className="badge badge-alternate">
+                                                                <NumberFormat value={numberOfShare3} displayType={'text'} thousandSeparator={true} />
+                                                            </div>
                                                         </td>
-                                                        <td className="text-center">{engagement3}</td>
+                                                        <td className="text-center">
+                                                            <NumberFormat value={engagement3} displayType={'text'} thousandSeparator={true} />
+                                                        </td>
                                                     </tr>
                                                     <tr>
                                                         <td className="text-center text-muted">{Influencer && Influencer.post4 ? Influencer.post4.time : ''}</td>
@@ -382,11 +394,19 @@ class InfluencerDetail extends Component {
                                                             </div>
                                                         </td>
                                                         <td className="text-center">
-                                                            <div className="badge badge-primary">{numberOfReaction4}</div>
-                                                            <div className="badge badge-info">{numberOfComment4}</div>
-                                                            <div className="badge badge-alternate">{numberOfShare4}</div>
+                                                            <div className="badge badge-primary">
+                                                                <NumberFormat value={numberOfReaction4} displayType={'text'} thousandSeparator={true} />
+                                                            </div>
+                                                            <div className="badge badge-info">
+                                                                <NumberFormat value={numberOfComment4} displayType={'text'} thousandSeparator={true} />
+                                                            </div>
+                                                            <div className="badge badge-alternate">
+                                                                <NumberFormat value={numberOfShare4} displayType={'text'} thousandSeparator={true} />
+                                                            </div>
                                                         </td>
-                                                        <td className="text-center">{engagement4}</td>
+                                                        <td className="text-center">
+                                                            <NumberFormat value={engagement4} displayType={'text'} thousandSeparator={true} />
+                                                        </td>
                                                     </tr>
                                                     <tr>
                                                         <td className="text-center text-muted">{Influencer && Influencer.post5 ? Influencer.post5.time : ''}</td>
@@ -401,11 +421,19 @@ class InfluencerDetail extends Component {
                                                             </div>
                                                         </td>
                                                         <td className="text-center">
-                                                            <div className="badge badge-primary">{numberOfReaction5}</div>
-                                                            <div className="badge badge-info">{numberOfComment5}</div>
-                                                            <div className="badge badge-alternate">{numberOfShare5}</div>
+                                                            <div className="badge badge-primary">
+                                                                <NumberFormat value={numberOfReaction5} displayType={'text'} thousandSeparator={true} />
+                                                            </div>
+                                                            <div className="badge badge-info">
+                                                                <NumberFormat value={numberOfComment5} displayType={'text'} thousandSeparator={true} />
+                                                            </div>
+                                                            <div className="badge badge-alternate">
+                                                                <NumberFormat value={numberOfShare5} displayType={'text'} thousandSeparator={true} />
+                                                            </div>
                                                         </td>
-                                                        <td className="text-center">{engagement5}</td>
+                                                        <td className="text-center">
+                                                            <NumberFormat value={engagement5} displayType={'text'} thousandSeparator={true} />
+                                                        </td>
                                                     </tr>
                                                 </tbody>
                                             </table>

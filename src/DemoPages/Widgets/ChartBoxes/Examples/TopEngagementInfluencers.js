@@ -11,6 +11,7 @@ import {
 } from 'reactstrap';
 import Img from 'react-image';
 import Skeleton, { SkeletonTheme } from 'react-loading-skeleton';
+import NumberFormat from 'react-number-format';
 
 class TopEngagementInfluencers extends React.Component {
     constructor(props) {
@@ -65,7 +66,7 @@ class TopEngagementInfluencers extends React.Component {
                                         topEngagementLocal.map((value, index) => {
                                             return (
                                                 <tr key={index} style={{ cursor: 'pointer' }} onClick={() => this.gotoDetail(index)}>
-                                                    <td style={{verticalAlign:'middle'}} className="text-center text-muted">{index + 1}</td>
+                                                    <td style={{ verticalAlign: 'middle' }} className="text-center text-muted">{index + 1}</td>
                                                     <td>
                                                         <div className="widget-content p-0">
                                                             <div className="widget-content-wrapper">
@@ -81,9 +82,13 @@ class TopEngagementInfluencers extends React.Component {
                                                             </div>
                                                         </div>
                                                     </td>
-                                                    <td style={{verticalAlign:'middle'}} className="text-center">{value.valueForSortingOne}</td>
-                                                    <td style={{verticalAlign:'middle'}} className="text-center">
-                                                        <div className="badge-big badge-pill badge-warning">{value.valueForSortingTwo}</div>
+                                                    <td style={{ verticalAlign: 'middle' }} className="text-center">
+                                                        <NumberFormat value={value.valueForSortingOne} displayType={'text'} thousandSeparator={true} />
+                                                    </td>
+                                                    <td style={{ verticalAlign: 'middle' }} className="text-center">
+                                                        <div className="badge-big badge-pill badge-warning">
+                                                            <NumberFormat value={value.valueForSortingOne} displayType={'text'} thousandSeparator={true} />
+                                                        </div>
                                                     </td>
                                                 </tr>
                                             );

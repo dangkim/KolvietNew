@@ -132,7 +132,7 @@ function register(campaign,
                 //         dispatch(failure(error.toString()));
                 //         dispatch(alertActions.error(error.toString()));
                 //     }
-
+                history.replace({ pathname: '/widgets/campaigns-table'});
                 //dispatch(alertActions.success('Registration Campaign successful'));
             },
                 error => {

@@ -185,24 +185,24 @@ class CreateCampaign extends Component {
                 Brand.location,
                 Influencer));
 
-            campaign.campaignName = '';
-            campaign.campaignTarget = '';
-            campaign.productInfo = '';
-            campaign.budget = '';
-            job.jobDescription = '';
-            job.jobName = '';
+            // campaign.campaignName = '';
+            // campaign.campaignTarget = '';
+            // campaign.productInfo = '';
+            // campaign.budget = '';
+            // job.jobDescription = '';
+            // job.jobName = '';
 
-            this.setState({
-                campaign: {
-                    ...campaign
-                }
-            });
+            // this.setState({
+            //     campaign: {
+            //         ...campaign
+            //     }
+            // });
 
-            this.setState({
-                job: {
-                    ...job
-                }
-            });
+            // this.setState({
+            //     job: {
+            //         ...job
+            //     }
+            // });
         }
     }
 

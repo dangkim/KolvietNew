@@ -10,6 +10,7 @@ import {
 } from 'reactstrap';
 import Img from 'react-image';
 import Skeleton, { SkeletonTheme } from 'react-loading-skeleton';
+import NumberFormat from 'react-number-format';
 
 class TopFollowersInfluencers extends React.Component {
     constructor(props) {
@@ -64,14 +65,14 @@ class TopFollowersInfluencers extends React.Component {
                                         topFollowersLocal.map((value, index) => {
                                             const avg = (value.engagement + value.numberOfFollowers) / 2;
                                             return (
-                                                <tr key={index} style={{cursor: 'pointer'}} onClick={() => this.gotoDetail(index)}>
-                                                    <td style={{verticalAlign:'middle'}} className="text-center text-muted">{index + 1}</td>
+                                                <tr key={index} style={{ cursor: 'pointer' }} onClick={() => this.gotoDetail(index)}>
+                                                    <td style={{ verticalAlign: 'middle' }} className="text-center text-muted">{index + 1}</td>
                                                     <td>
                                                         <div className="widget-content p-0">
                                                             <div className="widget-content-wrapper">
                                                                 <div className="widget-content-left mr-3">
                                                                     <div className="widget-content-left">
-                                                                    <Img className="rounded-circle" width={40} src={value.photo.paths} alt="Avatar" />
+                                                                        <Img className="rounded-circle" width={40} src={value.photo.paths} alt="Avatar" />
                                                                         {/* <img width={40} className="rounded-circle" src={value ? value.photo.paths[1] : default_user} alt="Avatar" /> */}
                                                                     </div>
                                                                 </div>
@@ -82,10 +83,13 @@ class TopFollowersInfluencers extends React.Component {
                                                             </div>
                                                         </div>
                                                     </td>
-                                                    <td style={{verticalAlign:'middle'}} className="text-center">
-                                                        <div className="badge-big badge-pill badge-warning">{value.valueForSortingOne}</div>
+                                                    <td style={{ verticalAlign: 'middle' }} className="text-center">
+                                                        <div className="badge-big badge-pill badge-warning">
+                                                            <NumberFormat value={value.valueForSortingOne} displayType={'text'} thousandSeparator={true} />
+                                                        </div>
                                                     </td>
-                                                    <td style={{verticalAlign:'middle'}} className="text-center">{value.valueForSortingTwo}
+                                                    <td style={{ verticalAlign: 'middle' }} className="text-center">
+                                                        <NumberFormat value={value.valueForSortingTwo} displayType={'text'} thousandSeparator={true} />
                                                         {/* <div className="badge badge-warning">{value.valueForSortingOne}</div> */}
                                                     </td>
                                                 </tr>
