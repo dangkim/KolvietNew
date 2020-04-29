@@ -18,6 +18,8 @@ import {
 
 } from 'reactstrap';
 
+import NumberFormat from 'react-number-format';
+
 class CompareInfluencers extends React.Component {
     constructor(props) {
         super(props);
@@ -143,28 +145,36 @@ class CompareInfluencers extends React.Component {
                                                         <NavLink>
                                                             <i className="nav-link-icon pe-7s-like2"> </i>
                                                             <span>Reactions(Love|Like|Smile..)</span>
-                                                            <div className={"ml-auto" + (subReaction > 0 ? " badge-big " : " badge ") + "badge-pill badge-warning"}>{numberOfReaction1}</div>
+                                                            <div className={"ml-auto" + (subReaction > 0 ? " badge-big " : " badge ") + "badge-pill badge-warning"}>
+                                                                <NumberFormat value={numberOfReaction1} displayType={'text'} thousandSeparator={true} />
+                                                            </div>
                                                         </NavLink>
                                                     </NavItem>
                                                     <NavItem>
                                                         <NavLink>
                                                             <i className="nav-link-icon pe-7s-chat"> </i>
                                                             <span>Comments</span>
-                                                            <div className={"ml-auto" + (subComment > 0 ? " badge-big " : " badge ") + "badge-pill badge-info"}>{numberOfComment1}</div>
+                                                            <div className={"ml-auto" + (subComment > 0 ? " badge-big " : " badge ") + "badge-pill badge-info"}>
+                                                                <NumberFormat value={numberOfComment1} displayType={'text'} thousandSeparator={true} />
+                                                            </div>
                                                         </NavLink>
                                                     </NavItem>
                                                     <NavItem>
                                                         <NavLink>
                                                             <i className="nav-link-icon pe-7s-share"> </i>
                                                             <span>Share</span>
-                                                            <div className={"ml-auto" + (subShare > 0 ? " badge-big " : " badge ") + "badge-pill badge-alternate"}>{numberOfShare1}</div>
+                                                            <div className={"ml-auto" + (subShare > 0 ? " badge-big " : " badge ") + "badge-pill badge-alternate"}>
+                                                                <NumberFormat value={numberOfShare1} displayType={'text'} thousandSeparator={true} />
+                                                            </div>
                                                         </NavLink>
                                                     </NavItem>
                                                     <NavItem>
                                                         <NavLink>
                                                             <i className="nav-link-icon pe-7s-graph"> </i>
                                                             <span>Engagement</span>
-                                                            <div className={"ml-auto" + (subEngagement > 0 ? " badge-big " : " badge ") + "badge-pill badge-danger"}>{engagement1}</div>
+                                                            <div className={"ml-auto" + (subEngagement > 0 ? " badge-big " : " badge ") + "badge-pill badge-danger"}>
+                                                                <NumberFormat value={engagement1} displayType={'text'} thousandSeparator={true} />
+                                                            </div>
                                                         </NavLink>
                                                     </NavItem>
                                                     <NavItem className="nav-item-header">
@@ -174,7 +184,9 @@ class CompareInfluencers extends React.Component {
                                                         <NavLink>
                                                             <i className="nav-link-icon pe-7s-users"> </i>
                                                             <span>Followers</span>
-                                                            <div className={"ml-auto" + (subFollowers > 0 ? " badge-big " : " badge ") + "badge-pill badge-success"}>{ComparedInfluencers.length > 0 ? ComparedInfluencers[0].numberOfFollowers : ''}</div>
+                                                            <div className={"ml-auto" + (subFollowers > 0 ? " badge-big " : " badge ") + "badge-pill badge-success"}>
+                                                                <NumberFormat value={ComparedInfluencers.length > 0 ? ComparedInfluencers[0].numberOfFollowers : ''} displayType={'text'} thousandSeparator={true} />
+                                                            </div>
                                                         </NavLink>
                                                     </NavItem>
                                                     <NavItem>
@@ -196,28 +208,36 @@ class CompareInfluencers extends React.Component {
                                                         <NavLink>
                                                             <i className="nav-link-icon pe-7s-like2"> </i>
                                                             <span>Reactions(Love|Like|Smile..)</span>
-                                                            <div className={"ml-auto" + (subReaction > 0 ? " badge " : " badge-big ") + "badge-pill badge-warning"}>{numberOfReaction2}</div>
+                                                            <div className={"ml-auto" + (subReaction > 0 ? " badge " : " badge-big ") + "badge-pill badge-warning"}>
+                                                                <NumberFormat value={numberOfReaction2} displayType={'text'} thousandSeparator={true} />
+                                                            </div>
                                                         </NavLink>
                                                     </NavItem>
                                                     <NavItem>
                                                         <NavLink>
                                                             <i className="nav-link-icon pe-7s-chat"> </i>
                                                             <span>Comments</span>
-                                                            <div className={"ml-auto" + (subComment > 0 ? " badge " : " badge-big ") + "badge-pill badge-info"}>{numberOfComment2}</div>
+                                                            <div className={"ml-auto" + (subComment > 0 ? " badge " : " badge-big ") + "badge-pill badge-info"}>
+                                                                <NumberFormat value={numberOfComment2} displayType={'text'} thousandSeparator={true} />
+                                                            </div>
                                                         </NavLink>
                                                     </NavItem>
                                                     <NavItem>
                                                         <NavLink>
                                                             <i className="nav-link-icon pe-7s-share"> </i>
                                                             <span>Share</span>
-                                                            <div className={"ml-auto" + (subShare > 0 ? " badge " : " badge-big ") + "badge-pill badge-alternate"}>{numberOfShare2}</div>
+                                                            <div className={"ml-auto" + (subShare > 0 ? " badge " : " badge-big ") + "badge-pill badge-alternate"}>
+                                                                <NumberFormat value={numberOfShare2} displayType={'text'} thousandSeparator={true} />
+                                                            </div>
                                                         </NavLink>
                                                     </NavItem>
                                                     <NavItem>
                                                         <NavLink>
                                                             <i className="nav-link-icon pe-7s-graph"> </i>
                                                             <span>Engagement</span>
-                                                            <div className={"ml-auto" + (subEngagement > 0 ? " badge " : " badge-big ") + "badge-pill badge-danger"}>{engagement2}</div>
+                                                            <div className={"ml-auto" + (subEngagement > 0 ? " badge " : " badge-big ") + "badge-pill badge-danger"}>
+                                                                <NumberFormat value={engagement2} displayType={'text'} thousandSeparator={true} />
+                                                            </div>
                                                         </NavLink>
                                                     </NavItem>
                                                     <NavItem className="nav-item-header">
@@ -227,14 +247,18 @@ class CompareInfluencers extends React.Component {
                                                         <NavLink>
                                                             <i className="nav-link-icon pe-7s-users"> </i>
                                                             <span>Followers</span>
-                                                            <div className={"ml-auto" + (subFollowers > 0 ? " badge " : " badge-big ") + "badge-pill badge-success"}>{ComparedInfluencers.length > 0 ? ComparedInfluencers[1].numberOfFollowers : ''}</div>
+                                                            <div className={"ml-auto" + (subFollowers > 0 ? " badge " : " badge-big ") + "badge-pill badge-success"}>
+                                                                <NumberFormat value={ComparedInfluencers.length > 0 ? ComparedInfluencers[1].numberOfFollowers : ''} displayType={'text'} thousandSeparator={true} />
+                                                            </div>
                                                         </NavLink>
                                                     </NavItem>
                                                     <NavItem>
                                                         <NavLink>
                                                             <i className="nav-link-icon pe-7s-note"> </i>
                                                             <span>Posts</span>
-                                                            <div className={"ml-auto" + (subPost > 0 ? " badge " : " badge-big ") + "badge-pill badge-secondary"}>{ComparedInfluencers.length > 0 ? ComparedInfluencers[1].numberOfPost : ''}</div>
+                                                            <div className={"ml-auto" + (subPost > 0 ? " badge " : " badge-big ") + "badge-pill badge-secondary"}>
+                                                                <NumberFormat value={ComparedInfluencers.length > 0 ? ComparedInfluencers[1].numberOfPost : ''} displayType={'text'} thousandSeparator={true} />
+                                                            </div>
                                                         </NavLink>
                                                     </NavItem>
                                                     <NavItem className="nav-item-divider" />
