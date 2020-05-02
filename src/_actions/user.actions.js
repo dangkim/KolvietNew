@@ -29,7 +29,7 @@ function getToken(userName, password) {
                                         //debugger;
                                         localStorage.setItem("type", "brand");
                                         localStorage.setItem("brandFullName", brand.brand[0].fullName);
-                                        localStorage.setItem("brandName", brand.brand[0].brandName);
+                                        localStorage.setItem("brandName", brand.brand[0].email);
                                         localStorage.setItem('brandObj', JSON.stringify(brand.brand[0]));
                                         history.replace({ pathname: '/widgets/dashboard-boxes', state: { Brand: brand.brand, type: type } });
                                     },
