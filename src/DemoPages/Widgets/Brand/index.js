@@ -265,7 +265,7 @@ export default class ManageBrand extends React.Component {
                                                         <Label for="phone">
                                                             <Trans>Change Phone</Trans>
                                                         </Label>
-                                                        <NumberFormat className="form-control" name="phone" id="phone" format="+84 (####) ###-###" mask="_" value={brands.brand.phone} onChange={this.handlePhoneChange} />
+                                                        <NumberFormat className="form-control" name="phone" id="phone" format="(####) ###-###" mask="_" value={brands.brand.phone} onChange={this.handlePhoneChange} />
                                                     </FormGroup>
                                                 </Col>
                                                 <Col md={4}>

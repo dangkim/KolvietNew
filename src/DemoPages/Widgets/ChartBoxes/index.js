@@ -42,29 +42,42 @@ class WidgetsChartBoxes extends React.Component {
         super(props);
 
         let brandLocal = null;
-        let type = '';
+        //let type = '';
         let userName = '';
 
-        if (this.props.location.state) {
-            if (this.props.location.state.Brand) {
-                if (this.props.location.state.Brand[0]) {
-                    brandLocal = this.props.location.state.Brand[0];
-                }
-                else {
-                    brandLocal = this.props.location.state.Brand;
-                }
-            }
+        const brandObj = JSON.parse(localStorage.getItem('brandObj'));
 
-            if (this.props.location.state.type) {
-                type = this.props.location.state.type;
-                userName = this.props.location.state.userName;
-            }
+        const type = localStorage.getItem("type");
 
-            if (this.props.location.state.userName) {
-                userName = this.props.location.state.userName;
-            }
-
+        if (localStorage.getItem("type") === "brand") {
+            userName = localStorage.getItem("brandFullName");
         }
+        else {
+            userName = localStorage.getItem("infName");
+        }
+
+        brandLocal = brandObj;
+        debugger;
+        // if (this.props.location.state) {
+        //     if (this.props.location.state.Brand) {
+        //         if (this.props.location.state.Brand[0]) {
+        //             brandLocal = this.props.location.state.Brand[0];
+        //         }
+        //         else {
+        //             brandLocal = this.props.location.state.Brand;
+        //         }
+        //     }
+
+        //     if (this.props.location.state.type) {
+        //         type = this.props.location.state.type;
+        //         userName = this.props.location.state.userName;
+        //     }
+
+        //     if (this.props.location.state.userName) {
+        //         userName = this.props.location.state.userName;
+        //     }
+
+        // }
 
         this.state = {
             Brand: brandLocal,
@@ -286,7 +299,7 @@ class WidgetsChartBoxes extends React.Component {
         const cSelectedObj = JSON.parse(localStorage.getItem('cSelected')) ? JSON.parse(localStorage.getItem('cSelected')) : cSelected;
         const cSelectedLocal = cSelectedObj;//influencers.isClearList ? [] : cSelectedObj;//cSelected;
         let tabsContent = [];
-        debugger;
+
         if (FilterInfluencers.length > 0) {
             tabsContent = [
                 {

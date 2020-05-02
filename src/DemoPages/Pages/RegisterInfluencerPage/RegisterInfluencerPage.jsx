@@ -242,7 +242,7 @@ class RegisterInfluencerPage extends React.Component {
                                                             <span className="text-danger">*</span> Phone
                                                         </label>
                                                         {/* <input type="text" name="phone" id="phone" placeholder="Your Phone" value={influencer.phone} onChange={this.handleChange} className="form-control" /> */}
-                                                        <NumberFormat className="form-control" name="phone" id="phone" format="+84 (####) ###-###" mask="_" value={influencer.phone} onChange={this.handleChange} placeholder="Your Phone" />
+                                                        <NumberFormat className="form-control" name="phone" id="phone" format="(####) ###-###" mask="_" value={influencer.phone} onChange={this.handleChange} placeholder="Your Phone" />
                                                         {
                                                             submitted && !influencer.phone &&
                                                             <div className="help-block text-danger">Phone is required</div>

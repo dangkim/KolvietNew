@@ -329,9 +329,10 @@ class CreateCampaign extends Component {
             isOpen,
             dateValue } = this.state;
         const { Brand, Influencer, i18n, loading } = this.props;
-        debugger;
+
         // Check Brand and back to Login again
         if (!Brand) {
+            debugger;
             toast.warn("Please Login Again!");
             history.replace({ pathname: '/pages/loginpage' });
             //history.push('/pages/loginpage');

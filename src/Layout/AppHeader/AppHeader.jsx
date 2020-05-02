@@ -72,7 +72,7 @@ class AppHeader extends React.Component {
             enableHeaderShadow
         } = this.props;
 
-        const brandObj = JSON.parse(localStorage.getItem('brandObj'));
+        //const brandObj = JSON.parse(localStorage.getItem('brandObj'));
 
         var fullName = ""
         if (localStorage.getItem("type") === "brand") {

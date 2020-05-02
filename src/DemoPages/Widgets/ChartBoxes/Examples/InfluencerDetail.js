@@ -91,7 +91,7 @@ class InfluencerDetail extends Component {
         };
         const { currentVideoIndex } = this.state;
         const { RelativeInfluencers, Influencer } = this.props;
-        debugger;
+
         //const infItems = influencers.items ? influencers.items.influencer : [];
         let imgSrc = defaultAvatar;
         //debugger;
@@ -454,7 +454,7 @@ class InfluencerDetail extends Component {
                                                         {
                                                             Influencer && Influencer.photo.paths.map((url, index) => {
                                                                 return (
-                                                                    <div>
+                                                                    <div key={index}>
                                                                         <div className="position-relative h-100 d-flex justify-content-center align-items-center bg-plum-plate" tabIndex="-1">
                                                                             <div className="slide-img-bg" style={{ backgroundImage: `url(${url})` }}></div>
                                                                         </div>

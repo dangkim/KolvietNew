@@ -33,7 +33,7 @@ class TopEngagementInfluencers extends React.Component {
 
     gotoDetail(selected) {
         const { topEngagementInf } = this.props;
-        debugger;
+
         const influencer = topEngagementInf ? topEngagementInf.topEngagement[selected] : null;
         window.scroll(0, 450);
         if (influencer) {

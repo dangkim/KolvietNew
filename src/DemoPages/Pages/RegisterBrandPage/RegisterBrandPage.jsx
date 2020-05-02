@@ -236,7 +236,7 @@ class RegisterBrandPage extends React.Component {
                                                         <label htmlFor="name" className="">
                                                             <span className="text-danger">*</span> Phone
                                                         </label>
-                                                        <NumberFormat className="form-control" name="phone" id="phone" format="+84 (####) ###-###" mask="_" value={brand.phone} onChange={this.handleChange} placeholder="Your Phone" />
+                                                        <NumberFormat className="form-control" name="phone" id="phone" format="(####) ###-###" mask="_" value={brand.phone} onChange={this.handleChange} placeholder="Your Phone" />
                                                         {
                                                             submitted && !brand.phone &&
                                                             <div className="help-block text-danger">Phone is required</div>

@@ -169,7 +169,7 @@ class Widgets extends React.Component {
         const { searchValue, selectedTabKey } = this.state;
         const { influencers, relativeInfluencer } = this.props;
         const influencerItems = (influencers && influencers.items) ? influencers.items : [];
-        debugger;
+ 
         return (<Fragment>
             <AppHeader parentSearchCallback={this.sendData} parentSearchLocationCallback={this.sendSearchLocationData} parentSearchGenderCallback={this.sendSearchGenderData} />
             <div className="app-main">
