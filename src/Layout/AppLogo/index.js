@@ -34,24 +34,25 @@ class HeaderLogo extends React.Component {
     };
 
     handleBackToHomePage() {
-        localStorage.removeItem('user');
-        localStorage.removeItem('token');
-        localStorage.removeItem('campaign');
-        localStorage.removeItem('job');
-        localStorage.removeItem('dateValue');
-        localStorage.removeItem('selectedOptionLocation');
-        localStorage.removeItem('selectedOptionInteresting');
-        localStorage.removeItem('selectedOptionJobCategory');
-        localStorage.removeItem('type');
-        localStorage.removeItem('infName');
-        localStorage.removeItem('brandFullName');
-        localStorage.removeItem('brandName');
-        localStorage.removeItem('brandObj');
-        localStorage.removeItem('searchItems');
-        localStorage.removeItem('selectedLocations');
-        localStorage.removeItem('cSelected');
-        localStorage.removeItem('selectedName');
-        history.replace({ pathname: '/pages/landingpage' })
+        // localStorage.removeItem('user');
+        // localStorage.removeItem('token');
+        // localStorage.removeItem('campaign');
+        // localStorage.removeItem('job');
+        // localStorage.removeItem('dateValue');
+        // localStorage.removeItem('selectedOptionLocation');
+        // localStorage.removeItem('selectedOptionInteresting');
+        // localStorage.removeItem('selectedOptionJobCategory');
+        // localStorage.removeItem('type');
+        // localStorage.removeItem('infName');
+        // localStorage.removeItem('brandFullName');
+        // localStorage.removeItem('brandName');
+        // localStorage.removeItem('brandObj');
+        // localStorage.removeItem('searchItems');
+        // localStorage.removeItem('selectedLocations');
+        // localStorage.removeItem('cSelected');
+        // localStorage.removeItem('selectedName');
+        //history.replace({ pathname: '/pages/landingpage' })
+        history.push('/pages/landingpage');
     }
 
     render() {

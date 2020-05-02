@@ -42,7 +42,6 @@ class WidgetsChartBoxes extends React.Component {
         super(props);
 
         let brandLocal = null;
-        //let type = '';
         let userName = '';
 
         const brandObj = JSON.parse(localStorage.getItem('brandObj'));
@@ -57,27 +56,6 @@ class WidgetsChartBoxes extends React.Component {
         }
 
         brandLocal = brandObj;
-        debugger;
-        // if (this.props.location.state) {
-        //     if (this.props.location.state.Brand) {
-        //         if (this.props.location.state.Brand[0]) {
-        //             brandLocal = this.props.location.state.Brand[0];
-        //         }
-        //         else {
-        //             brandLocal = this.props.location.state.Brand;
-        //         }
-        //     }
-
-        //     if (this.props.location.state.type) {
-        //         type = this.props.location.state.type;
-        //         userName = this.props.location.state.userName;
-        //     }
-
-        //     if (this.props.location.state.userName) {
-        //         userName = this.props.location.state.userName;
-        //     }
-
-        // }
 
         this.state = {
             Brand: brandLocal,

@@ -21,19 +21,28 @@ class LandingPage extends Component {
 
         // reset login status
         //this.props.dispatch(userActions.logout());
+        // const type = localStorage.getItem("type");
 
+        // if (localStorage.getItem("type") === "brand") {
+        //     userName = localStorage.getItem("brandFullName");
+        // }
+        // else {
+        //     userName = localStorage.getItem("infName");
+        // }
         this.state = {
-            userName: '',
             email: '',
             password: '',
             submitted: false,
-            token: '',
             vnLanguage: 'Tiếng Việt',
             enLanguage: 'English',
-            currentLanguage: ''
+            currentLanguage: '',
+            token: localStorage.getItem("token"),
+            userName: localStorage.getItem("type") === "brand"? localStorage.getItem("brandName"):  localStorage.getItem("infName"),
+            //redirectPage: '/pages/loginpage'
         };
 
         this.handleChangeLanguage = this.handleChangeLanguage.bind(this);
+        this.reLogin = this.reLogin.bind(this);
     }
 
     handleChangeLanguage(e) {
@@ -45,10 +54,17 @@ class LandingPage extends Component {
         this.setState({ currentLanguage: value });
     }
 
-    render() {
-        const { loggingIn, token, i18n } = this.props;
-        const { vnLanguage, enLanguage } = this.state;
+    reLogin() {
+        debugger;
+        const { dispatch } = this.props;
+        const { token, userName } = this.state;
+        dispatch(userActions.reLogin(token, userName));
+    }
 
+    render() {
+        const { loggingIn, i18n, redirectPage } = this.props;
+        const { vnLanguage, enLanguage } = this.state;
+        debugger;
         return (
             <div className="landing-page landing-page1">
 
@@ -83,7 +99,7 @@ class LandingPage extends Component {
                                         </div>
                                         <h2>NỀN TẢNG THÔNG MINH</h2>
                                         <div className="">
-                                            <Link to="/pages/loginpage" className="btn btn-fill btn-info"><Trans>Get Free Access</Trans></Link>
+                                            <Link onClick={this.reLogin} to={redirectPage} className="btn btn-fill btn-info"><Trans>Get Free Access</Trans></Link>
                                         </div>
                                     </div>
                                 </div>
@@ -226,7 +242,7 @@ class LandingPage extends Component {
                             <div className="info">
                                 <h1><Trans>Try this for free</Trans>!</h1>
                                 <p><Trans>Beautiful places for you</Trans>.</p>
-                                <Link to="/pages/loginpage" className="btn btn-neutral btn-lg btn-fill"><Trans>Get Free Access</Trans></Link>
+                                <Link onClick={this.reLogin} to={redirectPage} className="btn btn-neutral btn-lg btn-fill"><Trans>Get Free Access</Trans></Link>
                                 {/* <a href="http://www.creative-tim.com/product/awesome-landing-page" className="btn btn-neutral btn-lg btn-fill">EXPLORE</a> */}
                             </div>
                         </div>
@@ -238,10 +254,10 @@ class LandingPage extends Component {
 }
 
 function mapStateToProps(state) {
-    const { loggingIn, token } = state.authentication;
+    const { loggingIn, redirectPage } = state.authentication;
     return {
         loggingIn,
-        token
+        redirectPage
     };
 }
 

@@ -19,6 +19,19 @@ export function authentication(state = initialState, action) {
       };
     case userConstants.LOGIN_FAILURE:
       return {};
+    case userConstants.RELOGIN_REQUEST:
+      return {
+        loggingIn: true,
+        user: action.user
+      };
+    case userConstants.RELOGIN_SUCCESS:
+      return {
+        loggingIn: false,
+        loggedIn: true,
+        redirectPage: action.redirectPage
+      };
+    case userConstants.RELOGIN_FAILURE:
+      return {};
     case userConstants.LOGOUT:
       return {};
     default:

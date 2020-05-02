@@ -10,17 +10,18 @@ export const userActions = {
     logout,
     register,
     getAll,
-    delete: _delete
+    delete: _delete,
+    reLogin
 };
 
-function getToken(userName, password, pathname) { 
+function getToken(userName, password) {
     return dispatch => {
         dispatch(request({ userName }));
         userService.getToken(userName, password)
             .then(token => {
                 userService.getContentType(token)
                     .then(type => {
-                        if (type === "Brand") {                            
+                        if (type === "Brand") {
                             // get Brand
                             brandService.getBrandByName(userName)
                                 .then(
@@ -83,6 +84,75 @@ function getToken(userName, password, pathname) {
 
     function request(user) { return { type: userConstants.LOGIN_REQUEST, user } }
     function success(token) { return { type: userConstants.LOGIN_SUCCESS, token } }
+    function failure(error) { return { type: userConstants.LOGIN_FAILURE, error } }
+}
+
+function reLogin(token, userName) {
+    if (!userName || userName === '') {
+        history.replace({ pathname: '/pages/loginpage' });
+    }
+    else {
+        return dispatch => {
+            userService.getContentType(token)
+                .then(type => {
+                    debugger;
+                    if (type === "Brand") {
+                        // get Brand
+                        brandService.getBrandByName(userName)
+                            .then(
+                                brand => {
+                                    //debugger;
+                                    localStorage.setItem("type", "brand");
+                                    localStorage.setItem("brandFullName", brand.brand[0].fullName);
+                                    localStorage.setItem("brandName", brand.brand[0].brandName);
+                                    localStorage.setItem('brandObj', JSON.stringify(brand.brand[0]));
+                                    history.replace({ pathname: '/widgets/dashboard-boxes', state: { Brand: brand.brand, type: type } });
+                                },
+                                error => {
+                                    toast.warn(error.toString() + " Please login again");
+                                    //history.push('/pages/loginpage');
+                                    history.replace({ pathname: '/pages/loginpage' });
+                                }
+                            )
+
+                    }
+                    else if (type === "Influencer") {
+                        localStorage.setItem("infName", userName);
+                        localStorage.setItem("type", "influencer");
+                        history.replace({ pathname: '/widgets/dashboard-boxes', state: { userName: userName, type: type } });
+                    }
+                    else if (userName === 'admin') {
+                        localStorage.setItem("type", "brand");
+                        localStorage.setItem("brandFullName", userName);
+                        localStorage.setItem("brandName", userName);
+
+                        var brand = {
+                            brandName: "admin",
+                            businessAreas: "",
+                            contentItemId: "",
+                            createdUtc: "",
+                            email: "",
+                            fullName: "admin",
+                            location: "",
+                            published: false
+                        }
+
+                        history.replace({ pathname: '/widgets/dashboard-boxes', state: { Brand: brand, type: type } });
+                    }
+                    dispatch(success('/widgets/dashboard-boxes'));
+                    toast.success("Welcome " + userName);
+                },
+                    error => {
+                        dispatch(failure(error.toString()));
+                        dispatch(success('/pages/loginpage'));
+                        toast.warn("Please login again");
+                    }
+                );
+        };
+    }
+
+    function request(user) { return { type: userConstants.LOGIN_REQUEST, user } }
+    function success(redirectPage) { return { type: userConstants.LOGIN_SUCCESS, redirectPage } }
     function failure(error) { return { type: userConstants.LOGIN_FAILURE, error } }
 }
 
