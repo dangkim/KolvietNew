@@ -33,7 +33,8 @@ export default class CampaignsTable extends React.Component {
         this.state = {
             compaignList: [],
             statusColumns: ['statusOfCampaign'],
-            errors: {}
+            errors: {},
+            brandName: localStorage.getItem("brandName")
         };
 
         this.statusTypeProvider = this.statusTypeProvider.bind(this);
@@ -44,9 +45,8 @@ export default class CampaignsTable extends React.Component {
     }
 
     handleSubmitJobs(campaign) {
-        debugger;
         const { dispatch } = this.props;
-        const brandName = localStorage.getItem("brandName");
+        const { brandName } = this.state;
         const campaignLocal = {
             budget: campaign.budget,
             campaignName: campaign.campaignName,
@@ -59,21 +59,21 @@ export default class CampaignsTable extends React.Component {
             toDate: campaign.toDate,
             brandName: brandName,
             influencerFullName: campaign.influencerFullName
-        };      
+        };
 
         dispatch(campaignActions.updateCampaign(campaignLocal));
     }
 
     handleDelete(campaign) {
         const { dispatch } = this.props;
-        const brandName = localStorage.getItem("brandName");
-        
+        const { brandName } = this.state;
+
         dispatch(campaignActions.deleteCampaign(campaign.contentItemId, brandName));
     }
 
     componentDidMount() {
         const { dispatch } = this.props;
-        const brandName = localStorage.getItem("brandName");
+        const { brandName } = this.state;
         if (brandName === 'admin') {
             dispatch(campaignActions.getAll());
         }
@@ -83,7 +83,6 @@ export default class CampaignsTable extends React.Component {
     }
 
     setErrors = (errors) => {
-        debugger;
         this.setState({ errors: errors });
     };
 
@@ -110,10 +109,26 @@ export default class CampaignsTable extends React.Component {
 
 
     render() {
-        const { statusColumns, errors } = this.state;
+        const { statusColumns, errors, brandName } = this.state;
         const { campaign, i18n, loading } = this.props;
 
         var rows = []
+
+        const adminColumns = [
+            { name: "campaignName", title: this.props.i18n.i18n.t('CampaignNameTable'), required: true },
+            { name: "budget", title: this.props.i18n.i18n.t('BudgetTable'), required: true },
+            { name: "campaignTarget", title: this.props.i18n.i18n.t('TargetTable'), required: true },
+            { name: "description", title: this.props.i18n.i18n.t('Description'), required: true },
+            { name: "fromAge", title: this.props.i18n.i18n.t('From Age'), required: true },
+            { name: "toAge", title: this.props.i18n.i18n.t('ToAgeTable'), required: true },
+            { name: "fromDate", title: this.props.i18n.i18n.t('From Date'), required: true },
+            { name: "toDate", title: this.props.i18n.i18n.t('To Date'), required: true },
+            { name: "phoneNumber", title: "Phone" },
+            { name: "brandFullName", title: "Full Name" },
+            { name: "influencerFullName", title: "Influencer" },
+            { name: "statusOfCampaign", title: this.props.i18n.i18n.t('StatusTable') },
+        ];
+
         const columns = [
             { name: "campaignName", title: this.props.i18n.i18n.t('CampaignNameTable'), required: true },
             { name: "budget", title: this.props.i18n.i18n.t('BudgetTable'), required: true },
@@ -131,6 +146,21 @@ export default class CampaignsTable extends React.Component {
             { name: "influencerFullName", title: "Influencer" },
             { name: "statusOfCampaign", title: this.props.i18n.i18n.t('StatusTable') },
         ];
+
+        const tableAdminColumnExtensions = [
+            { columnName: "campaignName", align: 'left', wordWrapEnabled: true },
+            { columnName: "budget", align: 'left', width: 90, wordWrapEnabled: true },
+            { columnName: "campaignTarget", align: 'left', wordWrapEnabled: true },
+            { columnName: "description", align: 'left', wordWrapEnabled: true },
+            { columnName: "fromAge", align: 'left', width: 80, wordWrapEnabled: true },
+            { columnName: "toAge", align: 'left', width: 70, wordWrapEnabled: true },
+            { columnName: "fromDate", align: 'left', width: 100, wordWrapEnabled: true },
+            { columnName: "toDate", align: 'left', width: 100, wordWrapEnabled: true },
+            { columnName: "phoneNumber", align: 'left', width: 150, wordWrapEnabled: true },
+            { columnName: "brandFullName", align: 'left', width: 100, wordWrapEnabled: true },
+            { columnName: "influencerFullName", align: 'left', wordWrapEnabled: true },
+            { columnName: "statusOfCampaign", align: 'left', width: 75, wordWrapEnabled: true }
+        ]
 
         const tableColumnExtensions = [
             { columnName: "campaignName", align: 'left', wordWrapEnabled: true },
@@ -262,21 +292,26 @@ export default class CampaignsTable extends React.Component {
                                         <CardTitle>
                                             {i18n.i18n.t('All Campaigns')}
                                         </CardTitle>
-                                        <Grid rows={rows} columns={columns}>
-                                            <EditingState
-                                                onRowChangesChange={onEdited}
-                                                onCommitChanges={commitChanges}
-                                                columnExtensions={editingStateColumnExtensions}
-                                            />
+                                        <Grid rows={rows} columns={brandName !== 'admin' ? columns : adminColumns}>
+                                            {
+                                                brandName !== 'admin' && <EditingState
+                                                    onRowChangesChange={onEdited}
+                                                    onCommitChanges={commitChanges}
+                                                    columnExtensions={editingStateColumnExtensions}
+                                                />
+                                            }
                                             <this.statusTypeProvider for={statusColumns} />
-                                            <Table columnExtensions={tableColumnExtensions} />
+                                            <Table columnExtensions={brandName !== 'admin' ? tableColumnExtensions : tableAdminColumnExtensions} />
                                             <TableHeaderRow />
-                                            <TableEditColumn
-                                                showEditCommand={true}
-                                                showDeleteCommand={true}
-                                                cellComponent={props => <EditCell {...props} errors={errors} />}
-                                            />
-                                            <TableEditRow />
+                                            {
+                                                brandName !== 'admin' &&
+                                                <TableEditColumn
+                                                    showEditCommand={true}
+                                                    showDeleteCommand={true}
+                                                    cellComponent={props => <EditCell {...props} errors={errors} />}
+                                                />
+                                            }
+                                            {brandName !== 'admin' && <TableEditRow />}
                                         </Grid>
                                         {
                                             loading &&

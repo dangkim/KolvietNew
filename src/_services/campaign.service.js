@@ -76,6 +76,8 @@ function getAll() {
           contentItemId
           createdUtc
           description
+          phoneNumber
+    	  brandFullName
           bag {
             contentItems {
               ... on Influencer {

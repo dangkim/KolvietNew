@@ -175,38 +175,6 @@ class InfluencerDetail extends Component {
                                 </Col>
                             </Row>
                             <Row>
-                                {
-                                    RelativeInfluencers.relativeInfluencer && RelativeInfluencers.relativeInfluencer.map((item, index) => {
-                                        return (
-                                            <Col md="3" key={index} style={{ cursor: 'pointer' }} onClick={() => this.gotoDetail(index)}>
-                                                <HoverCard
-                                                    maxWidth={400}
-                                                    animationSpeed={500}
-                                                    height={150}
-                                                    front={
-                                                        <div style={{ maxHeight: '200px', maxWidth: '200px', margin: 'auto' }}>
-                                                            {/* <img alt='' className="rounded-circle" style={{ maxHeight: '120px', maxWidth: '170px', margin: 'auto' }} src={item && item.photo && item.photo.paths.length > 0 ? item.photo.paths[0] : default_user} /> */}
-                                                            <Img className="rounded-circle" style={{ maxHeight: '120px', maxWidth: '170px', margin: 'auto' }} src={item.photo.paths} />
-                                                            <div style={{ textAlign: 'center', fontSize: '16px' }}>
-                                                                <span>{item ? item.fullName : ''}</span>
-                                                            </div>
-                                                        </div>
-                                                    }
-                                                    back={
-                                                        <div style={{ maxHeight: '200px', maxWidth: '200px', margin: 'auto' }}>
-                                                            <Img className="rounded-circle" style={{ maxHeight: '120px', maxWidth: '170px', margin: 'auto' }} src={item.photo.paths.slice(1, item.photo.paths.length)} />
-                                                            <div style={{ textAlign: 'center', fontSize: '16px' }}>
-                                                                <span>{item ? item.fullName : ''}</span>
-                                                            </div>
-                                                        </div>
-                                                    }
-                                                />
-                                            </Col>
-                                        )
-                                    })
-                                }
-                            </Row>
-                            <Row>
                                 <Col md="12">
                                     <Card className="main-card mb-3" style={{ marginTop: '30px !important' }}>
                                         <div className="text-center" style={{ whiteSpace: 'pre-wrap' }}>
@@ -442,6 +410,47 @@ class InfluencerDetail extends Component {
                                         </div>
                                     </Card>
                                 </Col>
+                            </Row>
+                            <Row>
+                                <Col md="12">
+                                    <Card className="main-card mb-3">
+                                    <div className="card-header" >
+                                            <span style={{ width: '100%', textAlign: 'center', fontSize: '15px' }}>Các Influencer liên quan</span>
+                                        </div>                                        
+                                    </Card>
+                                </Col>
+                            </Row>
+                            <Row>
+                                {
+                                    RelativeInfluencers.relativeInfluencer && RelativeInfluencers.relativeInfluencer.map((item, index) => {
+                                        return (
+                                            <Col md="3" key={index} style={{ cursor: 'pointer' }} onClick={() => this.gotoDetail(index)}>
+                                                <HoverCard
+                                                    maxWidth={400}
+                                                    animationSpeed={500}
+                                                    height={150}
+                                                    front={
+                                                        <div style={{ maxHeight: '200px', maxWidth: '200px', margin: 'auto' }}>
+                                                            {/* <img alt='' className="rounded-circle" style={{ maxHeight: '120px', maxWidth: '170px', margin: 'auto' }} src={item && item.photo && item.photo.paths.length > 0 ? item.photo.paths[0] : default_user} /> */}
+                                                            <Img className="rounded-circle" style={{ maxHeight: '120px', maxWidth: '170px', margin: 'auto' }} src={item.photo.paths} />
+                                                            <div style={{ textAlign: 'center', fontSize: '16px' }}>
+                                                                <span>{item ? item.fullName : ''}</span>
+                                                            </div>
+                                                        </div>
+                                                    }
+                                                    back={
+                                                        <div style={{ maxHeight: '200px', maxWidth: '200px', margin: 'auto' }}>
+                                                            <Img className="rounded-circle" style={{ maxHeight: '120px', maxWidth: '170px', margin: 'auto' }} src={item.photo.paths.slice(1, item.photo.paths.length)} />
+                                                            <div style={{ textAlign: 'center', fontSize: '16px' }}>
+                                                                <span>{item ? item.fullName : ''}</span>
+                                                            </div>
+                                                        </div>
+                                                    }
+                                                />
+                                            </Col>
+                                        )
+                                    })
+                                }
                             </Row>
                             <Row>
                                 <Col md="6">
