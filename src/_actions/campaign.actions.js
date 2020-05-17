@@ -87,8 +87,8 @@ function register(campaign,
     selectedOptionJobCategory,
     brandName,
     brandFullName,
-    businessAreas,
-    brandLocation,
+    email,
+    phoneNumber,
     selectedInfluencer) {
     return dispatch => {
 
@@ -103,45 +103,23 @@ function register(campaign,
             selectedOptionInteresting,
             selectedOptionJobCategory,
             brandName,
+            brandFullName,
+            email,
+            phoneNumber,            
             selectedInfluencer);
 
         campaignService.register(campaignLocal)
             .then(campaignType => {
-                // const campaignsLocal = createCampaigns(brandName,
-                //     brandFullName,
-                //     businessAreas,
-                //     brandLocation,
-                //     campaignType);
-
                 dispatch(success(campaignType));
                 localStorage.removeItem('campaign');
                 localStorage.removeItem('job');
-                //history.push('/widgets/dashboard-boxes');
-                //dispatch(alertActions.success('Registration Campaigns Successful'));
                 toast.success("Registration Campaigns Successful");
-                // campaignService.register(campaignsLocal)
-                //     .then(campaignsType => {
-                //         dispatch(success(campaignsType));
-                //         localStorage.removeItem('campaign');
-                //         localStorage.removeItem('job');
-                //         //history.push('/widgets/dashboard-boxes');
-                //         //dispatch(alertActions.success('Registration Campaigns Successful'));
-                //         toast.success("Registration Campaigns Successful");
-                //     }),
-                //     error => {
-                //         dispatch(failure(error.toString()));
-                //         dispatch(alertActions.error(error.toString()));
-                //     }
                 history.replace({ pathname: '/widgets/campaigns-table'});
-                //dispatch(alertActions.success('Registration Campaign successful'));
-            },
+                },
                 error => {
                     dispatch(failure(error.toString()));
-                    //dispatch(alertActions.error(error.toString()));
-                }
+                    }
             );
-
-        //dispatch(alertActions.success('Registration Job Successful'));
     };
 
     function request() { return { type: campaignConstants.CAM_REGISTER_REQUEST } }

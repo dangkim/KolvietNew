@@ -21,6 +21,7 @@ function getToken(userName, password) {
             .then(token => {
                 userService.getContentType(token)
                     .then(type => {
+                        debugger;
                         if (type === "Brand") {
                             // get Brand
                             brandService.getBrandByName(userName)
@@ -94,8 +95,7 @@ function reLogin(token, userName) {
     else {
         return dispatch => {
             userService.getContentType(token)
-                .then(type => {
-                    debugger;
+                .then(type => {                    
                     if (type === "Brand") {
                         // get Brand
                         brandService.getBrandByName(userName)

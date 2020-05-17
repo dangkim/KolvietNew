@@ -18,6 +18,7 @@ function getBrandByName(userName) {
           contentItemId
           brandName
           email
+          phone,
           businessAreas
           fullName
           location

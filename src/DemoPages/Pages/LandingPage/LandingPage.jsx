@@ -37,7 +37,7 @@ class LandingPage extends Component {
             enLanguage: 'English',
             currentLanguage: '',
             token: localStorage.getItem("token"),
-            userName: localStorage.getItem("type") === "brand"? localStorage.getItem("brandName"):  localStorage.getItem("infName"),
+            userName: localStorage.getItem("type") === "brand" ? localStorage.getItem("brandName") : localStorage.getItem("infName"),
             //redirectPage: '/pages/loginpage'
         };
 
@@ -55,15 +55,21 @@ class LandingPage extends Component {
     }
 
     reLogin() {
-        debugger;
+        //debugger;
         const { dispatch } = this.props;
         const { token, userName } = this.state;
-        dispatch(userActions.reLogin(token, userName));
+
+        if (token !== null && userName !== null) {
+            dispatch(userActions.reLogin(token, userName));
+        }        
     }
 
     render() {
         const { loggingIn, i18n, redirectPage } = this.props;
         const { vnLanguage, enLanguage } = this.state;
+
+        const redirectPageLocal = redirectPage ? redirectPage : '/pages/loginpage'
+
         debugger;
         return (
             <div className="landing-page landing-page1">
@@ -99,7 +105,7 @@ class LandingPage extends Component {
                                         </div>
                                         <h2>NỀN TẢNG THÔNG MINH</h2>
                                         <div className="">
-                                            <Link onClick={this.reLogin} to={redirectPage} className="btn btn-fill btn-info"><Trans>Get Free Access</Trans></Link>
+                                            <Link onClick={this.reLogin} to={redirectPageLocal} className="btn btn-fill btn-info"><Trans>Get Free Access</Trans></Link>
                                         </div>
                                     </div>
                                 </div>
@@ -242,7 +248,7 @@ class LandingPage extends Component {
                             <div className="info">
                                 <h1><Trans>Try this for free</Trans>!</h1>
                                 <p><Trans>Beautiful places for you</Trans>.</p>
-                                <Link onClick={this.reLogin} to={redirectPage} className="btn btn-neutral btn-lg btn-fill"><Trans>Get Free Access</Trans></Link>
+                                <Link onClick={this.reLogin} to={redirectPageLocal} className="btn btn-neutral btn-lg btn-fill"><Trans>Get Free Access</Trans></Link>
                                 {/* <a href="http://www.creative-tim.com/product/awesome-landing-page" className="btn btn-neutral btn-lg btn-fill">EXPLORE</a> */}
                             </div>
                         </div>

@@ -58,7 +58,7 @@ function updateCampaign(CampaignType) {
 function getAll() {
     const GET_ALL_COMPAIGN = `
     {
-        campaign {
+        campaign (status: LATEST){
           budget
           campaignName
           campaignTarget

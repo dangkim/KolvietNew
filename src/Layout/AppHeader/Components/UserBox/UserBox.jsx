@@ -77,7 +77,12 @@ class UserBox extends React.Component {
         }
         else {
             fullName = localBrand && localBrand.fullName ? localBrand.fullName : '';
-            urlIcon = (localBrand && localBrand.published === false) ? default_user : configContent.apiUrl + localBrand.avatar.urls[0]
+            if (typeof localBrand === 'undefined') {
+                urlIcon = default_user;
+            }
+            else {
+                urlIcon = (localBrand.published && localBrand.published === false) ? default_user : configContent.apiUrl + localBrand.avatar.urls[0]
+            }
         }
 
         return (

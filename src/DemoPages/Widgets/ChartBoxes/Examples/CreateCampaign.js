@@ -171,6 +171,8 @@ class CreateCampaign extends Component {
             job.jobDescription &&
             job.jobName) {
 
+            debugger;
+
             dispatch(campaignActions.register(campaign,
                 dateValue.start.format("DD MMM YYYY"),
                 dateValue.end.format("DD MMM YYYY"),
@@ -181,28 +183,9 @@ class CreateCampaign extends Component {
                 selectedOptionJobCategory,
                 Brand.brandName,
                 Brand.fullName,
-                Brand.businessAreas,
-                Brand.location,
+                Brand.email,
+                Brand.phone,
                 Influencer));
-
-            // campaign.campaignName = '';
-            // campaign.campaignTarget = '';
-            // campaign.productInfo = '';
-            // campaign.budget = '';
-            // job.jobDescription = '';
-            // job.jobName = '';
-
-            // this.setState({
-            //     campaign: {
-            //         ...campaign
-            //     }
-            // });
-
-            // this.setState({
-            //     job: {
-            //         ...job
-            //     }
-            // });
         }
     }
 

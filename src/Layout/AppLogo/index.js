@@ -51,8 +51,8 @@ class HeaderLogo extends React.Component {
         // localStorage.removeItem('selectedLocations');
         // localStorage.removeItem('cSelected');
         // localStorage.removeItem('selectedName');
-        //history.replace({ pathname: '/pages/landingpage' })
-        history.push('/pages/landingpage');
+        history.replace({ pathname: '/pages/landingpage' })
+        //history.push('/pages/landingpage');
     }
 
     render() {

@@ -61,6 +61,9 @@ export function createCampaign(campaign,
   selectedOptionInteresting,
   selectedOptionJobCategory,
   brandName,
+  brandFullName,
+  email,
+  phoneNumber,
   selectedInfluencer) {
 
   let locationString = '';
@@ -217,12 +220,12 @@ export function createCampaign(campaign,
 
     campaignContentItems.push(influencerLocal);
   }
-  debugger;
+
   const compaignType = {
     ContentItemId: '',
     ContentItemVersionId: '',
     ContentType: 'Campaign',
-    DisplayText: campaign.campaignName + ';' + selectedInfluencer.fullName + ';' + brandName,
+    DisplayText: campaign.campaignName + ';' + selectedInfluencer.fullName + ';' + brandName + ';' + email,
     Latest: true,
     Published: false,
     ModifiedUtc: '',
@@ -248,6 +251,12 @@ export function createCampaign(campaign,
       },
       Currency: {
         Text: 'VND'
+      },
+      BrandFullName: {
+        Text: brandFullName
+      },
+      PhoneNumber: {
+        Text: phoneNumber
       },
       CampaignName: {
         Text: campaign.campaignName
