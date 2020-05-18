@@ -258,6 +258,9 @@ export function createCampaign(campaign,
       PhoneNumber: {
         Text: phoneNumber
       },
+      Email: {
+        Text: email
+      },
       CampaignName: {
         Text: campaign.campaignName
       },

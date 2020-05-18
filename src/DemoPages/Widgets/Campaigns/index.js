@@ -124,7 +124,7 @@ export default class CampaignsTable extends React.Component {
             { name: "fromDate", title: this.props.i18n.i18n.t('From Date'), required: true },
             { name: "toDate", title: this.props.i18n.i18n.t('To Date'), required: true },
             { name: "phoneNumber", title: "Phone" },
-            { name: "brandFullName", title: "Full Name" },
+            { name: "email", title: "Email" },
             { name: "influencerFullName", title: "Influencer" },
             { name: "statusOfCampaign", title: this.props.i18n.i18n.t('StatusTable') },
         ];
@@ -157,7 +157,7 @@ export default class CampaignsTable extends React.Component {
             { columnName: "fromDate", align: 'left', width: 100, wordWrapEnabled: true },
             { columnName: "toDate", align: 'left', width: 100, wordWrapEnabled: true },
             { columnName: "phoneNumber", align: 'left', width: 150, wordWrapEnabled: true },
-            { columnName: "brandFullName", align: 'left', width: 100, wordWrapEnabled: true },
+            { columnName: "email", align: 'left', width: 100, wordWrapEnabled: true },
             { columnName: "influencerFullName", align: 'left', wordWrapEnabled: true },
             { columnName: "statusOfCampaign", align: 'left', width: 75, wordWrapEnabled: true }
         ]
