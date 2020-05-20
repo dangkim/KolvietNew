@@ -58,8 +58,18 @@ export default class CampaignsTable extends React.Component {
     }
 
     updateStatus(status) {
-        const { dispatch } = this.props;
-        const { brandName } = this.state;
+        const { dispatch, campaign } = this.props;
+        const { selection } = this.state;
+        const contentItemId = [];
+        debugger;
+        selection.forEach(id => {
+            contentItemId.push(campaign[id].contentItemId);
+        });
+
+        // campaign.forEach(element => {
+            
+        // });
+
         const campaignStatusLocal = {
             statusOfCampaign: status,
         };
@@ -368,10 +378,10 @@ export default class CampaignsTable extends React.Component {
                                 <Col md="5">
                                 </Col>
                                 <Col md="1">
-                                    <Button onClick={this.handleSubmit} color="primary" className="mt-2">Start</Button>
+                                    <Button onClick={this.updateStatus} color="primary" className="mt-2">Start</Button>
                                 </Col>
                                 <Col md="1">
-                                    <Button onClick={this.handleSubmit} color="primary" className="mt-2">Done</Button>
+                                    <Button onClick={this.updateStatus} color="primary" className="mt-2">Done</Button>
                                 </Col>
                                 <Col md="5">
                                 </Col>

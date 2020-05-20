@@ -56,7 +56,7 @@ function updateCampaign(CampaignType) {
     return fetch(`${configOrchardCore.apiUrl}/content/UpdateCampaign`, requestOptions).then(handleContentResponse);
 }
 
-function updateStatus(CampaignType) {
+function updateStatus(CampaignStatusModel) {
     const token = localStorage.getItem('token');
 
     const requestOptions = {
@@ -65,10 +65,10 @@ function updateStatus(CampaignType) {
             'Content-Type': 'application/json',
             'Authorization': token
         },
-        body: JSON.stringify(CampaignType)
+        body: JSON.stringify(CampaignStatusModel)
     };
     debugger;
-    return fetch(`${configOrchardCore.apiUrl}/content/UpdateCampaign`, requestOptions).then(handleContentResponse);
+    return fetch(`${configOrchardCore.apiUrl}/content/UpdateCampaignStatus`, requestOptions).then(handleContentResponse);
 }
 
 function getAll() {
