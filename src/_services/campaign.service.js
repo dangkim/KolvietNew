@@ -8,7 +8,8 @@ export const campaignService = {
     getAllInteresting,
     getAllLocation,
     updateCampaign,
-    deleteCampaign
+    deleteCampaign,
+    updateStatus
 };
 
 function register(campaignType) {
@@ -41,6 +42,21 @@ function deleteCampaign(contentItemId) {
 }
 
 function updateCampaign(CampaignType) {
+    const token = localStorage.getItem('token');
+
+    const requestOptions = {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+            'Authorization': token
+        },
+        body: JSON.stringify(CampaignType)
+    };
+    debugger;
+    return fetch(`${configOrchardCore.apiUrl}/content/UpdateCampaign`, requestOptions).then(handleContentResponse);
+}
+
+function updateStatus(CampaignType) {
     const token = localStorage.getItem('token');
 
     const requestOptions = {

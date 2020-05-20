@@ -2,7 +2,14 @@ import React, { useState, Fragment } from 'react';
 import { Route } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { campaignActions } from '../../../_actions';
-import { EditingState, DataTypeProvider } from '@devexpress/dx-react-grid';
+import {
+    EditingState
+    , DataTypeProvider
+    , SelectionState
+    , PagingState
+    , IntegratedPaging
+    , IntegratedSelection
+} from '@devexpress/dx-react-grid';
 import Loader from 'react-loader-spinner'
 import {
     Grid,
@@ -10,6 +17,8 @@ import {
     TableHeaderRow,
     TableEditColumn,
     TableEditRow,
+    TableSelection,
+    PagingPanel,
 } from '@devexpress/dx-react-grid-material-ui';
 
 import {
@@ -18,6 +27,7 @@ import {
 } from 'react-transition-group';
 
 import {
+    Button,
     Row, Col,
     Card, CardBody,
     CardTitle,
@@ -34,14 +44,27 @@ export default class CampaignsTable extends React.Component {
             compaignList: [],
             statusColumns: ['statusOfCampaign'],
             errors: {},
+            selection: [],
             brandName: localStorage.getItem("brandName")
         };
 
         this.statusTypeProvider = this.statusTypeProvider.bind(this);
         this.statusFormatter = this.statusFormatter.bind(this);
         this.setErrors = this.setErrors.bind(this);
+        this.setSelection = this.setSelection.bind(this);
         this.handleSubmitJobs = this.handleSubmitJobs.bind(this);
+        this.updateStatus = this.updateStatus.bind(this);
         this.handleDelete = this.handleDelete.bind(this);
+    }
+
+    updateStatus(status) {
+        const { dispatch } = this.props;
+        const { brandName } = this.state;
+        const campaignStatusLocal = {
+            statusOfCampaign: status,
+        };
+
+        dispatch(campaignActions.updateCampaign(campaignLocal));
     }
 
     handleSubmitJobs(campaign) {
@@ -86,6 +109,11 @@ export default class CampaignsTable extends React.Component {
         this.setState({ errors: errors });
     };
 
+    setSelection = (selection) => {
+        debugger;
+        this.setState({ selection: selection });
+    };
+
     statusFormatter = ({ value }) => {
         var color = 'red';
         if (value === 'Started') {
@@ -109,7 +137,7 @@ export default class CampaignsTable extends React.Component {
 
 
     render() {
-        const { statusColumns, errors, brandName } = this.state;
+        const { statusColumns, errors, brandName, selection } = this.state;
         const { campaign, i18n, loading } = this.props;
 
         var rows = []
@@ -285,51 +313,71 @@ export default class CampaignsTable extends React.Component {
             <Fragment>
                 <TransitionGroup component="div">
                     <CSSTransition timeout={1500} unmountOnExit appear classNames="TabsAnimation">
-                        <Row className="text-center">
-                            <Col md="12">
-                                <Card className="main-card mb-3">
-                                    <CardBody>
-                                        <CardTitle>
-                                            {i18n.i18n.t('All Campaigns')}
-                                        </CardTitle>
-                                        <Grid rows={rows} columns={brandName !== 'admin' ? columns : adminColumns}>
-                                            {
-                                                brandName !== 'admin' && <EditingState
-                                                    onRowChangesChange={onEdited}
-                                                    onCommitChanges={commitChanges}
-                                                    columnExtensions={editingStateColumnExtensions}
-                                                />
-                                            }
-                                            <this.statusTypeProvider for={statusColumns} />
-                                            <Table columnExtensions={brandName !== 'admin' ? tableColumnExtensions : tableAdminColumnExtensions} />
-                                            <TableHeaderRow />
-                                            {
-                                                brandName !== 'admin' &&
-                                                <TableEditColumn
-                                                    showEditCommand={true}
-                                                    showDeleteCommand={true}
-                                                    cellComponent={props => <EditCell {...props} errors={errors} />}
-                                                />
-                                            }
-                                            {brandName !== 'admin' && <TableEditRow />}
-                                        </Grid>
-                                        {
-                                            loading &&
-                                            <div className="loader-container" style={{ width: '85%', height: '85%' }}>
-                                                <div className="loader-container-inner">
-                                                    <Loader
-                                                        type="CradleLoader"
-                                                        color="#00BFFF"
+                        <div>
+                            <Row className="text-center">
+                                <Col md="12">
+                                    <Card className="main-card mb-3">
+                                        <CardBody>
+                                            <CardTitle>
+                                                {i18n.i18n.t('All Campaigns')}
+                                            </CardTitle>
+                                            <Grid rows={rows} columns={brandName !== 'admin' ? columns : adminColumns}>
+                                                {
+                                                    brandName !== 'admin' && <EditingState
+                                                        onRowChangesChange={onEdited}
+                                                        onCommitChanges={commitChanges}
+                                                        columnExtensions={editingStateColumnExtensions}
                                                     />
+                                                }
+                                                <this.statusTypeProvider for={statusColumns} />
+                                                {brandName === 'admin' && <PagingState defaultCurrentPage={0} pageSize={6} />}
+                                                {brandName === 'admin' && <SelectionState selection={selection} onSelectionChange={this.setSelection} />}
+                                                {brandName === 'admin' && <IntegratedPaging />}
+                                                {brandName === 'admin' && <IntegratedSelection />}
+                                                <Table columnExtensions={brandName !== 'admin' ? tableColumnExtensions : tableAdminColumnExtensions} />
+                                                <TableHeaderRow />
+                                                {
+                                                    brandName !== 'admin' &&
+                                                    <TableEditColumn
+                                                        showEditCommand={true}
+                                                        showDeleteCommand={true}
+                                                        cellComponent={props => <EditCell {...props} errors={errors} />}
+                                                    />
+                                                }
+                                                {brandName === 'admin' && <PagingPanel />}
+                                                {brandName !== 'admin' && <TableEditRow />}
+                                                {brandName === 'admin' && <TableSelection selectByRowClick />}
+                                            </Grid>
+                                            {
+                                                loading &&
+                                                <div className="loader-container" style={{ width: '85%', height: '85%' }}>
+                                                    <div className="loader-container-inner">
+                                                        <Loader
+                                                            type="CradleLoader"
+                                                            color="#00BFFF"
+                                                        />
+                                                    </div>
                                                 </div>
-                                            </div>
-                                        }
+                                            }
 
-                                    </CardBody>
-                                </Card>
-                            </Col>
-
-                        </Row></CSSTransition>
+                                        </CardBody>
+                                    </Card>
+                                </Col>
+                            </Row>
+                            <Row className="text-center">
+                                <Col md="5">
+                                </Col>
+                                <Col md="1">
+                                    <Button onClick={this.handleSubmit} color="primary" className="mt-2">Start</Button>
+                                </Col>
+                                <Col md="1">
+                                    <Button onClick={this.handleSubmit} color="primary" className="mt-2">Done</Button>
+                                </Col>
+                                <Col md="5">
+                                </Col>
+                            </Row>
+                        </div>
+                    </CSSTransition>
                 </TransitionGroup>
             </Fragment>
         );

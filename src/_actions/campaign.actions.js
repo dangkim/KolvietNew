@@ -13,6 +13,7 @@ export const campaignActions = {
     getAllInteresting,
     updateCampaign,
     deleteCampaign,
+    updateStatus
 };
 
 function deleteCampaign(contentItemId, brandName) {
@@ -51,6 +52,37 @@ function updateCampaign(CampaignType) {
         dispatch(request());
 
         campaignService.updateCampaign(CampaignType)
+            .then(
+                campaign => {
+                    campaignService.getCampaignByBrand(CampaignType.brandName)
+                        .then(campaignsType => {
+                            dispatch(success(campaignsType));
+                            localStorage.removeItem('campaign');
+                            localStorage.removeItem('job');
+                            //history.push('/widgets/dashboard-boxes');
+                            //dispatch(alertActions.success('Registration Campaigns Successful'));
+                            toast.success("Registration Campaigns Successful");
+                        }),
+                        error => {
+                            dispatch(failure(error.toString()));
+                            dispatch(alertActions.error(error.toString()));
+                        }
+                    //dispatch(success(CampaignType))
+                },
+                error => dispatch(failure(error.toString()))
+            );
+    };
+
+    function request() { return { type: campaignConstants.CAMS_UPDATE_REQUEST } }
+    function success(campaign) { return { type: campaignConstants.CAMS_UPDATE_SUCCESS, campaign } }
+    function failure(error) { return { type: campaignConstants.CAMS_UPDATE_FAILURE, error } }
+}
+
+function updateStatus(campaigns, status) {
+    return dispatch => {
+        dispatch(request());
+
+        campaignService.updateStatus(CampaignType)
             .then(
                 campaign => {
                     campaignService.getCampaignByBrand(CampaignType.brandName)
