@@ -78,21 +78,21 @@ function updateCampaign(CampaignType) {
     function failure(error) { return { type: campaignConstants.CAMS_UPDATE_FAILURE, error } }
 }
 
-function updateStatus(campaigns, status) {
+function updateStatus(campaignStatusModel) {
     return dispatch => {
         dispatch(request());
 
-        campaignService.updateStatus(CampaignType)
+        campaignService.updateStatus(campaignStatusModel)
             .then(
                 campaign => {
-                    campaignService.getCampaignByBrand(CampaignType.brandName)
+                    campaignService.getAll()
                         .then(campaignsType => {
                             dispatch(success(campaignsType));
                             localStorage.removeItem('campaign');
                             localStorage.removeItem('job');
                             //history.push('/widgets/dashboard-boxes');
                             //dispatch(alertActions.success('Registration Campaigns Successful'));
-                            toast.success("Registration Campaigns Successful");
+                            toast.success("Update Status Successfully");
                         }),
                         error => {
                             dispatch(failure(error.toString()));
@@ -103,10 +103,12 @@ function updateStatus(campaigns, status) {
                 error => dispatch(failure(error.toString()))
             );
     };
-
     function request() { return { type: campaignConstants.CAMS_UPDATE_REQUEST } }
     function success(campaign) { return { type: campaignConstants.CAMS_UPDATE_SUCCESS, campaign } }
     function failure(error) { return { type: campaignConstants.CAMS_UPDATE_FAILURE, error } }
+    // function request() { return { type: campaignConstants.CAMS_UPDATE_STATUS_REQUEST } }
+    // function success(campaign) { return { type: campaignConstants.CAMS_UPDATE_STATUS_SUCCESS, campaign } }
+    // function failure(error) { return { type: campaignConstants.CAMS_UPDATE_STATUS_FAILURE, error } }
 }
 
 function register(campaign,
@@ -137,7 +139,7 @@ function register(campaign,
             brandName,
             brandFullName,
             email,
-            phoneNumber,            
+            phoneNumber,
             selectedInfluencer);
 
         campaignService.register(campaignLocal)
@@ -146,11 +148,11 @@ function register(campaign,
                 localStorage.removeItem('campaign');
                 localStorage.removeItem('job');
                 toast.success("Registration Campaigns Successful");
-                history.replace({ pathname: '/widgets/campaigns-table'});
-                },
+                history.replace({ pathname: '/widgets/campaigns-table' });
+            },
                 error => {
                     dispatch(failure(error.toString()));
-                    }
+                }
             );
     };
 

@@ -42,7 +42,7 @@ export default class CampaignsTable extends React.Component {
 
         this.state = {
             compaignList: [],
-            statusColumns: ['statusOfCampaign'],
+            statusColumns: ['statusValue'],
             errors: {},
             selection: [],
             brandName: localStorage.getItem("brandName")
@@ -54,27 +54,36 @@ export default class CampaignsTable extends React.Component {
         this.setSelection = this.setSelection.bind(this);
         this.handleSubmitJobs = this.handleSubmitJobs.bind(this);
         this.updateStatus = this.updateStatus.bind(this);
+        this.updateStartedStatus = this.updateStartedStatus.bind(this);
+        this.updateDoneStatus = this.updateDoneStatus.bind(this);
         this.handleDelete = this.handleDelete.bind(this);
+    }
+
+    updateStartedStatus() {
+        this.updateStatus(2);
+    }
+
+    updateDoneStatus() {
+        this.updateStatus(3);
     }
 
     updateStatus(status) {
         const { dispatch, campaign } = this.props;
         const { selection } = this.state;
-        const contentItemId = [];
-        debugger;
+        const contentItemIds = [];
+
         selection.forEach(id => {
-            contentItemId.push(campaign[id].contentItemId);
+            contentItemIds.push(campaign[id].contentItemId);
         });
 
-        // campaign.forEach(element => {
-            
-        // });
-
         const campaignStatusLocal = {
-            statusOfCampaign: status,
+            contentItemIds: contentItemIds,
+            status: status
         };
 
-        dispatch(campaignActions.updateCampaign(campaignLocal));
+        this.setState({ selection: [] });
+
+        dispatch(campaignActions.updateStatus(campaignStatusLocal));
     }
 
     handleSubmitJobs(campaign) {
@@ -120,7 +129,6 @@ export default class CampaignsTable extends React.Component {
     };
 
     setSelection = (selection) => {
-        debugger;
         this.setState({ selection: selection });
     };
 
@@ -164,7 +172,7 @@ export default class CampaignsTable extends React.Component {
             { name: "phoneNumber", title: "Phone" },
             { name: "email", title: "Email" },
             { name: "influencerFullName", title: "Influencer" },
-            { name: "statusOfCampaign", title: this.props.i18n.i18n.t('StatusTable') },
+            { name: "statusValue", title: this.props.i18n.i18n.t('StatusTable') },
         ];
 
         const columns = [
@@ -182,7 +190,7 @@ export default class CampaignsTable extends React.Component {
             // { name: "keyword", title: "Keyword" },
             // { name: "link", title: "Link" },
             { name: "influencerFullName", title: "Influencer" },
-            { name: "statusOfCampaign", title: this.props.i18n.i18n.t('StatusTable') },
+            { name: "statusValue", title: this.props.i18n.i18n.t('StatusTable') },
         ];
 
         const tableAdminColumnExtensions = [
@@ -197,7 +205,7 @@ export default class CampaignsTable extends React.Component {
             { columnName: "phoneNumber", align: 'left', width: 150, wordWrapEnabled: true },
             { columnName: "email", align: 'left', width: 100, wordWrapEnabled: true },
             { columnName: "influencerFullName", align: 'left', wordWrapEnabled: true },
-            { columnName: "statusOfCampaign", align: 'left', width: 75, wordWrapEnabled: true }
+            { columnName: "statusValue", align: 'left', width: 75, wordWrapEnabled: true }
         ]
 
         const tableColumnExtensions = [
@@ -214,7 +222,7 @@ export default class CampaignsTable extends React.Component {
             // { columnName: "keyword", align: 'left', wordWrapEnabled: true },
             // { columnName: "link", align: 'left', wordWrapEnabled: true },
             { columnName: "influencerFullName", align: 'left', wordWrapEnabled: true },
-            { columnName: "statusOfCampaign", align: 'left', width: 75, wordWrapEnabled: true }
+            { columnName: "statusValue", align: 'left', width: 75, wordWrapEnabled: true }
         ]
 
         const editingStateColumnExtensions = [
@@ -232,12 +240,12 @@ export default class CampaignsTable extends React.Component {
                 } else if (item.gender === 1) {
                     genderValue = 'Nam'
                 }
-
+                debugger;
                 var statusOfCampaign = 'Pending'
                 if (item.statusOfCampaign === 3) {
-                    genderValue = "Done"
-                } else if (item.gender === 1) {
-                    genderValue = 'Started'
+                    statusOfCampaign = "Done"
+                } else if (item.statusOfCampaign === 2) {
+                    statusOfCampaign = 'Started'
                 }
 
                 return Object.assign(item, {
@@ -256,7 +264,7 @@ export default class CampaignsTable extends React.Component {
                     keyword: item.keyword,
                     link: item.link,
                     influencerFullName: item.bag.contentItems[0].fullName,
-                    statusOfCampaign: statusOfCampaign
+                    statusValue: statusOfCampaign
                 });
             })
         }
@@ -378,10 +386,10 @@ export default class CampaignsTable extends React.Component {
                                 <Col md="5">
                                 </Col>
                                 <Col md="1">
-                                    <Button onClick={this.updateStatus} color="primary" className="mt-2">Start</Button>
+                                    <Button onClick={this.updateStartedStatus} color="primary" className="mt-2">Start</Button>
                                 </Col>
                                 <Col md="1">
-                                    <Button onClick={this.updateStatus} color="primary" className="mt-2">Done</Button>
+                                    <Button onClick={this.updateDoneStatus} color="primary" className="mt-2">Done</Button>
                                 </Col>
                                 <Col md="5">
                                 </Col>

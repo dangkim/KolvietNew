@@ -56,7 +56,7 @@ function updateCampaign(CampaignType) {
     return fetch(`${configOrchardCore.apiUrl}/content/UpdateCampaign`, requestOptions).then(handleContentResponse);
 }
 
-function updateStatus(CampaignStatusModel) {
+function updateStatus(campaignStatusModel) {
     const token = localStorage.getItem('token');
 
     const requestOptions = {
@@ -65,7 +65,7 @@ function updateStatus(CampaignStatusModel) {
             'Content-Type': 'application/json',
             'Authorization': token
         },
-        body: JSON.stringify(CampaignStatusModel)
+        body: JSON.stringify(campaignStatusModel)
     };
     debugger;
     return fetch(`${configOrchardCore.apiUrl}/content/UpdateCampaignStatus`, requestOptions).then(handleContentResponse);
@@ -123,25 +123,27 @@ function getCampaignByBrand(brandName) {
     const GET_ALL_COMPAIGN = `
     {
         campaign(status: LATEST, where: {displayText_contains: "` + brandName + `"}) {
-          budget
-          campaignName
-          campaignTarget
-          contentItemId
-          description
-          fromAge
-          toAge
-          fromDate
-          toDate
-          hashTag
-          gender
-          jobName
-          statusOfCampaign
-          keyword
-          link
-          published
-          currency
-          createdUtc
-          bag {
+            budget
+            campaignName
+            campaignTarget
+            fromAge
+            fromDate
+            gender
+            jobName
+            keyword
+            hashTag
+            interesting
+            published
+            toAge
+            toDate
+            statusOfCampaign
+            contentItemId
+            createdUtc
+            description
+            phoneNumber
+            brandFullName
+            email
+            bag {
             contentItems {
               ... on Influencer {
                 fullName
