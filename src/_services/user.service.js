@@ -85,6 +85,8 @@ function logout() {
     localStorage.removeItem('selectedLocations');
     localStorage.removeItem('cSelected');
     localStorage.removeItem('selectedName');
+    localStorage.removeItem('typeModerator');
+    localStorage.removeItem('typeAdministrator');
     
     //localStorage.removeItem('language');
     history.index = -1;

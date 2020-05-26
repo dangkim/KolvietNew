@@ -47,8 +47,26 @@ function getToken(userName, password) {
                             localStorage.setItem("type", "influencer");
                             history.replace({ pathname: '/widgets/dashboard-boxes', state: { userName: userName, type: type } });
                         }
-                        else if (userName === 'admin') {
-                            localStorage.setItem("type", "brand");
+                        else if (type === "Moderator") {
+                            localStorage.setItem("typeModerator", type);
+                            localStorage.setItem("brandFullName", userName);
+                            localStorage.setItem("brandName", userName);
+
+                            var brand = {
+                                brandName: userName,
+                                businessAreas: "",
+                                contentItemId: "",
+                                createdUtc: "",
+                                email: "",
+                                fullName: userName,
+                                location: "",
+                                published: false
+                            }
+
+                            history.replace({ pathname: '/widgets/dashboard-boxes', state: { Brand: brand, type: type } });
+                        }
+                        else if (type === 'Administrator') {
+                            localStorage.setItem("typeAdministrator", type);
                             localStorage.setItem("brandFullName", userName);
                             localStorage.setItem("brandName", userName);
 

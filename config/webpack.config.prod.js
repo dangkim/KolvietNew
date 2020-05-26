@@ -330,12 +330,12 @@ module.exports = {
     // global app config object
     configContent: JSON.stringify({
       apiUrl: 'https://bdo8.com'
-      //apiUrl: 'http://www.kolviet.somee.com'
+      //apiUrl: 'http://ec2-3-17-156-227.us-east-2.compute.amazonaws.com/InfluencerPlatform'
       //apiUrl: 'https://localhost:44300/'
     }),
     configOrchardCore: JSON.stringify({
       apiUrl: 'https://bdo8.com/api'
-      //apiUrl: 'http://www.kolviet.somee.com/api'
+      //apiUrl: 'http://ec2-3-17-156-227.us-east-2.compute.amazonaws.com/InfluencerPlatform/api'
       //apiUrl: 'https://localhost:44300/api/'
     })
   }

@@ -45,7 +45,10 @@ export default class CampaignsTable extends React.Component {
             statusColumns: ['statusValue'],
             errors: {},
             selection: [],
-            brandName: localStorage.getItem("brandName")
+            brandName: localStorage.getItem("brandName"),
+            typeModerator: localStorage.getItem("typeModerator"),
+            typeAdministrator: localStorage.getItem("typeAdministrator"),
+            type: localStorage.getItem("type"),
         };
 
         this.statusTypeProvider = this.statusTypeProvider.bind(this);
@@ -115,8 +118,9 @@ export default class CampaignsTable extends React.Component {
 
     componentDidMount() {
         const { dispatch } = this.props;
-        const { brandName } = this.state;
-        if (brandName === 'admin') {
+        const { brandName, typeAdministrator, typeModerator, type } = this.state;
+        debugger;
+        if (typeAdministrator === 'Administrator' || typeModerator === 'Moderator') {
             dispatch(campaignActions.getAll());
         }
         else {
@@ -155,7 +159,14 @@ export default class CampaignsTable extends React.Component {
 
 
     render() {
-        const { statusColumns, errors, brandName, selection } = this.state;
+        const { statusColumns
+            , errors
+            , brandName
+            , selection
+            , typeAdministrator
+            , typeModerator
+            , type } = this.state;
+
         const { campaign, i18n, loading } = this.props;
 
         var rows = []
@@ -240,7 +251,7 @@ export default class CampaignsTable extends React.Component {
                 } else if (item.gender === 1) {
                     genderValue = 'Nam'
                 }
-                debugger;
+
                 var statusOfCampaign = 'Pending'
                 if (item.statusOfCampaign === 3) {
                     statusOfCampaign = "Done"
@@ -339,32 +350,32 @@ export default class CampaignsTable extends React.Component {
                                             <CardTitle>
                                                 {i18n.i18n.t('All Campaigns')}
                                             </CardTitle>
-                                            <Grid rows={rows} columns={brandName !== 'admin' ? columns : adminColumns}>
+                                            <Grid rows={rows} columns={(typeAdministrator === 'Administrator' || typeModerator === 'Moderator') ? adminColumns : columns}>
                                                 {
-                                                    brandName !== 'admin' && <EditingState
+                                                    (typeAdministrator !== 'Administrator' && typeModerator !== 'Moderator') && <EditingState
                                                         onRowChangesChange={onEdited}
                                                         onCommitChanges={commitChanges}
                                                         columnExtensions={editingStateColumnExtensions}
                                                     />
                                                 }
                                                 <this.statusTypeProvider for={statusColumns} />
-                                                {brandName === 'admin' && <PagingState defaultCurrentPage={0} pageSize={6} />}
-                                                {brandName === 'admin' && <SelectionState selection={selection} onSelectionChange={this.setSelection} />}
-                                                {brandName === 'admin' && <IntegratedPaging />}
-                                                {brandName === 'admin' && <IntegratedSelection />}
-                                                <Table columnExtensions={brandName !== 'admin' ? tableColumnExtensions : tableAdminColumnExtensions} />
+                                                {(typeAdministrator === 'Administrator' || typeModerator === 'Moderator') && <PagingState defaultCurrentPage={0} pageSize={6} />}
+                                                {(typeAdministrator === 'Administrator' || typeModerator === 'Moderator') && <SelectionState selection={selection} onSelectionChange={this.setSelection} />}
+                                                {(typeAdministrator === 'Administrator' || typeModerator === 'Moderator') && <IntegratedPaging />}
+                                                {(typeAdministrator === 'Administrator' || typeModerator === 'Moderator') && <IntegratedSelection />}
+                                                <Table columnExtensions={(typeAdministrator === 'Administrator' || typeModerator === 'Moderator') ? tableAdminColumnExtensions: tableColumnExtensions} />
                                                 <TableHeaderRow />
                                                 {
-                                                    brandName !== 'admin' &&
+                                                    (typeAdministrator !== 'Administrator' && typeModerator !== 'Moderator')  &&
                                                     <TableEditColumn
                                                         showEditCommand={true}
                                                         showDeleteCommand={true}
                                                         cellComponent={props => <EditCell {...props} errors={errors} />}
                                                     />
                                                 }
-                                                {brandName === 'admin' && <PagingPanel />}
-                                                {brandName !== 'admin' && <TableEditRow />}
-                                                {brandName === 'admin' && <TableSelection selectByRowClick />}
+                                                {(typeAdministrator === 'Administrator' || typeModerator === 'Moderator')  && <PagingPanel />}
+                                                {(typeAdministrator !== 'Administrator' && typeModerator !== 'Moderator')  && <TableEditRow />}
+                                                {(typeAdministrator === 'Administrator' || typeModerator === 'Moderator')  && <TableSelection selectByRowClick />}
                                             </Grid>
                                             {
                                                 loading &&
