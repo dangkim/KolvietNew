@@ -84,7 +84,7 @@
     "react-avatar-editor": "^12.0.0-beta.0",
     "react-chartjs-2": "^2.8.0",
     "react-daterange-picker": "^2.0.1",
-    "react-dev-utils": "^9.1.0",
+    "react-dev-utils": "^11.0.4",
     "react-dom": "^16.11.0",
     "react-hamburgers": "^1.0.0",
     "react-i18next": "^11.0.1",
