@@ -20,11 +20,11 @@ function register(brandType, userType) {
 
         userService.register(userType)
             .then(user => {
-                userService.getToken(userType.UserName, userType.Password)
+                const userObj = JSON.parse(user);
+                userService.getToken(userObj.userName, userType.Password)
                     .then(token => {
                         brandService.register(brandType)
-                            .then(brand => {
-                                debugger;
+                            .then(brand => {                                
                                 const brandObj = {
                                     contentItemId: brand.ContentItemId
                                     , brandName: brand.Brand.BrandName.Text
